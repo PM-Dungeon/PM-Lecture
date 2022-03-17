@@ -41,40 +41,116 @@ _build:
 ## Motivation
 - Mit Datenbanken interagieren, daten senden und abfragen
 
-## Folie 2
+## JDBC
 - was ist jdbc
   - was ist SQL (ganz ganz ganz grob: Sprache der Datenbank)
 - abbildung "java app -> jdbc api -> jdbc driver -> database
 - converts data types
-## Folie 3
+
+## Treiber Typen
 - driver types
     - type 1: DBC-ODBC Bridge Driver
     - type 2: JDBC-Native API
     - type 3: JDBC-Net pure Java
     - type 4: Pure Java
-## Folie 4
-- connection mit database aufbauen
-- database selecten
-- connection schließen
 
-## Folie 5
+## Treiber Registrieren
+
+Für unterschiedliche Datenbanek gibt es unterschiedliche Treiber. Diese müssen in der Java-Anwendung registriert werden, um mithilfe von jdbc eine Verbindung zur Datenbank aufzubauen.
+
+Möglichkeit 1: `Class.forName()`
+```java
+  Class.forName("{datenbanktreiber}")
+```
+
+Beispiel:
+
+Oracle:
+```java
+  Class.forName("oracle.jdbc.driver.OracleDriver");
+```
+MySQL:
+```java
+  Class.forName("com.mysql.jdbc.Driver");
+```
+Microsoft:
+```java
+  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver")`
+```
+
+Möglichkeit 2: `DriverManager.registerDriver()`
+```java
+  Driver myDriver = new {driver}();
+  DriverManager.registerDriver( myDriver );
+```
+
+Beispiel:
+
+Oracle:
+```java
+  Driver myDriver = new oracle.jdbc.driver.OracleDriver();
+  DriverManager.registerDriver(myDriver);
+```
+MySQL:
+```java
+  Driver myDriver = com.mysql.jdbc.Driver();
+  DriverManager.registerDriver(myDriver);
+```
+Microsoft:
+```java
+  Driver myDriver = com.microsoft.sqlserver.jdbc.SQLServerDriver();
+  DriverManager.registerDriver(myDriver);
+```
+
+
+## Verbindung aufbauen
+
+Mit drei Parametern.
+```java
+  String URL="jdbc:database"; //todo checken of das so richtig ist
+  String USER= "Admin";
+  String PASSWORD = "admin123"
+  Connection connection = DriverManager.getConnection(URL,USER,PASSWORD)
+```
+
+Mit einem Paramter. Username und Passwort werden in der URL angegeben.
+```java
+  String URL="jdbc:admin/admin123@database";  //todo checken of das so richtig ist
+  Connection connection = DriverManager.getConnection(URL)
+```
+
+Mit Properties um Username und Passwort anzugeben.
+ ```java
+  String URL="jdbc:database";  //todo checken of das so richtig ist
+  Properties login = new Properties();
+  login.put("user","Admin");
+  login.put("password","admin123");
+  Connection connection = DriverManager.getConnection(URL,login)
+```
+
+Am Ende muss die Verbindung zur Datenbank geschlossen werden.
+```java
+  connection.close();
+```
+
+## Statements
 - Statement typen
   - basic: für (wenige) statische (hardoced) sql abfragen zur runtime. kann keine parameter
   - prepared statement: Für regelmäßige abfragen, kann parameter
   - callabale statement: Für database stored procedur (also abfragen die schon auf der DB "gespeichert" sind)
 ...
 
-## Folie 6
+## SQL
 - SQL abfragen senden
   - SELECT, INSERT, UPDATE (verweis das in DB dann mehr gelernt wird)
 - results auswerten
   - resultset erklären (pointer in der db)
   - navigate, get und update
 
-## Folie 7
+## SQL-Exceptions
 - exceptions
 
-## Folie 8
+## Ausblick
 - ausblick was noch geht
     - transactions/roll backs
     - data streaming
