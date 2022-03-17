@@ -39,25 +39,53 @@ _build:
 
 
 ## Motivation
-Lorem Ipsum. Starte mit H2-Level.
-...
+- Mit Datenbanken interagieren, daten senden und abfragen
 
 ## Folie 2
-...
-
+- was ist jdbc
+  - was ist SQL (ganz ganz ganz grob: Sprache der Datenbank)
+- abbildung "java app -> jdbc api -> jdbc driver -> database
+- converts data types
 ## Folie 3
-...
-
+- driver types
+    - type 1: DBC-ODBC Bridge Driver
+    - type 2: JDBC-Native API
+    - type 3: JDBC-Net pure Java
+    - type 4: Pure Java
 ## Folie 4
-...
+- connection mit database aufbauen
+- database selecten
+- connection schließen
 
 ## Folie 5
+- Statement typen
+  - basic: für (wenige) statische (hardoced) sql abfragen zur runtime. kann keine parameter
+  - prepared statement: Für regelmäßige abfragen, kann parameter
+  - callabale statement: Für database stored procedur (also abfragen die schon auf der DB "gespeichert" sind)
 ...
 
 ## Folie 6
-...
+- SQL abfragen senden
+  - SELECT, INSERT, UPDATE (verweis das in DB dann mehr gelernt wird)
+- results auswerten
+  - resultset erklären (pointer in der db)
+  - navigate, get und update
+
+## Folie 7
+- exceptions
+
+## Folie 8
+- ausblick was noch geht
+    - transactions/roll backs
+    - data streaming
+    - batch processing
 
 ## Wrap-Up
+- jdbc um mit dantebanken zu interagieren
+- gibt unterschiedliche treiber
+- how to connection aufbauen
+- how to statement senden
+- how to result auswerten
 ...
 
 
