@@ -42,23 +42,23 @@ _build:
 - Mit Datenbanken interagieren, daten senden und abfragen
 
 ## JDBC
-- was ist jdbc
-  - was ist SQL (ganz ganz ganz grob: Sprache der Datenbank)
-- abbildung "java app -> jdbc api -> jdbc driver -> database
-- converts data types
 
-## Treiber Typen
-- driver types
-    - type 1: DBC-ODBC Bridge Driver
-    - type 2: JDBC-Native API
-    - type 3: JDBC-Net pure Java
-    - type 4: Pure Java
+- **J**ava **D**ata**b**ase **C**onnectivity (JDBC) ist eine Java-API um auf Datenbanke zuzugreifen
+- Damit können Verbindungen zu Datenbank hergestellt und SQL-Statements ausgeführt werden.
+- JDBC konvertiert die SQL-Datentypen in Java-Datentypen und umgedreht.
+- Die JDBC API ist universal und Datenbanksystem unabhängig
+- Die einzelen Datenbanksystem-Hersteller stellen JDBC-Treiber zur verfügung.
+- Was machen die Treiber? Impelementieren Schnittstelle damit JDBC sie nutzen kann. **todo formulieren**
+- Der JDBC Driver Manager läd den Datenbansystem spezifischen Treiber in die Anwendung.
+
+
+**todo image einfügen**
 
 ## Treiber Registrieren
 
-Für unterschiedliche Datenbanek gibt es unterschiedliche Treiber. Diese müssen in der Java-Anwendung registriert werden, um mithilfe von jdbc eine Verbindung zur Datenbank aufzubauen.
+Für unterschiedliche Datenbanksysteme gibt es unterschiedliche Treiber. Diese müssen in der Java-Anwendung registriert werden, um mithilfe von jdbc eine Verbindung zur Datenbank aufzubauen.
 
-Möglichkeit 1: `Class.forName()`
+Möglichkeit 1: Dynamsch zur Laufzeit `Class.forName()`
 ```java
   Class.forName("{datenbanktreiber}")
 ```
@@ -73,12 +73,9 @@ MySQL:
 ```java
   Class.forName("com.mysql.jdbc.Driver");
 ```
-Microsoft:
-```java
-  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver")`
-```
 
-Möglichkeit 2: `DriverManager.registerDriver()`
+
+Möglichkeit 2: Statisch `DriverManager.registerDriver()`
 ```java
   Driver myDriver = new {driver}();
   DriverManager.registerDriver( myDriver );
@@ -96,14 +93,10 @@ MySQL:
   Driver myDriver = com.mysql.jdbc.Driver();
   DriverManager.registerDriver(myDriver);
 ```
-Microsoft:
-```java
-  Driver myDriver = com.microsoft.sqlserver.jdbc.SQLServerDriver();
-  DriverManager.registerDriver(myDriver);
-```
-
 
 ## Verbindung aufbauen
+
+**todo: URL Aufbau, ist das unser Thema?**
 
 Mit drei Parametern.
 ```java
@@ -134,21 +127,102 @@ Am Ende muss die Verbindung zur Datenbank geschlossen werden.
 ```
 
 ## Statements
-- Statement typen
-  - basic: für (wenige) statische (hardoced) sql abfragen zur runtime. kann keine parameter
-  - prepared statement: Für regelmäßige abfragen, kann parameter
-  - callabale statement: Für database stored procedur (also abfragen die schon auf der DB "gespeichert" sind)
+
+- Mit `Statement`s werden SQL-Befehle erstellt, die dann an die Datenbank gesendet werden können.
+
+Statement erstellen mithilfe des `Connection`-Objekts
+```java
+Statement st= connection.createStatement();
+```
+
+Datensätze aus der Datenbank abfragen:
+
+```java
+String sql= "SELECT * FROM USER";
+ResultSet rs = st.executeQuery(sql);
+
+while(rs.next){
+    System.out.println("ID:" + rs.getInt("id"));
+    System.out.println("Username:" + rs.getString("name"));
+    System.out.println("Age:" + rs.getInt("age"));
+}
+rs.close();
+```
+
+Datensätze in der Datenbank hinzufügen:
+
+```java
+String sql="INSERT INTO User VALUES ('Wuppi Fluppi',22)";
+st.executeUpdate(sql);
+sql="INSERT INTO User VALUES ('Tutti Frutti ',100)";
+st.executeUpdate(sql);
+```
+
+Datensätze in der Datenbank ändern:
+
+```java
+String sql="UPDATE User SET age = 20 WHERE id in (100,110)";
+ResultSet rs= st.executeUpdate(sql);
+while(rs.next){
+    System.out.println("ID:" + rs.getInt("id"));
+    System.out.println("Username:" + rs.getString("name"));
+    System.out.println("Age:" + rs.getInt("age"));
+}
+rs.close();
+```
+
+
+`PreparedStatments` für wiederholte oder gesammelte abfragen:
+
+**todo besseres beispiel**
+```java
+public void giveMoney(HashMap <String, Integer> hashmap){
+    String sql= "UPDATE User SET money=? WHERE name = ?"
+        PreparedStatement pst= connection.prepareStatement(sql);
+    connection.setAutoCommit(false);
+    for (Map.Entry<String, Integer> e : hashmap.entrySet()) {
+        pst.setInt(1,e.getValue().intValue());
+        pst.setString(2, e.getKey());
+        pst.executeUpdate();
+
+        todo: zweite abfragen
+
+        connection.commit();
+
+    }
+
+}
+
+```
+
+**todo: Vielleicht zu tief?**- callabale statement: Für database stored procedur (also abfragen die schon auf der DB "gespeichert" sind)
 ...
 
-## SQL
-- SQL abfragen senden
-  - SELECT, INSERT, UPDATE (verweis das in DB dann mehr gelernt wird)
+## `ResultSet`
 - results auswerten
   - resultset erklären (pointer in der db)
   - navigate, get und update
 
 ## SQL-Exceptions
-- exceptions
+Auch mit JDBC kann es zu Fehlern/Probleme kommen.
+    - Fehlerhafte Statements
+    - Verbindungsprobleme
+    - Fehler in den Treibern oder der Datenbank selber
+Daher ist Exceptionhandling besonders wichtig.
+Jedes
+```java
+try {
+    // do something
+}
+catch (Excpetion e){
+    //ups
+    e.printStackTrace();
+}
+finally{
+    connection.close();
+}
+
+```
 
 ## Ausblick
 - ausblick was noch geht
