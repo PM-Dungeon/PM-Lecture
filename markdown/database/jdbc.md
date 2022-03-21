@@ -39,24 +39,24 @@ _build:
 
 
 ## Motivation
-- Mit Datenbanken interagieren, daten senden und abfragen
+- Mit Datenbanken interagieren, Daten senden und abfragen
 
 ## JDBC
 
-- **J**ava **D**ata**b**ase **C**onnectivity (JDBC) ist eine Java-API um auf Datenbanke zuzugreifen
-- Damit können Verbindungen zu Datenbank hergestellt und SQL-Statements ausgeführt werden.
-- JDBC konvertiert die SQL-Datentypen in Java-Datentypen und umgedreht.
-- Die JDBC API ist universal und Datenbanksystem unabhängig
-- Die einzelen Datenbanksystem-Hersteller stellen JDBC-Treiber zur verfügung.
-- Was machen die Treiber? Impelementieren Schnittstelle damit JDBC sie nutzen kann. **todo formulieren**
-- Der JDBC Driver Manager läd den Datenbansystem spezifischen Treiber in die Anwendung.
+- **J**ava **D**ata**b**ase **C**onnectivity (JDBC) ist eine Java-API, um auf Datenbanken zuzugreifen
+- Damit können Verbindungen zu Datenbank hergestellt und SQL-Statements ausgeführt werden.
+- JDBC konvertiert die SQL-Datentypen in Java-Datentypen und umgedreht.
+- Die JDBC API ist universal und Datenbanksystem unabhängig
+- Die einzelnen Datenbanksystem-Hersteller stellen JDBC-Treiber zur Verfügung.
+- Was machen die Treiber? Implementieren die von JDBC vorgegebene Schnittstelle, damit der Treiber vom JDBC-Driver-Manager genutzt werden kann.  
+- Der JDBC Driver Manager lädt den Datenbanksystem spezifischen Treiber in die Anwendung.
 
 
-**todo image einfügen**
+![Aufbau von JDBC.](./figs/jdbc_layers.png)
 
 ## Treiber Registrieren
 
-Für unterschiedliche Datenbanksysteme gibt es unterschiedliche Treiber. Diese müssen in der Java-Anwendung registriert werden, um mithilfe von jdbc eine Verbindung zur Datenbank aufzubauen.
+Für unterschiedliche Datenbanksysteme gibt es unterschiedliche Treiber. Diese müssen in der Java-Anwendung registriert werden, um mithilfe von JDBC eine Verbindung zur Datenbank aufzubauen und Anweisungen zu verschicken.
 
 Möglichkeit 1: Dynamsch zur Laufzeit `Class.forName()`
 ```java
@@ -74,6 +74,8 @@ MySQL:
   Class.forName("com.mysql.jdbc.Driver");
 ```
 
+- Treiber-Registrationen kann so konfigurierbar und portierbar gemacht werden. (Man muss "nur" den String-Parameter von `Class.forName` austauschen). 
+- Gängiges/Bevorzugtes Vorgehen
 
 Möglichkeit 2: Statisch `DriverManager.registerDriver()`
 ```java
@@ -94,30 +96,30 @@ MySQL:
   DriverManager.registerDriver(myDriver);
 ```
 
-## Verbindung aufbauen
+- Findet Anwendungm, wenn dynamisches Laden von der verwendeten JVM nicht unterstützt wird.
 
-**todo: URL Aufbau, ist das unser Thema?**
+## Verbindung aufbauen
 
 Mit drei Parametern.
 ```java
-  String URL="jdbc:database"; //todo checken of das so richtig ist
-  String USER= "Admin";
-  String PASSWORD = "admin123"
+  String URL="jdbc:URL/TO/DATABASE";
+  String USER= "USER";
+  String PASSWORD = "PASSWORD"
   Connection connection = DriverManager.getConnection(URL,USER,PASSWORD)
 ```
 
 Mit einem Paramter. Username und Passwort werden in der URL angegeben.
 ```java
-  String URL="jdbc:admin/admin123@database";  //todo checken of das so richtig ist
+  String URL="jdbc:USER/PASSWORD/URL/TO/DATABASE";
   Connection connection = DriverManager.getConnection(URL)
 ```
 
 Mit Properties um Username und Passwort anzugeben.
  ```java
-  String URL="jdbc:database";  //todo checken of das so richtig ist
+  String URL="jdbc:URL/TO/DATABASE";
   Properties login = new Properties();
-  login.put("user","Admin");
-  login.put("password","admin123");
+  login.put("user","USER");
+  login.put("password","PASSWORD");
   Connection connection = DriverManager.getConnection(URL,login)
 ```
 
@@ -125,6 +127,10 @@ Am Ende muss die Verbindung zur Datenbank geschlossen werden.
 ```java
   connection.close();
 ```
+
+- Per Default sind `Connection`s im "auto-commit" Modus. Das beduetet, alle `Statement`s werden automatisch an die Datenbank gesendet.
+- Mit `connection.setAutoCommit(false)`, kann dieser Modus disabled werden.
+- Dann müssen `Statement`s mit `connection.commit()` gesendet werden.
 
 ## Statements
 
@@ -134,6 +140,23 @@ Statement erstellen mithilfe des `Connection`-Objekts
 ```java
 Statement st= connection.createStatement();
 ```
+
+## `ResultSet`
+- Alle SQL-Statements die Daten aus der Datenbank lesen, geben diese als `ResultSet` zurück und kann sich wie eine Tablel vorgestellt werden.
+- Das `ResultSet`-Objekt hält dann einen Pointer auf die aktuell betrachtete Reihe in der Tabelle.
+- `ResultSet`s können auch Konfiguriert werden
+    - Zugriffsrechte (`RSConcurrency`)
+        - `CONCUR_READ_ONLY` (default): Nur Lesezugriff auf die Daten.
+        - `CONCUR_UPDATABLE`: Daten können über das `ResultSet` geupdated werden.
+
+    - Scrollbarkeit (`RSType`)
+        - `TYPE_FORWARD_ONLY` (default) Pointer kann nur Vorwärts bewegt werden
+        - `TYPE_SCROLL_INSENSITIVE`: Pointer kann Vorwärts und Rückwärts bewegt werden
+        - `TYPE_SCROLL_SENSITIVE`: Pointer kann Vortwärts und Rückwärts bewegt werden, zeitgleich werden Änderungen in der Datenbank berücksichtigt (das `ResultSet` updated sich)
+
+- Um das `ResultSet` zu konfigurieren, müssen die Parameter im `Statement` gesetzt werden `Statement st= connection.createStatment(RSType,RSConcurrency)`.
+
+## Beispiel Abfragen
 
 Datensätze aus der Datenbank abfragen:
 
@@ -173,43 +196,38 @@ rs.close();
 
 
 `PreparedStatments` für wiederholte oder gesammelte abfragen:
-
-**todo besseres beispiel**
+- Vorallem dann praktisch, wenn die Änderung eines Datensatztes die Änderung eines anderen Datensatzes impliziert.
 ```java
-public void giveMoney(HashMap <String, Integer> hashmap){
-    String sql= "UPDATE User SET money=? WHERE name = ?"
-        PreparedStatement pst= connection.prepareStatement(sql);
+public void feedAnimals(HashMap<String,Integer> foodSpend){
+    String sqlToday="UPDATE animal SET foodToday=? WHERE id = ?"
+    String sqlTotal="UPDATE animal SET foodTotal=foodTotal+? WHERE id=?"
+    PreparedStatement today= connection.prepareStatement(sqlToday);
+        PreparedStatement total= connection.prepareStatement(sqlTotal);
     connection.setAutoCommit(false);
-    for (Map.Entry<String, Integer> e : hashmap.entrySet()) {
-        pst.setInt(1,e.getValue().intValue());
-        pst.setString(2, e.getKey());
-        pst.executeUpdate();
+    for (Map.Entry<String, Integer> entry : foodSpend.entrySet()) {
 
-        todo: zweite abfragen
+        today.setInt(1,entry.getValue().intValue());
+        today.setString(2, entry.getKey());
+        today.executeUpdate();
+
+        total.setInt(1,entry.getValue().intValue());
+        total.setString(2, entry.getKey());
+        total.executeUpdate();
 
         connection.commit();
-
     }
-
 }
 
 ```
 
-**todo: Vielleicht zu tief?**- callabale statement: Für database stored procedur (also abfragen die schon auf der DB "gespeichert" sind)
-...
-
-## `ResultSet`
-- results auswerten
-  - resultset erklären (pointer in der db)
-  - navigate, get und update
-
 ## SQL-Exceptions
-Auch mit JDBC kann es zu Fehlern/Probleme kommen.
+- Auch mit JDBC kann es zu Fehlern/Probleme kommen.
     - Fehlerhafte Statements
     - Verbindungsprobleme
     - Fehler in den Treibern oder der Datenbank selber
-Daher ist Exceptionhandling besonders wichtig.
-Jedes
+- Daher ist Exceptionhandling besonders wichtig.
+-
+
 ```java
 try {
     // do something
@@ -224,25 +242,14 @@ finally{
 
 ```
 
-## Ausblick
-- ausblick was noch geht
-    - transactions/roll backs
-    - data streaming
-    - batch processing
-
 ## Wrap-Up
-- jdbc um mit dantebanken zu interagieren
+- JDBC ist eine API um mit Datenbanken zu interagieren
+- JDBC verwendet einen Driver-Manager
 - gibt unterschiedliche treiber
 - how to connection aufbauen
 - how to statement senden
 - how to result auswerten
 ...
-
-
-
-
-
-
 
 <!-- DO NOT REMOVE - THIS IS A LAST SLIDE TO INDICATE THE LICENSE AND POSSIBLE EXCEPTIONS (IMAGES, ...). -->
 ::: slides
