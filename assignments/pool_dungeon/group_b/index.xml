@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gruppe B: Monster und Kampf on </title>
+    <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/</link>
+    <description>Recent content in Gruppe B: Monster und Kampf on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-DE</language><atom:link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Monster</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/monster/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/monster/</guid>
+      <description>Ziel In dieser Aufgabe implementieren Sie simple Gegner, welche sich selbstständig im Dungeon umherbewegen.
+Monster Implementieren Sie analog zum Helden verschiedene Monster (mindestens zwei) für das Dungeon. Die Monster sollen auch jeweils eigene Animationen haben.
+Überlegen Sie sich, welche Eigenschaften die Monster haben sollen. Dies könnte beispielsweise die Geschwindigkeit sein, die Kampfstärke oder die Zahl der Lebenspunkte (&amp;quot;Gesundheit&amp;quot;).
+Lassen Sie die Monster sich zufällig im Dungeon bewegen.
+Überlegen Sie sich, welche Entwurfsmuster hier angewendet werden können.</description>
+    </item>
+    <item>
+      <title>Nahkampf</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/nahkampf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/nahkampf/</guid>
+      <description>Ziel In dieser Aufgabe implementieren Sie ein einfaches Nahkampfsystem, damit der Held gegen die Monster kämpfen kann.
+Voraussetzung Um diese Aufgabe lösen zu können, müssen Sie vorher &amp;ldquo;Monster&amp;rdquo; implementiert haben.
+Nahkampf Implementieren Sie eine rudimentäre Form eines Kampf-Systems. Dabei soll es zum Kampf kommen, wenn der Held und ein Monster auf demselben Feld stehen.
+Bei einem erfolgreichen Angriff wird dem angegriffenen Gegner ein bestimmter Schaden zugefügt (dieser verliert dann Lebenspunkte).</description>
+    </item>
+    <item>
+      <title>Game-Over</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/gameover/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/gameover/</guid>
+      <description>Ziel In dieser Aufgabe implementieren Sie den Spieler-Tod.
+Voraussetzung Um die Aufgabe lösen zu können, brauchen Sie &amp;ldquo;Monster&amp;rdquo; und ein beliebiges Kampfsystem (&amp;ldquo;Nahkampf&amp;rdquo; oder &amp;ldquo;Fernkampf&amp;rdquo;).
+Energiepunkte Erweitern Sie den Helden um Lebenspunkte. Im Kampf kann der Held Lebenspunkte verlieren. Hat der Held all seine Lebenspunkte &amp;quot;verbraucht&amp;quot;, ist das Spiel beendet.
+Lebenspunkte werden initial vergeben. Lebenspunkte können aufgefrischt werden, beispielsweise bei einem erfolgreichen Kampf oder durch Heiltränke oder Zaubersprüche.
+Wenn der Held stirbt, soll &amp;quot;Game Over&amp;quot; ausgegeben werden und das Spiel auf Tastendruck neu gestartet werden können.</description>
+    </item>
+    <item>
+      <title>Fernkampf</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/fernkampf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/fernkampf/</guid>
+      <description>Ziel In dieser Aufgabe implementieren Sie ein Fernkampfsystem, damit der Held gegen die Monster auf Distanz kämpfen kann.
+Voraussetzung Um diese Aufgabe lösen zu können, müssen Sie vorher &amp;ldquo;Monster&amp;rdquo; implementiert haben.
+Fernkampf Implementieren Sie ein Fernkampfsystem. Dabei soll der Spieler (oder auch Monster) ein Projektil verschießen.
+Das Projektil (Feuerball, Pfeil, etc.) hat eine eigene Textur und eine Flugbahn.
+Trifft das Projektil auf einen Gegner (oder den Helden) verursacht es Schaden und fliegt nicht mehr weiter.</description>
+    </item>
+    <item>
+      <title>Magie</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/magie/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/magie/</guid>
+      <description>Ziel In dieser Aufgabe implementieren Sie verschiedene Zaubersprüche.
+Magie Implementieren Sie ein Magie-System. Der Spieler soll in der Lage sein verschiedene Zauber zu verwenden.
+Beachten Sie dabei, dass es sich nicht um Zauber handelt, die Schaden verursachen. Zauber, die Monster anderweitig manipulieren, sind erlaubt.
+Überlegen Sie sich zwei verschiedene Zaubersprüche wie Gedankenkontrolle oder Telekinese oder Upgrade von Waffen/Rüstungen.
+Überlegen Sie sich, wie der Held an die Zaubersprüche gelangt und wie er sie benutzen kann.</description>
+    </item>
+    <item>
+      <title>Erfahrungspunkte</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/xp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/xp/</guid>
+      <description>Ziel In dieser Aufgabe implementieren Sie Erfahrungspunkte, die der Spieler sammeln kann, um in der Charakterstufe aufzusteigen.
+Voraussetzung Um die Aufgabe lösen zu können, brauchen Sie &amp;ldquo;Monster&amp;rdquo; und ein beliebiges Kampfsystem (&amp;ldquo;Nahkampf&amp;rdquo; oder &amp;ldquo;Fernkampf&amp;rdquo;).
+Erfahrungspunkte Wenn Ihr Held Monster besiegt, soll er mit Erfahrungspunkten belohnt werden.
+Unterschiedliche Monster geben unterschiedlich viele Erfahrungspunkte.
+Wenn genug Erfahrungspunkte erlangt wurden, soll der Spieler eine Stufe aufsteigen. Überlegen Sie sich hierfür eine Belohnung. Lassen Sie Ihr Stufen-System skalieren.</description>
+    </item>
+    <item>
+      <title>Schlaue Monster</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/schlaue_monster/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/schlaue_monster/</guid>
+      <description>Ziel Bisher bewegen sich die Monster nur zufällig durch den Dungeon. In dieser Aufgabe erweitern Sie Ihre Monster um unterschiedliche Verhaltensweisen.
+Voraussetzung Um diese Aufgabe lösen zu können, sollten Sie vorher &amp;ldquo;Monster&amp;rdquo; implementieren.
+Schlaue Monster Implementieren Sie eine Struktur, um das Verhalten der verschiedenen Monster flexibel ändern bzw. beeinflussen zu können. Überlegen Sie, welche Entwurfsmuster Sie hier einsetzen können und begründen Sie Ihre Entscheidung.
+Implementieren Sie mindestens drei verschiedene konkrete Verhaltensweisen.</description>
+    </item>
+    <item>
+      <title>Boss-Monster</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/boss_monster/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/boss_monster/</guid>
+      <description>Ziel In dieser Aufgabe implementieren Sie ein einzigartiges Boss-Monster.
+Voraussetzung Um diese Aufgabe lösen zu können, sollten Sie vorher &amp;ldquo;Monster&amp;rdquo; implementieren.
+Boss-Monster Zu jedem guten Spiel gehört ein guter Boss-Gegner. Boss-Monster sind oft deutlich stärker als die sonstigen Monster im Spiel. Was sie jedoch besonders macht, ist das einzigartige Verhalten dieser Monster.
+In dieser Aufgabe geht es nicht darum, ein wiederverwendbares Verhalten zu programmieren, sondern etwas Einzigartiges.
+Konzipieren und implementieren Sie Ihren eigenen Boss-Gegner.</description>
+    </item>
+    <item>
+      <title>JUnit Group B</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/testen/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/testen/</guid>
+      <description>Ziel In dieser Aufgaben sollen Sie eine gründliche Testabdeckung für die Aufgabe &amp;ldquo;Schlaue-Monster&amp;rdquo; oder &amp;ldquo;Fernkampf&amp;rdquo; implementieren.
+JUnit  Überlegen Sie sich, was Sie alles testen müssen. Ermitteln Sie die Testfälle mit Äquivalenzklassenbildung und Grenzwertanalyse. Implementieren Sie Ihre Testfälle mit JUnit und Mockito.  Dokumentieren Sie die Ergebnisse aller Arbeitsschritte entsprechend nachvollziehbar im Lerntagebuch.</description>
+    </item>
+    <item>
+      <title>Freie Aufgabe</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/freie_aufgabe/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/freie_aufgabe/</guid>
+      <description>Freie Aufgabe In dieser Aufgabe implementieren Sie ein großes oder mehrere kleinere Features für Ihren Dungeon. Sie dürfen sich diese(s) Feature(s) selbst aussuchen und konzipieren. Beachten Sie dabei, dass Ihr Feature nicht Teil einer vorgegebenen oder bereits bearbeiteten/abgegebenen anderen Dungeon-Aufgabe sein kann.
+Formulieren Sie Ihr Vorhaben ausführlich in Ihrem Lerntagebuch. Machen Sie besonders deutlich, was Sie erreichen wollen.
+Diese Aufgabe bringt Ihnen bis zu 10 Punkte ein. Wählen Sie den Umfang daher entsprechend so, dass Sie nicht zu wenig, aber auch nicht zu viel zu tun haben.</description>
+    </item>
+  </channel>
+</rss>

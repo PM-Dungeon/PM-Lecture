@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Praktikum on </title>
+    <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/</link>
+    <description>Recent content in Praktikum on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-DE</language><atom:link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pool Konzept</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/</guid>
+      <description>Pool &amp;quot;Konzept&amp;quot; Die Aufgaben aus diesem Pool sind zeitlich an die Vorlesungsthemen geknüpft. Beachten Sie die Deadlines für die Abgaben (vgl. &amp;ldquo;Fahrplan&amp;rdquo;).
+Beachten Sie bitte auch die Hinweise zum Praktikum.
+Blatt 01: Git (Basics, Branches, Remotes) Blatt 02: Logging, Factory-Method Blatt 03: Generics, Strategy-Pattern Blatt 04: JUnit, Gradle Blatt 05: Mocking, Smells, Refactoring Blatt 06: Observer, Type-Object, Enumerationen Blatt 07: Annotationen, Reflection, Template-Method-Pattern Blatt 08: Funktionsinterfaces, Lambdas, Methodenreferenzen, RegExp Blatt 09: Stream-API, Optional, Visitor-Pattern, Command-Pattern Blatt 10: Threads, Enumeration  </description>
+    </item>
+    <item>
+      <title>Pool Dungeon</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/</guid>
+      <description>Pool &amp;quot;Dungeon&amp;quot; Die Aufgaben aus diesem Pool haben keinen direkten zeitlichen Bezug zu den Themen in der Vorlesung und können in einer von Ihnen gewählten Reihenfolge bearbeitet werden.
+Beachten Sie bitte auch die Hinweise zum Praktikum.
+Gruppe A: Basics Gruppe B: Monster und Kampf Gruppe C: Items, Aufbewahrung und Handel  </description>
+    </item>
+  </channel>
+</rss>

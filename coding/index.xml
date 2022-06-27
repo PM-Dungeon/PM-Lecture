@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Coding on </title>
+    <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/</link>
+    <description>Recent content in Coding on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-DE</language><atom:link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Logging</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/logging/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/logging/</guid>
+      <description>Wie prüfen Sie die Werte von Variablen/Objekten?   Debugging
+ Beeinflusst Code nicht Kann schnell komplex und umständlich werden Sitzung transient -- nicht wiederholbar    &amp;quot;Poor-man&#39;s-debugging&amp;quot; (Ausgaben mit System.out.println)
+ Müssen irgendwann entfernt werden Ausgabe nur auf einem Kanal (Konsole) Keine Filterung nach Problemgrad -- keine Unterscheidung zwischen Warnungen, einfachen Informationen, ...    Logging
+ Verschiedene (Java-) Frameworks: java.util.logging (JDK), log4j (Apache), SLF4J, Logback, ...    Java Logging API -- Überblick Paket java.</description>
+    </item>
+    <item>
+      <title>Javadoc</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/javadoc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/javadoc/</guid>
+      <description>Dokumentation mit Javadoc /** * Beschreibung Beschreibung (Summary). * * &amp;lt;p&amp;gt;Hier kommt dann ein laengerer Text, der die Dinge * bei Bedarf etwas ausfuehrlicher erklaert. */ public void wuppie() {} Javadoc-Kommentare sind (aus Java-Sicht) normale Block-Kommentare, wobei der Beginn mit /** eingeleitet wird. Dieser Beginn ist für das Tool javadoc (Bestandteil des JDK, genau wie java und javac) das Signal, dass hier ein Kommentar anfängt, den das Tool in eine HTML-Dokumentation übersetzen soll.</description>
+    </item>
+    <item>
+      <title>Code Smells</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/smells/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/smells/</guid>
+      <description>Code Smells: Ist das Code oder kann das weg? class checker {  static public void CheckANDDO(DATA1 inp, int c, FH.Studi  CustD, int x, int y, int in, int out,int c1, int c2, int c3 = 4) {  public int i; // neues i for(i=0;i&amp;lt;10;i++) // fuer alle i {  inp.kurs[0] = 10; inp.kurs[i] = CustD.cred[i]/c; }  SetDataToPlan( CustD );  public double myI = in*2.5; // myI=in*2.</description>
+    </item>
+    <item>
+      <title>Coding Conventions und Metriken</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/codingrules/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/codingrules/</guid>
+      <description>Coding Conventions: Richtlinien für einheitliches Aussehen von Code =&amp;gt; Ziel: Andere Programmierer sollen Code schnell lesen können
+ Namen, Schreibweisen: UpperCamelCase vs. lowerCamelCase vs. UPPER_SNAKE_CASE Kommentare (Ort, Form, Inhalt): Javadoc an allen public und protected Elementen Einrückungen und Spaces vs. Tabs: 4 Spaces Zeilenlängen: 100 Zeichen Leerzeilen: Leerzeilen für Gliederung Klammern: Auf selber Zeile wie Code  Beispiele: Sun Code Conventions, Google Java Style, AOSP Java Code Style for Contributors</description>
+    </item>
+    <item>
+      <title>Refactoring</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/refactoring/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/refactoring/</guid>
+      <description>Was ist Refactoring?  Refactoring ist, wenn einem auffällt, daß der Funktionsname foobar ziemlich bescheuert ist, und man die Funktion in sinus umbenennt.
+ Quelle: Andreas Bogk, in: Lutz Donnerhacke: &amp;quot;Fachbegriffe der Informatik&amp;quot; (altlasten.lutz.donnerhacke.de)
+  Refactoring is a change made to the internal structure of software to make it easier to understand and cheaper to modify without changing its observable behaviour.
+ Quelle: [Fowler2011]
+ Refactoring: Änderungen an der inneren Struktur einer Software</description>
+    </item>
+    <item>
+      <title>Testbarkeit und Testdriven Development (TDD)</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/tdd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/tdd/</guid>
+      <description>Design für Testbarkeit Schlechtes Beispiel public void ausgabe(...) {  ... // mache komplexe Berechnungen  ... // berechne nette Formatierungen  System.out.println(...); } Etwas verbessertes Beispiel private A berechneA(...) {  return ...; // mache komplexe Berechnungen } private String formatiereA(A a) {  return ...; // berechne nette Formatierungen } public void ausgabe(...) {  System.out.println(formatiereA(berechneA(...))); } Anzeichen für schlecht testbares Design  Keine Rückgabewerte Direkte Ausgaben Mehr als ein Zweck:  Berechnung plus Ausgabe Mehrere unterschiedliche Berechnungen .</description>
+    </item>
+  </channel>
+</rss>

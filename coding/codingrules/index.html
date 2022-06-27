@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.96.0" />
+    <meta name="generator" content="Relearn 3.4.0&#43;tip">
+    <meta name="description" content="">
+    <meta name="author" content="cagix">
+    <title>Coding Conventions und Metriken   </title>
+    <link rel="icon" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/images/logo.png?1656322213" type="image/png">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/nucleus.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/fontawesome-all.min.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/featherlight.min.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/perfect-scrollbar.min.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/auto-complete.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/theme.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/theme-relearn-light.css?1656322213" rel="stylesheet" id="variant-style">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/variant.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/print.css?1656322213" rel="stylesheet" media="print">
+    <style>
+      :not(pre) > code.copy-to-clipboard-code + span.copy-to-clipboard-button {
+        display: none;
+      }
+      :not(pre) > code.copy-to-clipboard-code {
+        border-bottom-right-radius: 2px;
+        border-top-right-radius: 2px;
+        border-right-width: 1px;
+      }
+    </style>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/variant.js?1656322213"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      var index_url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/index.json";
+      var root_url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      // some further base stuff
+      var baseUriFull='https:\/\/www.fh-bielefeld.de\/elearning\/data\/FH-Bielefeld\/lm_data\/lm_1271733/';
+      variants.init( [ 'relearn-light', 'relearn-dark', 'green' ] );
+    </script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/jquery.min.js?1656322213"></script><style type="text/css">
+
+ 
+.center {
+    align-content: center;
+    text-align: center;
+    margin: auto;
+}
+.alert {
+    color: #ff3333;
+}
+.bsp {
+    padding: 0.05cm;
+    border-width: 0.05cm;
+    border-style: solid;
+    border-color: #ddd;
+    background-color: #ddd;
+    border-radius: 25px;
+    float: right;
+}
+.cbox {
+    padding: 0.2cm;
+    border-width: 0.1cm;
+    border-style: solid;
+    border-color: #4070a0;
+    background-color: #f2f2f2;
+    margin: auto;
+    width: 60%;
+    text-align: center;
+    overflow: auto;
+}
+.blueArrow {
+    color: #4070a0;
+    font-family: "Courier New", "Courier", monospace;
+    font-weight: bold;
+}
+.origin {
+    background-color: #ededed;
+    font-size: 0.8em;
+}
+.showme {
+    background-color: #ededed;
+    font-size: 0.8em;
+}
+
+
+ 
+.tldr {
+    background: #dbe4ed;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.recap {
+    
+    
+   margin: 4px 0px 26px 0px;
+}
+.bib {
+    background: #dbe4ed;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.outcomes {
+    background: #d9e9d5;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.quizzes {
+    background: #d9e9d5;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.challenges {
+    background: #ebe4d6;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.assignments {
+    background: #ebe4d6;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+h1.tldr, h1.recap, h1.bib, h1.outcomes, h1.quizzes, h1.challenges, h1.assignments {
+    padding: 0px;
+}
+
+
+ 
+.noJsAlert {
+    padding: 20px;
+    background-color: #f44336;  
+    color: white;
+    margin-bottom: 15px;
+}
+
+
+ 
+.embed-video-player {
+    position: relative;
+    padding-bottom: 56%;
+    height: 0;
+    overflow: hidden;
+}
+.youtube-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border:0;
+}
+
+
+ 
+#header-wrapper {
+    padding:0.6rem;
+}
+
+
+ 
+#shortcuts {
+    padding-top: 2.0rem;
+}
+
+
+ 
+#chapter p {
+    text-align: left;
+}
+
+
+ 
+figcaption h4 {
+    margin-top:-2.5rem;
+}
+.border1 {
+    border:1px solid black;
+}
+
+ 
+td ul, td ol {
+    margin: 0 0 1rem 0.5rem;
+    padding: 0 0 0 0.5rem;
+}
+
+ 
+h1 { font-size:2.8rem !important;}
+h2 { font-size:2.2rem; margin:1.2rem 0}
+h3 { font-size:1.9rem; text-align:left !important; font-weight:400 !important;}
+h4 { font-size:1.6rem}
+h5 { font-size:1.3rem}
+h6 { font-size:1rem}
+
+h2 {
+    width:100% !important;
+    border-bottom:1px solid #5e5e5e !important;
+    padding-bottom: 2px;
+}
+.tldr h2, .recap h2, .bib h2, .outcomes h2, .quizzes h2, .challenges h2, .assignments h2 {
+    margin:0.5rem 0
+}
+
+.btn-crossreference, .btn-crossreference:hover {
+    cursor: initial !important;
+    color: #333 !important;
+    background-color: #fff !important;
+    border-color: #ccc !important;
+}
+
+</style>
+
+  </head>
+  <body class="mobile-support" data-url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/codingrules/">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div id="top-github-link">
+            <a class="github-link" title='Edit' href="https://github.com/PM-Dungeon/PM-Lecture/edit/master/markdown/coding/codingrules.md" target="blank">
+              <i class="fas fa-pen fa-fw"></i>
+            </a>
+          </div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <span id="toc-menu" title='Table of Contents'><i class="fas fa-list-alt fa-fw"></i></span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <meta itemprop="itemListOrder" content="Descending" />
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="3" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/"><span itemprop="name">PM S22</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="2" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/"><span itemprop="name">Coding</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/codingrules/" aria-disabled="true"><span itemprop="name">Coding Conventions und Metriken</span></a></li>
+            </ol>
+          </div>
+          <div class="default-animation progress">
+            <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#coding-conventions-richtlinien-für-einheitliches-aussehen-von-code">Coding Conventions: Richtlinien für einheitliches Aussehen von Code</a></li>
+    <li><a href="#beispiel-nach-google-java-styleaosp-formatiert">Beispiel nach Google Java Style/AOSP formatiert</a></li>
+    <li><a href="#formatieren-sie-ihren-code-mit-der-ide">Formatieren Sie Ihren Code (mit der IDE)</a>
+      <ul>
+        <li><a href="#einstellungen-der-ides">Einstellungen der IDE's</a></li>
+        <li><a href="#google-java-style-und-google-java-format">Google Java Style und google-java-format</a></li>
+        <li><a href="#spotless-und-google-java-format-in-gradle">Spotless und google-java-format in Gradle</a></li>
+      </ul>
+    </li>
+    <li><a href="#metriken-kennzahlen-für-verschiedene-aspekte-zum-code">Metriken: Kennzahlen für verschiedene Aspekte zum Code</a>
+      <ul>
+        <li><a href="#beispiele-für-wichtige-metriken-jeweils-max-werte-für-pm">Beispiele für wichtige Metriken (jeweils Max-Werte für PM)</a></li>
+        <li><a href="#metriken-im-beispiel-von-oben">Metriken im Beispiel von oben</a></li>
+      </ul>
+    </li>
+    <li><a href="#tool-support-checkstyle">Tool-Support: Checkstyle</a></li>
+    <li><a href="#checkstyle-konfiguration">Checkstyle: Konfiguration</a></li>
+    <li><a href="#spotbugs-finde-anti-pattern-und-potentielle-bugs-linter">SpotBugs: Finde Anti-Pattern und potentielle Bugs (Linter)</a></li>
+    <li><a href="#konfiguration-für-das-pm-praktikum-format-metriken-checkstyle-spotbugs">Konfiguration für das PM-Praktikum (Format, Metriken, Checkstyle, SpotBugs)</a>
+      <ul>
+        <li><a href="#formatierung">Formatierung</a></li>
+        <li><a href="#checkstyle">Checkstyle</a></li>
+        <li><a href="#linter-spotbugs">Linter: SpotBugs</a></li>
+      </ul>
+    </li>
+    <li><a href="#wrap-up">Wrap-Up</a></li>
+  </ul>
+</nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+
+
+
+    
+
+
+
+
+
+
+<div class="tldr">
+    <h2>TL;DR</h2>
+
+    
+
+    
+        <p>Code entsteht nicht zum Selbstzweck, er muss von anderen Menschen leicht verstanden und
+gewartet werden können: Entwickler verbringen einen wesentlichen Teil ihrer Zeit mit dem
+<strong>Lesen</strong> von (fremdem) Code.</p>
+<p>Dabei helfen &quot;Coding Conventions&quot;, die eine gewisse einheitliche äußerliche Erscheinung
+des Codes vorgeben (Namen, Einrückungen, ...). Im Java-Umfeld ist der &quot;Google Java Style&quot;
+bzw. der recht ähnliche &quot;AOSP Java Code Style for Contributors&quot; häufig anzutreffen.
+Coding Conventions beinhalten typischerweise Regeln zu</p>
+<ul>
+<li>Schreibweisen und Layout</li>
+<li>Leerzeichen, Einrückung, Klammern</li>
+<li>Zeilenlänge, Umbrüche</li>
+<li>Kommentare</li>
+</ul>
+<p>Die Beachtung von grundlegenden Programmierprinzipien hilft ebenso, die Lesbarkeit und
+Verständlichkeit zu verbessern.</p>
+<p>Metriken sind Kennzahlen, die aus dem Code berechnet werden, und können zur Überwachung
+der Einhaltung von Coding Conventions und anderen Regeln genutzt werden. Nützliche
+Metriken sind dabei NCSS (<em>Non Commenting Source Statements</em>), McCabe (<em>Cyclomatic Complexity</em>),
+BEC (<em>Boolean Expression Complexity</em>) und DAC (<em>Class Data Abstraction Coupling</em>).</p>
+<p>Für die Formatierung des Codes kann man die IDE nutzen, muss dort dann aber die Regeln
+detailliert manuell einstellen. Das Tool <strong>Spotless</strong> lässt sich dagegen in den Build-Prozess
+einbinden und kann die Konfiguration über ein vordefiniertes Regelset passend zum Google
+Java Style/AOSP automatisiert vornehmen.</p>
+<p>Die Prüfung der Coding Conventions und Metriken kann durch das Tool <strong>Checkstyle</strong> erfolgen.
+Dieses kann beispielsweise als Plugin in der IDE oder direkt in den Build-Prozess eingebunden
+werden und wird mit Hilfe einer XML-Datei konfiguriert.</p>
+<p>Um typische Anti-Pattern zu vermeiden, kann man den Code mit sogenannten <em>Lintern</em> prüfen.
+Ein Beispiel für die Java-Entwicklung ist <strong>SpotBugs</strong>, welches sich in den Build-Prozess
+einbinden lässt und über 400 typische problematische Muster im Code erkennt.</p>
+<p>Für die Praktika in der Veranstaltung Programmiermethoden wird der Google Java Style oder
+AOSP genutzt. Für die passende Checkstyle-Konfiguration wird eine minimale
+<a href="https://github.com/PM-Dungeon/PM-Lecture/tree/master/markdown/coding/src/checkstyle.xml">checkstyle.xml</a>
+bereitgestellt (vgl. Folie &quot;Konfiguration für das PM-Praktikum&quot;).</p>
+
+    
+
+    
+        <h3>Videos (YouTube)</h3>
+        
+
+<ul>
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/nLAEak6Fwfk" target="_blank" rel="nofollow noopener noreferrer">VL Coding Conventions</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/oCMwyDrPkFI" target="_blank" rel="nofollow noopener noreferrer">Demo Formatter und Spotless</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/NR070ZimbH4" target="_blank" rel="nofollow noopener noreferrer">Demo Checkstyle</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/0ny6e6CNTF8" target="_blank" rel="nofollow noopener noreferrer">Demo Checkstyle: Konfiguration mit Eclipse-CS</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/tSczcf_EOwI" target="_blank" rel="nofollow noopener noreferrer">Demo SpotBugs</a></li>
+    
+
+</ul>
+
+    
+
+    
+        <h3>Videos (FH-Medienportal)</h3>
+        
+
+<ul>
+
+    
+    
+
+    
+    
+    
+
+    
+        <li><a href="https://www.fh-bielefeld.de/medienportal/m/31a425902a7d01e5fd4b3b082259d9d71bcff55030eb4564c98bb044c554162088d7ab02edbf50aff0503232dfd4c3bed43341ec058e272a0cd6f9a388584d84" target="_blank" rel="nofollow noopener noreferrer">VL Coding Conventions</a></li>
+    
+
+</ul>
+
+    
+
+    
+
+</div>
+
+
+    
+
+
+
+<div class="outcomes">
+    <h2>Lernziele</h2>
+
+    
+
+    
+    
+    <ul>
+    
+        
+        <li>(K2) Erklären verschiedener Coding Conventions</li>
+        
+        
+    
+        
+        <li>(K2) Erklären wichtiger Grundregeln des objektorientierten Programmierens</li>
+        
+        
+    
+        
+        <li>(K2) Erklären der Metriken NCSS, McCabe, BEC, DAC</li>
+        
+        
+    
+        
+        
+        <li>(K3) Einhalten der wichtigsten Grundregeln des objektorientierten Programmierens</li>
+        
+    
+        
+        
+        <li>(K3) Einhalten der wichtigsten Coding Conventions (Formatierung, Namen, Metriken)</li>
+        
+    
+        
+        
+        <li>(K3) Nutzung des Tools Spotless (Formatierung des Codes)</li>
+        
+    
+        
+        
+        <li>(K3) Nutzung des Tools Checkstyle (Coding Conventions und Metriken)</li>
+        
+    
+        
+        
+        <li>(K3) Nutzung des Tools SpotBugs (Vermeiden von Anti-Pattern)</li>
+        
+    
+    </ul>
+    
+
+</div>
+
+
+    <h2 id="coding-conventions-richtlinien-für-einheitliches-aussehen-von-code">Coding Conventions: Richtlinien für einheitliches Aussehen von Code</h2>
+<p>=&gt; Ziel: Andere Programmierer sollen Code schnell lesen können</p>
+<ul>
+<li><strong>Namen, Schreibweisen</strong>: UpperCamelCase vs. lowerCamelCase vs. UPPER_SNAKE_CASE</li>
+<li><strong>Kommentare</strong> (Ort, Form, Inhalt): Javadoc an allen <code>public</code> und <code>protected</code> Elementen</li>
+<li><strong>Einrückungen und Spaces vs. Tabs</strong>: 4 Spaces</li>
+<li><strong>Zeilenlängen</strong>: 100 Zeichen</li>
+<li><strong>Leerzeilen</strong>: Leerzeilen für Gliederung</li>
+<li><strong>Klammern</strong>: Auf selber Zeile wie Code</li>
+</ul>
+<p>Beispiele: <a href="https://www.oracle.com/technetwork/java/codeconventions-150003.pdf">Sun Code Conventions</a>,
+<a href="https://google.github.io/styleguide/javaguide.html">Google Java Style</a>,
+<a href="https://source.android.com/setup/contribute/code-style">AOSP Java Code Style for Contributors</a></p>
+<h2 id="beispiel-nach-google-java-styleaosp-formatiert">Beispiel nach Google Java Style/AOSP formatiert</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-{.java" data-lang="{.java"><span style="display:flex;"><span><span style="color:#f92672">package</span> wuppie.deeplearning.strategy<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Demonstriert den Einsatz von AOSP/Google Java Style ................. Umbruch nach 100 Zeichen |
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyWuppieStudi</span> <span style="color:#66d9ef">implements</span> Comparable<span style="color:#f92672">&lt;</span>MyWuppieStudi<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> String lastName<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> MyWuppieStudi studi<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">MyWuppieStudi</span><span style="color:#f92672">()</span> <span style="color:#f92672">{}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/** Erzeugt ein neues Exemplar der MyWuppieStudi-Spezies (max. 40 Zeilen) */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> MyWuppieStudi <span style="color:#a6e22e">getMyWuppieStudi</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>studi <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            studi <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyWuppieStudi<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>lastName <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> lastName <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> studi<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span>MyWuppieStudi o<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> lastName<span style="color:#f92672">.</span><span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span>lastName<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Dieses Beispiel wurde nach Google Java Style/AOSP formatiert.</p>
+<p>Die Zeilenlänge beträgt max. 100 Zeichen. Pro Methode werden max. 40 Zeilen genutzt. Zwischen Attributen,
+Methoden und Importen wird jeweils eine Leerzeile eingesetzt (zwischen den einzelnen Attributen <em>muss</em>
+aber keine Leerzeile genutzt werden). Zur logischen Gliederung können innerhalb von Methoden weitere
+Leerzeilen eingesetzt werden, aber immer nur eine.</p>
+<p>Klassennamen sind UpperCamelCase, Attribute und Methoden und Parameter lowerCamelCase, Konstanten (im
+Beispiel nicht vorhanden) UPPER_SNAKE_CASE. Klassen sind Substantive, Methoden Verben.</p>
+<p>Alle <code>public</code> und <code>protected</code> Elemente werden mit einem Javadoc-Kommentar versehen. Überschriebene Methoden
+müssen nicht mit Javadoc kommentiert werden, müssen aber mit <code>@Override</code> markiert werden.</p>
+<p>Geschweifte Klammern starten immer auf der selben Codezeile. Wenn bei einem <code>if</code> nur ein Statement vorhanden
+ist und dieses auf die selbe Zeile passt, kann auf die umschließenden geschweiften Klammern ausnahmsweise
+verzichtet werden.</p>
+<p>Es wird mit Leerzeichen eingerückt. <a href="https://google.github.io/styleguide/javaguide.html#s4.2-block-indentation">Google Java Style</a>
+arbeitet mit 2 Leerzeichen, während <a href="https://source.android.com/setup/contribute/code-style#use-spaces-for-indentation">AOSP</a>
+hier 4 Leerzeichen vorschreibt. Im Beispiel wurde nach AOSP eingerückt.</p>
+<p>Darüber hinaus gibt es vielfältige weitere Regeln für das Aussehen des Codes. Lesen Sie dazu entsprechend
+auf <a href="https://google.github.io/styleguide/javaguide.html">Google Java Style</a> und auch auf
+<a href="https://source.android.com/setup/contribute/code-style">AOSP</a> nach.</p>
+<h2 id="formatieren-sie-ihren-code-mit-der-ide">Formatieren Sie Ihren Code (mit der IDE)</h2>
+<p>Sie können den Code manuell formatieren, oder aber (sinnvollerweise) über Tools
+formatieren lassen. Hier einige Möglichkeiten:</p>
+<ul>
+<li>
+<p>IDE: Code-Style einstellen und zum Formatieren nutzen</p>
+</li>
+<li>
+<p><a href="https://github.com/google/google-java-format">google-java-format</a>:
+<code>java -jar google-java-format.jar --replace *.java</code>
+(auch als IDE-Plugin)</p>
+</li>
+<li>
+<p><a href="https://github.com/diffplug/spotless"><strong>Spotless</strong></a> in Gradle:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-{.groovy" data-lang="{.groovy"><span style="display:flex;"><span>plugins <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    id <span style="color:#e6db74">&#34;java&#34;</span>
+</span></span><span style="display:flex;"><span>    id <span style="color:#e6db74">&#34;com.diffplug.spotless&#34;</span> version <span style="color:#e6db74">&#34;6.5.0&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>spotless <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    java <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// googleJavaFormat()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        googleJavaFormat<span style="color:#f92672">().</span><span style="color:#a6e22e">aosp</span><span style="color:#f92672">()</span>  <span style="color:#75715e">// indent w/ 4 spaces
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Prüfen mit <code>./gradlew spotlessCheck</code> (Teil von <code>./gradlew check</code>)
+und Formatieren mit <code>./gradlew spotlessApply</code></p>
+</li>
+</ul>
+<h3 id="einstellungen-der-ides">Einstellungen der IDE's</h3>
+<ul>
+<li>Eclipse:
+<ul>
+<li><code>Project &gt; Properties &gt; Java Code Style &gt; Formatter</code>: Coding-Style einstellen/einrichten</li>
+<li>Code markieren, <code>Source &gt; Format</code></li>
+<li>Komplettes Aufräumen: <code>Source &gt; Clean Up</code> (Formatierung, Importe, Annotationen, ...)
+Kann auch so eingestellt werden, dass ein &quot;Clean Up&quot; immer beim Speichern ausgeführt wird!</li>
+</ul>
+</li>
+<li>IntelliJ verfügt über ähnliche Fähigkeiten:
+<ul>
+<li>Einstellen über <code>Preferences &gt; Editor &gt; Code Style &gt; Java</code></li>
+<li>Formatieren mit <code>Code &gt; Reformat Code</code> oder <code>Code &gt; Reformat File</code></li>
+</ul>
+</li>
+</ul>
+<p>Die Details kann/muss man einzeln einstellen. Für die &quot;bekannten&quot; Styles (Google Java Style)
+bringen die IDE's oft aber schon eine Gesamtkonfiguration mit.</p>
+<p><strong>Achtung</strong>: Zumindest in Eclipse gibt es mehrere Stellen, wo ein Code-Style eingestellt werden
+kann (&quot;Clean Up&quot;, &quot;Formatter&quot;, ...). Diese sollten dann jeweils auf den selben Style eingestellt
+werden, sonst gibt es unter Umständen lustige Effekte, da beim Speichern ein anderer Style
+angewendet wird als beim &quot;Clean Up&quot; oder beim &quot;Format Source&quot; ...</p>
+<p>Analog sollte man bei der Verwendung von Checkstyle auch in der IDE im Formatter die entsprechenden
+Checkstyle-Regeln (s.u.) passend einstellen, sonst bekommt man durch Checkstyle Warnungen angezeigt,
+die man durch ein automatisches Formatieren <em>nicht</em> beheben kann.</p>
+<h3 id="google-java-style-und-google-java-format">Google Java Style und google-java-format</h3>
+<p>Wer direkt den <a href="https://google.github.io/styleguide/javaguide.html">Google Java Style</a> nutzt,
+kann auch den dazu passenden Formatter von Google einsetzen:
+<a href="https://github.com/google/google-java-format">google-java-format</a>.
+Diesen kann man entweder als Plugin für IntelliJ/Eclipse einsetzen oder als Stand-alone-Tool
+(Kommandozeile oder Build-Skripte) aufrufen. Wenn man sich noch einen entsprechenden
+Git-Hook definiert, wird vor jedem Commit der Code entsprechend den Richtlinien formatiert :)</p>
+<h3 id="spotless-und-google-java-format-in-gradle">Spotless und google-java-format in Gradle</h3>
+<p><em>Hinweis</em>: Bei Spotless in Gradle müssen je nach den Versionen von Spotless/google-java-format
+bzw. des JDK noch Optionen in der Datei <code>gradle.properties</code> eingestellt werden (siehe
+<a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/coding/src/formatter/">Demo</a> und
+<a href="https://github.com/diffplug/spotless/tree/main/plugin-gradle#google-java-format">Spotless &gt; google-java-format (Web)</a>).</p>
+<p><strong>Tipp</strong>: Die Formatierung über die IDE ist angenehm, aber in der Praxis leider oft etwas
+hakelig: Man muss alle Regeln selbst einstellen (und es gibt <em>einige</em> dieser Einstellungen),
+und gerade IntelliJ &quot;greift&quot; manchmal nicht alle Code-Stellen beim Formatieren. Nutzen Sie
+Spotless und bauen Sie die Konfiguration in Ihr Build-Skript ein und konfigurieren Sie über
+den Build-Prozess.</p>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo: Konfiguration Formatter (IDE), <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/coding/src/formatter/">Spotless/Gradle</a>
+</span>
+</div>
+<h2 id="metriken-kennzahlen-für-verschiedene-aspekte-zum-code">Metriken: Kennzahlen für verschiedene Aspekte zum Code</h2>
+<p>Metriken messen verschiedene Aspekte zum Code und liefern eine Zahl zurück. Mit Metriken kann
+man beispielsweise die Einhaltung der Coding Rules (Formate, ...) prüfen, aber auch die Einhaltung
+verschiedener Regeln des objektorientierten Programmierens.</p>
+<h3 id="beispiele-für-wichtige-metriken-jeweils-max-werte-für-pm">Beispiele für wichtige Metriken (jeweils Max-Werte für PM)</h3>
+<p>Die folgenden Metriken und deren Maximal-Werte sind gute Erfahrungswerte aus der Praxis und helfen,
+den Code Smell &quot;Langer Code&quot; (vgl. <a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/smells/">&ldquo;Code Smells&rdquo;</a>) zu
+erkennen und damit zu vermeiden. Über die Metriken <em>BEC</em>, <em>McCabe</em> und <em>DAC</em> wird auch die Einhaltung
+elementarer Programmierregeln gemessen.</p>
+<ul>
+<li><strong>NCSS</strong> (<em>Non Commenting Source Statements</em>)
+<ul>
+<li>Zeilen pro Methode: 40; pro Klasse: 250; pro Datei: 300
+<em>Annahme</em>: Eine Anweisung je Zeile ...</li>
+</ul>
+</li>
+<li><strong>Anzahl der Methoden</strong> pro Klasse: 10</li>
+<li><strong>Parameter</strong> pro Methode: 3</li>
+<li><strong>BEC</strong> (<em>Boolean Expression Complexity</em>)
+Anzahl boolescher Ausdrücke in <code>if</code> etc.: 3</li>
+<li><strong>McCabe</strong> (<em>Cyclomatic Complexity</em>)
+<ul>
+<li>Anzahl der möglichen Verzweigungen (Pfade) pro Methode + 1</li>
+<li>1-4 gut, 5-7 noch OK</li>
+</ul>
+</li>
+<li><strong>DAC</strong> (<em>Class Data Abstraction Coupling</em>)
+<ul>
+<li>Anzahl der genutzten (instantiierten) &quot;Fremdklassen&quot;</li>
+<li>Werte kleiner 7 werden i.A. als normal betrachtet</li>
+</ul>
+</li>
+</ul>
+<p>Die obigen Grenzwerte sind typische Standardwerte, die sich in der Praxis allgemein bewährt haben
+(vergleiche u.a. <a href="#id_Martin2009">[Martin2009]</a> oder auch in
+<a href="https://source.android.com/setup/contribute/code-style#write-short-methods">AOSP: Write short methods</a>
+und <a href="https://source.android.com/setup/contribute/code-style#limit-line-length">AOSP: Limit line length</a>).</p>
+<p>Dennoch sind das keine absoluten Werte an sich. Ein Übertreten der Grenzen ist ein
+<strong>Hinweis</strong> darauf, dass <strong>höchstwahrscheinlich</strong> etwas nicht stimmt, muss aber im
+konkreten Fall hinterfragt und diskutiert und begründet werden!</p>
+<h3 id="metriken-im-beispiel-von-oben">Metriken im Beispiel von oben</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> String lastName<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> MyWuppieStudi studi<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> MyWuppieStudi <span style="color:#a6e22e">getMyWuppieStudi</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>studi <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            studi <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyWuppieStudi<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>lastName <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> lastName <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> studi<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span></code></pre></div><ul>
+<li>BEC: 1 (nur ein boolescher Ausdruck im <code>if</code>)</li>
+<li>McCabe: 3 (es gibt zwei mögliche Verzweigungen in der Methode plus die Methode selbst)</li>
+<li>DAC: 1 (eine &quot;Fremdklasse&quot;: <code>String</code>)</li>
+</ul>
+<p><em>Anmerkung</em>: In Checkstyle werden für einige häufig verwendete Standard-Klassen Ausnahmen definiert,
+d.h. <code>String</code> würde im obigen Beispiel <em>nicht</em> bei DAC mitgezählt/angezeigt.</p>
+<p>=&gt; Verweis auf LV Softwareengineering</p>
+<h2 id="tool-support-checkstyle">Tool-Support: Checkstyle</h2>
+<p>Metriken und die Einhaltung von Coding-Conventions werden sinnvollerweise nicht manuell,
+sondern durch diverse Tools erfasst, etwa im Java-Bereich mit Hilfe von
+<a href="https://github.com/checkstyle"><strong>Checkstyle</strong></a>.</p>
+<p>Das Tool lässt sich <a href="https://checkstyle.org/cmdline.html">Standalone über CLI</a> nutzen
+oder als Plugin für IDE's (<a href="https://checkstyle.org/eclipse-cs">Eclipse</a> oder
+<a href="https://github.com/jshiell/checkstyle-idea">IntelliJ</a>) einsetzen. Gradle bringt ein
+eigenes <a href="https://docs.gradle.org/current/userguide/checkstyle_plugin.html">Plugin</a> mit.</p>
+<ul>
+<li>
+<p>IDE: diverse <a href="https://checkstyle.org/index.html#Related_Tools">Plugins</a>:
+<a href="https://checkstyle.org/eclipse-cs">Eclipse-CS</a>,
+<a href="https://github.com/jshiell/checkstyle-idea">CheckStyle-IDEA</a></p>
+</li>
+<li>
+<p><a href="https://checkstyle.org/cmdline.html">CLI</a>:
+<code>java -jar checkstyle-10.2-all.jar -c google_checks.xml *.java</code></p>
+</li>
+<li>
+<p><a href="https://docs.gradle.org/current/userguide/checkstyle_plugin.html">Plugin &quot;<strong>checkstyle</strong>&quot;</a>
+in Gradle:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-{.groovy" data-lang="{.groovy"><span style="display:flex;"><span>plugins <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    id <span style="color:#e6db74">&#34;java&#34;</span>
+</span></span><span style="display:flex;"><span>    id <span style="color:#e6db74">&#34;checkstyle&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>checkstyle <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    configFile <span style="color:#a6e22e">file</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#39;checkstyle.xml&#39;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    toolVersion <span style="color:#e6db74">&#39;10.2&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><ul>
+<li>Aufruf: Prüfen mit <code>./gradlew checkstyleMain</code> (Teil von <code>./gradlew check</code>)</li>
+<li>Konfiguration: <code>&lt;projectDir&gt;/config/checkstyle/checkstyle.xml</code> (Default)
+bzw. mit der obigen Konfiguration direkt im Projektordner</li>
+<li>Report: <code>&lt;projectDir&gt;/build/reports/checkstyle/main.html</code></li>
+</ul>
+</li>
+</ul>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo: IntelliJ, <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/coding/src/checkstyle/">Checkstyle/Gradle</a>
+</span>
+</div>
+<h2 id="checkstyle-konfiguration">Checkstyle: Konfiguration</h2>
+<p>Die auszuführenden Checks lassen sich über eine <a href="https://checkstyle.org/config.html">XML-Datei</a>
+konfigurieren. In <a href="https://checkstyle.org/eclipse-cs">Eclipse-CS</a> kann man die Konfiguration
+auch in einer GUI bearbeiten.</p>
+<p>Das Checkstyle-Projekt stellt eine passende Konfiguration für den
+<a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml">Google Java Style</a>
+bereit. Diese ist auch in den entsprechenden Plugins oft bereits enthalten und kann direkt
+ausgewählt oder als Startpunkt für eigene Konfigurationen genutzt werden.</p>
+<p>Der Startpunkt für die Konfigurationsdatei ist immer das Modul &quot;Checker&quot;. Darin können sich
+&quot;FileSetChecks&quot; (Module, die auf einer Menge von Dateien Checks ausführen), &quot;Filters&quot; (Module,
+die Events bei der Prüfung von Regeln filtern) und &quot;AuditListeners&quot; (Module, die akzeptierte
+Events in einen Report überführen) befinden. Der &quot;TreeWalker&quot; ist mit der wichtigste Vertreter
+der FileSetChecks-Module und transformiert die zu prüfenden Java-Sourcen in einen
+<em>Abstract Syntax Tree</em>, also eine Baumstruktur, die dem jeweiligen Code unter der Java-Grammatik
+entspricht. Darauf können dann wiederum die meisten Low-Level-Module arbeiten.</p>
+<p>Eine Reihe von <a href="https://checkstyle.org/checks.html">Standard-Checks</a> sind bereits in Checkstyle
+implementiert und benötigen keine weitere externe Abhängigkeiten. Man kann aber zusätzliche Regeln
+aus anderen Projekten beziehen (etwa via Gradle/Maven) oder sich eigene zusätzliche Regeln in Java
+schreiben. Die einzelnen Checks werden in der Regel als &quot;Modul&quot; dem &quot;TreeWalker&quot; hinzugefügt und
+über die jeweiligen Properties näher konfiguriert.</p>
+<p>Sie finden in der <a href="https://checkstyle.org/checks.html">Doku</a> zu jedem Check das entsprechende Modul,
+das Eltern-Modul (also wo müssen Sie das Modul im XML-Baum einfügen) und auch die möglichen
+Properties und deren Default-Einstellungen.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-{.xml" data-lang="{.xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;Checker&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;LineLength&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;max&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;100&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/module&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;TreeWalker&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;AvoidStarImport&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;MethodCount&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;maxPublic&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;10&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;maxTotal&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;40&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/module&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/module&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/module&gt;</span>
+</span></span></code></pre></div><p>Alternativen/Ergänzungen: beispielsweise <a href="https://github.com/BasLeijdekkers/MetricsReloaded">MetricsReloaded</a>.</p>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo: Konfiguration mit Eclipse-CS, Hinweis auf Formatter
+</span>
+</div>
+<h2 id="spotbugs-finde-anti-pattern-und-potentielle-bugs-linter">SpotBugs: Finde Anti-Pattern und potentielle Bugs (Linter)</h2>
+<ul>
+<li>
+<p><a href="https://github.com/spotbugs/spotbugs"><strong>SpotBugs</strong></a> sucht nach über 400 potentiellen Bugs im Code</p>
+<ul>
+<li>Anti-Pattern (schlechte Praxis, &quot;dodgy&quot; Code)</li>
+<li>Sicherheitsprobleme</li>
+<li>Korrektheit</li>
+</ul>
+</li>
+<li>
+<p>CLI: <code>java -jar spotbugs.jar options ...</code></p>
+</li>
+<li>
+<p>IDE: <a href="https://github.com/JetBrains/spotbugs-intellij-plugin">IntelliJ SpotBugs plugin</a>,
+<a href="https://spotbugs.readthedocs.io/en/latest/eclipse.html">SpotBugs Eclipse plugin</a></p>
+</li>
+<li>
+<p>Gradle: <a href="https://github.com/spotbugs/spotbugs-gradle-plugin">SpotBugs Gradle Plugin</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-{.groovy" data-lang="{.groovy"><span style="display:flex;"><span>plugins <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    id <span style="color:#e6db74">&#34;java&#34;</span>
+</span></span><span style="display:flex;"><span>    id <span style="color:#e6db74">&#34;com.github.spotbugs&#34;</span> version <span style="color:#e6db74">&#34;5.0.6&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>spotbugs <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    ignoreFailures <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    showStackTraces <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Prüfen mit <code>./gradlew spotbugsMain</code> (in <code>./gradlew check</code>)</p>
+</li>
+</ul>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo: <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/coding/src/spotbugs/">SpotBugs/Gradle</a>
+</span>
+</div>
+<h2 id="konfiguration-für-das-pm-praktikum-format-metriken-checkstyle-spotbugs">Konfiguration für das PM-Praktikum (Format, Metriken, Checkstyle, SpotBugs)</h2>
+<p>Im PM-Praktikum beachten wir die obigen Coding Conventions und Metriken mit den dort definierten
+Grenzwerten. Diese sind bereits in der bereit gestellten Minimal-Konfiguration für Checkstyle
+(s.u.) konfiguriert.</p>
+<h3 id="formatierung">Formatierung</h3>
+<ul>
+<li>Google Java Style/AOSP: <strong>Spotless</strong></li>
+</ul>
+<p>Zusätzlich wenden wir den <a href="https://google.github.io/styleguide/javaguide.html">Google Java Style</a>
+an. Statt der dort vorgeschriebenen Einrückung mit 2 Leerzeichen (und 4+ Leerzeichen bei Zeilenumbruch
+in einem Statement) können Sie auch mit 4 Leerzeichen einrücken (8 Leerzeichen bei Zeilenumbruch)
+(<a href="https://source.android.com/setup/contribute/code-style">AOSP</a>). Halten Sie sich in Ihrem
+Team an eine einheitliche Einrückung (Google Java Style <em>oder</em> AOSP).</p>
+<p>Formatieren Sie Ihren Code vor den Commits mit <strong>Spotless</strong> (über Gradle) oder stellen Sie den
+Formatter Ihrer IDE entsprechend ein.</p>
+<h3 id="checkstyle">Checkstyle</h3>
+<ul>
+<li>Minimal-Konfiguration für <strong>Checkstyle</strong> (Coding Conventions, Metriken)</li>
+</ul>
+<p>Nutzen Sie die folgende <strong>Minimal-Konfiguration</strong> für <strong>Checkstyle</strong> für Ihre
+Praktikumsaufgaben. Diese beinhaltet die Prüfung der wichtigsten Formate nach
+Google Java Style/AOSP sowie der obigen Metriken. Halten Sie diese Regeln
+ein.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE module PUBLIC &#34;-//Checkstyle//DTD Checkstyle Configuration 1.3//EN&#34; &#34;https://checkstyle.org/dtds/configuration_1_3.dtd&#34;&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;Checker&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;severity&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;warning&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;TreeWalker&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;JavaNCSS&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;methodMaximum&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;40&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;classMaximum&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;250&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;fileMaximum&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;300&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/module&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;BooleanExpressionComplexity&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;CyclomaticComplexity&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;max&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;7&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/module&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;ClassDataAbstractionCoupling&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;max&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;6&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/module&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;MethodCount&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;maxTotal&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;10&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;maxPrivate&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;10&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;maxPackage&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;10&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;maxProtected&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;10&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;maxPublic&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;10&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/module&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;ParameterNumber&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;max&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;3&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/module&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;MethodLength&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;max&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;40&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/module&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;Indentation&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;basicOffset&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;4&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;lineWrappingIndentation&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;8&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;caseIndent&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;4&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;throwsIndent&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;4&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;arrayInitIndent&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;4&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/module&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;TypeName&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;MethodName&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;MemberName&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;ParameterName&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;ConstantName&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;OneStatementPerLine&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;MultipleVariableDeclarations&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;MissingOverride&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;MissingJavadocMethod&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;AvoidStarImport&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;/module&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;LineLength&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;max&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;100&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;/module&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;FileTabCharacter&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;eachLine&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;/module&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;module</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;NewlineAtEndOfFile&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/module&gt;</span>
+</span></span></code></pre></div><p>Sie können diese Basis-Einstellungen auch aus dem PM-Dungeon/PM-Lecture-Repo direkt herunterladen:
+<a href="https://github.com/PM-Dungeon/PM-Lecture/tree/master/markdown/coding/src/checkstyle.xml">checkstyle.xml</a>.</p>
+<p>Sie können zusätzlich gern noch die weiteren (und strengeren) Regeln aus der vom Checkstyle-Projekt
+bereitgestellten Konfigurationsdatei für den
+<a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml">Google Java Style</a>
+nutzen. <em>Hinweis</em>: Einige der dort konfigurierten Checkstyle-Regeln gehen allerdings über den
+Google Java Style hinaus.</p>
+<h3 id="linter-spotbugs">Linter: SpotBugs</h3>
+<ul>
+<li>Vermeiden von Anti-Pattern mit <strong>SpotBugs</strong></li>
+</ul>
+<p>Setzen Sie zusätzlich <strong>SpotBugs</strong> mit ein. Ihre Lösungen dürfen keine Warnungen oder
+Fehler beinhalten, die SpotBugs melden würde.</p>
+<h2 id="wrap-up">Wrap-Up</h2>
+<ul>
+<li>
+<p>Code entsteht nicht zum Selbstzweck =&gt; Regeln nötig!</p>
+<ul>
+<li>
+<p>Coding Conventions</p>
+<ul>
+<li>Regeln zu Schreibweisen und Layout</li>
+<li>Leerzeichen, Einrückung, Klammern</li>
+<li>Zeilenlänge, Umbrüche</li>
+<li>Kommentare</li>
+</ul>
+</li>
+<li>
+<p>Formatieren mit <strong>Spotless</strong></p>
+</li>
+<li>
+<p>Prinzipien des objektorientierten Programmierens (vgl. <a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/smells/">&ldquo;Code Smells&rdquo;</a>)</p>
+<ul>
+<li>Jede Klasse ist für genau <strong>einen</strong> Aspekt des Systems verantwortlich.
+(<em>Single Responsibility</em>)</li>
+<li>Keine Code-Duplizierung! (<em>DRY</em> - Don't repeat yourself)</li>
+<li>Klassen und Methoden sollten sich erwartungsgemäß verhalten</li>
+<li>Kapselung: Möglichst wenig öffentlich zugänglich machen</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Metriken: Einhaltung von Regeln in Zahlen ausdrücken</p>
+</li>
+<li>
+<p>Prüfung manuell durch Code Reviews oder durch Tools wie <strong>Checkstyle</strong> oder <strong>SpotBugs</strong></p>
+</li>
+<li>
+<p>Definition des <a href="https://github.com/PM-Dungeon/PM-Lecture/tree/master/markdown/coding/src/checkstyle.xml">&quot;PM-Styles&quot;</a>
+(siehe Folie &quot;Konfiguration für das PM-Praktikum&quot;)</p>
+</li>
+</ul>
+
+    
+
+
+
+    
+
+
+
+<div class="assignments">
+    <h2>Übungsblätter/Aufgaben</h2>
+
+    <ul>
+    
+        
+        
+        
+            <li>
+                <a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet05/"><strong>Blatt 05: Mocking, Smells, Refactoring</strong></a>
+                 (Abgabe: Di, 10.05., 18 Uhr, PR/MR)
+            </li>
+        
+    
+    </ul>
+
+</div>
+
+
+    
+
+
+
+<div class="bib">
+    <h2>Quellen</h2>
+
+    <ul>
+    
+        
+        
+
+        
+            
+            
+            
+            
+            
+
+            
+            
+                
+                    
+                
+            
+            
+            
+            
+            
+            
+
+            <li id="id_googlestyleguide">
+            
+                [googlestyleguide] <a href="https://google.github.io/styleguide/javaguide.html" class="icon reading" target="_blank" rel="nofollow noopener noreferrer"><strong>Google Java Style Guide</strong></a>
+            
+            
+                <br>Google Open Source, 2022.
+                
+                
+            
+            
+            </li>
+        
+
+    
+        
+        
+
+        
+            
+            
+            
+            
+            
+
+            
+            
+                
+                    
+                
+            
+            
+            
+            
+            
+            
+
+            <li id="id_Inden2013">
+            
+                [Inden2013] <strong>Der weg zum java-profi</strong>
+            
+            
+                <br>Inden, M., dpunkt.verlag, 2013.
+                
+                    ISBN <a href="https://www.digibib.net/openurl/Bi10?isbn=978-3-8649-1245-0" target="_blank" rel="nofollow noopener noreferrer">978-3-8649-1245-0</a>.
+                
+                
+            
+            
+                <br><em>Kapitel 13: Programmierstil und Coding Conventions</em>
+            
+            </li>
+        
+
+    
+        
+        
+
+        
+            
+            
+            
+            
+            
+
+            
+            
+                
+                    
+                
+            
+            
+            
+            
+            
+            
+
+            <li id="id_Martin2009">
+            
+                [Martin2009] <strong>Clean Code</strong>
+            
+            
+                <br>Martin, R., mitp, 2009.
+                
+                    ISBN <a href="https://www.digibib.net/openurl/Bi10?isbn=978-3-8266-5548-7" target="_blank" rel="nofollow noopener noreferrer">978-3-8266-5548-7</a>.
+                
+                
+            
+            
+            </li>
+        
+
+    
+    </ul>
+
+</div>
+
+
+
+
+
+
+        </div>
+      </main><p><div style="color: darkgray; font-size: smaller;">
+<p style="margin-left: 1rem;">
+    <!-- https://creativecommons.org/choose/ -->
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;margin:0;display:inline;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a> Unless otherwise noted, <a href="https://github.com/PM-Dungeon/PM-Lecture">this work</a> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/cagix" property="cc:attributionName" rel="cc:attributionURL">Carsten Gips</a> and <a href="https://github.com/PM-Dungeon/PM-Lecture/graphs/contributors">contributors</a> is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+<br />
+    Icons by <a href="https://fontawesome.com/">Font Awesome</a>.
+    Built with <a href="https://github.com/jgm/pandoc">Pandoc</a> using <a href="https://github.com/cagix/pandoc-lecture">Pandoc-Lecture</a> and <a href="https://github.com/gohugoio/hugo">Hugo</a> using the <a href="https://github.com/McShelby/hugo-theme-relearn">Hugo Relearn Theme</a>.
+</p>
+</div>
+</p>
+
+    </div>
+    <aside id="sidebar" class="default-animation showVisitedLinks">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
+<a id="logo" href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/'>
+    <img style="max-width:35%" alt="icon" src='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/images/logo.png'>
+</a>
+
+        </div>
+      </div>
+      <div id="content-wrapper" class="highlightable">
+        <ul class="topics">
+          <li data-nav-id="/git/" title="Git" class="dd-item"><input type="checkbox" id="section-346b17b87a1a6c2e7ff1e8f0f4d1b4bd" class="toggle"/><label for="section-346b17b87a1a6c2e7ff1e8f0f4d1b4bd" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/">Git<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/git/intro/" title="Intro: Versionskontrolle in der Softwareentwicklung" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/intro/">Intro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/basics/" title="Basics der Versionsverwaltung mit Git (lokale Repos)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/basics/">Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/branches/" title="Git Branches: Features unabhängig entwickeln und mit Git verwalten" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branches/">Branches<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/branching-strategies/" title="Branching-Strategien mit Git" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branching-strategies/">Branching-Strategien<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/remotes/" title="Arbeiten mit Git Remotes (dezentrale Repos)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/remotes/">Remotes<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/workflows/" title="Zusammenarbeit: Git-Workflows und Merge-/Pull-Requests" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/workflows/">Workflows<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/bisect/" title="Fehlersuche mit Git Bisect" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/bisect/">Bisect<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/testing/" title="Testing" class="dd-item"><input type="checkbox" id="section-a831e487e7bd822b29c7ec65758c1503" class="toggle"/><label for="section-a831e487e7bd822b29c7ec65758c1503" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/">Testing<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/testing/testing-intro/" title="Einführung Softwaretest" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testing-intro/">Intro SW-Test<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/junit-basics/" title="Testen mit JUnit (JUnit-Basics)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/junit-basics/">JUnit-Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/testcases/" title="Testfallermittlung: Wie viel und was muss man testen?" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testcases/">Testfallermittlung<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/mockito/" title="Mocking mit Mockito" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/mockito/">Mocking<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/coding/" title="Coding" class="dd-item parent"><input type="checkbox" id="section-079e50620d382bff188ccaf7d7eec5ec" class="toggle" checked/><label for="section-079e50620d382bff188ccaf7d7eec5ec" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/">Coding<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/coding/logging/" title="Logging" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/logging/">Logging<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/javadoc/" title="Javadoc" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/javadoc/">Javadoc<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/smells/" title="Code Smells" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/smells/">Code Smells<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/codingrules/" title="Coding Conventions und Metriken" class="dd-item active"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/codingrules/">Coding Conventions<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/refactoring/" title="Refactoring" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/refactoring/">Refactoring<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/tdd/" title="Testbarkeit und Testdriven Development (TDD)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/tdd/">Testbarkeit und TDD<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/building/" title="Building" class="dd-item"><input type="checkbox" id="section-ff836c14ff2daf3537fcd8281d19c8a3" class="toggle"/><label for="section-ff836c14ff2daf3537fcd8281d19c8a3" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/">Building<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/building/ant/" title="Build-Systeme: Apache Ant" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ant/">Ant<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/maven/" title="Build-Systeme: Apache Maven" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/maven/">Maven<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/gradle/" title="Build-Systeme: Gradle" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/gradle/">Gradle<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/ci/" title="Continuous Integration (CI)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ci/">Continuous Integration<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/docker/" title="Einführung in Docker" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/docker/">Docker<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/pattern/" title="Pattern" class="dd-item"><input type="checkbox" id="section-84eb7f5d4debf68ee3bffeb919ec8445" class="toggle"/><label for="section-84eb7f5d4debf68ee3bffeb919ec8445" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/">Pattern<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/pattern/factory-method/" title="Factory-Method-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/factory-method/">Factory-Method<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/visitor/" title="Visitor-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/visitor/">Visitor<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/observer/" title="Observer-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/observer/">Observer<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/strategy/" title="Strategy-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/strategy/">Strategy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/template-method/" title="Template-Method-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/template-method/">Template-Method<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/command/" title="Command-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/command/">Command<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/flyweight/" title="Flyweight-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/flyweight/">Flyweight<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/type-object/" title="Type-Object-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/type-object/">Type-Object<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/singleton/" title="Singleton-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/singleton/">Singleton<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/generics/" title="Generics" class="dd-item"><input type="checkbox" id="section-9ec2dd2215ae1799fe9fb0d331b91e01" class="toggle"/><label for="section-9ec2dd2215ae1799fe9fb0d331b91e01" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/">Generics<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/generics/classes-methods/" title="Generische Klassen &amp; Methoden" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/classes-methods/">Klassen &amp; Methoden<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/bounds-wildcards/" title="Bounds &amp; Wildcards" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/bounds-wildcards/">Bounds &amp; Wildcards<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/type-erasure/" title="Type Erasure" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/type-erasure/">Type Erasure<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/generics-polymorphism/" title="Generics und Polymorphie" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/generics-polymorphism/">Polymorphie<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/java-jvm/" title="Java / JVM" class="dd-item"><input type="checkbox" id="section-1d4a17db91c5179ff6d850c019075026" class="toggle"/><label for="section-1d4a17db91c5179ff6d850c019075026" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/">Java / JVM<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/java-jvm/regexp/" title="Reguläre Ausdrücke" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/regexp/">RegExp<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/configuration/" title="Konfiguration eines Programms" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/configuration/">Konfiguration<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/enums/" title="Aufzählungen (Enumerations)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/enums/">Enumerations<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/annotations/" title="Annotationen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/annotations/">Annotationen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/reflection/" title="Reflection" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/reflection/">Reflection<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/collections/" title="Java Collections Framework" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/collections/">Collections<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/serialisation/" title="Serialisierung von Objekten und Zuständen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/serialisation/">Serialisierung<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/exceptions/" title="Exception-Handling" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/exceptions/">Exceptions<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/modern-java/" title="Modern Java" class="dd-item"><input type="checkbox" id="section-b61bc4c9231f95b2150d554b2f10a68d" class="toggle"/><label for="section-b61bc4c9231f95b2150d554b2f10a68d" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/">Modern Java<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/modern-java/defaultmethods/" title="Interfaces: Default-Methoden" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/defaultmethods/">Default-Methoden<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/lambdas/" title="Lambda-Ausdrücke und funktionale Interfaces" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/lambdas/">Lambda-Ausdrücke<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/methodreferences/" title="Methoden-Referenzen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/methodreferences/">Methoden-Referenzen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/stream-api/" title="Stream-API" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/stream-api/">Stream-API<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/records/" title="Record-Klassen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/records/">Records<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/optional/" title="Optional" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/optional/">Optional<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/threads/" title="Threads" class="dd-item"><input type="checkbox" id="section-d05c691fa11b6c7c73707b1f693354bc" class="toggle"/><label for="section-d05c691fa11b6c7c73707b1f693354bc" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/">Threads<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/threads/intro/" title="Einführung in die nebenläufige Programmierung mit Threads" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/intro/">Intro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/threads/synchronisation/" title="Synchronisation: Verteilter Zugriff auf gemeinsame Ressourcen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/synchronisation/">Synchronisation<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/threads/highlevel/" title="High-Level Concurrency" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/highlevel/">High-Level Concurrency<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/gui/" title="GUI" class="dd-item"><input type="checkbox" id="section-6bd1817b64a743ce3da58441e61d147a" class="toggle"/><label for="section-6bd1817b64a743ce3da58441e61d147a" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/">GUI<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/gui/basics/" title="Swing 101: Basics" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/basics/">Swing: Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/events/" title="Swing Events" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/events/">Swing: Events<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/widgets/" title="Swing: Nützliche Widgets" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/widgets/">Swing: Widgets<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/layouts/" title="Swing: Layout-Manager" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/layouts/">Swing: Layout-Manager<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/tables/" title="Swing: Tabellen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/tables/">Swing: Tabellen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/java2d/" title="Einführung in Graphics und Java 2D" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/java2d/">Java2D<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/frameworks/" title="Frameworks" class="dd-item"><input type="checkbox" id="section-6e87d98d146ebd1a56f5cfe9e946dff8" class="toggle"/><label for="section-6e87d98d146ebd1a56f5cfe9e946dff8" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/">Frameworks<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/frameworks/intro/" title="Frameworks: Einstieg" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/intro/">Intro<i class="fas fa-check read-icon"></i></a></li></ul></li>
+        </ul>
+        <div id="shortcuts">
+          <div class="nav-title">More</div>
+          <ul>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/schedule"><i class='fas fa-bookmark'></i> Fahrplan</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments"><i class='fas fa-bookmark'></i> Praktikum</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/grading"><i class='fas fa-bookmark'></i> Note/Credits</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/syllabus"><i class='fas fa-bookmark'></i> Syllabus</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/resources"><i class='fas fa-bookmark'></i> Ressourcen</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/exam"><i class='fas fa-bookmark'></i> Prüfungsvorbereitung</a></li>
+          </ul>
+        </div>
+        <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showVisitedLinks showFooter"></div>
+        <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showVisitedLinks showFooter"/>
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVariantSwitch showVisitedLinks">
+          <ul>
+            <li id="select-language-container" class="footerLangSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-language fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-language" onchange="location = baseUri + this.value;">
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+            </li>
+            <li id="select-variant-container" class="footerVariantSwitch showVariantSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-variant" onchange="variants.changeVariant( this.value );">
+                    <option id="relearn-light" value="relearn-light" selected>Relearn Light</option>
+                    <option id="relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="green" value="green">Green</option>
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+              <script>variants.markSelectedVariant();</script>
+            </li>
+            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+          </ul>
+        </div>
+        <div id="footer" class="footerFooter showFooter"><p style="margin-left: 1rem;">
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/imprint'>Impressum</a>,
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/privacy'>Datenschutz</a>,
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/credits'>Credits</a>
+</p>
+
+        </div>
+      </div>
+    </aside>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/clipboard.min.js?1656322213"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/perfect-scrollbar.min.js?1656322213"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/featherlight.min.js?1656322213"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/theme.js?1656322213"></script>
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$','$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+</script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+</html>
+

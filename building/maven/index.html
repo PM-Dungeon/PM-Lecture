@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.96.0" />
+    <meta name="generator" content="Relearn 3.4.0&#43;tip">
+    <meta name="description" content="">
+    <meta name="author" content="cagix">
+    <title>Build-Systeme: Apache Maven   </title>
+    <link rel="icon" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/images/logo.png?1656322213" type="image/png">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/nucleus.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/fontawesome-all.min.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/featherlight.min.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/perfect-scrollbar.min.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/auto-complete.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/theme.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/theme-relearn-light.css?1656322213" rel="stylesheet" id="variant-style">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/variant.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/print.css?1656322213" rel="stylesheet" media="print">
+    <style>
+      :not(pre) > code.copy-to-clipboard-code + span.copy-to-clipboard-button {
+        display: none;
+      }
+      :not(pre) > code.copy-to-clipboard-code {
+        border-bottom-right-radius: 2px;
+        border-top-right-radius: 2px;
+        border-right-width: 1px;
+      }
+    </style>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/variant.js?1656322213"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      var index_url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/index.json";
+      var root_url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      // some further base stuff
+      var baseUriFull='https:\/\/www.fh-bielefeld.de\/elearning\/data\/FH-Bielefeld\/lm_data\/lm_1271733/';
+      variants.init( [ 'relearn-light', 'relearn-dark', 'green' ] );
+    </script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/jquery.min.js?1656322213"></script><style type="text/css">
+
+ 
+.center {
+    align-content: center;
+    text-align: center;
+    margin: auto;
+}
+.alert {
+    color: #ff3333;
+}
+.bsp {
+    padding: 0.05cm;
+    border-width: 0.05cm;
+    border-style: solid;
+    border-color: #ddd;
+    background-color: #ddd;
+    border-radius: 25px;
+    float: right;
+}
+.cbox {
+    padding: 0.2cm;
+    border-width: 0.1cm;
+    border-style: solid;
+    border-color: #4070a0;
+    background-color: #f2f2f2;
+    margin: auto;
+    width: 60%;
+    text-align: center;
+    overflow: auto;
+}
+.blueArrow {
+    color: #4070a0;
+    font-family: "Courier New", "Courier", monospace;
+    font-weight: bold;
+}
+.origin {
+    background-color: #ededed;
+    font-size: 0.8em;
+}
+.showme {
+    background-color: #ededed;
+    font-size: 0.8em;
+}
+
+
+ 
+.tldr {
+    background: #dbe4ed;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.recap {
+    
+    
+   margin: 4px 0px 26px 0px;
+}
+.bib {
+    background: #dbe4ed;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.outcomes {
+    background: #d9e9d5;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.quizzes {
+    background: #d9e9d5;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.challenges {
+    background: #ebe4d6;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.assignments {
+    background: #ebe4d6;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+h1.tldr, h1.recap, h1.bib, h1.outcomes, h1.quizzes, h1.challenges, h1.assignments {
+    padding: 0px;
+}
+
+
+ 
+.noJsAlert {
+    padding: 20px;
+    background-color: #f44336;  
+    color: white;
+    margin-bottom: 15px;
+}
+
+
+ 
+.embed-video-player {
+    position: relative;
+    padding-bottom: 56%;
+    height: 0;
+    overflow: hidden;
+}
+.youtube-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border:0;
+}
+
+
+ 
+#header-wrapper {
+    padding:0.6rem;
+}
+
+
+ 
+#shortcuts {
+    padding-top: 2.0rem;
+}
+
+
+ 
+#chapter p {
+    text-align: left;
+}
+
+
+ 
+figcaption h4 {
+    margin-top:-2.5rem;
+}
+.border1 {
+    border:1px solid black;
+}
+
+ 
+td ul, td ol {
+    margin: 0 0 1rem 0.5rem;
+    padding: 0 0 0 0.5rem;
+}
+
+ 
+h1 { font-size:2.8rem !important;}
+h2 { font-size:2.2rem; margin:1.2rem 0}
+h3 { font-size:1.9rem; text-align:left !important; font-weight:400 !important;}
+h4 { font-size:1.6rem}
+h5 { font-size:1.3rem}
+h6 { font-size:1rem}
+
+h2 {
+    width:100% !important;
+    border-bottom:1px solid #5e5e5e !important;
+    padding-bottom: 2px;
+}
+.tldr h2, .recap h2, .bib h2, .outcomes h2, .quizzes h2, .challenges h2, .assignments h2 {
+    margin:0.5rem 0
+}
+
+.btn-crossreference, .btn-crossreference:hover {
+    cursor: initial !important;
+    color: #333 !important;
+    background-color: #fff !important;
+    border-color: #ccc !important;
+}
+
+</style>
+
+  </head>
+  <body class="mobile-support" data-url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/maven/">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div id="top-github-link">
+            <a class="github-link" title='Edit' href="https://github.com/PM-Dungeon/PM-Lecture/edit/master/markdown/building/maven.md" target="blank">
+              <i class="fas fa-pen fa-fw"></i>
+            </a>
+          </div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <span id="toc-menu" title='Table of Contents'><i class="fas fa-list-alt fa-fw"></i></span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <meta itemprop="itemListOrder" content="Descending" />
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="3" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/"><span itemprop="name">PM S22</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="2" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/"><span itemprop="name">Building</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/maven/" aria-disabled="true"><span itemprop="name">Build-Systeme: Apache Maven</span></a></li>
+            </ol>
+          </div>
+          <div class="default-animation progress">
+            <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#build-tool-maven-alternative-zu-ant-oder-gradle">Build-Tool Maven: Alternative zu Ant oder Gradle</a></li>
+    <li><a href="#lebenszyklus-eingebaut-in-maven">Lebenszyklus (eingebaut in Maven)</a></li>
+    <li><a href="#project-object-model-pomxml">Project Object Model: <em>pom.xml</em></a></li>
+    <li><a href="#project-object-model-plugins">Project Object Model: Plugins</a></li>
+    <li><a href="#und-wie-lasse-ich-jetzt-eine-anwendung-mal-laufen">Und wie lasse ich jetzt eine Anwendung mal laufen?</a></li>
+    <li><a href="#wrap-up">Wrap-Up</a></li>
+  </ul>
+</nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+
+
+
+    
+
+
+
+
+
+
+<div class="tldr">
+    <h2>TL;DR</h2>
+
+    
+
+    
+        <p>Zum Automatisieren von Arbeitsabläufen (Kompilieren, Testen, ...) stehen in der Java-Welt
+verschiedene Tools zur Verfügung: Apache Ant, Apache Maven und Gradle sind sicher die am
+bekanntesten darunter.</p>
+<p>In Apache Maven ist bereits der typische Java-Standard-Lebenszyklus eingebaut und es müssen
+nur noch Abweichungen davon und Festlegung von Versionen und Dependencies in XML formuliert
+werden. Dies nennt man auch &quot;<em>Convention over Configuration</em>&quot;.</p>
+<p>Die Maven-Goals sind auswählbare Ziele und werden durch Plugins bereitgestellt. Zwischen den
+Goals sind Abhängigkeiten möglich (und bereits eingebaut). Über Properties kann man noch
+Namen und Versionsnummern o.ä. definieren.</p>
+<p>Abhängigkeiten zu externen Bibliotheken werden als Dependencies formuliert: Am besten den
+Abschnitt von Maven-Central kopieren.</p>
+
+    
+
+    
+        <h3>Videos (YouTube)</h3>
+        
+
+<ul>
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/YAW-_Wi4LDY" target="_blank" rel="nofollow noopener noreferrer">VL Apache Maven</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/8z0UqtzISCA" target="_blank" rel="nofollow noopener noreferrer">Demo Maven-Projekt</a></li>
+    
+
+</ul>
+
+    
+
+    
+        <h3>Videos (FH-Medienportal)</h3>
+        
+
+<ul>
+
+    
+    
+
+    
+    
+    
+
+    
+        <li><a href="https://www.fh-bielefeld.de/medienportal/m/fb5c1d7d3dc18c911557eeec3d91322aec7005d9b1615445f8c75378cf221bb100cffb83d30a4073179d85dfd831c9ee2466c6dec910852b90ade14924bdfcb0" target="_blank" rel="nofollow noopener noreferrer">VL Apache Maven</a></li>
+    
+
+</ul>
+
+    
+
+    
+
+</div>
+
+
+    
+
+
+
+<div class="outcomes">
+    <h2>Lernziele</h2>
+
+    
+
+    
+    
+    <ul>
+    
+        
+        
+        <li>(K3) Schreiben einfacher Maven-Skripte zu Übersetzen des Projekts, zum Testen und zum Erzeugen von Jar-Files</li>
+        
+    
+        
+        
+        <li>(K3) Nutzung von Maven-Properties</li>
+        
+    
+        
+        
+        <li>(K3) Einbinden externer Bibliotheken als Dependencies</li>
+        
+    
+        
+        
+        <li>(K3) Ausführen von Maven-Goals aus IDE heraus und Einbindung als Builder</li>
+        
+    
+    </ul>
+    
+
+</div>
+
+
+    <h2 id="build-tool-maven-alternative-zu-ant-oder-gradle">Build-Tool Maven: Alternative zu Ant oder Gradle</h2>
+<pre tabindex="0"><code class="language-maven" data-lang="maven">mvn archetype:generate -DgroupId=de.fhb.pm -DartifactId=my-project
+                       -DarchetypeArtifactId=maven-archetype-quickstart
+</code></pre><figure class="center" style="width:40%">
+    <img alt="" src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/images/screenshot_maven-project.png" class="" />
+</figure>
+<p>Von der zeitlichen Entstehung her kommt Maven nach Ant, aber vor Gradle. Wie in Ant sind
+auch die Maven-Buildskripte XML-basierte Textdateien (Gradle nutzt eine Groovy-basierte DSL).</p>
+<p>Allerdings hat Maven im Gegensatz zu Ant bereits ein Modell des Java-Entwicklungsprozess
+&quot;eingebaut&quot;: Im Ant-Skript muss alles, was man tun möchte, explizit als Target formuliert
+werden, d.h. auch ein Kompilieren der Sourcen oder Ausführen der Tests muss extra als Target
+ins Ant-Skript geschrieben werden, um benutzbar zu sein. In Maven ist dieses Modell bereits
+implementiert, d.h. hier muss man lediglich zusätzliche oder abweichende Dinge im XML-File
+konfigurieren. Das nennt man auch <a href="https://en.wikipedia.org/wiki/Convention_over_configuration">&quot;<em>convention over configuration</em>&quot;</a>.</p>
+<p>Der Maven-Aufruf
+<code>mvn archetype:generate -DgroupId=de.fhb.pm -DartifactId=my-project -DarchetypeArtifactId=maven-archetype-quickstart</code>
+erzeugt mit Hilfe des Plugins <code>archetype</code>, welches das Ziel (engl.: &quot;<em>Maven goal</em>&quot;) <code>generate</code>
+bereitstellt, ein neues Projekt mit dem Namen <code>my-project</code> und der initialen Package-Struktur
+<code>de.fhb.pm</code>. Das von Maven für die Projekterstellung genutzte Plugin ist unter der ID
+<code>maven-archetype-quickstart</code> in den Maven-Repositories (etwa <a href="https://mvnrepository.com/repos/central">Maven-Central</a>)
+verfügbar, hier kann man mit der zusätzlichen Option <code>-DarchetypeVersion=1.4</code> auf die letzte
+Version schalten.</p>
+<p>Die erzeugte Ordnerstruktur entspricht der Standardstruktur von Gradle (Gradle hat diese
+quasi von Maven übernommen). Die Konfigurationsdatei für Maven hat den Namen <code>pom.xml</code>.</p>
+<p><em>Hinweis</em>: Die <code>groupId</code> und <code>artifactId</code> werden auch für eine Veröffentlichung des Jar-Files
+des Projekts auf dem zentralen Maven-Repository <a href="https://mvnrepository.com/repos/central">Maven-Central</a>
+genutzt. Von hier würde Maven auch als Abhängigkeit konfigurierte Bibliotheken herunterladen.</p>
+<h2 id="lebenszyklus-eingebaut-in-maven">Lebenszyklus (eingebaut in Maven)</h2>
+<figure class="center" style="width:80%">
+    <img alt="" src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/images/screenshot_maven-lifecycle.png" class="" />
+</figure>
+<p>In Maven ist das typische Java-Entwicklungsmodell als &quot;Lebenszyklus&quot; implementiert.</p>
+<p>Entsprechende Plugins stellen die jeweiligen &quot;<em>Goals</em>&quot; (Ziele) bereit. Dabei sind
+auch die Abhängigkeiten berücksichtigt, d.h. das Ziel <code>test</code> erfordert ein <code>compile</code> ...</p>
+<h2 id="project-object-model-pomxml">Project Object Model: <em>pom.xml</em></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-{.xml" data-lang="{.xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;project&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- aktuelle Version für Maven 2.x--&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;modelVersion&gt;</span>4.0.0<span style="color:#f92672">&lt;/modelVersion&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- Basisinformationen --&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;groupId&gt;</span>de.fhb.pm<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;artifactId&gt;</span>my-project<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;version&gt;</span>1.0-SNAPSHOT<span style="color:#f92672">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- Eigenschaften, vergleichbar zu den Properties in Ant --&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;properties&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span style="color:#f92672">&lt;/project.build.sourceEncoding&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;maven.compiler.release&gt;</span>17<span style="color:#f92672">&lt;/maven.compiler.release&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/properties&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- Abhängigkeiten zu externen Bibliotheken --&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;dependencies&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;groupId&gt;</span>junit<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;artifactId&gt;</span>junit<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;version&gt;</span>4.13.2<span style="color:#f92672">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;scope&gt;</span>test<span style="color:#f92672">&lt;/scope&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/dependencies&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/project&gt;</span>
+</span></span></code></pre></div><p>Die Konfigurationsdatei <code>pom.xml</code> stellt die Konfiguration für das Maven-Projekt bereit
+(&quot;Project Object Model&quot;).</p>
+<p>Es werden mindestens der Name des Projekts sowie die Abhängigkeiten definiert.</p>
+<p>Die <code>groupId</code> ist ein eindeutiger Bezeichner für die Organisation oder den Autor des Projekts. Oft
+wird hier einfach wie im obigen Beispiel eine Package-Struktur genutzt, aber wie im Fall von JUnit
+kann dies auch ein einfacher String (dort &quot;<code>junit</code>&quot;) sein.</p>
+<p>Die <code>artifactId</code> ist der eindeutige Name für das Projekt, d.h. unter diesem Namen wird das generierte
+Jar-File im Maven-Repository zu finden sein (sofern es denn veröffentlicht wird).</p>
+<p>Über <code>dependencies</code> kann man benötigte Abhängigkeiten definieren, hier als Beispiel JUnit in der
+4.x Variante ... Diese werden bei Bedarf von Maven vom Maven-Repository heruntergeladen. Die Einträge
+für die Dependencies findet man ebenfalls auf <a href="https://mvnrepository.com/repos/central">MavenCentral</a>.</p>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo für <a href="https://mvnrepository.com/repos/central">MavenCentral</a> (Suche, Einträge)
+</span>
+</div>
+<h2 id="project-object-model-plugins">Project Object Model: Plugins</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-{.xml" data-lang="{.xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;project&gt;</span>
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- Plugins: Stellen eigene &#34;Goals&#34; zur Verfügung --&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;build&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;plugins&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;plugin&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">&lt;!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin --&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&lt;groupId&gt;</span>org.apache.maven.plugins<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&lt;artifactId&gt;</span>maven-compiler-plugin<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&lt;version&gt;</span>3.10.1<span style="color:#f92672">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;/plugin&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;plugin&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">&lt;!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin --&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&lt;groupId&gt;</span>org.apache.maven.plugins<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&lt;artifactId&gt;</span>maven-surefire-plugin<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&lt;version&gt;</span>2.22.2<span style="color:#f92672">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;/plugin&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/plugins&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/build&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/project&gt;</span>
+</span></span></code></pre></div><p>Zusätzlich können die Phasen des Build-Prozesses konfiguriert werden, d.h. für die
+entsprechenden Plugins finden sich Abschnitte unter <code>&lt;build&gt;&lt;plugins&gt;</code> in der <code>pom.xml</code>.</p>
+<p>Auf <a href="https://maven.apache.org/plugins/index.html">maven.apache.org/plugins/index.html</a>
+finden Sie eine Übersicht über häufig benutzte Plugins sowie die von den Plugins
+bereitgestellten Goals sowie Konfigurationsmöglichkeiten.</p>
+<p>Die entsprechenden POM-Einträge finden Sie analog zu den Dependencies ebenfalls auf
+<a href="https://mvnrepository.com/repos/central">MavenCentral</a> (Tag &quot;plugin&quot; statt &quot;dependency&quot;).</p>
+<p>Plugins können aber auch selbst erstellt werden und in das Projekt eingebunden werden,
+ein erster Einstieg ist die <a href="https://maven.apache.org/ref/3.8.1/maven-plugin-api/">Plugin-API</a>.</p>
+<h2 id="und-wie-lasse-ich-jetzt-eine-anwendung-mal-laufen">Und wie lasse ich jetzt eine Anwendung mal laufen?</h2>
+<ul>
+<li><code>mvn clean</code>: Lösche alle generierten Artefakte, beispielsweise <code>.class</code>-Dateien.</li>
+<li><code>mvn compile</code> =&gt; <code>mvn compiler:compile</code>: Übersetze die Sourcen und schiebe die
+generierten <code>.class</code>-Dateien in den Ordner <code>target/classes/</code> (Default). Dazu werden alle
+Abhängigkeiten aufgelöst und bei Bedarf (neu) heruntergeladen (Default: Userverzeichnis,
+Ordner <code>.m2/</code>).</li>
+<li><code>mvn test</code> =&gt; <code>mvn surefire:test</code>: Lasse die Tests laufen. Hängt von <code>compile</code>
+ab. Namenskonvention: Alle Klassen mit <code>*Test.java</code> und <code>Test*.java</code> im Standard-Testordner
+<code>src/test/java/</code> werden betrachtet (und weitere, vgl.
+<a href="https://maven.apache.org/surefire/maven-surefire-plugin/examples/junit-platform.html">maven.apache.org/surefire/maven-surefire-plugin/examples/junit-platform.html</a>).</li>
+<li><code>mvn package</code>: Hängt von <code>compile</code> ab und erzeugt ein Jar-File mit dem Namen
+&quot;artifactId-version.jar&quot; im Ordner <code>target/</code>. Mit <code>mvn install</code> kann man dieses
+Jar-File dann auch dem lokalen Repository im Home-Verzeichnis des Users (<code>.m2/</code>)
+hinzufügen.</li>
+<li><code>mvn exec:java -Dexec.mainClass=&quot;de.fhb.pm.Main&quot;</code>: Hängt von <code>compile</code> ab und
+führt die Klasse <code>de.fhb.pm.Main</code> aus.</li>
+</ul>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo: <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/building/src/maven/pom.xml">pom.xml</a>
+</span>
+</div>
+<h2 id="wrap-up">Wrap-Up</h2>
+<p>Apache Maven: <a href="https://maven.apache.org">maven.apache.org</a>, <a href="https://maven.apache.org/guides/getting-started/index.html">Maven Getting Started Guide</a></p>
+<ul>
+<li>Automatisieren von Arbeitabläufen</li>
+<li>Apache Maven: Goals, Properties, Dependencies =&gt; &quot;<em>Convention over Configuration</em>&quot;,
+Java-Standard-Lebenszyklus eingebaut
+<ul>
+<li>Goals sind auswählbare Ziele, bereitgestellt durch Plugins</li>
+<li>Abhängigkeiten zwischen Goals möglich</li>
+<li>Properties agieren wie Variablen, etwa für Versionsnummern</li>
+<li>Abhängigkeiten zu externen Bibliotheken werden als Dependencies
+formuliert: Abschnitt von Maven-Central kopieren</li>
+</ul>
+</li>
+</ul>
+
+    
+
+
+<div class="quizzes">
+    <h2>Quizzes</h2>
+
+    <ul>
+    
+        
+        
+        
+        <li>
+            <a href="https://www.fh-bielefeld.de/elearning/goto.php?target=tst_1094826&amp;client_id=FH-Bielefeld" class="icon reading" target="_blank" rel="nofollow noopener noreferrer"><strong>Quiz Apache Maven (ILIAS)</strong></a>
+        </li>
+        
+    
+    </ul>
+
+</div>
+
+
+    
+
+
+
+
+    
+
+
+
+<div class="bib">
+    <h2>Quellen</h2>
+
+    <ul>
+    
+        
+        
+
+        
+            
+            
+            
+            
+            
+
+            
+            
+                
+                    
+                
+            
+            
+            
+            
+            
+            
+
+            <li id="id_Inden2013">
+            
+                [Inden2013] <strong>Der weg zum java-profi</strong>
+            
+            
+                <br>Inden, M., dpunkt.verlag, 2013.
+                
+                    ISBN <a href="https://www.digibib.net/openurl/Bi10?isbn=978-3-8649-1245-0" target="_blank" rel="nofollow noopener noreferrer">978-3-8649-1245-0</a>.
+                
+                
+            
+            
+            </li>
+        
+
+    
+        
+        
+
+        
+
+    
+    </ul>
+
+</div>
+
+
+
+
+
+
+        </div>
+      </main><p><div style="color: darkgray; font-size: smaller;">
+<p style="margin-left: 1rem;">
+    <!-- https://creativecommons.org/choose/ -->
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;margin:0;display:inline;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a> Unless otherwise noted, <a href="https://github.com/PM-Dungeon/PM-Lecture">this work</a> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/cagix" property="cc:attributionName" rel="cc:attributionURL">Carsten Gips</a> and <a href="https://github.com/PM-Dungeon/PM-Lecture/graphs/contributors">contributors</a> is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+<br />
+    Icons by <a href="https://fontawesome.com/">Font Awesome</a>.
+    Built with <a href="https://github.com/jgm/pandoc">Pandoc</a> using <a href="https://github.com/cagix/pandoc-lecture">Pandoc-Lecture</a> and <a href="https://github.com/gohugoio/hugo">Hugo</a> using the <a href="https://github.com/McShelby/hugo-theme-relearn">Hugo Relearn Theme</a>.
+</p>
+</div>
+</p>
+
+    </div>
+    <aside id="sidebar" class="default-animation showVisitedLinks">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
+<a id="logo" href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/'>
+    <img style="max-width:35%" alt="icon" src='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/images/logo.png'>
+</a>
+
+        </div>
+      </div>
+      <div id="content-wrapper" class="highlightable">
+        <ul class="topics">
+          <li data-nav-id="/git/" title="Git" class="dd-item"><input type="checkbox" id="section-346b17b87a1a6c2e7ff1e8f0f4d1b4bd" class="toggle"/><label for="section-346b17b87a1a6c2e7ff1e8f0f4d1b4bd" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/">Git<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/git/intro/" title="Intro: Versionskontrolle in der Softwareentwicklung" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/intro/">Intro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/basics/" title="Basics der Versionsverwaltung mit Git (lokale Repos)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/basics/">Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/branches/" title="Git Branches: Features unabhängig entwickeln und mit Git verwalten" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branches/">Branches<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/branching-strategies/" title="Branching-Strategien mit Git" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branching-strategies/">Branching-Strategien<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/remotes/" title="Arbeiten mit Git Remotes (dezentrale Repos)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/remotes/">Remotes<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/workflows/" title="Zusammenarbeit: Git-Workflows und Merge-/Pull-Requests" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/workflows/">Workflows<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/bisect/" title="Fehlersuche mit Git Bisect" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/bisect/">Bisect<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/testing/" title="Testing" class="dd-item"><input type="checkbox" id="section-a831e487e7bd822b29c7ec65758c1503" class="toggle"/><label for="section-a831e487e7bd822b29c7ec65758c1503" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/">Testing<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/testing/testing-intro/" title="Einführung Softwaretest" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testing-intro/">Intro SW-Test<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/junit-basics/" title="Testen mit JUnit (JUnit-Basics)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/junit-basics/">JUnit-Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/testcases/" title="Testfallermittlung: Wie viel und was muss man testen?" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testcases/">Testfallermittlung<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/mockito/" title="Mocking mit Mockito" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/mockito/">Mocking<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/coding/" title="Coding" class="dd-item"><input type="checkbox" id="section-079e50620d382bff188ccaf7d7eec5ec" class="toggle"/><label for="section-079e50620d382bff188ccaf7d7eec5ec" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/">Coding<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/coding/logging/" title="Logging" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/logging/">Logging<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/javadoc/" title="Javadoc" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/javadoc/">Javadoc<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/smells/" title="Code Smells" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/smells/">Code Smells<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/codingrules/" title="Coding Conventions und Metriken" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/codingrules/">Coding Conventions<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/refactoring/" title="Refactoring" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/refactoring/">Refactoring<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/tdd/" title="Testbarkeit und Testdriven Development (TDD)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/tdd/">Testbarkeit und TDD<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/building/" title="Building" class="dd-item parent"><input type="checkbox" id="section-ff836c14ff2daf3537fcd8281d19c8a3" class="toggle" checked/><label for="section-ff836c14ff2daf3537fcd8281d19c8a3" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/">Building<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/building/ant/" title="Build-Systeme: Apache Ant" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ant/">Ant<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/maven/" title="Build-Systeme: Apache Maven" class="dd-item active"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/maven/">Maven<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/gradle/" title="Build-Systeme: Gradle" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/gradle/">Gradle<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/ci/" title="Continuous Integration (CI)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ci/">Continuous Integration<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/docker/" title="Einführung in Docker" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/docker/">Docker<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/pattern/" title="Pattern" class="dd-item"><input type="checkbox" id="section-84eb7f5d4debf68ee3bffeb919ec8445" class="toggle"/><label for="section-84eb7f5d4debf68ee3bffeb919ec8445" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/">Pattern<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/pattern/factory-method/" title="Factory-Method-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/factory-method/">Factory-Method<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/visitor/" title="Visitor-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/visitor/">Visitor<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/observer/" title="Observer-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/observer/">Observer<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/strategy/" title="Strategy-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/strategy/">Strategy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/template-method/" title="Template-Method-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/template-method/">Template-Method<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/command/" title="Command-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/command/">Command<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/flyweight/" title="Flyweight-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/flyweight/">Flyweight<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/type-object/" title="Type-Object-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/type-object/">Type-Object<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/singleton/" title="Singleton-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/singleton/">Singleton<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/generics/" title="Generics" class="dd-item"><input type="checkbox" id="section-9ec2dd2215ae1799fe9fb0d331b91e01" class="toggle"/><label for="section-9ec2dd2215ae1799fe9fb0d331b91e01" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/">Generics<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/generics/classes-methods/" title="Generische Klassen &amp; Methoden" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/classes-methods/">Klassen &amp; Methoden<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/bounds-wildcards/" title="Bounds &amp; Wildcards" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/bounds-wildcards/">Bounds &amp; Wildcards<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/type-erasure/" title="Type Erasure" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/type-erasure/">Type Erasure<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/generics-polymorphism/" title="Generics und Polymorphie" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/generics-polymorphism/">Polymorphie<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/java-jvm/" title="Java / JVM" class="dd-item"><input type="checkbox" id="section-1d4a17db91c5179ff6d850c019075026" class="toggle"/><label for="section-1d4a17db91c5179ff6d850c019075026" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/">Java / JVM<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/java-jvm/regexp/" title="Reguläre Ausdrücke" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/regexp/">RegExp<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/configuration/" title="Konfiguration eines Programms" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/configuration/">Konfiguration<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/enums/" title="Aufzählungen (Enumerations)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/enums/">Enumerations<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/annotations/" title="Annotationen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/annotations/">Annotationen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/reflection/" title="Reflection" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/reflection/">Reflection<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/collections/" title="Java Collections Framework" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/collections/">Collections<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/serialisation/" title="Serialisierung von Objekten und Zuständen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/serialisation/">Serialisierung<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/exceptions/" title="Exception-Handling" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/exceptions/">Exceptions<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/modern-java/" title="Modern Java" class="dd-item"><input type="checkbox" id="section-b61bc4c9231f95b2150d554b2f10a68d" class="toggle"/><label for="section-b61bc4c9231f95b2150d554b2f10a68d" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/">Modern Java<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/modern-java/defaultmethods/" title="Interfaces: Default-Methoden" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/defaultmethods/">Default-Methoden<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/lambdas/" title="Lambda-Ausdrücke und funktionale Interfaces" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/lambdas/">Lambda-Ausdrücke<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/methodreferences/" title="Methoden-Referenzen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/methodreferences/">Methoden-Referenzen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/stream-api/" title="Stream-API" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/stream-api/">Stream-API<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/records/" title="Record-Klassen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/records/">Records<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/optional/" title="Optional" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/optional/">Optional<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/threads/" title="Threads" class="dd-item"><input type="checkbox" id="section-d05c691fa11b6c7c73707b1f693354bc" class="toggle"/><label for="section-d05c691fa11b6c7c73707b1f693354bc" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/">Threads<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/threads/intro/" title="Einführung in die nebenläufige Programmierung mit Threads" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/intro/">Intro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/threads/synchronisation/" title="Synchronisation: Verteilter Zugriff auf gemeinsame Ressourcen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/synchronisation/">Synchronisation<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/threads/highlevel/" title="High-Level Concurrency" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/highlevel/">High-Level Concurrency<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/gui/" title="GUI" class="dd-item"><input type="checkbox" id="section-6bd1817b64a743ce3da58441e61d147a" class="toggle"/><label for="section-6bd1817b64a743ce3da58441e61d147a" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/">GUI<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/gui/basics/" title="Swing 101: Basics" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/basics/">Swing: Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/events/" title="Swing Events" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/events/">Swing: Events<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/widgets/" title="Swing: Nützliche Widgets" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/widgets/">Swing: Widgets<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/layouts/" title="Swing: Layout-Manager" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/layouts/">Swing: Layout-Manager<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/tables/" title="Swing: Tabellen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/tables/">Swing: Tabellen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/java2d/" title="Einführung in Graphics und Java 2D" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/java2d/">Java2D<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/frameworks/" title="Frameworks" class="dd-item"><input type="checkbox" id="section-6e87d98d146ebd1a56f5cfe9e946dff8" class="toggle"/><label for="section-6e87d98d146ebd1a56f5cfe9e946dff8" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/">Frameworks<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/frameworks/intro/" title="Frameworks: Einstieg" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/intro/">Intro<i class="fas fa-check read-icon"></i></a></li></ul></li>
+        </ul>
+        <div id="shortcuts">
+          <div class="nav-title">More</div>
+          <ul>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/schedule"><i class='fas fa-bookmark'></i> Fahrplan</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments"><i class='fas fa-bookmark'></i> Praktikum</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/grading"><i class='fas fa-bookmark'></i> Note/Credits</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/syllabus"><i class='fas fa-bookmark'></i> Syllabus</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/resources"><i class='fas fa-bookmark'></i> Ressourcen</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/exam"><i class='fas fa-bookmark'></i> Prüfungsvorbereitung</a></li>
+          </ul>
+        </div>
+        <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showVisitedLinks showFooter"></div>
+        <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showVisitedLinks showFooter"/>
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVariantSwitch showVisitedLinks">
+          <ul>
+            <li id="select-language-container" class="footerLangSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-language fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-language" onchange="location = baseUri + this.value;">
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+            </li>
+            <li id="select-variant-container" class="footerVariantSwitch showVariantSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-variant" onchange="variants.changeVariant( this.value );">
+                    <option id="relearn-light" value="relearn-light" selected>Relearn Light</option>
+                    <option id="relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="green" value="green">Green</option>
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+              <script>variants.markSelectedVariant();</script>
+            </li>
+            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+          </ul>
+        </div>
+        <div id="footer" class="footerFooter showFooter"><p style="margin-left: 1rem;">
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/imprint'>Impressum</a>,
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/privacy'>Datenschutz</a>,
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/credits'>Credits</a>
+</p>
+
+        </div>
+      </div>
+    </aside>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/clipboard.min.js?1656322213"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/perfect-scrollbar.min.js?1656322213"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/featherlight.min.js?1656322213"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/theme.js?1656322213"></script>
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$','$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+</script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+</html>
+

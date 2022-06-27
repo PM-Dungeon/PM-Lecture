@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on </title>
+    <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/</link>
+    <description>Recent content in Git on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-DE</language><atom:link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Intro: Versionskontrolle in der Softwareentwicklung</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/intro/</guid>
+      <description>Typische Probleme bei SW-Entwicklung  Was hat wer wann (und wo) geändert? Und warum? Ich brauche den Stand von gestern/letzter Woche/... Ich will schnell mal eine neue Idee ausprobieren ... Ich arbeite an mehreren Rechnern (Synchronisation) Wir müssen gemeinsam an der gleichen Codebasis arbeiten. Wir arbeiten am Release v42, aber Kunde braucht schnell einen Fix für v40  Folgen SW-Entwicklung ohne Versionsverwaltung   Filesystem müllt voll mit manuell versionierten Dateien/Sicherungen ala file_20120507_version2_cagi.</description>
+    </item>
+    <item>
+      <title>Basics der Versionsverwaltung mit Git (lokale Repos)</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/basics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/basics/</guid>
+      <description>Versionsverwaltung mit Git: Typische Arbeitsschritte   Repository anlegen (oder clonen)
+  Dateien neu erstellen (und löschen, umbenennen, verschieben)
+  Änderungen einpflegen (&amp;quot;committen&amp;quot;)
+  Änderungen und Logs betrachten
+  Änderungen rückgängig machen
+  Projektstand markieren (&amp;quot;taggen&amp;quot;)
+  Entwicklungszweige anlegen (&amp;quot;branchen&amp;quot;)
+  Entwicklungszweige zusammenführen (&amp;quot;mergen&amp;quot;)
+  Änderungen verteilen (verteiltes Arbeiten, Workflows)
+  Dateien unter Versionskontrolle stellen    git add . (oder git add &amp;lt;file&amp;gt;)</description>
+    </item>
+    <item>
+      <title>Git Branches: Features unabhängig entwickeln und mit Git verwalten</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branches/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branches/</guid>
+      <description>Neues Feature entwickeln/ausprobieren A---B---C master   Bisher nur lineare Entwicklung: Commits bauen aufeinander auf (lineare Folge von Commits) master ist der (Default-) Hauptentwicklungszweig  Pointer auf letzten Commit Default-Name: &amp;quot;master&amp;quot; (muss aber nicht so sein bzw. kann geändert werden)    Anmerkung: Git und auch Github haben den Namen für den Default-Branch von master auf maingeändert. Der Name an sich ist aber für Git bedeutungslos und kann mittels git config --global init.</description>
+    </item>
+    <item>
+      <title>Branching-Strategien mit Git</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branching-strategies/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branching-strategies/</guid>
+      <description>Nutzung von Git in Projekten: Verteiltes Git (und Workflows)  Git ermöglicht ein einfaches und schnelles Branchen. Dies kann man mit entsprechenden Branching-Strategien sinnvoll für die SW-Entwicklung einsetzen.
+Im Folgenden sollen also die Frage betrachtet werden: Wie setze ich Branches sinnvoll ein?
+Umgang mit Branches: Themen-Branches  I---J---K wuppieV1 / D---F wuppie / A---B---C---E master \ G---H test  Branchen ist in Git sehr einfach und schnell. Deshalb wird (gerade auch im Vergleich mit SVN) gern und viel gebrancht.</description>
+    </item>
+    <item>
+      <title>Arbeiten mit Git Remotes (dezentrale Repos)</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/remotes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/remotes/</guid>
+      <description>Nutzung von Git in Projekten: Verteiltes Git (und Workflows)  Git ermöglicht eine einfaches Zusammenarbeit in verteilten Teams. Nachdem wir die verschiedenen Branching-Strategien betrachtet haben, soll im Folgenden die Frage betrachtet werden: Wie arbeite ich sinnvoll über Git mit anderen Kollegen und Teams zusammen? Welche Modelle haben sich etabliert?
+Clonen kann sich lohnen ... https://github.com/PM-Dungeon/PM-Lecture ---C---D---E master  =&amp;gt; git clone https://github.com/PM-Dungeon/PM-Lecture
+./PM-Lecture/ (lokaler Rechner) ---C---D---E master ^origin/master  Git-Repository mit der URL &amp;lt;URL-Repo&amp;gt; in lokalen Ordner &amp;lt;directory&amp;gt; auschecken:</description>
+    </item>
+    <item>
+      <title>Zusammenarbeit: Git-Workflows und Merge-/Pull-Requests</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/workflows/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/workflows/</guid>
+      <description>Nutzung von Git in Projekten: Verteiltes Git (und Workflows)  Git ermöglicht ein einfaches und schnelles Branchen. Dies kann man mit entsprechenden Branching-Strategien sinnvoll für die SW-Entwicklung einsetzen.
+Auf der anderen Seite ermöglicht Git ein sehr einfaches verteiltes Arbeiten. Auch hier ergeben sich verschiedene Workflows, wie man mit anderen Entwicklern an einem Projekt arbeiten will/kann.
+Im Folgenden sollen also die Frage betrachtet werden: Wie gestalte ich die Zusammenarbeit? Antwort: Workflows mit Git .</description>
+    </item>
+    <item>
+      <title>Fehlersuche mit Git Bisect</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/bisect/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/bisect/</guid>
+      <description>Git Bisect: Wer hats wann kaputt gespielt? Szenario  Sie haben eine Software ausgeliefert, die offenbar gut funktioniert. Sie erweitern die Software und testen intern mit JUnit. Nachdem Sie keine Fehler mehr gefunden haben, erstellen Sie ein neues Release und liefern die neue Version aus. Die Kunden beschweren sich über Fehler .&amp;hellip; Sie erstellen einen neuen Test mit JUnit für das von den Kunden beschriebene Verhalten und können das Problem verifizieren.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.96.0" />
+    <meta name="generator" content="Relearn 3.4.0&#43;tip">
+    <meta name="description" content="">
+    <meta name="author" content="cagix">
+    <title>Annotationen   </title>
+    <link rel="icon" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/images/logo.png?1656322214" type="image/png">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/nucleus.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/fontawesome-all.min.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/featherlight.min.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/perfect-scrollbar.min.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/auto-complete.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/theme.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/theme-relearn-light.css?1656322214" rel="stylesheet" id="variant-style">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/variant.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/print.css?1656322214" rel="stylesheet" media="print">
+    <style>
+      :not(pre) > code.copy-to-clipboard-code + span.copy-to-clipboard-button {
+        display: none;
+      }
+      :not(pre) > code.copy-to-clipboard-code {
+        border-bottom-right-radius: 2px;
+        border-top-right-radius: 2px;
+        border-right-width: 1px;
+      }
+    </style>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/variant.js?1656322214"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      var index_url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/index.json";
+      var root_url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      // some further base stuff
+      var baseUriFull='https:\/\/www.fh-bielefeld.de\/elearning\/data\/FH-Bielefeld\/lm_data\/lm_1271733/';
+      variants.init( [ 'relearn-light', 'relearn-dark', 'green' ] );
+    </script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/jquery.min.js?1656322214"></script><style type="text/css">
+
+ 
+.center {
+    align-content: center;
+    text-align: center;
+    margin: auto;
+}
+.alert {
+    color: #ff3333;
+}
+.bsp {
+    padding: 0.05cm;
+    border-width: 0.05cm;
+    border-style: solid;
+    border-color: #ddd;
+    background-color: #ddd;
+    border-radius: 25px;
+    float: right;
+}
+.cbox {
+    padding: 0.2cm;
+    border-width: 0.1cm;
+    border-style: solid;
+    border-color: #4070a0;
+    background-color: #f2f2f2;
+    margin: auto;
+    width: 60%;
+    text-align: center;
+    overflow: auto;
+}
+.blueArrow {
+    color: #4070a0;
+    font-family: "Courier New", "Courier", monospace;
+    font-weight: bold;
+}
+.origin {
+    background-color: #ededed;
+    font-size: 0.8em;
+}
+.showme {
+    background-color: #ededed;
+    font-size: 0.8em;
+}
+
+
+ 
+.tldr {
+    background: #dbe4ed;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.recap {
+    
+    
+   margin: 4px 0px 26px 0px;
+}
+.bib {
+    background: #dbe4ed;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.outcomes {
+    background: #d9e9d5;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.quizzes {
+    background: #d9e9d5;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.challenges {
+    background: #ebe4d6;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.assignments {
+    background: #ebe4d6;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+h1.tldr, h1.recap, h1.bib, h1.outcomes, h1.quizzes, h1.challenges, h1.assignments {
+    padding: 0px;
+}
+
+
+ 
+.noJsAlert {
+    padding: 20px;
+    background-color: #f44336;  
+    color: white;
+    margin-bottom: 15px;
+}
+
+
+ 
+.embed-video-player {
+    position: relative;
+    padding-bottom: 56%;
+    height: 0;
+    overflow: hidden;
+}
+.youtube-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border:0;
+}
+
+
+ 
+#header-wrapper {
+    padding:0.6rem;
+}
+
+
+ 
+#shortcuts {
+    padding-top: 2.0rem;
+}
+
+
+ 
+#chapter p {
+    text-align: left;
+}
+
+
+ 
+figcaption h4 {
+    margin-top:-2.5rem;
+}
+.border1 {
+    border:1px solid black;
+}
+
+ 
+td ul, td ol {
+    margin: 0 0 1rem 0.5rem;
+    padding: 0 0 0 0.5rem;
+}
+
+ 
+h1 { font-size:2.8rem !important;}
+h2 { font-size:2.2rem; margin:1.2rem 0}
+h3 { font-size:1.9rem; text-align:left !important; font-weight:400 !important;}
+h4 { font-size:1.6rem}
+h5 { font-size:1.3rem}
+h6 { font-size:1rem}
+
+h2 {
+    width:100% !important;
+    border-bottom:1px solid #5e5e5e !important;
+    padding-bottom: 2px;
+}
+.tldr h2, .recap h2, .bib h2, .outcomes h2, .quizzes h2, .challenges h2, .assignments h2 {
+    margin:0.5rem 0
+}
+
+.btn-crossreference, .btn-crossreference:hover {
+    cursor: initial !important;
+    color: #333 !important;
+    background-color: #fff !important;
+    border-color: #ccc !important;
+}
+
+</style>
+
+  </head>
+  <body class="mobile-support" data-url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/annotations/">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div id="top-github-link">
+            <a class="github-link" title='Edit' href="https://github.com/PM-Dungeon/PM-Lecture/edit/master/markdown/java-jvm/annotations.md" target="blank">
+              <i class="fas fa-pen fa-fw"></i>
+            </a>
+          </div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <span id="toc-menu" title='Table of Contents'><i class="fas fa-list-alt fa-fw"></i></span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <meta itemprop="itemListOrder" content="Descending" />
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="3" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/"><span itemprop="name">PM S22</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="2" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/"><span itemprop="name">Java / JVM</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/annotations/" aria-disabled="true"><span itemprop="name">Annotationen</span></a></li>
+            </ol>
+          </div>
+          <div class="default-animation progress">
+            <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#was-passiert-hier">Was passiert hier?</a></li>
+    <li><a href="#annotationen-metadaten-für-dritte">Annotationen: Metadaten für Dritte</a>
+      <ul>
+        <li><a href="#override">@Override</a></li>
+        <li><a href="#deprecated">@Deprecated</a></li>
+        <li><a href="#weitere-annotationen-aus-javalang">Weitere Annotationen aus <em>java.lang</em></a></li>
+      </ul>
+    </li>
+    <li><a href="#dokumentation-mit-javadoc">Dokumentation mit Javadoc</a></li>
+    <li><a href="#notnull-mit-intellij">@NotNull mit IntelliJ</a>
+      <ul>
+        <li><a href="#intellij-inferiert-mit-notnull-mögliche-null-werte">IntelliJ inferiert mit @NotNull mögliche <em>null</em>-Werte</a></li>
+        <li><a href="#intellij-baut-bei-notnull-passende-assertions-ein">IntelliJ baut bei @NotNull passende Assertions ein</a></li>
+      </ul>
+    </li>
+    <li><a href="#eigene-annotationen-erstellen">Eigene Annotationen erstellen</a>
+      <ul>
+        <li><a href="#definition-einer-annotation">Definition einer Annotation</a></li>
+        <li><a href="#parameter-für-annotation">Parameter für Annotation</a></li>
+        <li><a href="#javadoc">Javadoc</a></li>
+        <li><a href="#wann-ist-eine-annotation-sichtbar-beschränkung-der-sichtbarkeit">Wann ist eine Annotation sichtbar (Beschränkung der Sichtbarkeit)</a></li>
+        <li><a href="#wo-darf-eine-annotation-verwendet-werden">Wo darf eine Annotation verwendet werden</a></li>
+      </ul>
+    </li>
+    <li><a href="#annotationen-bei-compilieren-bearbeiten-java-annotation-prozessoren">Annotationen bei Compilieren bearbeiten: Java Annotation-Prozessoren</a></li>
+    <li><a href="#wrap-up">Wrap-Up</a></li>
+  </ul>
+</nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+
+
+
+    
+
+
+
+
+
+
+<div class="tldr">
+    <h2>TL;DR</h2>
+
+    
+
+    
+        <p>Annotationen sind Metadaten zum Programm: Sie haben keinen (direkten) Einfluss auf die
+Ausführung des annotierten Codes, sondern enthalten Zusatzinformationen über ein Programm,
+die selbst nicht Teil des Programms sind. Verschiedene Tools werten Annotationen aus,
+beispielsweise der Compiler, Javadoc, JUnit, ...</p>
+<p>Annotationen können auf Deklarationen (Klassen, Felder, Methoden) angewendet werden und
+werden meist auf eine eigene Zeile geschrieben (Konvention).</p>
+<p>Annotationen können relativ einfach selbst erstellt werden: Die Definition ist fast wie
+bei einem Interface. Zusätzlich kann man noch über Meta-Annotationen die Sichtbarkeit,
+Verwendbarkeit und Dokumentation einschränken. Annotationen können zur Übersetzungszeit
+mit einem Annotation-Processor verarbeitet werden oder zur Laufzeit über Reflection
+ausgewertet werden.</p>
+
+    
+
+    
+        <h3>Videos (YouTube)</h3>
+        
+
+<ul>
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/7u4_I4W_1JY" target="_blank" rel="nofollow noopener noreferrer">VL Annotationen</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/wt-Dq_Nv5UU" target="_blank" rel="nofollow noopener noreferrer">Demo Annotationen: `@Override`, `@Deprecated`</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/ayWWf_ALObs" target="_blank" rel="nofollow noopener noreferrer">Demo `@NotNull`</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/8vTMgYCstLE" target="_blank" rel="nofollow noopener noreferrer">Demo Annotationen selbst gebastelt</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/ypHMxunNZpg" target="_blank" rel="nofollow noopener noreferrer">Demo Annotation-Prozessor</a></li>
+    
+
+</ul>
+
+    
+
+    
+        <h3>Videos (FH-Medienportal)</h3>
+        
+
+<ul>
+
+    
+    
+
+    
+    
+    
+
+    
+        <li><a href="https://www.fh-bielefeld.de/medienportal/m/d438c8d0b87fc2934e71e539aaf32ce01126fc2145f08284235c4c4b2058b0ab9ccba925dbbcfaf90466c70aff29f79acae1f66edeb18bd794d08628545d4e07" target="_blank" rel="nofollow noopener noreferrer">VL Annotationen</a></li>
+    
+
+</ul>
+
+    
+
+    
+
+</div>
+
+
+    
+
+
+
+<div class="outcomes">
+    <h2>Lernziele</h2>
+
+    
+
+    
+    
+    <ul>
+    
+        
+        <li>(K2) Begriff der Annotation erklären können am Beispiel</li>
+        
+        
+    
+        
+        
+        <li>(K3) Anwendung von <code>@Override</code> sowie der Javadoc-Annotationen</li>
+        
+    
+        
+        
+        <li>(K3) Erstellen eigener Annotationen sowie Einstellen der Sichtbarkeit und Verwendbarkeit</li>
+        
+    
+        
+        
+        <li>(K3) Erstellen eigener einfacher Annotation-Processors</li>
+        
+    
+    </ul>
+    
+
+</div>
+
+
+    <h2 id="was-passiert-hier">Was passiert hier?</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getInfo</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Klasse A&#34;</span><span style="color:#f92672">;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span> <span style="color:#66d9ef">extends</span> A <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getInfo</span><span style="color:#f92672">(</span>String s<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#66d9ef">return</span> s <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;Klasse B&#34;</span><span style="color:#f92672">;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        B s <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> B<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">.</span><span style="color:#a6e22e">getInfo</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Info: &#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Beispiel: <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/java-jvm/src/annotations/B.java">annotations.B</a>
+</span>
+</div>
+<p><span class='alert'><strong>Hilft <code>@Override</code>?</strong></span></p>
+<p>Tja, da sollte wohl die Methode <code>B#getInfo</code> die geerbte Methode <code>A#getInfo</code>
+<strong>überschreiben</strong>. Dummerweise wird hier die Methode aber nur <strong>überladen</strong>
+(mit entsprechenden Folgen beim Aufruf)!</p>
+<p>Ein leider relativ häufiges Versehen, welches u.U. schwer zu finden ist.
+Annotationen (hier <code>@Override</code>) können dagegen helfen -- der Compiler &quot;weiß&quot;
+dann, dass wir überschreiben wollen und meckert, wenn wir das nicht tun.</p>
+<p>IDEs wie Eclipse können diese Annotation bereits beim Erstellen einer Klasse
+generieren: <code>Preferences &gt; Java &gt; Code Style &gt; Add @Override annotation ...</code>.</p>
+<h2 id="annotationen-metadaten-für-dritte">Annotationen: Metadaten für Dritte</h2>
+<ul>
+<li>
+<p><strong>Zusatzinformationen</strong> für Tools, Bibliotheken, ...</p>
+</li>
+<li>
+<p>Kein direkter Einfluss auf die Ausführung des annotierten Codes</p>
+</li>
+<li>
+<p>Beispiele:</p>
+<ul>
+<li>Compiler (JDK): <code>@Override</code>, <code>@Deprecated</code>, ...</li>
+<li>Javadoc: <code>@author</code>, <code>@version</code>, <code>@see</code>, <code>@param</code>, <code>@return</code>, ...</li>
+<li>JUnit: <code>@Test</code>, <code>@Before</code>, <code>@BeforeClass</code>, <code>@After</code>, <code>@AfterClass</code></li>
+<li><a href="https://www.jetbrains.com/help/idea/nullable-and-notnull-annotations.html">IntelliJ</a>: <code>@NotNull</code>, <code>@Nullable</code></li>
+<li><a href="https://github.com/typetools/checker-framework">Checker Framework</a>: <code>@NonNull</code>, <code>@Nullable</code>, ...</li>
+<li><a href="https://github.com/projectlombok/lombok">Project Lombok</a>: <code>@Getter</code>, <code>@Setter</code>, <code>@NonNull</code>, ...</li>
+<li>Webservices: <code>@WebService</code>, <code>@WebMethod</code></li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo: <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/java-jvm/src/annotations/B.java">annotations.B</a>: @Override, @Deprecated
+</span>
+</div>
+<p>Jetzt schauen wir uns erst einmal die Auswirkungen von <code>@Override</code> und <code>@Deprecated</code>
+auf den Compiler (via Eclipse) an.
+Anschließend lernen Sie die Dokumentation mittels Javadoc-Annotationen kennen.</p>
+<p>Das Thema JUnit ist in einer anderen VL dran. Webservices ereilen Sie dann in
+späteren Semestern :-)</p>
+<h3 id="override">@Override</h3>
+<p>Die mit <code>@Override</code> annotierte Methode überschreibt eine Methode aus der Oberklasse oder implementiert eine
+Methode einer Schnittstelle. Dies wird durch den Compiler geprüft und ggf. mit einer Fehlermeldung quittiert.</p>
+<p><code>@Override</code> ist eine im JDK im Paket <code>java.lang</code> enthaltene Annotation.</p>
+<h3 id="deprecated">@Deprecated</h3>
+<p>Das mit <code>@Deprecated</code> markierte Element ist veraltet (&quot;<em>deprecated</em>&quot;) und sollte nicht mehr benutzt werden.
+Typischerweise werden so markierte Elemente in zukünftigen Releases aus der API entfernt ...</p>
+<p>Die Annotation <code>@Deprecated</code> wird direkt im Code verwendet und entspricht der Annotation <code>@deprecated</code>
+im Javadoc. Allerdings kann letzteres nur von Javadoc ausgewertet werden.</p>
+<p><code>@Deprecated</code> ist eine im JDK im Paket <code>java.lang</code> enthaltene Annotation.</p>
+<h3 id="weitere-annotationen-aus-javalang">Weitere Annotationen aus <em>java.lang</em></h3>
+<p>Im Paket <code>java.lang</code> finden sich weitere Annotationen. Mit Hilfe von <code>@SuppressWarnings</code> lassen sich bestimmte
+Compilerwarnungen unterdrücken (<span class='alert'><strong>so etwas sollte man NIE tun!</strong></span>), und mit <code>@FunctionalInterface</code>
+lassen sich Schnittstellen auszeichnen, die genau eine (abstrakte) Methode besitzen (Verweis auf spätere Vorlesung).</p>
+<p>Weitere Annotationen aus dem JDK finden sich in den Paketen <code>java.lang.annotation</code> und <code>javax.annotation</code>.</p>
+<h2 id="dokumentation-mit-javadoc">Dokumentation mit Javadoc</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Beschreibung Beschreibung Beschreibung
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param date Tag, Wert zw. 1 .. 31
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return true, falls Datum gesetzt wurde; false sonst
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @see java.util.Calendar
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @deprecated As of JDK version 1.1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">setDate</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> date<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    setField<span style="color:#f92672">(</span>Calendar<span style="color:#f92672">.</span><span style="color:#a6e22e">DATE</span><span style="color:#f92672">,</span> date<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Die Dokumentation mit Javadoc hatten wir uns bereits in der Einheit
+<a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/javadoc/">&ldquo;Javadoc&rdquo;</a> angesehen.</p>
+<p>Hier noch einmal exemplarisch die wichtigsten Elemente, die an
+&quot;<code>public</code>&quot; sichtbaren Methoden verwendet werden.</p>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Beispiel: <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/java-jvm/src/annotations/B.java">annotations.B</a> (Javadoc)
+</span>
+</div>
+<h2 id="notnull-mit-intellij">@NotNull mit IntelliJ</h2>
+<p><a href="https://www.jetbrains.com/help/idea/nullable-and-notnull-annotations.html">IntelliJ</a> bietet im Paket
+<code>org.jetbrains.annotations</code> u.a. die Annotation <code>@NotNull</code> an.</p>
+<p>Damit lassen sich Rückgabewerte von Methoden sowie Variablen (Attribute, lokale Variablen, Parameter) markieren:
+Diese dürfen nicht <code>null</code> werden.</p>
+<p>IntelliJ prüft beim Compilieren, dass diese Elemente nicht <code>null</code> werden und warnt gegebenenfalls (zur Compilezeit).
+Zusätzlich baut IntelliJ entsprechende Assertions in den Code ein, die zur Laufzeit einen <code>null</code>-Wert abfangen
+und dann das Programm abbrechen.</p>
+<p>Dadurch können entsprechende Dokumentationen im Javadoc und/oder manuelle Überprüfungen im Code entfallen.
+Außerdem hat man durch die Annotation gewissermaßen einen sichtbaren Vertrag (<em>Contract</em>) mit den Nutzern
+der Methode. Bei einem Aufruf mit <code>null</code> würde dieser Contract verletzt und eine entsprechende Exception
+geworfen (automatisch) statt einfach das Programm und die JVM &quot;abzuschießen&quot;.</p>
+<p>Nachteil: Die entsprechende Bibliothek muss bei allen Entwicklern vorhanden und in das Projekt eingebunden
+sein.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/* o should not be null */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">bar</span><span style="color:#f92672">(</span>Object o<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> i<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>o <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        i <span style="color:#f92672">=</span> o<span style="color:#f92672">.</span><span style="color:#a6e22e">hashCode</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/* o must not be null */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">foo</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@NotNull</span> Object o<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// assert(o != null);  //  Wirkung (von IntelliJ eingefügt)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> o<span style="color:#f92672">.</span><span style="color:#a6e22e">hashCode</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo: <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/java-jvm/src/annotations/WuppieAnnotation.java">annotations.WuppieAnnotation</a>: @NotNull
+</span>
+</div>
+<h3 id="intellij-inferiert-mit-notnull-mögliche-null-werte">IntelliJ inferiert mit @NotNull mögliche <em>null</em>-Werte</h3>
+<figure class="center" style="width:80%">
+    <img alt="" src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/images/screenshot_infer-notnull.png" class="" />
+</figure>
+<h3 id="intellij-baut-bei-notnull-passende-assertions-ein">IntelliJ baut bei @NotNull passende Assertions ein</h3>
+<figure class="center" style="width:80%">
+    <img alt="" src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/images/screenshot_nullpointerexception-notnull.png" class="" />
+</figure>
+<h2 id="eigene-annotationen-erstellen">Eigene Annotationen erstellen</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">@interface</span> MyFirstAnnotation <span style="color:#f92672">{}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">@interface</span> MyThirdAnnotation <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    String <span style="color:#a6e22e">author</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">vl</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">default</span> 1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@MyFirstAnnotation</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@MyThirdAnnotation</span><span style="color:#f92672">(</span>author <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Carsten Gips&#34;</span><span style="color:#f92672">,</span> vl <span style="color:#f92672">=</span> 3<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span> <span style="color:#f92672">{}</span>
+</span></span></code></pre></div><div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo: <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/java-jvm/src/annotations/C.java">annotations.C</a>
+</span>
+</div>
+<h3 id="definition-einer-annotation">Definition einer Annotation</h3>
+<p>Definition einer Annotation wie Interface, aber mit &quot;<code>@</code>&quot;-Zeichen vor dem <code>interface</code>-Schlüsselwort</p>
+<h3 id="parameter-für-annotation">Parameter für Annotation</h3>
+<p>Parameter für Annotation werden über entsprechende Methoden-Deklaration realisiert</p>
+<ul>
+<li>
+<p>&quot;Rückgabetyp&quot; der deklarierten &quot;Methode&quot; ist der erlaubte Typ der später
+verwendeten Parameter</p>
+</li>
+<li>
+<p>Name der &quot;Methoden&quot; wird bei der Belegung der Parameter verwendet,
+beispielsweise <code>author = ...</code></p>
+</li>
+<li>
+<p>Vereinfachung: &quot;Methodenname&quot; <code>value</code> erlaubt das Weglassen des
+Schlüsselworts bei der Verwendung:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">@interface</span> MySecondAnnotation <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    String <span style="color:#a6e22e">value</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@MySecondAnnotation</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;wuppie&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">D</span> <span style="color:#f92672">{}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@MySecondAnnotation</span><span style="color:#f92672">(</span>value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;wuppie&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">E</span> <span style="color:#f92672">{}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Defaultwerte mit dem nachgestellten Schlüsselwort <code>default</code> sowie dem
+Defaultwert selbst</p>
+</li>
+</ul>
+<h3 id="javadoc">Javadoc</h3>
+<p>Soll die Annotation in der Javadoc-Doku dargestellt werden, muss sie mit
+der Meta-Annotation <code>@Documented</code> ausgezeichnet werden (aus
+<code>java.lang.annotation.Documented</code>)</p>
+<p><em>Hinweis</em>: Die Annotation wird lediglich in die Doku aufgenommen, d.h. es
+erfolgt keine weitere Verarbeitung oder Hervorhebung o.ä.</p>
+<h3 id="wann-ist-eine-annotation-sichtbar-beschränkung-der-sichtbarkeit">Wann ist eine Annotation sichtbar (Beschränkung der Sichtbarkeit)</h3>
+<p>Annotationen werden vom Compiler und/oder anderen Tools ausgewertet. Man
+kann entsprechend die Sichtbarkeit einer Annotation beschränken: Sie kann
+ausschließlich im Source-Code verfügbar sein, sie kann in der generierten
+Class-Datei eingebettet sein oder sie kann sogar zur Laufzeit (mittels
+<em>Reflection</em>, vgl. spätere Vorlesung) ausgelesen werden.</p>
+<p>Beschränkung der Sichtbarkeit: Meta-Annotation <code>@Retention</code> aus
+<code>java.lang.annotation.Retention</code></p>
+<ul>
+<li><code>RetentionPolicy.SOURCE</code>: Nur Bestandteil der Source-Dateien, wird nicht
+in kompilierten Code eingebettet</li>
+<li><code>RetentionPolicy.CLASS</code>: Wird vom Compiler in die Class-Datei eingebettet,
+steht aber zur Laufzeit <em>nicht</em> zur Verfügung (Standardwert, wenn nichts
+angegeben)</li>
+<li><code>RetentionPolicy.RUNTIME</code>: Wird vom Compiler in die Class-Datei
+eingebettet und steht zur Laufzeit zur Verfügung und kann via
+<em>Reflection</em><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> ausgelesen
+werden</li>
+</ul>
+<p>Ohne explizite Angabe gilt für die selbst definierte Annotation die
+Einstellung <code>RetentionPolicy.CLASS</code>.</p>
+<h3 id="wo-darf-eine-annotation-verwendet-werden">Wo darf eine Annotation verwendet werden</h3>
+<h4 id="anwendungsmöglichkeiten-von-annotationen-im-code">Anwendungsmöglichkeiten von Annotationen im Code</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@ClassAnnotation</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Wuppie</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@InstanceFieldAnnotation</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String foo<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@ConstructorAnnotation</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Wuppie</span><span style="color:#f92672">()</span> <span style="color:#f92672">{}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@MethodAnnotation1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@MethodAnnotation2</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@MethodAnnotation3</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fluppie</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@ParameterAnnotation</span> <span style="color:#66d9ef">final</span> Object arg1<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@VariableAnnotation</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">final</span> String bar <span style="color:#f92672">=</span> <span style="color:#f92672">(</span><span style="color:#a6e22e">@TypeAnnotation</span> String<span style="color:#f92672">)</span> arg1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h4 id="einschränkung-des-einsatzes-eines-annotation">Einschränkung des Einsatzes eines Annotation</h4>
+<p>Für jede Annotation kann eingeschränkt werden, wo (an welchen Java-Elementen)
+sie verwendet werden darf.</p>
+<p>Beschränkung der Verwendung: Meta-Annotation <code>@Target</code> aus
+<code>java.lang.annotation.Target</code></p>
+<ul>
+<li><code>ElementType.TYPE</code>: alle Typdeklarationen: Klassen, Interfaces, Enumerations, ...</li>
+<li><code>ElementType.CONSTRUCTOR</code>: nur Konstruktoren</li>
+<li><code>ElementType.METHOD</code>: nur Methoden</li>
+<li><code>ElementType.FIELD</code>: nur statische Variablen und Objektvariablen</li>
+<li><code>ElementType.PARAMETER</code>: nur Parametervariablen</li>
+<li><code>ElementType.PACKAGE</code>: nur an Package-Deklarationen</li>
+</ul>
+<p>Ohne explizite Angabe ist die selbst definierte Annotation für alle
+Elemente verwendbar.</p>
+<h2 id="annotationen-bei-compilieren-bearbeiten-java-annotation-prozessoren">Annotationen bei Compilieren bearbeiten: Java Annotation-Prozessoren</h2>
+<p>Der dem <code>javac</code>-Compiler vorgelegte Source-Code wird eingelesen und in einen
+entsprechenden Syntax-Tree (<em>AST</em>) transformiert (dazu mehr im Master im Modul
+&quot;Compilerbau&quot; :)</p>
+<p>Anschließend können sogenannte &quot;Annotation Processors&quot; über den AST laufen und
+ihre Analysen machen und/oder den AST modifizieren. (Danach kommen die üblichen
+weiteren Analysen und die Code-Generierung.)</p>
+<p>(Vgl. <a href="https://openjdk.java.net/groups/compiler/doc/compilation-overview/index.html">OpenJDK: Compilation Overview</a>.)</p>
+<p>An dieser Stelle kann man sich einklinken und einen eigenen Annotation-Prozessor
+ausführen lassen. Zur Abgrenzung: Diese Auswertung der Annotationen findet zur
+<strong>Compile-Zeit</strong> statt! In einer späteren Vorlesung werden wir noch über die
+Auswertung zur <strong>Laufzeit</strong> sprechen: <em>Reflection</em>.</p>
+<p>Im Prinzip muss man lediglich das Interface <code>javax.annotation.processing.Processor</code>
+implementieren oder die abstrakte Klasse <code>javax.annotation.processing.AbstractProcessor</code>
+erweitern. Für die Registrierung im <code>javac</code> muss im Projekt (oder Jar-File) die
+Datei <code>META-INF/services/javax.annotation.processing.Processor</code> angelegt werden,
+die den vollständigen Namen des Annotation-Prozessors enthält. Dieser Annotation-Prozessor
+wird dann vom <code>javac</code> aufgerufen und läuft in einer eigenen JVM. Er kann die
+Annotationen, für die er registriert ist, auslesen und verarbeiten und neue Java-Dateien
+schreiben, die wiederum eingelesen und compiliert werden.</p>
+<p>Im nachfolgenden Beispiel beschränke ich mich auf das Definieren und Registrieren
+eines einfachen Annotation-Prozessors, der lediglich die Annotationen liest.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-{.java" data-lang="{.java"><span style="display:flex;"><span><span style="color:#a6e22e">@SupportedAnnotationTypes</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;annotations.MySecondAnnotation&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@SupportedSourceVersion</span><span style="color:#f92672">(</span>SourceVersion<span style="color:#f92672">.</span><span style="color:#a6e22e">RELEASE_17</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Foo</span> <span style="color:#66d9ef">extends</span> AbstractProcessor <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">process</span><span style="color:#f92672">(</span>Set<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">extends</span> TypeElement<span style="color:#f92672">&gt;</span> as<span style="color:#f92672">,</span> RoundEnvironment re<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>TypeElement annot <span style="color:#f92672">:</span> as<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Element el <span style="color:#f92672">:</span> re<span style="color:#f92672">.</span><span style="color:#a6e22e">getElementsAnnotatedWith</span><span style="color:#f92672">(</span>annot<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                processingEnv<span style="color:#f92672">.</span><span style="color:#a6e22e">getMessager</span><span style="color:#f92672">().</span><span style="color:#a6e22e">printMessage</span><span style="color:#f92672">(</span>Diagnostic<span style="color:#f92672">.</span><span style="color:#a6e22e">Kind</span><span style="color:#f92672">.</span><span style="color:#a6e22e">NOTE</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;found @MySecondAnnotation at &#34;</span> <span style="color:#f92672">+</span> el<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo: <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/java-jvm/src/annotations/C.java">annotations.C</a> und <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/java-jvm/src/annotations/Foo.java">annotations.Foo</a>, <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/java-jvm/src/META-INF/">META-INF</a>
+</span>
+</div>
+<ol>
+<li>Der Annotation-Processor sollte von <code>AbstractProcessor</code> ableiten</li>
+<li>Über <code>@SupportedAnnotationTypes</code> teilt man mit, für welche Annotationen sich der Prozessor interessiert
+(d.h. für welche er aufgerufen wird); &quot;<code>*</code>&quot; oder eine Liste mit String ist auch möglich</li>
+<li>Mit <code>@SupportedSourceVersion</code> wird die (höchste) unterstützte Java-Version angegeben
+(neuere Versionen führen zu einer Warnung)</li>
+<li>Die Methode <code>process</code> erledigt die Arbeit:
+<ul>
+<li>Der erste Parameter enthält alle gefundenen Annotationen, für die der Processor registriert ist</li>
+<li>Der zweite Parameter enthält die damit annotierten Elemente</li>
+<li>Iteration: Die äußere Schleife läuft über alle gefundenen Annotationen, die innere über die
+mit der jeweiligen Annotation versehenen Elemente</li>
+<li>Jetzt könnte man mit den Elementen etwas sinnvolles anfangen, beispielsweise alle Attribute
+sammeln, die mit <code>@Getter</code> markiert sind und für diese neuen Code generieren</li>
+<li>Im Beispiel wird lediglich der eigene Logger (<code>processingEnv.getMessager()</code>) aufgerufen,
+um beim Compiliervorgang eine Konsolenmeldung zu erzeugen ...</li>
+</ul>
+</li>
+<li>Der Annotation-Processor darf keine Exception werfen, da sonst der Compiliervorgang abgebrochen
+würde. Zudem wäre der Stack-Trace der des Annotation-Processors und nicht der des compilierten
+Programms ... Stattdessen wird ein Boolean zurückgeliefert, um anzudeuten, ob die Verarbeitung
+geklappt hat.</li>
+</ol>
+<p>Für ein umfangreicheres Beispiel mit Code-Erzeugung vergleiche beispielsweise die Artikelserie unter
+<a href="https://cloudogu.com/en/blog/Java-Annotation-Processors_1-Intro">cloudogu.com/en/blog/Java-Annotation-Processors_1-Intro</a>.
+Siehe auch <a href="https://openjdk.java.net/groups/compiler/doc/compilation-overview/index.html">OpenJDK: Compilation Overview</a>.</p>
+<p>Im Projekt muss jetzt noch der Ordner <code>META-INF/services/</code> angelegt werden mit der Datei
+<code>javax.annotation.processing.Processor</code>. Deren Inhalt ist für das obige Beispiel die Zeile
+<code>annotations.Foo</code>. Damit ist der Annotation-Processor <code>annotations.Foo</code> für das Übersetzen im eigenen
+Projekt registriert.</p>
+<p>Zum Compilieren des Annotation-Processors selbst ruft man beispielsweise folgenden Befehl auf:</p>
+<pre><code>javac -cp . -proc:none annotations/Foo.java
+</code></pre>
+<p>Die Option <code>-proc:none</code> sorgt für das Beispiel dafür, dass beim Compilieren des Annotation-Processors
+dieser nicht bereits aufgerufen wird (was sonst wg. der Registrierung über
+<code>META-INF/services/javax.annotation.processing.Processor</code> passieren würde).</p>
+<p>Zum Compilieren der Klasse <code>C</code> kann man wie sonst auch den Befehl nutzen:</p>
+<pre><code>javac -cp . annotations/C.java
+</code></pre>
+<p>Dabei läuft dann der Annotation-Processor <code>annotations.Foo</code> und erzeugt beim Verarbeiten von <code>annotations.C</code>
+die folgende Ausgabe:</p>
+<pre><code>Note: found @MySecondAnnotation at main(java.lang.String[])
+</code></pre>
+<h2 id="wrap-up">Wrap-Up</h2>
+<ul>
+<li>
+<p>Annotationen: Metadaten zum Programm</p>
+<ul>
+<li><strong>Zusatzinformationen</strong> über ein Programm, aber nicht selbst Teil des Programms</li>
+<li><strong>Kein (direkter) Einfluss</strong> auf die <strong>Ausführung</strong> des annotierten Codes</li>
+</ul>
+</li>
+<li>
+<p>Typische Anwendungen: Compiler-Hinweise, Javadoc, Tests</p>
+<ul>
+<li>Compiler: Erkennen von logischen Fehlern, Unterdrücken von
+Warnungen =&gt; <code>java.lang</code>: <code>@Override</code>,
+<code>@Deprecated</code>, <code>@SuppressWarnings</code></li>
+<li>Javadoc: Erkennen von Schlüsselwörtern (<code>@author</code>, <code>@return</code>, <code>@param</code>, ...)</li>
+<li>JUnit: Erkennen von Tests-Methoden (<code>@Test</code>)</li>
+<li>...</li>
+</ul>
+</li>
+<li>
+<p>Annotationen können auf Deklarationen (Klassen, Felder, Methoden) angewendet werden</p>
+</li>
+<li>
+<p>Annotationen können relativ einfach selbst erstellt werden</p>
+<ul>
+<li>Definition fast wie ein Interface</li>
+<li>Einstellung der Sichtbarkeit und Verwendbarkeit und Dokumentation
+über Meta-Annotationen</li>
+</ul>
+</li>
+<li>
+<p>Verarbeitung von Annotationen zur Compilier-Zeit mit Annotation-Processor</p>
+</li>
+<li>
+<p>Verarbeitung von Annotationen zur Laufzeit mit Reflection (siehe spätere VL)</p>
+</li>
+</ul>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>Reflection ist Thema einer späteren Vorlesung&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+    
+
+
+<div class="quizzes">
+    <h2>Quizzes</h2>
+
+    <ul>
+    
+        
+        
+        
+        <li>
+            <a href="https://www.fh-bielefeld.de/elearning/goto.php?target=tst_1074632&amp;client_id=FH-Bielefeld" class="icon reading" target="_blank" rel="nofollow noopener noreferrer"><strong>Quiz Annotationen (ILIAS)</strong></a>
+        </li>
+        
+    
+    </ul>
+
+</div>
+
+
+    
+
+
+
+<div class="assignments">
+    <h2>Übungsblätter/Aufgaben</h2>
+
+    <ul>
+    
+        
+        
+        
+            <li>
+                <a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet07/"><strong>Blatt 07: Annotationen, Reflection, Template-Method-Pattern</strong></a>
+                 (Abgabe: Di, 31.05., 18 Uhr, PR/MR)
+            </li>
+        
+    
+    </ul>
+
+</div>
+
+
+    
+
+
+
+<div class="bib">
+    <h2>Quellen</h2>
+
+    <ul>
+    
+        
+        
+
+        
+            
+            
+            
+            
+            
+
+            
+            
+                
+                    
+                
+            
+            
+            
+            
+            
+            
+
+            <li id="id_Java-SE-Tutorial">
+            
+                [Java-SE-Tutorial] <a href="https://docs.oracle.com/javase/tutorial/" class="icon reading" target="_blank" rel="nofollow noopener noreferrer"><strong>The Java Tutorials</strong></a>
+            
+            
+                <br>Oracle Corporation, 2022.
+                
+                
+            
+            
+                <br><em>Getting to Know the Language \&gt; Annotations</em>
+            
+            </li>
+        
+
+    
+        
+        
+
+        
+            
+            
+            
+            
+            
+
+            
+            
+                
+                    
+                
+            
+            
+            
+            
+            
+            
+
+            <li id="id_LernJava">
+            
+                [LernJava] <a href="https://dev.java/learn/" class="icon reading" target="_blank" rel="nofollow noopener noreferrer"><strong>Learn Java</strong></a>
+            
+            
+                <br>Oracle Corporation, 2022.
+                
+                
+            
+            
+            </li>
+        
+
+    
+        
+        
+
+        
+            
+            
+            
+            
+            
+
+            
+            
+                
+                    
+                
+            
+            
+            
+            
+            
+            
+
+            <li id="id_Ullenboom2021">
+            
+                [Ullenboom2021] <a href="https://openbook.rheinwerk-verlag.de/javainsel/index.html" class="icon reading" target="_blank" rel="nofollow noopener noreferrer"><strong>Java ist auch eine insel</strong></a>
+            
+            
+                <br>Ullenboom, C., Rheinwerk-Verlag, 2021.
+                
+                    ISBN <a href="https://www.digibib.net/openurl/Bi10?isbn=978-3-8362-8745-6" target="_blank" rel="nofollow noopener noreferrer">978-3-8362-8745-6</a>.
+                
+                
+            
+            
+                <br><em>Kap. 10.8: Annotationen in der Java SE, 23.4: Dokumentationskommentare mit Javadoc</em>
+            
+            </li>
+        
+
+    
+    </ul>
+
+</div>
+
+
+
+
+
+
+        </div>
+      </main><p><div style="color: darkgray; font-size: smaller;">
+<p style="margin-left: 1rem;">
+    <!-- https://creativecommons.org/choose/ -->
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;margin:0;display:inline;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a> Unless otherwise noted, <a href="https://github.com/PM-Dungeon/PM-Lecture">this work</a> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/cagix" property="cc:attributionName" rel="cc:attributionURL">Carsten Gips</a> and <a href="https://github.com/PM-Dungeon/PM-Lecture/graphs/contributors">contributors</a> is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+<br />
+    Icons by <a href="https://fontawesome.com/">Font Awesome</a>.
+    Built with <a href="https://github.com/jgm/pandoc">Pandoc</a> using <a href="https://github.com/cagix/pandoc-lecture">Pandoc-Lecture</a> and <a href="https://github.com/gohugoio/hugo">Hugo</a> using the <a href="https://github.com/McShelby/hugo-theme-relearn">Hugo Relearn Theme</a>.
+</p>
+</div>
+</p>
+
+    </div>
+    <aside id="sidebar" class="default-animation showVisitedLinks">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
+<a id="logo" href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/'>
+    <img style="max-width:35%" alt="icon" src='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/images/logo.png'>
+</a>
+
+        </div>
+      </div>
+      <div id="content-wrapper" class="highlightable">
+        <ul class="topics">
+          <li data-nav-id="/git/" title="Git" class="dd-item"><input type="checkbox" id="section-346b17b87a1a6c2e7ff1e8f0f4d1b4bd" class="toggle"/><label for="section-346b17b87a1a6c2e7ff1e8f0f4d1b4bd" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/">Git<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/git/intro/" title="Intro: Versionskontrolle in der Softwareentwicklung" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/intro/">Intro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/basics/" title="Basics der Versionsverwaltung mit Git (lokale Repos)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/basics/">Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/branches/" title="Git Branches: Features unabhängig entwickeln und mit Git verwalten" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branches/">Branches<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/branching-strategies/" title="Branching-Strategien mit Git" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branching-strategies/">Branching-Strategien<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/remotes/" title="Arbeiten mit Git Remotes (dezentrale Repos)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/remotes/">Remotes<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/workflows/" title="Zusammenarbeit: Git-Workflows und Merge-/Pull-Requests" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/workflows/">Workflows<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/bisect/" title="Fehlersuche mit Git Bisect" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/bisect/">Bisect<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/testing/" title="Testing" class="dd-item"><input type="checkbox" id="section-a831e487e7bd822b29c7ec65758c1503" class="toggle"/><label for="section-a831e487e7bd822b29c7ec65758c1503" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/">Testing<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/testing/testing-intro/" title="Einführung Softwaretest" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testing-intro/">Intro SW-Test<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/junit-basics/" title="Testen mit JUnit (JUnit-Basics)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/junit-basics/">JUnit-Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/testcases/" title="Testfallermittlung: Wie viel und was muss man testen?" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testcases/">Testfallermittlung<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/mockito/" title="Mocking mit Mockito" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/mockito/">Mocking<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/coding/" title="Coding" class="dd-item"><input type="checkbox" id="section-079e50620d382bff188ccaf7d7eec5ec" class="toggle"/><label for="section-079e50620d382bff188ccaf7d7eec5ec" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/">Coding<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/coding/logging/" title="Logging" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/logging/">Logging<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/javadoc/" title="Javadoc" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/javadoc/">Javadoc<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/smells/" title="Code Smells" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/smells/">Code Smells<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/codingrules/" title="Coding Conventions und Metriken" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/codingrules/">Coding Conventions<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/refactoring/" title="Refactoring" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/refactoring/">Refactoring<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/tdd/" title="Testbarkeit und Testdriven Development (TDD)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/tdd/">Testbarkeit und TDD<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/building/" title="Building" class="dd-item"><input type="checkbox" id="section-ff836c14ff2daf3537fcd8281d19c8a3" class="toggle"/><label for="section-ff836c14ff2daf3537fcd8281d19c8a3" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/">Building<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/building/ant/" title="Build-Systeme: Apache Ant" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ant/">Ant<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/maven/" title="Build-Systeme: Apache Maven" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/maven/">Maven<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/gradle/" title="Build-Systeme: Gradle" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/gradle/">Gradle<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/ci/" title="Continuous Integration (CI)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ci/">Continuous Integration<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/docker/" title="Einführung in Docker" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/docker/">Docker<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/pattern/" title="Pattern" class="dd-item"><input type="checkbox" id="section-84eb7f5d4debf68ee3bffeb919ec8445" class="toggle"/><label for="section-84eb7f5d4debf68ee3bffeb919ec8445" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/">Pattern<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/pattern/factory-method/" title="Factory-Method-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/factory-method/">Factory-Method<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/visitor/" title="Visitor-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/visitor/">Visitor<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/observer/" title="Observer-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/observer/">Observer<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/strategy/" title="Strategy-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/strategy/">Strategy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/template-method/" title="Template-Method-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/template-method/">Template-Method<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/command/" title="Command-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/command/">Command<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/flyweight/" title="Flyweight-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/flyweight/">Flyweight<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/type-object/" title="Type-Object-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/type-object/">Type-Object<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/singleton/" title="Singleton-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/singleton/">Singleton<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/generics/" title="Generics" class="dd-item"><input type="checkbox" id="section-9ec2dd2215ae1799fe9fb0d331b91e01" class="toggle"/><label for="section-9ec2dd2215ae1799fe9fb0d331b91e01" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/">Generics<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/generics/classes-methods/" title="Generische Klassen &amp; Methoden" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/classes-methods/">Klassen &amp; Methoden<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/bounds-wildcards/" title="Bounds &amp; Wildcards" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/bounds-wildcards/">Bounds &amp; Wildcards<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/type-erasure/" title="Type Erasure" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/type-erasure/">Type Erasure<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/generics-polymorphism/" title="Generics und Polymorphie" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/generics-polymorphism/">Polymorphie<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/java-jvm/" title="Java / JVM" class="dd-item parent"><input type="checkbox" id="section-1d4a17db91c5179ff6d850c019075026" class="toggle" checked/><label for="section-1d4a17db91c5179ff6d850c019075026" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/">Java / JVM<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/java-jvm/regexp/" title="Reguläre Ausdrücke" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/regexp/">RegExp<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/configuration/" title="Konfiguration eines Programms" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/configuration/">Konfiguration<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/enums/" title="Aufzählungen (Enumerations)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/enums/">Enumerations<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/annotations/" title="Annotationen" class="dd-item active"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/annotations/">Annotationen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/reflection/" title="Reflection" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/reflection/">Reflection<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/collections/" title="Java Collections Framework" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/collections/">Collections<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/serialisation/" title="Serialisierung von Objekten und Zuständen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/serialisation/">Serialisierung<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/exceptions/" title="Exception-Handling" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/exceptions/">Exceptions<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/modern-java/" title="Modern Java" class="dd-item"><input type="checkbox" id="section-b61bc4c9231f95b2150d554b2f10a68d" class="toggle"/><label for="section-b61bc4c9231f95b2150d554b2f10a68d" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/">Modern Java<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/modern-java/defaultmethods/" title="Interfaces: Default-Methoden" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/defaultmethods/">Default-Methoden<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/lambdas/" title="Lambda-Ausdrücke und funktionale Interfaces" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/lambdas/">Lambda-Ausdrücke<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/methodreferences/" title="Methoden-Referenzen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/methodreferences/">Methoden-Referenzen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/stream-api/" title="Stream-API" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/stream-api/">Stream-API<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/records/" title="Record-Klassen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/records/">Records<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/optional/" title="Optional" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/optional/">Optional<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/threads/" title="Threads" class="dd-item"><input type="checkbox" id="section-d05c691fa11b6c7c73707b1f693354bc" class="toggle"/><label for="section-d05c691fa11b6c7c73707b1f693354bc" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/">Threads<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/threads/intro/" title="Einführung in die nebenläufige Programmierung mit Threads" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/intro/">Intro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/threads/synchronisation/" title="Synchronisation: Verteilter Zugriff auf gemeinsame Ressourcen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/synchronisation/">Synchronisation<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/threads/highlevel/" title="High-Level Concurrency" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/highlevel/">High-Level Concurrency<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/gui/" title="GUI" class="dd-item"><input type="checkbox" id="section-6bd1817b64a743ce3da58441e61d147a" class="toggle"/><label for="section-6bd1817b64a743ce3da58441e61d147a" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/">GUI<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/gui/basics/" title="Swing 101: Basics" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/basics/">Swing: Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/events/" title="Swing Events" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/events/">Swing: Events<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/widgets/" title="Swing: Nützliche Widgets" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/widgets/">Swing: Widgets<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/layouts/" title="Swing: Layout-Manager" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/layouts/">Swing: Layout-Manager<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/tables/" title="Swing: Tabellen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/tables/">Swing: Tabellen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/java2d/" title="Einführung in Graphics und Java 2D" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/java2d/">Java2D<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/frameworks/" title="Frameworks" class="dd-item"><input type="checkbox" id="section-6e87d98d146ebd1a56f5cfe9e946dff8" class="toggle"/><label for="section-6e87d98d146ebd1a56f5cfe9e946dff8" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/">Frameworks<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/frameworks/intro/" title="Frameworks: Einstieg" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/intro/">Intro<i class="fas fa-check read-icon"></i></a></li></ul></li>
+        </ul>
+        <div id="shortcuts">
+          <div class="nav-title">More</div>
+          <ul>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/schedule"><i class='fas fa-bookmark'></i> Fahrplan</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments"><i class='fas fa-bookmark'></i> Praktikum</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/grading"><i class='fas fa-bookmark'></i> Note/Credits</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/syllabus"><i class='fas fa-bookmark'></i> Syllabus</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/resources"><i class='fas fa-bookmark'></i> Ressourcen</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/exam"><i class='fas fa-bookmark'></i> Prüfungsvorbereitung</a></li>
+          </ul>
+        </div>
+        <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showVisitedLinks showFooter"></div>
+        <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showVisitedLinks showFooter"/>
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVariantSwitch showVisitedLinks">
+          <ul>
+            <li id="select-language-container" class="footerLangSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-language fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-language" onchange="location = baseUri + this.value;">
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+            </li>
+            <li id="select-variant-container" class="footerVariantSwitch showVariantSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-variant" onchange="variants.changeVariant( this.value );">
+                    <option id="relearn-light" value="relearn-light" selected>Relearn Light</option>
+                    <option id="relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="green" value="green">Green</option>
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+              <script>variants.markSelectedVariant();</script>
+            </li>
+            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+          </ul>
+        </div>
+        <div id="footer" class="footerFooter showFooter"><p style="margin-left: 1rem;">
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/imprint'>Impressum</a>,
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/privacy'>Datenschutz</a>,
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/credits'>Credits</a>
+</p>
+
+        </div>
+      </div>
+    </aside>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/clipboard.min.js?1656322214"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/perfect-scrollbar.min.js?1656322214"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/featherlight.min.js?1656322214"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/theme.js?1656322214"></script>
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$','$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+</script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+</html>
+

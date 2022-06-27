@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pattern on </title>
+    <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/</link>
+    <description>Recent content in Pattern on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-DE</language><atom:link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Factory-Method-Pattern</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/factory-method/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/factory-method/</guid>
+      <description>Motivation: Ticket-App   Nutzer geben Fahrtziel an (und nicht die Ticketart!)
+  Ticket-App bucht passendes Ticket
+ User muss nicht die konkreten Ticketarten kennen Ticketarten lassen sich leicht austauschen    =&amp;gt; Factory-Method-Pattern: Objekte sollen nicht direkt durch den Nutzer erzeugt werden
+Factory-Method-Pattern  Hands-On: Ticket-App Implementieren Sie eine Ticket-App, die verschiedene Tickets mit Hilfe des Factory-Method Entwurfsmusters generiert.
+UML; Konsole: factory.FactoryBeispiel   Wrap-Up   Konkrete Objekte sollen nicht direkt über Konstruktor erzeugt werden</description>
+    </item>
+    <item>
+      <title>Visitor-Pattern</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/visitor/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/visitor/</guid>
+      <description>Motivation: Parsen von &amp;quot;5*4+3&amp;quot; Zum Parsen von Ausdrücken (Expressions) könnte man diese einfache Grammatik einsetzen. Ein Ausdruck ist dabei entweder ein einfacher Integer oder eine Addition oder Multiplikation zweier Ausdrücke.
+expr : e1=expr &amp;#39;*&amp;#39; e2=expr # MUL | e1=expr &amp;#39;+&amp;#39; e2=expr # ADD | INT # NUM ;  Beim Parsen von &amp;quot;5*4+3&amp;quot; würde dabei der folgende Parsetree entstehen:
+   Strukturen für den Parsetree  Der Parsetree für diese einfache Grammatik ist ein Binärbaum.</description>
+    </item>
+    <item>
+      <title>Observer-Pattern</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/observer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/observer/</guid>
+      <description>Verteilung der Prüfungsergebnisse  Die Studierenden möchten nach einer Prüfung wissen, ob für einen bestimmten Kurs die/ihre Prüfungsergebnisse im LSF bereit stehen.
+Dazu modelliert man eine Klasse LSF und implementiert eine Abfragemethode, die dann alle Objekte regelmäßig aufrufen können. Dies sieht dann praktisch etwa so aus:
+final Person[] persons = { new Lecturer(&amp;#34;Frau Holle&amp;#34;),  new Student(&amp;#34;Heinz&amp;#34;),  new Student(&amp;#34;Karla&amp;#34;),  new Tutor(&amp;#34;Kolja&amp;#34;),  new Student(&amp;#34;Wuppie&amp;#34;) }; final LSF lsf = new LSF();  for (Person p : persons) {  lsf.</description>
+    </item>
+    <item>
+      <title>Strategy-Pattern</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/strategy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/strategy/</guid>
+      <description>Wie kann man das Verhalten einer Klasse dynamisch ändern?  Modellierung unterschiedlicher Hunderassen: Jede Art bellt anders.
+Es bietet sich an, die Hunderassen von einer gemeinsamen Basisklasse Hund abzuleiten, um die Hundeartigkeit allgemein sicherzustellen.
+Da jede Rasse anders bellen soll, muss jedes Mal die Methode bellen überschrieben werden. Das ist relativ aufwändig und fehleranfällig. Außerdem kann man damit nicht modellieren, dass es beispielsweise auch konkrete Bulldoggen geben mag, die nur leise fiepen .</description>
+    </item>
+    <item>
+      <title>Template-Method-Pattern</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/template-method/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/template-method/</guid>
+      <description>Motivation: Syntax-Highlighting im Tokenizer In einem Compiler ist meist der erste Arbeitsschritt, den Eingabestrom in einzelne Token aufzubrechen. Dies sind oft die verschiedenen Schlüsselwörter, Operationen, Namen von Variablen, Methoden, Klassen etc. ... Aus der Folge von Zeichen (also dem eingelesenen Programmcode) wird ein Strom von Token, mit dem die nächste Stufe im Compiler dann weiter arbeiten kann.
+public class Lexer {  private final List&amp;lt;Token&amp;gt; allToken; // alle verfügbaren Token-Klassen   public List&amp;lt;Token&amp;gt; tokenize(String string) {  List&amp;lt;Token&amp;gt; result = new ArrayList&amp;lt;&amp;gt;();   while (string.</description>
+    </item>
+    <item>
+      <title>Command-Pattern</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/command/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/command/</guid>
+      <description>Motivation Irgendwo im Dungeon wird es ein Objekt einer Klasse ähnlich wie InputHandler geben mit einer Methode ähnlich zu handleInput():
+public class InputHandler {  public void handleInput() {  switch (keyPressed()) {  case BUTTON_W -&amp;gt; hero.jump();  case BUTTON_A -&amp;gt; hero.moveX();  case ...  default -&amp;gt; { ... }  }  } } Diese Methode wird je Frame einmal aufgerufen, um auf eventuelle Benutzereingaben reagieren zu können.</description>
+    </item>
+    <item>
+      <title>Flyweight-Pattern</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/flyweight/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/flyweight/</guid>
+      <description>Motivation: Modellierung eines Levels Variante I: Einsatz eines Enums für die Felder public enum Tile { WATER, FLOOR, WALL, ... }  public class Level {  private Tile[][] tiles;   public Level() {  tiles[0][0] = Tile.WALL; tiles[1][0] = Tile.WALL; tiles[2][0] = Tile.WALL; ...  tiles[0][1] = Tile.WALL; tiles[1][1] = Tile.FLOOR; tiles[2][1] = Tile.FLOOR; ...  tiles[0][2] = Tile.WALL; tiles[1][2] = Tile.WATER; tiles[2][2] = Tile.FLOOR; ...  ...  }   public boolean isAccessible(int x, int y) {  switch (tiles[x][y]) {  case: WATER: return false;  case: FLOOR: return true;  .</description>
+    </item>
+    <item>
+      <title>Type-Object-Pattern</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/type-object/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/type-object/</guid>
+      <description>Motivation: Monster und spezialisierte Monster public abstract class Monster {  protected int attackDamage;  protected int movementSpeed;   public Monster(int attackDamage, int movementSpeed) { ... }  public void attack(Monster m) { ... } }  public class Rat extends Monster {  public Rat() { super(10, 10); } // Ratten haben 10 Damage und 10 Speed  @Override public void attack(Monster m) { ... } }  public class Gnoll extends Monster { .</description>
+    </item>
+    <item>
+      <title>Singleton-Pattern</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/singleton/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/singleton/</guid>
+      <description>Motivation public enum Fach { IFM, ELM, ARC } Logger l = Logger.getLogger(MyClass.class.getName()); Von den Enum-Konstanten soll es nur genau eine Instantiierung, also jeweils nur genau ein Objekt geben. Ähnlich war es beim Logging: Für jeden Namen soll/darf es nur einen tatsächlichen Logger (== Objekt) geben.
+Dies nennt man &amp;quot;Singleton Pattern&amp;quot;.
+Anmerkung: Im Logger-Fall handelt es sich streng genommen nicht um ein Singleton, da es vom Logger mehrere Instanzen geben kann (wenn der Name sich unterscheidet).</description>
+    </item>
+  </channel>
+</rss>

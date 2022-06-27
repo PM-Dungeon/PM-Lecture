@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pool Dungeon on </title>
+    <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/</link>
+    <description>Recent content in Pool Dungeon on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-DE</language><atom:link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Gruppe A: Basics</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/</guid>
+      <description>Gruppe A &amp;quot;Basics&amp;quot; Hier finden Sie die Praktikumsaufgaben aus Gruppe A &amp;quot;Basics&amp;quot;. Sie benötigen diese Aufgaben, um einen rudimentären Dungeon zu erhalten.
+Dungeon-Start Fähigkeiten Fallen Inventar (text basiert) Crafting Charakterklassen Speichern und Laden JUnit Group A Freie Aufgabe  </description>
+    </item>
+    <item>
+      <title>Gruppe B: Monster und Kampf</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_b/</guid>
+      <description>Gruppe B &amp;quot;Monster und Kampf&amp;quot; Hier finden Sie die Praktikumsaufgaben aus Gruppe B &amp;quot;Monster und Kampf&amp;quot;. Hier implementieren Sie verschiedene Monster und unterschiedliche Kampfsysteme.
+Monster Nahkampf Game-Over Fernkampf Magie Erfahrungspunkte Schlaue Monster Boss-Monster JUnit Group B Freie Aufgabe  </description>
+    </item>
+    <item>
+      <title>Gruppe C: Items, Aufbewahrung und Handel</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/</guid>
+      <description>Gruppe C &amp;quot;Items, Aufbewahrung und Handel&amp;quot; Hier finden Sie die Praktikumsaufgaben aus Gruppe C &amp;quot;Items, Aufbewahrung und Handel&amp;quot;. In diesen Aufgaben implementieren Sie verschiedene Items wie Tränke, Waffen, ... und verschiedene Rucksäcke und Kisten sowie Händler und Quests.
+Items Taschen Schatzkisten HUD Inventar (UI) Freundliche NPCs Dialogsystem Quests Shop JUnit Group C Freie Aufgabe  </description>
+    </item>
+  </channel>
+</rss>

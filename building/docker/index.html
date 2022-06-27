@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.96.0" />
+    <meta name="generator" content="Relearn 3.4.0&#43;tip">
+    <meta name="description" content="">
+    <meta name="author" content="cagix">
+    <title>Einführung in Docker   </title>
+    <link rel="icon" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/images/logo.png?1656322213" type="image/png">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/nucleus.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/fontawesome-all.min.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/featherlight.min.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/perfect-scrollbar.min.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/auto-complete.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/theme.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/theme-relearn-light.css?1656322213" rel="stylesheet" id="variant-style">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/variant.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/print.css?1656322213" rel="stylesheet" media="print">
+    <style>
+      :not(pre) > code.copy-to-clipboard-code + span.copy-to-clipboard-button {
+        display: none;
+      }
+      :not(pre) > code.copy-to-clipboard-code {
+        border-bottom-right-radius: 2px;
+        border-top-right-radius: 2px;
+        border-right-width: 1px;
+      }
+    </style>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/variant.js?1656322213"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      var index_url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/index.json";
+      var root_url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      // some further base stuff
+      var baseUriFull='https:\/\/www.fh-bielefeld.de\/elearning\/data\/FH-Bielefeld\/lm_data\/lm_1271733/';
+      variants.init( [ 'relearn-light', 'relearn-dark', 'green' ] );
+    </script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/jquery.min.js?1656322213"></script><style type="text/css">
+
+ 
+.center {
+    align-content: center;
+    text-align: center;
+    margin: auto;
+}
+.alert {
+    color: #ff3333;
+}
+.bsp {
+    padding: 0.05cm;
+    border-width: 0.05cm;
+    border-style: solid;
+    border-color: #ddd;
+    background-color: #ddd;
+    border-radius: 25px;
+    float: right;
+}
+.cbox {
+    padding: 0.2cm;
+    border-width: 0.1cm;
+    border-style: solid;
+    border-color: #4070a0;
+    background-color: #f2f2f2;
+    margin: auto;
+    width: 60%;
+    text-align: center;
+    overflow: auto;
+}
+.blueArrow {
+    color: #4070a0;
+    font-family: "Courier New", "Courier", monospace;
+    font-weight: bold;
+}
+.origin {
+    background-color: #ededed;
+    font-size: 0.8em;
+}
+.showme {
+    background-color: #ededed;
+    font-size: 0.8em;
+}
+
+
+ 
+.tldr {
+    background: #dbe4ed;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.recap {
+    
+    
+   margin: 4px 0px 26px 0px;
+}
+.bib {
+    background: #dbe4ed;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.outcomes {
+    background: #d9e9d5;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.quizzes {
+    background: #d9e9d5;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.challenges {
+    background: #ebe4d6;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.assignments {
+    background: #ebe4d6;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+h1.tldr, h1.recap, h1.bib, h1.outcomes, h1.quizzes, h1.challenges, h1.assignments {
+    padding: 0px;
+}
+
+
+ 
+.noJsAlert {
+    padding: 20px;
+    background-color: #f44336;  
+    color: white;
+    margin-bottom: 15px;
+}
+
+
+ 
+.embed-video-player {
+    position: relative;
+    padding-bottom: 56%;
+    height: 0;
+    overflow: hidden;
+}
+.youtube-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border:0;
+}
+
+
+ 
+#header-wrapper {
+    padding:0.6rem;
+}
+
+
+ 
+#shortcuts {
+    padding-top: 2.0rem;
+}
+
+
+ 
+#chapter p {
+    text-align: left;
+}
+
+
+ 
+figcaption h4 {
+    margin-top:-2.5rem;
+}
+.border1 {
+    border:1px solid black;
+}
+
+ 
+td ul, td ol {
+    margin: 0 0 1rem 0.5rem;
+    padding: 0 0 0 0.5rem;
+}
+
+ 
+h1 { font-size:2.8rem !important;}
+h2 { font-size:2.2rem; margin:1.2rem 0}
+h3 { font-size:1.9rem; text-align:left !important; font-weight:400 !important;}
+h4 { font-size:1.6rem}
+h5 { font-size:1.3rem}
+h6 { font-size:1rem}
+
+h2 {
+    width:100% !important;
+    border-bottom:1px solid #5e5e5e !important;
+    padding-bottom: 2px;
+}
+.tldr h2, .recap h2, .bib h2, .outcomes h2, .quizzes h2, .challenges h2, .assignments h2 {
+    margin:0.5rem 0
+}
+
+.btn-crossreference, .btn-crossreference:hover {
+    cursor: initial !important;
+    color: #333 !important;
+    background-color: #fff !important;
+    border-color: #ccc !important;
+}
+
+</style>
+
+  </head>
+  <body class="mobile-support" data-url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/docker/">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div id="top-github-link">
+            <a class="github-link" title='Edit' href="https://github.com/PM-Dungeon/PM-Lecture/edit/master/markdown/building/docker.md" target="blank">
+              <i class="fas fa-pen fa-fw"></i>
+            </a>
+          </div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <span id="toc-menu" title='Table of Contents'><i class="fas fa-list-alt fa-fw"></i></span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <meta itemprop="itemListOrder" content="Descending" />
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="3" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/"><span itemprop="name">PM S22</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="2" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/"><span itemprop="name">Building</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/docker/" aria-disabled="true"><span itemprop="name">Einführung in Docker</span></a></li>
+            </ol>
+          </div>
+          <div class="default-animation progress">
+            <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#motivation-cicd-wfm-works-for-me">Motivation CI/CD: WFM (<em>Works For Me</em>)</a></li>
+    <li><a href="#virtualisierung-container-vs-vm">Virtualisierung: Container vs. VM</a></li>
+    <li><a href="#getting-started">Getting started</a>
+      <ul>
+        <li><a href="#begriffe">Begriffe</a></li>
+        <li><a href="#beispiele">Beispiele</a></li>
+      </ul>
+    </li>
+    <li><a href="#images-selbst-definieren">Images selbst definieren</a></li>
+    <li><a href="#ci-pipeline-gitlab">CI-Pipeline (GitLab)</a></li>
+    <li><a href="#ci-pipeline-github">CI-Pipeline (GitHub)</a></li>
+    <li><a href="#vscode-und-das-plugin-remote---containers">VSCode und das Plugin &quot;Remote - Containers&quot;</a></li>
+    <li><a href="#link-sammlung">Link-Sammlung</a></li>
+    <li><a href="#wrap-up">Wrap-Up</a></li>
+  </ul>
+</nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+
+
+
+    
+
+
+
+
+
+
+<div class="tldr">
+    <h2>TL;DR</h2>
+
+    
+
+    
+        <p>Container sind im Gegensatz zu herkömmlichen VMs eine schlanke Virtualisierungslösung.
+Dabei laufen die Prozesse direkt im Kernel des Host-Betriebssystems, aber abgeschottet
+von den anderen Prozessen durch Linux-Techniken wie <code>cgroups</code> und <code>namespaces</code> (unter
+Windows kommt dafür der WSL2 zum Einsatz, unter macOS wird eine kleine Virtualisierung
+genutzt).</p>
+<p>Container sind sehr nützlich, wenn man an mehreren Stellen eine identische Arbeitsumgebung
+benötigt. Man kann dabei entweder die Images (fertige Dateien) oder die Dockerfiles
+(Anweisungen zum Erzeugen eines Images) im Projekt verteilen. Tatsächlich ist es nicht
+unüblich, ein Dockerfile in das Projekt-Repo mit einzuchecken.</p>
+<p>Durch Container hat man allerdings im Gegensatz zu herkömmlichen VMs keinen Sicherheitsgewinn,
+da die im Container laufende Software ja direkt auf dem Host-Betriebssystem ausgeführt wird.</p>
+<p>Es gibt auf DockerHub fertige Images, die man sich ziehen und starten kann. Ein solches
+gestartetes Image nennt sich dann Container und enthält beispielsweise Dateien, die
+in den Container gemountet oder kopiert werden. Man kann auch eigene Images bauen, indem
+man eine entsprechende Konfiguration (Dockerfile) schreibt. Jeder Befehl bei der Erstellung
+eines Images erzeugt einen neuen Layer, die sich dadurch mehrere Images teilen können.</p>
+<p>In der Konfiguration einer Gitlab-CI-Pipeline kann man mit <code>image</code> ein Docker-Image
+angeben, welches dann in der Pipeline genutzt wird.</p>
+<p>VSCode kann über das Remote-Plugin sich (u.a.) mit Containern verbinden und dann im
+Container arbeiten (editieren, compilieren, debuggen, testen, ...).</p>
+<p>In dieser kurzen Einheit kann ich Ihnen nur einen ersten Einstieg in das Thema geben.
+Wir haben uns beispielsweise nicht Docker Compose oder Kubernetes angeschaut, und auch
+die Themen Netzwerk (zwischen Containern oder zwischen Containern und anderen Rechnern)
+und Volumnes habe ich außen vor gelassen. Dennoch kommt man in der Praxis bereits mit
+den hier vermittelten Basiskenntnissen erstaunlich weit ...</p>
+
+    
+
+    
+        <h3>Videos (YouTube)</h3>
+        
+
+<ul>
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/yERVMfUAano" target="_blank" rel="nofollow noopener noreferrer">VL Einführung in Docker</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/LE_QcHqUg9Y" target="_blank" rel="nofollow noopener noreferrer">Demo Container in der Konsole</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/3Tj3lhcoKro" target="_blank" rel="nofollow noopener noreferrer">Demo GitLab CI/CD und Docker</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/jrxoax2fPRI" target="_blank" rel="nofollow noopener noreferrer">Demo GitHub Actions und Docker</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/Rs1W_rXkoNM" target="_blank" rel="nofollow noopener noreferrer">Demo VSCode und Docker</a></li>
+    
+
+</ul>
+
+    
+
+    
+        <h3>Videos (FH-Medienportal)</h3>
+        
+
+<ul>
+
+    
+    
+
+    
+    
+    
+
+    
+        <li><a href="https://www.fh-bielefeld.de/medienportal/m/54268841fd04fa032e9ef425acd88a576a94f572e8179fba131126a0f854adaf8118b42ebcf90451649fd07913a4d873ee5459a1f5a58250ded9749352edcb78" target="_blank" rel="nofollow noopener noreferrer">VL Einführung in Docker</a></li>
+    
+
+</ul>
+
+    
+
+    
+
+</div>
+
+
+    
+
+
+
+<div class="outcomes">
+    <h2>Lernziele</h2>
+
+    
+
+    
+    
+    <ul>
+    
+        
+        <li>(K2) Unterschied zwischen Containern und VMs</li>
+        
+        
+    
+        
+        <li>(K2) Einsatzgebiete für Container</li>
+        
+        
+    
+        
+        <li>(K2) Container laufen als abgeschottete Prozesse auf dem Host - kein Sandbox-Effekt</li>
+        
+        
+    
+        
+        
+        <li>(K3) Container von DockerHub ziehen</li>
+        
+    
+        
+        
+        <li>(K3) Container starten</li>
+        
+    
+        
+        
+        <li>(K3) Eigene Container definieren und bauen</li>
+        
+    
+        
+        
+        <li>(K3) Einsatz von Containern in GitLab CI/CD und GitHub Actions</li>
+        
+    
+        
+        
+        <li>(K3) Einsatz von VSCode und Containern</li>
+        
+    
+    </ul>
+    
+
+</div>
+
+
+    <h2 id="motivation-cicd-wfm-works-for-me">Motivation CI/CD: WFM (<em>Works For Me</em>)</h2>
+<figure class="center" style="width:60%">
+    <img alt="" src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/images/ci.png" class="" />
+</figure>
+<p>Auf dem CI-Server muss man eine Arbeitsumgebung konfigurieren und bereitstellen, für
+Java-basierte Projekte muss beispielsweise ein JDK existieren und man benötigt Tools
+wie Maven oder Gradle, um die Buildskripte auszuführen. Je nach Projekt braucht man
+dann noch weitere Tools und Bibliotheken. Diese Konfigurationen sind unabhängig vom
+CI-Server und werden üblicherweise nicht direkt installiert, sondern über eine
+Virtualisierung bereitgestellt.</p>
+<p>Selbst wenn man keine CI-Pipelines einsetzt, hat man in Projekten mit mehreren
+beteiligten Personen häufig das Problem &quot;<em>WFM</em>&quot; (&quot;works for me&quot;). Jeder Entwickler
+hat sich auf ihrem Rechner eine Entwicklungsumgebung aufgesetzt und nutzt in der Regel
+seine bevorzugte IDE oder sogar unterschiedliche JDK-Versionen ... Dadurch kann es
+schnell passieren, dass Probleme oder Fehler auftreten, die sich nicht von allen
+Beteiligten immer nachvollziehen lassen. Hier wäre eine einheitliche Entwicklungsumgebung
+sinnvoll, die in einer &quot;schlanken&quot; Virtualisierung bereitgestellt wird.</p>
+<p>Als Entwickler kann man zeitgleich in verschiedenen Projekten beteiligt sein, die
+unterschiedliche Anforderungen an die Entwicklungstools mit sich bringen. Es könnte
+beispielsweise passieren, dass man zeitgleich drei bestimmte Python-Versionen benötigt.
+In den meisten Fällen schafft man es (mit ein wenig Aufwand), diese Tools nebeneinander
+zu installieren. Oft ist das in der Praxis aber schwierig und fehleranfällig.</p>
+<p>In diesen Fällen kann eine Virtualisierung helfen.</p>
+<h2 id="virtualisierung-container-vs-vm">Virtualisierung: Container vs. VM</h2>
+<div class='center'>
+<figure class="center" style="width:60%">
+    <img alt="" src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/images/virtualisierung.png" class="" />
+</figure>
+</div>
+<p>Wenn man über Virtualisierung auf dem Desktop spricht, kann man grob zwei Varianten
+unterscheiden. In beiden Fällen ist die Basis die Hardware (Laptop, Desktop-Rechner)
+und das darauf laufende (Host-) Betriebssystem (Linux, FreeBSD, macOS, Windows, ...).
+Darauf läuft dann wiederum die Virtualisierung.</p>
+<p>Im rechten Bild wird eine herkömmliche Virtualisierung mit virtuellen Maschinen (<em>VM</em>)
+dargestellt. Dabei wird in der VM ein komplettes Betriebssystem (das &quot;Gast-Betriebssystem&quot;)
+installiert und darin läuft dann die gewünschte Anwendung. Die Virtualisierung (VirtualBox,
+VMware, ...) läuft dabei als Anwendung auf dem Host-Betriebssystem und stellt dem
+Gast-Betriebssystem in der VM einen Rechner mit CPU, RAM, ... zur Verfügung und übersetzt
+die Systemaufrufe in der VM in die entsprechenden Aufrufe im Host-Betriebssystem. Dies benötigt
+in der Regel entsprechende Ressourcen: Durch das komplette Betriebssystem in der VM ist eine
+VM (die als Datei im Filesystem des Host-Betriebssystems liegt) oft mehrere 10GB groß. Für die
+Übersetzung werden zusätzlich Hardwareressourcen benötigt, d.h. hier gehen CPU-Zyklen und RAM
+&quot;verloren&quot; ... Das Starten einer VM dauert entsprechend lange, da hier ein komplettes
+Betriebssystem hochgefahren werden muss. Dafür sind die Prozesse in einer VM relativ stark
+vom Host-Betriebssystem abgekapselt, so dass man hier von einer &quot;Sandbox&quot; sprechen kann: Viren
+o.ä. können nicht so leicht aus einer VM &quot;ausbrechen&quot; und auf das Host-Betriebssystem zugreifen
+(quasi nur über Lücken im Gast-Betriebssystem kombiniert mit Lücken in der Virtualisierungssoftware).</p>
+<p>Im linken Bild ist eine schlanke Virtualisierung auf Containerbasis dargestellt. Die Anwendungen
+laufen direkt als Prozesse im Host-Betriebssystem, ein Gast-Betriebssystem ist nicht notwendig.
+Durch den geschickten Einsatz von <code>namespaces</code> und <code>cgroups</code> und anderen in Linux und FreeBSD
+verfügbaren Techniken werden die Prozesse abgeschottet, d.h. der im Container laufende Prozess
+&quot;sieht&quot; die anderen Prozesse des Hosts nicht. Die Erstellung und Steuerung der Container übernimmt
+hier beispielsweise Docker. Die Container sind dabei auch wieder Dateien im Host-Filesystem.
+Dadurch benötigen Container wesentlich weniger Platz als herkömmliche VMs, der Start einer Anwendung
+geht deutlich schneller und die Hardwareressourcen (CPU, RAM, ...) werden effizient genutzt.
+Nachteilig ist, dass hier in der Regel ein Linux-Host benötigt wird (für Windows wird mittlerweile
+der Linux-Layer (<em>WSL</em>) genutzt; für macOS wurde bisher eine Linux-VM im Hintergrund hochgefahren,
+mittlerweile wird aber eine eigene schlanke Virtualisierung eingesetzt). Außerdem steht im Container
+üblicherweise kein graphisches Benutzerinterface zur Verfügung. Da die Prozesse direkt im
+Host-Betriebssystem laufen, stellen Container keine Sicherheitsschicht (&quot;Sandboxen&quot;) dar!</p>
+<p>In allen Fällen muss die Hardwarearchitektur beachtet werden: Auf einer Intel-Maschine können
+normalerweise keine VMs/Container basierend auf ARM-Architektur ausgeführt werden und umgekehrt.</p>
+<h2 id="getting-started">Getting started</h2>
+<ul>
+<li>
+<p>DockerHub: fertige Images =&gt; <a href="https://hub.docker.com/search?q=&amp;type=image">hub.docker.com/search</a></p>
+</li>
+<li>
+<p>Image downloaden: <code>docker pull &lt;IMAGE&gt;</code></p>
+</li>
+<li>
+<p>Image starten: <code>docker run &lt;IMAGE&gt;</code></p>
+</li>
+</ul>
+<h3 id="begriffe">Begriffe</h3>
+<ul>
+<li><strong>Docker-File</strong>: Beschreibungsdatei, wie Docker ein Image erzeugen soll.</li>
+<li><strong>Image</strong>: Enthält die Dinge, die lt. dem Docker-File in das Image gepackt werden sollen.
+Kann gestartet werden und erzeugt damit einen Container.</li>
+<li><strong>Container</strong>: Ein laufendes Images (genauer: eine laufende Instanz eines Images). Kann
+dann auch zusätzliche Daten enthalten.</li>
+</ul>
+<h3 id="beispiele">Beispiele</h3>
+<pre><code>docker pull debian:stable-slim
+docker run  --rm -it  debian:stable-slim  /bin/sh
+</code></pre>
+<p><code>debian</code> ist ein fertiges Images, welches über DockerHub bereit gestellt wird. Mit dem
+Postfix <code>stable-slim</code> wird eine bestimmte Version angesprochen.</p>
+<p>Mit <code>docker run debian:stable-slim</code> startet man das Image, es wird ein Container
+erzeugt. Dieser enthält den aktuellen Datenstand, d.h. wenn man im Image eine Datei
+anlegt, wäre diese dann im Container enthalten.</p>
+<p>Mit der Option <code>--rm</code> wird der Container nach Beendigung automatisch wieder gelöscht. Da
+jeder Aufruf von <code>docker run &lt;IMAGE&gt;</code> einen neuen Container erzeugt, würden sich sonst
+recht schnell viele Container auf dem Dateisystem des Hosts ansammeln, die man dann manuell
+aufräumen müsste. Man kann aber einen beendeten Container auch erneut laufen lassen ...
+(vgl. Dokumentation von <code>docker</code>). Mit der Option <code>--rm</code> sind aber auch im Container angelegte
+Daten wieder weg! Mit der Option <code>-it</code> wird der Container interaktiv gestartet und man landet
+in einer Shell.</p>
+<p>Bei der Definition eines Images kann ein &quot;<em>Entry Point</em>&quot; definiert werden, d.h. ein Programm,
+welches automatisch beim Start des Container ausgeführt wird. Häufig erlauben Images aber auch,
+beim Start ein bestimmtes auszuführendes Programm anzugeben. Im obigen Beispiel ist das <code>/bin/sh</code>,
+also eine Shell ...</p>
+<pre><code>docker pull openjdk:latest
+docker run  --rm  -v &quot;$PWD&quot;:/data -w /data  openjdk:latest  javac Hello.java
+docker run  --rm  -v &quot;$PWD&quot;:/data -w /data  openjdk:latest  java Hello
+</code></pre>
+<p>Auch für Java gibt es vordefinierte Images mit einem JDK. Das Tag &quot;<code>latest</code>&quot; zeigt dabei auf die
+letzte stabile Version des <code>openjdk</code>-Images. Üblicherweise wird &quot;<code>latest</code>&quot; von den Entwicklern immer
+wieder weiter geschoben, d.h. auch bei anderen Images gibt es ein &quot;<code>latest</code>&quot;-Tag. Gleichzeitig ist
+es die Default-Einstellung für die Docker-Befehle, d.h. es kann auch weggelassen werden:
+<code>docker run openjdk:latest</code> und <code>docker run openjdk</code> sind gleichwertig. Alternativ kann man hier auch
+hier wieder eine konkrete Version angeben.</p>
+<p>Über die Option <code>-v</code> wird ein Ordner auf dem Host (hier durch <code>&quot;$PWD&quot;</code> dynamisch ermittelt) in den
+Container eingebunden (&quot;gemountet&quot;), hier auf den Ordner <code>/data</code>. Dort sind dann die Dateien sichtbar,
+die im Ordner <code>&quot;$PWD&quot;</code> enthalten sind. Über die Option <code>-w</code> kann ein Arbeitsverzeichnis definiert
+werden.</p>
+<p>Mit <code>javac Hello.java</code> wird <code>javac</code> im Container aufgerufen auf der Datei <code>/data/Hello.java</code>
+im Container, d.h. die Datei <code>Hello.java</code>, die im aktuellen Ordner des Hosts liegt (und in den
+Container gemountet wurde). Das Ergebnis (<code>Hello.class</code>) wird ebenfalls in den Ordner <code>/data/</code>
+im Container geschrieben und erscheint dann im Arbeitsverzeichnis auf dem Host ... Analog kann
+dann mit <code>java Hello</code> die Klasse ausgeführt werden.</p>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo: Container in der Konsole
+</span>
+</div>
+<h2 id="images-selbst-definieren">Images selbst definieren</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-{.docker" data-lang="{.docker"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> debian:stable-slim</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ARG</span> USERNAME<span style="color:#f92672">=</span>pandoc
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ARG</span> USER_UID<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ARG</span> USER_GID<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install -y --no-install-recommends            <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        apt-utils bash wget make graphviz biber                             <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        texlive-base texlive-plain-generic texlive-latex-base               <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    <span style="color:#75715e">#</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>    <span style="color:#f92672">&amp;&amp;</span> groupadd --gid $USER_GID $USERNAME                                   <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> useradd -s /bin/bash --uid $USER_UID --gid $USER_GID -m $USERNAME    <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    <span style="color:#75715e">#</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>    <span style="color:#f92672">&amp;&amp;</span> apt-get autoremove -y <span style="color:#f92672">&amp;&amp;</span> apt-get clean -y <span style="color:#f92672">&amp;&amp;</span> rm -rf /var/lib/apt/lists/*<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /pandoc</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> $USERNAME</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p><code>docker build -t &lt;NAME&gt; -f &lt;DOCKERFILE&gt; .</code></p>
+<p><code>FROM</code> gibt die Basis an, d.h. hier ein Image von Debian in der Variante <code>stable-slim</code>,
+d.h. das ist der Basis-Layer für das zu bauende Docker-Image.</p>
+<p>Über <code>ARG</code> werden hier Variablen gesetzt.</p>
+<p><code>RUN</code> ist der Befehl, der im Image (hier Debian) ausgeführt wird und einen neuen Layer
+hinzufügt. In diesen Layer werden alle Dateien eingefügt, die bei der Ausführung des
+Befehls erzeugt oder angelegt werden. Hier im Beispiel wird das Debian-Tool <code>apt-get</code>
+gestartet und weitere Debian-Pakete installiert.</p>
+<p>Da jeder <code>RUN</code>-Befehl einen neuen Layer anlegt, werden die restlichen Konfigurationen
+ebenfalls in diesem Lauf durchgeführt. Insbesondere wird ein nicht-Root-User angelegt,
+der von der UID und GID dem Default-User in Linux entspricht. Die gemounteten Dateien
+haben die selben Rechte wie auf dem Host, und durch die Übereinstimmung von UID/GID
+sind die Dateien problemlos zugreifbar und man muss nicht mit dem Root-User arbeiten
+(dies wird aus offensichtlichen Gründen als Anti-Pattern angesehen). Bevor der <code>RUN</code>-Lauf
+abgeschlossen wird, werden alle temporären und später nicht benötigten Dateien von
+<code>apt-get</code> entfernt, damit diese nicht Bestandteil des Layers werden.</p>
+<p>Mit <code>WORKDIR</code> und <code>USER</code> wird das Arbeitsverzeichnis gesetzt und auf den angegebenen User
+umgeschaltet. Damit muss der User nicht mehr beim Aufruf von außen gesetzt werden.</p>
+<p>Über <code>docker build -t &lt;NAME&gt; -f &lt;DOCKERFILE&gt; .</code> wird aus dem angegebenen Dockerfile und
+dem Inhalt des aktuellen Ordners (&quot;<code>.</code>&quot;) ein neues Image erzeugt und mit dem angegebenen
+Namen benannt.</p>
+<p><strong>Hinweis zum Umgang mit Containern und Updates</strong>:
+Bei der Erstellung eines Images sind bestimmte Softwareversionen Teil des Images geworden.
+Man kann prinzipiell in einem Container die Software aktualisieren, aber dies geht in dem
+Moment wieder verloren, wo der Container beendet und gelöscht wird. Außerdem widerspricht
+dies dem Gedanken, dass mehrere Personen mit dem selben Image/Container arbeiten und damit
+auch die selben Versionsstände haben. In der Praxis löscht man deshalb das alte Image einfach
+und erstellt ein neues, welches dann die aktualisierte Software enthält.</p>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Beispiel: <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/building/src/docker/debian-latex.df">debian-latex.df</a>
+</span>
+</div>
+<h2 id="ci-pipeline-gitlab">CI-Pipeline (GitLab)</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">default</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">openjdk:17</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">job1</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">stage</span>: <span style="color:#ae81ff">build</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">script</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">java -version</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">javac Hello.java</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">java Hello</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">ls -lags</span>
+</span></span></code></pre></div><p>In den Gitlab-CI-Pipelines (analog wie in den GitHub-Actions) kann man Docker-Container
+für die Ausführung der Pipeline nutzen.</p>
+<p>Mit <code>image: openjdk:17</code> wird das Docker-Image <code>openjdk:17</code> vom DockerHub geladen und durch
+den Runner für die Stages als Container ausgeführt. Die Aktionen im <code>script</code>-Teil, wie
+beispielsweise <code>javac Hello.java</code> werden vom Runner an die Standard-Eingabe der Shell des
+Containers gesendet. Im Prinzip entspricht das dem Aufruf auf dem lokalen Rechner:
+<code>docker run openjdk:17 javac Hello.java</code>.</p>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo: GitLab CI/CD und Docker
+</span>
+</div>
+<h2 id="ci-pipeline-github">CI-Pipeline (GitHub)</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">demo</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">push</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">branches</span>: [<span style="color:#ae81ff">master]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">workflow_dispatch</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">job1</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">container</span>: <span style="color:#ae81ff">docker://openjdk:17</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v3</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">run</span>: <span style="color:#ae81ff">java -version</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">run</span>: <span style="color:#ae81ff">javac Hello.java</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">run</span>: <span style="color:#ae81ff">java Hello</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">run</span>: <span style="color:#ae81ff">ls -lags</span>
+</span></span></code></pre></div><p><a href="https://stackoverflow.com/questions/71283311/run-github-workflow-on-docker-image-with-a-dockerfile">https://stackoverflow.com/questions/71283311/run-github-workflow-on-docker-image-with-a-dockerfile</a>
+<a href="https://docs.github.com/en/actions/using-jobs/running-jobs-in-a-container">https://docs.github.com/en/actions/using-jobs/running-jobs-in-a-container</a></p>
+<p>In den GitHub-Actions kann man Docker-Container für die Ausführung der Pipeline nutzen.</p>
+<p>Mit <code>docker://openjdk:17</code> wird das Docker-Image <code>openjdk:17</code> vom DockerHub geladen und auf dem
+Ubuntu-Runner als Container ausgeführt. Die Aktionen im <code>steps</code>-Teil, wie beispielsweise
+<code>javac Hello.java</code> werden vom Runner an die Standard-Eingabe der Shell des Containers gesendet.
+Im Prinzip entspricht das dem Aufruf auf dem lokalen Rechner: <code>docker run openjdk:17 javac Hello.java</code>.</p>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo: GitHub Actions und Docker
+</span>
+</div>
+<h2 id="vscode-und-das-plugin-remote---containers">VSCode und das Plugin &quot;Remote - Containers&quot;</h2>
+<figure class="center" style="width:80%">
+    <img alt="" src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/images/vscode-remote.png" class="" />
+</figure>
+<ol>
+<li>VSCode (Host): Plugin &quot;Remote - Containers&quot; installieren</li>
+<li>Docker (Host): Container starten mit Workspace gemountet</li>
+<li>VSCode (Host): Attach to Container =&gt; neues Fenster (Container)</li>
+<li>VSCode (Container): Plugin &quot;Java Extension Pack&quot; installieren</li>
+<li>VSCode (Container): Dateien editieren, kompilieren, debuggen, ...</li>
+</ol>
+<p>Mit Visual Studio Code (VSC) kann man über SSH oder in einem Container arbeiten. Dazu installiert man sich
+VSC lokal auf dem Host und installiert dort das Plugin &quot;Remote - Containers&quot;. VSC kann darüber vordefinierte
+Docker-Images herunterladen und darin arbeiten oder man kann alternativ einen Container selbst starten und
+diesen mit VSC verbinden (&quot;attachen&quot;).</p>
+<p>Beim Verbinden öffnet VSC ein neues Fenster, welches mit dem Container verbunden ist. Nun kann man in diesem
+neuen Fenster ganz normal arbeiten, allerdings werden alle Dinge in dem Container erledigt. Man öffnet also
+Dateien in diesem Container, editiert sie im Container, übersetzt und testet im Container und nutzt dabei die
+im Container installierten Tools. Sogar die entsprechenden VSC-Plugins kann man im Container installieren.</p>
+<p>Damit benötigt man auf einem Host eigentlich nur noch VSC und Docker, aber keine Java-Tools o.ä. und kann
+diese über einen im Projekt definierten Container (über ein mit versioniertes Dockerfile) nutzen.</p>
+<p><em>Anmerkung</em>: IntelliJ kann remote nur debuggen, d.h. das Editieren, Übersetzen, Testen läuft lokal auf dem
+Host (und benötigt dort den entsprechenden Tool-Stack). Für das Debuggen kann Idea das übersetzte Projekt
+auf ein Remote (SSH, Docker) schieben und dort debuggen.</p>
+<p>Noch einen Schritt weiter geht das Projekt <a href="https://github.com/coder/code-server">code-server</a>: Dieses stellt
+u.a. ein Docker-Image <a href="https://hub.docker.com/r/codercom/code-server">codercom/code-server</a> bereit, welches
+einen Webserver startet und über diesen kann man ein im Container laufendes (angepasstes) VSC erreichen. Man
+braucht also nur noch Docker und das Image und kann dann über den Webbrowser programmieren. Der Projektordner
+wird dabei in den Container gemountet, so dass die Dateien entsprechend zur Verfügung stehen:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>docker run -it --name code-server -p 127.0.0.1:8080:8080 -v <span style="color:#e6db74">&#34;</span>$HOME<span style="color:#e6db74">/.config:/home/coder/.config&#34;</span> -v <span style="color:#e6db74">&#34;</span>$PWD<span style="color:#e6db74">:/home/coder/project&#34;</span> codercom/code-server:latest
+</span></span></code></pre></div><p>Auf diesem Konzept setzt auch der kommerzielle Service <a href="https://github.com/features/codespaces">GitHub Codespaces</a>
+von GitHub auf.</p>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo: VSCode und Docker
+</span>
+</div>
+<h2 id="link-sammlung">Link-Sammlung</h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Docker_(software)">Wikipedia: Docker</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Virtual_machine">Wikipedia: Virtuelle Maschinen</a></li>
+<li><a href="https://www.docker.com/resources/what-container">Docker: Überblick, Container</a></li>
+<li><a href="https://docs.docker.com/get-started/">Docker: HowTo</a></li>
+<li><a href="https://hub.docker.com/search?q=&amp;type=image">DockerHub: Suche nach fertigen Images</a></li>
+<li><a href="https://docs.docker.com/language/java/">Docker und Java</a></li>
+<li><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Dockerfiles: Best Practices</a></li>
+<li><a href="http://git03-ifm-min.ad.fh-bielefeld.de/help/ci/docker/using_docker_images.md#overriding-the-entrypoint-of-an-image">Gitlab, Docker</a></li>
+<li><a href="https://code.visualstudio.com/docs/remote/containers">VSCode: Entwickeln in Docker-Containern</a></li>
+<li><a href="#id_DockerInAction">[DockerInAction]</a> und <a href="#id_DockerInPractice">[DockerInPractice]</a></li>
+</ul>
+<h2 id="wrap-up">Wrap-Up</h2>
+<ul>
+<li>
+<p>Schlanke Virtualisierung mit Containern (kein eigenes OS)</p>
+</li>
+<li>
+<p><em>Kein</em> Sandbox-Effekt</p>
+</li>
+<li>
+<p>Begriffe: Docker-File vs. Image vs. Container</p>
+</li>
+<li>
+<p>Ziehen von vordefinierten Images</p>
+</li>
+<li>
+<p>Definition eines eigenen Images</p>
+</li>
+<li>
+<p>Arbeiten mit Containern: lokal, CI/CD, VSCode ...</p>
+</li>
+</ul>
+
+    
+
+
+<div class="quizzes">
+    <h2>Quizzes</h2>
+
+    <ul>
+    
+        
+        
+        
+        <li>
+            <a href="https://www.fh-bielefeld.de/elearning/goto.php?target=tst_1098269&amp;client_id=FH-Bielefeld" class="icon reading" target="_blank" rel="nofollow noopener noreferrer"><strong>Quiz Docker (ILIAS)</strong></a>
+        </li>
+        
+    
+    </ul>
+
+</div>
+
+
+    
+
+
+
+
+    
+
+
+
+<div class="bib">
+    <h2>Quellen</h2>
+
+    <ul>
+    
+        
+        
+
+        
+            
+            
+            
+            
+            
+
+            
+            
+                
+                    
+                
+            
+            
+            
+            
+            
+            
+
+            <li id="id_DockerInAction">
+            
+                [DockerInAction] <strong>Docker in action</strong>
+            
+            
+                <br>Nickoloff, D., Manning Publications, 2019.
+                
+                    ISBN <a href="https://www.digibib.net/openurl/Bi10?isbn=978-1-6172-9476-1" target="_blank" rel="nofollow noopener noreferrer">978-1-6172-9476-1</a>.
+                
+                
+            
+            
+            </li>
+        
+
+    
+        
+        
+
+        
+            
+            
+            
+            
+            
+
+            
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+            
+            
+            
+            
+            
+
+            <li id="id_DockerInPractice">
+            
+                [DockerInPractice] <strong>Docker in practice</strong>
+            
+            
+                <br>Miell, I. und Sayers, A. H., Manning Publications, 2019.
+                
+                    ISBN <a href="https://www.digibib.net/openurl/Bi10?isbn=978-1-6172-9480-8" target="_blank" rel="nofollow noopener noreferrer">978-1-6172-9480-8</a>.
+                
+                
+            
+            
+            </li>
+        
+
+    
+        
+        
+
+        
+            
+            
+            
+            
+            
+
+            
+            
+                
+                    
+                
+            
+            
+            
+            
+            
+            
+
+            <li id="id_Inden2013">
+            
+                [Inden2013] <strong>Der weg zum java-profi</strong>
+            
+            
+                <br>Inden, M., dpunkt.verlag, 2013.
+                
+                    ISBN <a href="https://www.digibib.net/openurl/Bi10?isbn=978-3-8649-1245-0" target="_blank" rel="nofollow noopener noreferrer">978-3-8649-1245-0</a>.
+                
+                
+            
+            
+            </li>
+        
+
+    
+        
+        
+
+        
+
+    
+    </ul>
+
+</div>
+
+
+
+
+
+
+        </div>
+      </main><p><div style="color: darkgray; font-size: smaller;">
+<p style="margin-left: 1rem;">
+    <!-- https://creativecommons.org/choose/ -->
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;margin:0;display:inline;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a> Unless otherwise noted, <a href="https://github.com/PM-Dungeon/PM-Lecture">this work</a> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/cagix" property="cc:attributionName" rel="cc:attributionURL">Carsten Gips</a> and <a href="https://github.com/PM-Dungeon/PM-Lecture/graphs/contributors">contributors</a> is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+<br />
+    Icons by <a href="https://fontawesome.com/">Font Awesome</a>.
+    Built with <a href="https://github.com/jgm/pandoc">Pandoc</a> using <a href="https://github.com/cagix/pandoc-lecture">Pandoc-Lecture</a> and <a href="https://github.com/gohugoio/hugo">Hugo</a> using the <a href="https://github.com/McShelby/hugo-theme-relearn">Hugo Relearn Theme</a>.
+</p>
+</div>
+</p>
+
+    </div>
+    <aside id="sidebar" class="default-animation showVisitedLinks">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
+<a id="logo" href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/'>
+    <img style="max-width:35%" alt="icon" src='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/images/logo.png'>
+</a>
+
+        </div>
+      </div>
+      <div id="content-wrapper" class="highlightable">
+        <ul class="topics">
+          <li data-nav-id="/git/" title="Git" class="dd-item"><input type="checkbox" id="section-346b17b87a1a6c2e7ff1e8f0f4d1b4bd" class="toggle"/><label for="section-346b17b87a1a6c2e7ff1e8f0f4d1b4bd" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/">Git<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/git/intro/" title="Intro: Versionskontrolle in der Softwareentwicklung" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/intro/">Intro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/basics/" title="Basics der Versionsverwaltung mit Git (lokale Repos)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/basics/">Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/branches/" title="Git Branches: Features unabhängig entwickeln und mit Git verwalten" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branches/">Branches<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/branching-strategies/" title="Branching-Strategien mit Git" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branching-strategies/">Branching-Strategien<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/remotes/" title="Arbeiten mit Git Remotes (dezentrale Repos)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/remotes/">Remotes<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/workflows/" title="Zusammenarbeit: Git-Workflows und Merge-/Pull-Requests" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/workflows/">Workflows<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/bisect/" title="Fehlersuche mit Git Bisect" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/bisect/">Bisect<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/testing/" title="Testing" class="dd-item"><input type="checkbox" id="section-a831e487e7bd822b29c7ec65758c1503" class="toggle"/><label for="section-a831e487e7bd822b29c7ec65758c1503" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/">Testing<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/testing/testing-intro/" title="Einführung Softwaretest" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testing-intro/">Intro SW-Test<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/junit-basics/" title="Testen mit JUnit (JUnit-Basics)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/junit-basics/">JUnit-Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/testcases/" title="Testfallermittlung: Wie viel und was muss man testen?" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testcases/">Testfallermittlung<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/mockito/" title="Mocking mit Mockito" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/mockito/">Mocking<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/coding/" title="Coding" class="dd-item"><input type="checkbox" id="section-079e50620d382bff188ccaf7d7eec5ec" class="toggle"/><label for="section-079e50620d382bff188ccaf7d7eec5ec" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/">Coding<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/coding/logging/" title="Logging" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/logging/">Logging<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/javadoc/" title="Javadoc" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/javadoc/">Javadoc<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/smells/" title="Code Smells" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/smells/">Code Smells<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/codingrules/" title="Coding Conventions und Metriken" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/codingrules/">Coding Conventions<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/refactoring/" title="Refactoring" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/refactoring/">Refactoring<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/tdd/" title="Testbarkeit und Testdriven Development (TDD)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/tdd/">Testbarkeit und TDD<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/building/" title="Building" class="dd-item parent"><input type="checkbox" id="section-ff836c14ff2daf3537fcd8281d19c8a3" class="toggle" checked/><label for="section-ff836c14ff2daf3537fcd8281d19c8a3" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/">Building<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/building/ant/" title="Build-Systeme: Apache Ant" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ant/">Ant<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/maven/" title="Build-Systeme: Apache Maven" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/maven/">Maven<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/gradle/" title="Build-Systeme: Gradle" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/gradle/">Gradle<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/ci/" title="Continuous Integration (CI)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ci/">Continuous Integration<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/docker/" title="Einführung in Docker" class="dd-item active"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/docker/">Docker<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/pattern/" title="Pattern" class="dd-item"><input type="checkbox" id="section-84eb7f5d4debf68ee3bffeb919ec8445" class="toggle"/><label for="section-84eb7f5d4debf68ee3bffeb919ec8445" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/">Pattern<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/pattern/factory-method/" title="Factory-Method-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/factory-method/">Factory-Method<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/visitor/" title="Visitor-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/visitor/">Visitor<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/observer/" title="Observer-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/observer/">Observer<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/strategy/" title="Strategy-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/strategy/">Strategy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/template-method/" title="Template-Method-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/template-method/">Template-Method<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/command/" title="Command-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/command/">Command<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/flyweight/" title="Flyweight-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/flyweight/">Flyweight<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/type-object/" title="Type-Object-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/type-object/">Type-Object<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/singleton/" title="Singleton-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/singleton/">Singleton<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/generics/" title="Generics" class="dd-item"><input type="checkbox" id="section-9ec2dd2215ae1799fe9fb0d331b91e01" class="toggle"/><label for="section-9ec2dd2215ae1799fe9fb0d331b91e01" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/">Generics<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/generics/classes-methods/" title="Generische Klassen &amp; Methoden" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/classes-methods/">Klassen &amp; Methoden<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/bounds-wildcards/" title="Bounds &amp; Wildcards" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/bounds-wildcards/">Bounds &amp; Wildcards<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/type-erasure/" title="Type Erasure" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/type-erasure/">Type Erasure<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/generics-polymorphism/" title="Generics und Polymorphie" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/generics-polymorphism/">Polymorphie<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/java-jvm/" title="Java / JVM" class="dd-item"><input type="checkbox" id="section-1d4a17db91c5179ff6d850c019075026" class="toggle"/><label for="section-1d4a17db91c5179ff6d850c019075026" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/">Java / JVM<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/java-jvm/regexp/" title="Reguläre Ausdrücke" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/regexp/">RegExp<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/configuration/" title="Konfiguration eines Programms" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/configuration/">Konfiguration<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/enums/" title="Aufzählungen (Enumerations)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/enums/">Enumerations<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/annotations/" title="Annotationen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/annotations/">Annotationen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/reflection/" title="Reflection" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/reflection/">Reflection<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/collections/" title="Java Collections Framework" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/collections/">Collections<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/serialisation/" title="Serialisierung von Objekten und Zuständen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/serialisation/">Serialisierung<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/exceptions/" title="Exception-Handling" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/exceptions/">Exceptions<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/modern-java/" title="Modern Java" class="dd-item"><input type="checkbox" id="section-b61bc4c9231f95b2150d554b2f10a68d" class="toggle"/><label for="section-b61bc4c9231f95b2150d554b2f10a68d" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/">Modern Java<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/modern-java/defaultmethods/" title="Interfaces: Default-Methoden" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/defaultmethods/">Default-Methoden<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/lambdas/" title="Lambda-Ausdrücke und funktionale Interfaces" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/lambdas/">Lambda-Ausdrücke<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/methodreferences/" title="Methoden-Referenzen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/methodreferences/">Methoden-Referenzen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/stream-api/" title="Stream-API" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/stream-api/">Stream-API<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/records/" title="Record-Klassen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/records/">Records<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/optional/" title="Optional" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/optional/">Optional<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/threads/" title="Threads" class="dd-item"><input type="checkbox" id="section-d05c691fa11b6c7c73707b1f693354bc" class="toggle"/><label for="section-d05c691fa11b6c7c73707b1f693354bc" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/">Threads<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/threads/intro/" title="Einführung in die nebenläufige Programmierung mit Threads" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/intro/">Intro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/threads/synchronisation/" title="Synchronisation: Verteilter Zugriff auf gemeinsame Ressourcen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/synchronisation/">Synchronisation<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/threads/highlevel/" title="High-Level Concurrency" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/highlevel/">High-Level Concurrency<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/gui/" title="GUI" class="dd-item"><input type="checkbox" id="section-6bd1817b64a743ce3da58441e61d147a" class="toggle"/><label for="section-6bd1817b64a743ce3da58441e61d147a" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/">GUI<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/gui/basics/" title="Swing 101: Basics" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/basics/">Swing: Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/events/" title="Swing Events" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/events/">Swing: Events<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/widgets/" title="Swing: Nützliche Widgets" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/widgets/">Swing: Widgets<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/layouts/" title="Swing: Layout-Manager" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/layouts/">Swing: Layout-Manager<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/tables/" title="Swing: Tabellen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/tables/">Swing: Tabellen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/java2d/" title="Einführung in Graphics und Java 2D" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/java2d/">Java2D<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/frameworks/" title="Frameworks" class="dd-item"><input type="checkbox" id="section-6e87d98d146ebd1a56f5cfe9e946dff8" class="toggle"/><label for="section-6e87d98d146ebd1a56f5cfe9e946dff8" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/">Frameworks<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/frameworks/intro/" title="Frameworks: Einstieg" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/intro/">Intro<i class="fas fa-check read-icon"></i></a></li></ul></li>
+        </ul>
+        <div id="shortcuts">
+          <div class="nav-title">More</div>
+          <ul>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/schedule"><i class='fas fa-bookmark'></i> Fahrplan</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments"><i class='fas fa-bookmark'></i> Praktikum</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/grading"><i class='fas fa-bookmark'></i> Note/Credits</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/syllabus"><i class='fas fa-bookmark'></i> Syllabus</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/resources"><i class='fas fa-bookmark'></i> Ressourcen</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/exam"><i class='fas fa-bookmark'></i> Prüfungsvorbereitung</a></li>
+          </ul>
+        </div>
+        <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showVisitedLinks showFooter"></div>
+        <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showVisitedLinks showFooter"/>
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVariantSwitch showVisitedLinks">
+          <ul>
+            <li id="select-language-container" class="footerLangSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-language fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-language" onchange="location = baseUri + this.value;">
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+            </li>
+            <li id="select-variant-container" class="footerVariantSwitch showVariantSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-variant" onchange="variants.changeVariant( this.value );">
+                    <option id="relearn-light" value="relearn-light" selected>Relearn Light</option>
+                    <option id="relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="green" value="green">Green</option>
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+              <script>variants.markSelectedVariant();</script>
+            </li>
+            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+          </ul>
+        </div>
+        <div id="footer" class="footerFooter showFooter"><p style="margin-left: 1rem;">
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/imprint'>Impressum</a>,
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/privacy'>Datenschutz</a>,
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/credits'>Credits</a>
+</p>
+
+        </div>
+      </div>
+    </aside>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/clipboard.min.js?1656322213"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/perfect-scrollbar.min.js?1656322213"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/featherlight.min.js?1656322213"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/theme.js?1656322213"></script>
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$','$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+</script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+</html>
+

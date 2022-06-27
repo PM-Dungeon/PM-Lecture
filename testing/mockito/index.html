@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.96.0" />
+    <meta name="generator" content="Relearn 3.4.0&#43;tip">
+    <meta name="description" content="">
+    <meta name="author" content="cagix">
+    <title>Mocking mit Mockito   </title>
+    <link rel="icon" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/images/logo.png?1656322214" type="image/png">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/nucleus.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/fontawesome-all.min.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/featherlight.min.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/perfect-scrollbar.min.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/auto-complete.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/theme.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/theme-relearn-light.css?1656322214" rel="stylesheet" id="variant-style">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/variant.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/print.css?1656322214" rel="stylesheet" media="print">
+    <style>
+      :not(pre) > code.copy-to-clipboard-code + span.copy-to-clipboard-button {
+        display: none;
+      }
+      :not(pre) > code.copy-to-clipboard-code {
+        border-bottom-right-radius: 2px;
+        border-top-right-radius: 2px;
+        border-right-width: 1px;
+      }
+    </style>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/variant.js?1656322214"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      var index_url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/index.json";
+      var root_url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      // some further base stuff
+      var baseUriFull='https:\/\/www.fh-bielefeld.de\/elearning\/data\/FH-Bielefeld\/lm_data\/lm_1271733/';
+      variants.init( [ 'relearn-light', 'relearn-dark', 'green' ] );
+    </script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/jquery.min.js?1656322214"></script><style type="text/css">
+
+ 
+.center {
+    align-content: center;
+    text-align: center;
+    margin: auto;
+}
+.alert {
+    color: #ff3333;
+}
+.bsp {
+    padding: 0.05cm;
+    border-width: 0.05cm;
+    border-style: solid;
+    border-color: #ddd;
+    background-color: #ddd;
+    border-radius: 25px;
+    float: right;
+}
+.cbox {
+    padding: 0.2cm;
+    border-width: 0.1cm;
+    border-style: solid;
+    border-color: #4070a0;
+    background-color: #f2f2f2;
+    margin: auto;
+    width: 60%;
+    text-align: center;
+    overflow: auto;
+}
+.blueArrow {
+    color: #4070a0;
+    font-family: "Courier New", "Courier", monospace;
+    font-weight: bold;
+}
+.origin {
+    background-color: #ededed;
+    font-size: 0.8em;
+}
+.showme {
+    background-color: #ededed;
+    font-size: 0.8em;
+}
+
+
+ 
+.tldr {
+    background: #dbe4ed;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.recap {
+    
+    
+   margin: 4px 0px 26px 0px;
+}
+.bib {
+    background: #dbe4ed;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.outcomes {
+    background: #d9e9d5;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.quizzes {
+    background: #d9e9d5;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.challenges {
+    background: #ebe4d6;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.assignments {
+    background: #ebe4d6;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+h1.tldr, h1.recap, h1.bib, h1.outcomes, h1.quizzes, h1.challenges, h1.assignments {
+    padding: 0px;
+}
+
+
+ 
+.noJsAlert {
+    padding: 20px;
+    background-color: #f44336;  
+    color: white;
+    margin-bottom: 15px;
+}
+
+
+ 
+.embed-video-player {
+    position: relative;
+    padding-bottom: 56%;
+    height: 0;
+    overflow: hidden;
+}
+.youtube-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border:0;
+}
+
+
+ 
+#header-wrapper {
+    padding:0.6rem;
+}
+
+
+ 
+#shortcuts {
+    padding-top: 2.0rem;
+}
+
+
+ 
+#chapter p {
+    text-align: left;
+}
+
+
+ 
+figcaption h4 {
+    margin-top:-2.5rem;
+}
+.border1 {
+    border:1px solid black;
+}
+
+ 
+td ul, td ol {
+    margin: 0 0 1rem 0.5rem;
+    padding: 0 0 0 0.5rem;
+}
+
+ 
+h1 { font-size:2.8rem !important;}
+h2 { font-size:2.2rem; margin:1.2rem 0}
+h3 { font-size:1.9rem; text-align:left !important; font-weight:400 !important;}
+h4 { font-size:1.6rem}
+h5 { font-size:1.3rem}
+h6 { font-size:1rem}
+
+h2 {
+    width:100% !important;
+    border-bottom:1px solid #5e5e5e !important;
+    padding-bottom: 2px;
+}
+.tldr h2, .recap h2, .bib h2, .outcomes h2, .quizzes h2, .challenges h2, .assignments h2 {
+    margin:0.5rem 0
+}
+
+.btn-crossreference, .btn-crossreference:hover {
+    cursor: initial !important;
+    color: #333 !important;
+    background-color: #fff !important;
+    border-color: #ccc !important;
+}
+
+</style>
+
+  </head>
+  <body class="mobile-support" data-url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/mockito/">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div id="top-github-link">
+            <a class="github-link" title='Edit' href="https://github.com/PM-Dungeon/PM-Lecture/edit/master/markdown/testing/mockito.md" target="blank">
+              <i class="fas fa-pen fa-fw"></i>
+            </a>
+          </div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <span id="toc-menu" title='Table of Contents'><i class="fas fa-list-alt fa-fw"></i></span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <meta itemprop="itemListOrder" content="Descending" />
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="3" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/"><span itemprop="name">PM S22</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="2" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/"><span itemprop="name">Testing</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/mockito/" aria-disabled="true"><span itemprop="name">Mocking mit Mockito</span></a></li>
+            </ol>
+          </div>
+          <div class="default-animation progress">
+            <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#motivation-entwicklung-einer-studi-prüfungsverwaltung">Motivation: Entwicklung einer Studi-/Prüfungsverwaltung</a>
+      <ul>
+        <li><a href="#szenario">Szenario</a></li>
+        <li><a href="#motivation-mocking-und-mockito">Motivation Mocking und Mockito</a></li>
+        <li><a href="#aber-was-genau-ist-denn-jetzt-eigentlich-mocking">Aber was genau ist denn jetzt eigentlich Mocking?</a></li>
+        <li><a href="#dabei-bezeichnet-ein">Dabei bezeichnet ein</a></li>
+        <li><a href="#mockito-setup">Mockito Setup</a></li>
+      </ul>
+    </li>
+    <li><a href="#manuell-stubs-implementieren">Manuell Stubs implementieren</a></li>
+    <li><a href="#mockito-mocking-von-ganzen-klassen">Mockito: Mocking von ganzen Klassen</a></li>
+    <li><a href="#mockito-spy--wrapper-um-ein-objekt">Mockito: Spy = Wrapper um ein Objekt</a></li>
+    <li><a href="#wurde-eine-methode-aufgerufen">Wurde eine Methode aufgerufen?</a></li>
+    <li><a href="#fangen-von-argumenten">Fangen von Argumenten</a></li>
+    <li><a href="#ausblick-powermock">Ausblick: PowerMock</a></li>
+    <li><a href="#ausführlicheres-beispiel-wuppiwarenlager">Ausführlicheres Beispiel: WuppiWarenlager</a>
+      <ul>
+        <li><a href="#einsatz-von-mockito">Einsatz von Mockito</a></li>
+        <li><a href="#mockito-spies">Mockito Spies</a></li>
+      </ul>
+    </li>
+    <li><a href="#mockito-und-annotationen">Mockito und Annotationen</a>
+      <ul>
+        <li><a href="#prüfen-der-interaktion-mit-verify">Prüfen der Interaktion mit <em>verify()</em></a></li>
+      </ul>
+    </li>
+    <li><a href="#wrap-up">Wrap-Up</a></li>
+  </ul>
+</nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+
+
+
+    
+
+
+
+
+
+
+<div class="tldr">
+    <h2>TL;DR</h2>
+
+    
+
+    
+        <p>Häufig hat man es in Softwaretests mit dem Problem zu tun, dass die zu testenden Klassen von
+anderen, noch nicht implementierten Klassen oder von zufälligen oder langsamen Operationen
+abhängen.</p>
+<p>In solchen Situationen kann man auf &quot;Platzhalter&quot; für diese Abhängigkeiten zurückgreifen. Dies
+können einfache Stubs sein, also Objekte, die einfach einen festen Wert bei einem Methodenaufruf
+zurückliefern oder Mocks, wo man auf die Argumente eines Methodenaufrufs reagieren kann und
+passende unterschiedliche Rückgabewerte zurückgeben kann.</p>
+<p>Mockito ist eine Java-Bibliothek, die zusammen mit JUnit das Mocking von Klassen in Java
+erlaubt. Man kann hier zusätzlich auch die Interaktion mit dem gemockten Objekt überprüfen und
+testen, ob eine bestimmte Methode mit bestimmten Argumenten aufgerufen wurde und wie oft.</p>
+
+    
+
+    
+        <h3>Videos (YouTube)</h3>
+        
+
+<ul>
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/8deFZKtjXSk" target="_blank" rel="nofollow noopener noreferrer">VL Mocking</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/WNEedC7PrVQ" target="_blank" rel="nofollow noopener noreferrer">Demo Mocking: Stubs</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/avUyYVePFCI" target="_blank" rel="nofollow noopener noreferrer">Demo Mocking: Mocks</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/dj3pmOZfS_A" target="_blank" rel="nofollow noopener noreferrer">Demo Mocking: Spy</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/CPGqhyC8BjU" target="_blank" rel="nofollow noopener noreferrer">Demo Mocking: verify()</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/JNouzOd0s-w" target="_blank" rel="nofollow noopener noreferrer">Demo Mocking: Matcher</a></li>
+    
+
+</ul>
+
+    
+
+    
+        <h3>Videos (FH-Medienportal)</h3>
+        
+
+<ul>
+
+    
+    
+
+    
+    
+    
+
+    
+        <li><a href="https://www.fh-bielefeld.de/medienportal/m/9531e04dd11458ea45915269aca452ba6b9978ef7b1b3a777a424d673573f75724a3fbedd0a2bec5e4d14de4025ea92ae4a966f95ee312e9f6ecca4fde4c98ef" target="_blank" rel="nofollow noopener noreferrer">VL Mocking</a></li>
+    
+
+</ul>
+
+    
+
+    
+
+</div>
+
+
+    
+
+
+
+<div class="outcomes">
+    <h2>Lernziele</h2>
+
+    
+
+    
+    
+    <ul>
+    
+        
+        <li>(K2) Begriffe: Mocking, Mock, Stub, Spy</li>
+        
+        
+    
+        
+        
+        <li>(K3) Erzeugen eines Mocks in Mockito</li>
+        
+    
+        
+        
+        <li>(K3) Erzeugen eines Spies in Mockito</li>
+        
+    
+        
+        
+        <li>(K3) Prüfen von Interaktion mit <em>verify()</em></li>
+        
+    
+        
+        
+        <li>(K3) Einsatz von <em>ArgumentMatcher</em></li>
+        
+    
+    </ul>
+    
+
+</div>
+
+
+    <h2 id="motivation-entwicklung-einer-studi-prüfungsverwaltung">Motivation: Entwicklung einer Studi-/Prüfungsverwaltung</h2>
+<h3 id="szenario">Szenario</h3>
+<p>Zwei Teams entwickeln eine neue Studi-/Prüfungsverwaltung für die Hochschule. Ein Team modelliert dabei
+die Studierenden, ein anderes Team modelliert die Prüfungsverwaltung LSF.</p>
+<ul>
+<li>
+<p>Team A:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-{.java" data-lang="{.java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Studi</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    String name<span style="color:#f92672">;</span>  LSF lsf<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Studi</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span> LSF lsf<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>  <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">lsf</span> <span style="color:#f92672">=</span> lsf<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span>String modul<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#66d9ef">return</span> lsf<span style="color:#f92672">.</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span>name<span style="color:#f92672">,</span> modul<span style="color:#f92672">);</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">einsicht</span><span style="color:#f92672">(</span>String modul<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#66d9ef">return</span> lsf<span style="color:#f92672">.</span><span style="color:#a6e22e">ergebnis</span><span style="color:#f92672">(</span>name<span style="color:#f92672">,</span> modul<span style="color:#f92672">)</span> <span style="color:#f92672">&gt;</span> 50<span style="color:#f92672">;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Team B:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-{.java" data-lang="{.java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LSF</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span> String modul<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> UnsupportedOperationException<span style="color:#f92672">();</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">ergebnis</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span> String modul<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> UnsupportedOperationException<span style="color:#f92672">();</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+<p>Team B kommt nicht so recht vorwärts, Team A ist fertig und will schon testen.</p>
+<p>Wie kann Team A seinen Code testen?</p>
+<p><strong>Optionen</strong>:</p>
+<ul>
+<li>Gar nicht testen?!</li>
+<li>Das LSF selbst implementieren? Wer pflegt das dann? =&gt; manuell implementierte Stubs</li>
+<li>Das LSF durch einen Mock ersetzen =&gt; Einsatz der Bibliothek &quot;mockito&quot;</li>
+</ul>
+<h3 id="motivation-mocking-und-mockito">Motivation Mocking und Mockito</h3>
+<p><a href="https://github.com/mockito/mockito">Mockito</a> ist ein Mocking-Framework für JUnit. Es
+simuliert das Verhalten eines realen Objektes oder einer realen Methode.</p>
+<p>Wofür brauchen wir denn jetzt so ein Mocking-Framework überhaupt?</p>
+<p>Wir wollen die Funktionalität einer Klasse isoliert vom Rest testen können.
+Dabei stören uns aber bisher so ein paar Dinge:</p>
+<ul>
+<li>Arbeiten mit den echten Objekten ist langsam (zum Beispiel aufgrund von
+Datenbankenzugriffen)</li>
+<li>Objekte beinhalten oft komplexe Abhängigkeiten, die in Tests schwer abzudecken
+sind</li>
+<li>Manchmal existiert der zu testende Teil einer Applikation auch noch gar nicht,
+sondern es gibt nur die Interfaces.</li>
+<li>Oder es gibt unschöne Seiteneffekte beim Arbeiten mit den realen Objekten. Zum
+Beispiel könnte es sein, das immer eine E-Mail versendet wird, wenn wir mit
+einem Objekt interagieren.</li>
+</ul>
+<p>In solchen Situationen wollen wir eine Möglichkeit haben, das Verhalten eines
+realen Objektes bzw. der Methoden zu simulieren, ohne dabei die originalen
+Methoden aufrufen zu müssen. (Manchmal möchte man das dennoch, aber dazu später
+mehr...)</p>
+<p>Und genau hier kommt Mockito ins Spiel. Mockito hilft uns dabei, uns von den
+externen Abhängigkeiten zu lösen, indem es sogenannte Mocks, Stubs oder Spies
+anbietet, mit denen sich das Verhalten der realen Objekte simulieren/überwachen
+und testen lässt.</p>
+<h3 id="aber-was-genau-ist-denn-jetzt-eigentlich-mocking">Aber was genau ist denn jetzt eigentlich Mocking?</h3>
+<p>Ein Mock-Objekt (&quot;etwas vortäuschen&quot;) ist im Software-Test ein Objekt, das als Platzhalter
+(Attrappe) für das echte Objekt verwendet wird.</p>
+<p>Mocks sind in JUnit-Tests immer dann nützlich, wenn man externe Abhängigkeiten
+hat, auf die der eigene Code zugreift. Das können zum Beispiel externe APIs sein
+oder Datenbanken etc. ... Mocks helfen einem beim Testen nun dabei, sich von diesen
+externen Abhängigkeiten zu lösen und seine Softwarefunktionalität dennoch
+schnell und effizient testen zu können ohne evtl. auftretende Verbindungsfehler
+oder andere mögliche Seiteneffekte der externen Abhängigkeiten auszulösen.</p>
+<p>Dabei simulieren Mocks die Funktionalität der externen APIs oder Datenbankzugriffe.
+Auf diese Weise ist es möglich Softwaretests zu schreiben, die scheinbar die gleichen
+Methoden aufrufen, die sie auch im regulären Softwarebetrieb nutzen würden, allerdings
+werden diese wie oben erwähnt allerdings für die Tests nur simuliert.</p>
+<p>Mocking ist also eine Technik, die in Softwaretests verwendet wird, in denen die
+gemockten Objekte anstatt der realen Objekte zu Testzwecken genutzt werden. Die
+gemockten Objekte liefern dabei bei einem vom Programmierer bestimmten (Dummy-) Input,
+einen dazu passenden gelieferten (Dummy-) Output, der durch seine vorhersagbare
+Funktionalität dann in den eigentlichen Testobjekten gut für den Test nutzbar ist.</p>
+<p>Dabei ist es von Vorteil die drei Grundbegriffe &quot;Mock&quot;, &quot;Stub&quot; oder &quot;Spy&quot;, auf die wir
+in der Vorlesung noch häufiger treffen werden, voneinander abgrenzen und
+unterscheiden zu können.</p>
+<h3 id="dabei-bezeichnet-ein">Dabei bezeichnet ein</h3>
+<ul>
+<li><strong>Stub</strong>: Ein Stub ist ein Objekt, dessen Methoden nur mit einer minimalen Logik
+für den Test implementiert wurden. Häufig werden dabei einfach feste (konstante)
+Werte zurückgeliefert, d.h. beim Aufruf einer Methode wird unabhängig von der konkreten
+Eingabe immer die selbe Ausgabe zurückgeliefert.</li>
+<li><strong>Mock</strong>: Ein Mock ist ein Objekt, welches im Gegensatz zum Stub bei vorher definierten
+Funktionsaufrufen mit vorher definierten Argumente eine definierte Rückgabe liefert.</li>
+<li><strong>Spy</strong>: Ein Spy ist ein Objekt, welches Aufrufe und übergebene Werte protokolliert und
+abfragbar macht. Es ist also eine Art Wrapper um einen Stub oder einen Mock.</li>
+</ul>
+<h3 id="mockito-setup">Mockito Setup</h3>
+<ul>
+<li>
+<p>Gradle: <code>build.gradle</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>dependencies <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    implementation <span style="color:#e6db74">&#39;junit:junit:4.13.2&#39;</span>
+</span></span><span style="display:flex;"><span>    implementation <span style="color:#e6db74">&#39;org.mockito:mockito-core:4.5.1&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Maven: <code>pom.xml</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;dependencies&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;groupId&gt;</span>junit<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;artifactId&gt;</span>junit<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;version&gt;</span>4.13.2<span style="color:#f92672">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;groupId&gt;</span>org.mockito<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;artifactId&gt;</span>mockito-core<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;version&gt;</span>4.5.1<span style="color:#f92672">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/dependencies&gt;</span>
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="manuell-stubs-implementieren">Manuell Stubs implementieren</h2>
+<p>Team A könnte manuell das LSF rudimentär implementieren (nur für die Tests, einfach mit
+festen Rückgabewerten): <strong>Stubs</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-{.java" data-lang="{.java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StudiStubTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    Studi studi<span style="color:#f92672">;</span>  LSF lsf<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Before</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setUp</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> lsf <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> LsfStub<span style="color:#f92672">();</span>  studi <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Studi<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> lsf<span style="color:#f92672">);</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testAnmelden</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> assertTrue<span style="color:#f92672">(</span>studi<span style="color:#f92672">.</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">));</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testEinsicht</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> assertTrue<span style="color:#f92672">(</span>studi<span style="color:#f92672">.</span><span style="color:#a6e22e">einsicht</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">));</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Stub für das noch nicht fertige LSF
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LsfStub</span> <span style="color:#66d9ef">extends</span> LSF <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span> String modul<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">ergebnis</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span> String modul<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#66d9ef">return</span> 80<span style="color:#f92672">;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><strong>Problem</strong>: Wartung der Tests (wenn das richtige LSF fertig ist) und Wartung der Stubs (wenn sich die Schnittstelle
+des LSF ändert, muss auch der Stub nachgezogen werden).</p>
+<p><strong>Problem</strong>: Der Stub hat nur eine Art minimale Default-Logik (sonst könnte man ja das LSF gleich selbst implementieren).
+Wenn man im Test andere Antworten braucht, müsste man einen weiteren Stub anlegen ...</p>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/testing/src/mockito/src/test/java/fhb/StudiStubTest.java">fhb.StudiStubTest</a>
+</span>
+</div>
+<h2 id="mockito-mocking-von-ganzen-klassen">Mockito: Mocking von ganzen Klassen</h2>
+<p><strong>Lösung</strong>: Mocking der Klasse <code>LSF</code> mit Mockito für den Test von <code>Studi</code>: <code>mock()</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-{.java" data-lang="{.java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StudiMockTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    Studi studi<span style="color:#f92672">;</span>  LSF lsf<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Before</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setUp</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> lsf <span style="color:#f92672">=</span> mock<span style="color:#f92672">(</span>LSF<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>  studi <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Studi<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> lsf<span style="color:#f92672">);</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testAnmelden</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        when<span style="color:#f92672">(</span>lsf<span style="color:#f92672">.</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span>anyString<span style="color:#f92672">(),</span> anyString<span style="color:#f92672">())).</span><span style="color:#a6e22e">thenReturn</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        assertTrue<span style="color:#f92672">(</span>studi<span style="color:#f92672">.</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testEinsichtI</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        when<span style="color:#f92672">(</span>lsf<span style="color:#f92672">.</span><span style="color:#a6e22e">ergebnis</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">)).</span><span style="color:#a6e22e">thenReturn</span><span style="color:#f92672">(</span>80<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        assertTrue<span style="color:#f92672">(</span>studi<span style="color:#f92672">.</span><span style="color:#a6e22e">einsicht</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testEinsichtII</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        when<span style="color:#f92672">(</span>lsf<span style="color:#f92672">.</span><span style="color:#a6e22e">ergebnis</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">)).</span><span style="color:#a6e22e">thenReturn</span><span style="color:#f92672">(</span>40<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        assertFalse<span style="color:#f92672">(</span>studi<span style="color:#f92672">.</span><span style="color:#a6e22e">einsicht</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Der Aufruf <code>mock(LSF.class)</code> erzeugt einen Mock der Klasse (oder des Interfaces) <code>LSF</code>. Dabei wird ein Objekt
+vom Typ <code>LSF</code> erzeugt, mit dem man dann wie mit einem normalen Objekt weiter arbeiten kann. Die Methoden sind
+allerdings nicht implementiert ...</p>
+<p>Mit Hilfe von <code>when().thenReturn()</code> kann man definieren, was genau beim Aufruf einer bestimmten Methode auf dem
+Mock passieren soll, d.h. welcher Rückgabewert entsprechend zurückgegeben werden soll. Hier kann man dann für
+bestimmte Argumentwerte andere Rückgabewerte definieren. <code>when(lsf.ergebnis(&quot;Harald&quot;, &quot;PM-Dungeon&quot;)).thenReturn(80)</code>
+gibt also für den Aufruf von <code>ergebnis</code> mit den Argumenten <code>&quot;Harald&quot;</code> und <code>&quot;PM-Dungeon&quot;</code> auf dem Mock <code>lsf</code>
+den Wert 80 zurück.</p>
+<p>Dies kann man in weiten Grenzen flexibel anpassen.</p>
+<p>Mit Hilfe der Argument-Matcher <code>anyString()</code> wird jedes String-Argument akzeptiert.</p>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/testing/src/mockito/src/test/java/fhb/StudiMockTest.java">fhb.StudiMockTest</a>
+</span>
+</div>
+<h2 id="mockito-spy--wrapper-um-ein-objekt">Mockito: Spy = Wrapper um ein Objekt</h2>
+<p>Team B hat das <code>LSF</code> nun implementiert und Team A kann es endlich für die Tests benutzen. Aber
+das <code>LSF</code> hat eine Zufallskomponente (<code>ergebnis()</code>). Wie kann man nun die Reaktion des Studis
+testen (<code>einsicht()</code>)?</p>
+<p><strong>Lösung</strong>: Mockito-Spy als partieller Mock einer Klasse (Wrapper um ein Objekt): <code>spy()</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-{.java" data-lang="{.java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StudiSpyTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    Studi studi<span style="color:#f92672">;</span>  LSF lsf<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Before</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setUp</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> lsf <span style="color:#f92672">=</span> spy<span style="color:#f92672">(</span>LSF<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>  studi <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Studi<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> lsf<span style="color:#f92672">);</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testAnmelden</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> assertTrue<span style="color:#f92672">(</span>studi<span style="color:#f92672">.</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">));</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testEinsichtI</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        doReturn<span style="color:#f92672">(</span>80<span style="color:#f92672">).</span><span style="color:#a6e22e">when</span><span style="color:#f92672">(</span>lsf<span style="color:#f92672">).</span><span style="color:#a6e22e">ergebnis</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        assertTrue<span style="color:#f92672">(</span>studi<span style="color:#f92672">.</span><span style="color:#a6e22e">einsicht</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testEinsichtII</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        doReturn<span style="color:#f92672">(</span>40<span style="color:#f92672">).</span><span style="color:#a6e22e">when</span><span style="color:#f92672">(</span>lsf<span style="color:#f92672">).</span><span style="color:#a6e22e">ergebnis</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        assertFalse<span style="color:#f92672">(</span>studi<span style="color:#f92672">.</span><span style="color:#a6e22e">einsicht</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Der Aufruf <code>spy(LSF.class)</code> erzeugt einen Spy um ein Objekt der Klasse <code>LSF</code>. Dabei bleiben zunächst die Methoden
+in <code>LSF</code> erhalten und können aufgerufen werden, sie können aber auch mit einem (partiellen) Mock überlagert werden.
+Der Spy zeichnet wie der Mock die Interaktion mit dem Objekt auf.</p>
+<p>Mit Hilfe von <code>doReturn().when()</code> kann man definieren, was genau beim Aufruf einer bestimmten Methode auf dem
+Spy passieren soll, d.h. welcher Rückgabewert entsprechend zurückgegeben werden soll. Hier kann man analog zum Mock
+für bestimmte Argumentwerte andere Rückgabewerte definieren. <code>doReturn(40).when(lsf).ergebnis(&quot;Harald&quot;, &quot;PM-Dungeon&quot;)</code>
+gibt also für den Aufruf von <code>ergebnis</code> mit den Argumenten <code>&quot;Harald&quot;</code> und <code>&quot;PM-Dungeon&quot;</code> auf dem Spy <code>lsf</code> den Wert
+40 zurück.</p>
+<p>Wenn man die Methoden nicht mit einem partiellen Mock überschreibt, dann wird einfach die originale Methode aufgerufen
+(Beispiel: In <code>studi.anmelden(&quot;PM-Dungeon&quot;)</code> wird <code>lsf.anmelden(&quot;Harald&quot;, &quot;PM-Dungeon&quot;)</code> aufgerufen.).</p>
+<p>Auch hier können Argument-Matcher wie <code>anyString()</code> eingesetzt werden.</p>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/testing/src/mockito/src/test/java/fhb/StudiSpyTest.java">fhb.StudiSpyTest</a>
+</span>
+</div>
+<h2 id="wurde-eine-methode-aufgerufen">Wurde eine Methode aufgerufen?</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-{.java" data-lang="{.java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">VerifyTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testAnmelden</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        LSF lsf <span style="color:#f92672">=</span> mock<span style="color:#f92672">(</span>LSF<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>  Studi studi <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Studi<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> lsf<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        when<span style="color:#f92672">(</span>lsf<span style="color:#f92672">.</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">)).</span><span style="color:#a6e22e">thenReturn</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        assertTrue<span style="color:#f92672">(</span>studi<span style="color:#f92672">.</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        verify<span style="color:#f92672">(</span>lsf<span style="color:#f92672">).</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        verify<span style="color:#f92672">(</span>lsf<span style="color:#f92672">,</span> times<span style="color:#f92672">(</span>1<span style="color:#f92672">)).</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        verify<span style="color:#f92672">(</span>lsf<span style="color:#f92672">,</span> atLeast<span style="color:#f92672">(</span>1<span style="color:#f92672">)).</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        verify<span style="color:#f92672">(</span>lsf<span style="color:#f92672">,</span> atMost<span style="color:#f92672">(</span>1<span style="color:#f92672">)).</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        verify<span style="color:#f92672">(</span>lsf<span style="color:#f92672">,</span> never<span style="color:#f92672">()).</span><span style="color:#a6e22e">ergebnis</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        verifyNoMoreInteractions<span style="color:#f92672">(</span>lsf<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Mit der Methode <code>verify()</code> kann auf einem Mock oder Spy überprüft werden, ob und wie oft und in welcher Reihenfolge
+Methoden aufgerufen wurden und mit welchen Argumenten. Auch hier lassen sich wieder Argument-Matcher wie <code>anyString()</code>
+einsetzen.</p>
+<p>Ein einfaches <code>verify(mock)</code> prüft dabei, ob die entsprechende Methode exakt einmal vorher aufgerufen wurde. Dies
+ist äquivalent zu <code>verify(mock, times(1))</code>. Analog kann man mit den Parametern <code>atLeast()</code> oder <code>atMost</code> bestimmte
+Unter- oder Obergrenzen für die Aufrufe angeben und mit <code>never()</code> prüfen, ob es gar keinen Aufruf vorher gab.</p>
+<p><code>verifyNoMoreInteractions(lsf)</code> ist interessant: Es ist genau dann <code>true</code>, wenn es außer den vorher abgefragten
+Interaktionen keinerlei sonstigen Interaktionen mit dem Mock oder Spy gab.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>LSF lsf <span style="color:#f92672">=</span> mock<span style="color:#f92672">(</span>LSF<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Studi studi <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Studi<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> lsf<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>when<span style="color:#f92672">(</span>lsf<span style="color:#f92672">.</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">)).</span><span style="color:#a6e22e">thenReturn</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>InOrder inOrder <span style="color:#f92672">=</span> inOrder<span style="color:#f92672">(</span>lsf<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>assertTrue<span style="color:#f92672">(</span>studi<span style="color:#f92672">.</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>studi<span style="color:#f92672">.</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Wuppie&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>inOrder<span style="color:#f92672">.</span><span style="color:#a6e22e">verify</span><span style="color:#f92672">(</span>lsf<span style="color:#f92672">).</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Wuppie&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>inOrder<span style="color:#f92672">.</span><span style="color:#a6e22e">verify</span><span style="color:#f92672">(</span>lsf<span style="color:#f92672">).</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>Mit <code>InOrder</code> lassen sich Aufrufe auf einem Mock/Spy oder auch auf verschiedenen Mocks/Spies in eine zeitliche
+Reihenfolge bringen und so überprüfen.</p>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/testing/src/mockito/src/test/java/fhb/VerifyTest.java">fhb.VerifyTest</a>
+</span>
+</div>
+<h2 id="fangen-von-argumenten">Fangen von Argumenten</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-{.java" data-lang="{.java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MatcherTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testAnmelden</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        LSF lsf <span style="color:#f92672">=</span> mock<span style="color:#f92672">(</span>LSF<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>  Studi studi <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Studi<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> lsf<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        when<span style="color:#f92672">(</span>lsf<span style="color:#f92672">.</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span>anyString<span style="color:#f92672">(),</span> anyString<span style="color:#f92672">())).</span><span style="color:#a6e22e">thenReturn</span><span style="color:#f92672">(</span><span style="color:#66d9ef">false</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        when<span style="color:#f92672">(</span>lsf<span style="color:#f92672">.</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">)).</span><span style="color:#a6e22e">thenReturn</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        assertTrue<span style="color:#f92672">(</span>studi<span style="color:#f92672">.</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>        assertFalse<span style="color:#f92672">(</span>studi<span style="color:#f92672">.</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Wuppie?&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        verify<span style="color:#f92672">(</span>lsf<span style="color:#f92672">,</span> times<span style="color:#f92672">(</span>1<span style="color:#f92672">)).</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;PM-Dungeon&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        verify<span style="color:#f92672">(</span>lsf<span style="color:#f92672">,</span> times<span style="color:#f92672">(</span>1<span style="color:#f92672">)).</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Wuppie?&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        verify<span style="color:#f92672">(</span>lsf<span style="color:#f92672">,</span> times<span style="color:#f92672">(</span>2<span style="color:#f92672">)).</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span>anyString<span style="color:#f92672">(),</span> anyString<span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        verify<span style="color:#f92672">(</span>lsf<span style="color:#f92672">,</span> times<span style="color:#f92672">(</span>1<span style="color:#f92672">)).</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span>eq<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">),</span> eq<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Wuppie?&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>        verify<span style="color:#f92672">(</span>lsf<span style="color:#f92672">,</span> times<span style="color:#f92672">(</span>2<span style="color:#f92672">)).</span><span style="color:#a6e22e">anmelden</span><span style="color:#f92672">(</span>argThat<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> MyHaraldMatcher<span style="color:#f92672">()),</span> anyString<span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyHaraldMatcher</span> <span style="color:#66d9ef">implements</span> ArgumentMatcher<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">matches</span><span style="color:#f92672">(</span>String s<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#66d9ef">return</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Harald&#34;</span><span style="color:#f92672">);</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Sie können die konkreten Argumente angeben, für die der Aufruf gelten soll. Alternativ
+können Sie mit vordefinierten <code>ArgumentMatchers</code> wie <code>anyString()</code> beispielsweise auf
+beliebige Strings reagieren oder selbst einen eigenen <code>ArgumentMatcher&lt;T&gt;</code> für Ihren
+Typ <code>T</code> erstellen und nutzen.</p>
+<p><strong>Wichtig</strong>: Wenn Sie für einen Parameter einen <code>ArgumentMatcher</code> einsetzen, müssen Sie
+für die restlichen Parameter der Methode dies ebenfalls tun. Sie können keine konkreten
+Argumente mit <code>ArgumentMatcher</code> mischen.</p>
+<p>Sie finden viele weitere vordefinierte Matcher in der Klasse <code>ArgumentMatchers</code>.
+Mit der Klasse <code>ArgumentCaptor&lt;T&gt;</code> finden Sie eine alternative Möglichkeit, auf
+Argumente in gemockten Methoden zu reagieren. Schauen Sie sich dazu die Javadoc
+von <a href="https://javadoc.io/doc/org.mockito/mockito-core/">Mockito</a> an.</p>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/testing/src/mockito/src/test/java/fhb/MatcherTest.java">fhb.MatcherTest</a>
+</span>
+</div>
+<h2 id="ausblick-powermock">Ausblick: PowerMock</h2>
+<p>Mockito sehr mächtig, aber unterstützt (u.a.) keine</p>
+<ul>
+<li>Konstruktoren</li>
+<li>private Methoden</li>
+<li>final Methoden</li>
+<li>static Methoden
+(ab Version 3.4.0 scheint auch <a href="https://www.baeldung.com/mockito-mock-static-methods">Mockito statische Methoden</a> zu unterstützen)</li>
+</ul>
+<p>=&gt; Lösung: <a href="https://github.com/powermock/powermock">PowerMock</a></p>
+<h2 id="ausführlicheres-beispiel-wuppiwarenlager">Ausführlicheres Beispiel: WuppiWarenlager</h2>
+<p><strong>Credits</strong>: Der Dank für die Erstellung des nachfolgenden Beispiels und Textes geht an
+<a href="https://github.com/jedi101">@jedi101</a>.</p>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo: <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/testing/src/mockito/src/test/java/wuppie/stub/">WuppiWarenlager (wuppie.stub)</a>)
+</span>
+</div>
+<p>Bei dem gezeigten Beispiel unseres <code>WuppiStores</code> sieht man, dass dieser
+normalerweise von einem fertigen Warenlager die Wuppis beziehen möchte. Da
+dieses Lager aber noch nicht existiert, haben wir uns kurzerhand einfach einen
+Stub von unserem <code>IWuppiWarenlager</code>-Interface erstellt, in dem wir zu
+Testzwecken händisch ein Paar Wuppis ins Lager geräumt haben.</p>
+<p>Das funktioniert in diesem Mini-Testbeispiel ganz gut aber, wenn unsere Stores
+erst einmal so richtig Fahrt aufnehmen und wir irgendwann weltweit Wuppis
+verkaufen, wird der Code des <code>IWuppiWarenlagers</code> wahrscheinlich sehr schnell viel
+komplexer werden, was unweigerlich dann zu Maintenance-Problemen unserer
+händisch angelegten Tests führt. Wenn wir zum Beispiel einmal eine Methode
+hinzufügen wollen, die es uns ermöglicht, nicht immer alle Wuppis aus dem Lager
+zu ordern oder vielleicht noch andere Methoden, die Fluppis orderbar machen,
+hinzufügen, müssen wir immer dafür sorgen, dass wir die getätigten Änderungen
+händisch in den Stub des Warenlagers einpflegen.</p>
+<p>Das will eigentlich niemand...</p>
+<h3 id="einsatz-von-mockito">Einsatz von Mockito</h3>
+<p>Aber es gibt da einen Ausweg. Wenn es komplexer wird, verwenden wir Mocks.</p>
+<p>Bislang haben wir noch keinen Gebrauch von Mockito gemacht. Das ändern wir nun.</p>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo: <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/testing/src/mockito/src/test/java/wuppie/mock/">WuppiWarenlager (wuppie.mock)</a>)
+</span>
+</div>
+<p>Wie in diesem Beispiel gezeigt, müssen wir nun keinen Stub mehr von Hand
+erstellen, sondern überlassen dies Mockito.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>IWuppiWarenlager lager <span style="color:#f92672">=</span> mock<span style="color:#f92672">(</span>IWuppiWarenlager<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>Anschließend können wir, ohne die Methode <code>getAllWuppis()</code> implementiert zu haben,
+dennoch so tun als, ob die Methode eine Funktionalität hätte.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Erstellen eines imaginären Lagerbestands.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> wuppisImLager <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;GruenerWuppi&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;RoterWuppi&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>when<span style="color:#f92672">(</span>lager<span style="color:#f92672">.</span><span style="color:#a6e22e">getAlleWuppis</span><span style="color:#f92672">()).</span><span style="color:#a6e22e">thenReturn</span><span style="color:#f92672">(</span>wuppisImLager<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>Wann immer nun die Methode <code>getAlleWuppis()</code> des gemockten Lagers aufgerufen
+wird, wird dieser Aufruf von Mockito abgefangen und wie oben definiert
+verändert. Das Ergebnis können wir abschließend einfach in unserem Test testen:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Erzeugen des WuppiStores.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>WuppiStore wuppiStore <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> WuppiStore<span style="color:#f92672">(</span>lager<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Bestelle alle Wuppis aus dem gemockten Lager List&lt;String&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>bestellteWuppis <span style="color:#f92672">=</span> wuppiStore<span style="color:#f92672">.</span><span style="color:#a6e22e">bestelleAlleWuppis</span><span style="color:#f92672">(</span>lager<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Hat die Bestellung geklappt?
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>assertEquals<span style="color:#f92672">(</span>2<span style="color:#f92672">,</span>bestellteWuppis<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">());</span>
+</span></span></code></pre></div><h3 id="mockito-spies">Mockito Spies</h3>
+<p>Manchmal möchten wir allerdings nicht immer gleich ein ganzes Objekt mocken,
+aber dennoch Einfluss auf die aufgerufenen Methoden eines Objekts haben, um
+diese testen zu können. Vielleicht gibt es dabei ja sogar eine Möglichkeit unsere
+JUnit-Tests, mit denen wir normalerweise nur Rückgabewerte von Methoden testen
+können, zusätzlich auch das Verhalten also die Interaktionen mit einem Objekt
+beobachtbar zu machen. Somit wären diese Interaktionen auch testbar.</p>
+<p>Und genau dafür bietet Mockito eine Funktion: der sogenannte &quot;Spy&quot;.</p>
+<p>Dieser Spion erlaubt es uns nun zusätzlich das Verhalten zu testen. Das geht in
+die Richtung von <a href="https://de.wikipedia.org/wiki/Behavior_Driven_Development">BDD - Behavior Driven Development</a>.</p>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo: <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/testing/src/mockito/src/test/java/wuppie/spy/">WuppiWarenlager (wuppie.spy)</a>)
+</span>
+</div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Spion erstellen, der unser wuppiWarenlager überwacht.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">wuppiWarenlager</span> <span style="color:#f92672">=</span> spy<span style="color:#f92672">(</span>WuppiWarenlager<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>Hier hatten wir uns einen Spion erzeugt, mit dem sich anschließend das Verhalten
+verändern lässt:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>when<span style="color:#f92672">(</span>wuppiWarenlager<span style="color:#f92672">.</span><span style="color:#a6e22e">getAlleWuppis</span><span style="color:#f92672">()).</span><span style="color:#a6e22e">thenReturn</span><span style="color:#f92672">(</span>Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Wuppi<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Wuppi007&#34;</span><span style="color:#f92672">)));</span>
+</span></span></code></pre></div><p>Aber auch der Zugriff lässt sich kontrollieren/testen:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>verify<span style="color:#f92672">(</span>wuppiWarenlager<span style="color:#f92672">).</span><span style="color:#a6e22e">addWuppi</span><span style="color:#f92672">(</span>normalerWuppi<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>verifyNoMoreInteractions<span style="color:#f92672">(</span>wuppiWarenlager<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>Die normalen Testmöglichkeiten von JUnit runden unseren Test zudem ab.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>assertEquals<span style="color:#f92672">(</span>1<span style="color:#f92672">,</span>wuppiWarenlager<span style="color:#f92672">.</span><span style="color:#a6e22e">lager</span><span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">());</span>
+</span></span></code></pre></div><h2 id="mockito-und-annotationen">Mockito und Annotationen</h2>
+<p>In Mockito können Sie wie oben gezeigt mit <code>mock()</code> und <code>spy()</code> neue
+Mocks bzw. Spies erzeugen und mit <code>verify()</code> die Interaktion überprüfen
+und mit <code>ArgumentMatcher&lt;T&gt;</code> bzw. den vordefinierten <code>ArgumentMatchers</code>
+auf Argumente zuzugreifen bzw. darauf zu reagieren.</p>
+<p>Zusätzlich/alternativ gibt es in Mockito zahlreiche Annotationen, die
+<strong>ersatzweise</strong> statt der genannten Methoden genutzt werden können. Hier
+ein kleiner Überblick über die wichtigsten in Mockito verwendeten Annotation:</p>
+<ul>
+<li>
+<p><code>@Mock</code> wird zum Markieren des zu mockenden Objekts verwendet.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Mock</span>
+</span></span><span style="display:flex;"><span>WuppiWarenlager lager<span style="color:#f92672">;</span>
+</span></span></code></pre></div></li>
+<li>
+<p><code>@RunWith(MockitoJUnitRunner.class)</code> ist der entsprechende JUnit-Runner,
+wenn Sie Mocks mit <code>@Mock</code> anlegen.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@RunWith</span><span style="color:#f92672">(</span>MockitoJUnitRunner<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ToDoBusinessMock</span> <span style="color:#f92672">{...}</span>
+</span></span></code></pre></div></li>
+<li>
+<p><code>@Spy</code> erlaubt das Erstellen von partiell gemockten Objekten. Dabei wird eine
+Art Wrapper um das zu mockende Objekt gewickelt, der dafür sorgt, dass alle
+Methodenaufrufe des Objekts an den Spy delegiert werden. Diese können über den
+Spion dann abgefangen/verändert oder ausgewertet werden.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Spy</span>
+</span></span><span style="display:flex;"><span>ArrayList<span style="color:#f92672">&lt;</span>Wuppi<span style="color:#f92672">&gt;</span> arrayListenSpion<span style="color:#f92672">;</span>
+</span></span></code></pre></div></li>
+<li>
+<p><code>@InjectMocks</code> erlaubt es, Parameter zu markieren, in denen Mocks und/oder
+Spies injiziert werden. Mockito versucht dann (in dieser Reihenfolge) per
+Konstruktorinjektion, Setterinjektion oder Propertyinjektion die Mocks zu
+injizieren. Weitere Informationen darüber findet man hier:
+<a href="https://javadoc.io/static/org.mockito/mockito-core/4.5.1/org/mockito/InjectMocks.html">Mockito Dokumentation</a></p>
+<p><strong>Anmerkung</strong>: Es ist aber nicht ratsam &quot;Field- oder Setterinjection&quot; zu nutzen,
+da man nur bei der Verwendung von &quot;Constructorinjection&quot; sicherstellen kann, das
+eine Klasse nicht ohne die eigentlich notwendigen Parameter instanziiert wurde.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@InjectMocks</span>
+</span></span><span style="display:flex;"><span>Wuppi fluppi<span style="color:#f92672">;</span>
+</span></span></code></pre></div></li>
+<li>
+<p><code>@Captor</code> erlaubt es, die Argumente einer Methode abzufangen/auszuwerten. Im
+Zusammenspiel mit Mockitos <code>verify()</code>-Methode kann man somit auch die einer
+Methode übergebenen Argumente verifizieren.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Captor</span>
+</span></span><span style="display:flex;"><span>ArgumentCaptor<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> argumentCaptor<span style="color:#f92672">;</span>
+</span></span></code></pre></div></li>
+<li>
+<p><code>@ExtendWith(MockitoExtension.class)</code> wird in JUnit5 verwendet, um die
+Initialisierung von Mocks zu vereinfachen. Damit entfällt zum Beispiel die
+noch unter JUnit4 nötige Initialisierung der Mocks durch einen Aufruf der
+Methode <code>MockitoAnnotations.openMocks()</code> im Setup des Tests (<code>@Before</code> bzw.
+<code>@BeforeEach</code>).</p>
+</li>
+</ul>
+<h3 id="prüfen-der-interaktion-mit-verify">Prüfen der Interaktion mit <em>verify()</em></h3>
+<p>Mit Hilfe der umfangreichen <code>verify()</code>-Methoden, die uns Mockito mitliefert, können
+wir unseren Code unter anderem auf unerwünschte Seiteneffekte testen. So ist es mit
+<code>verify</code> zum Beispiel möglich abzufragen, ob mit einem gemockten Objekt interagiert
+wurde, wie damit interagiert wurde, welche Argumente dabei übergeben worden sind und
+in welcher Reihenfolge die Interaktionen damit erfolgt sind.</p>
+<p>Hier nur eine kurze Übersicht über das Testen des Codes mit Hilfe von Mockitos
+<code>verify()</code>-Methoden.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testVerify_DasKeineInteraktionMitDerListeStattgefundenHat</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Testet, ob die spezifizierte Interaktion mit der Liste nie stattgefunden hat.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    verify<span style="color:#f92672">(</span>fluppisListe<span style="color:#f92672">,</span> never<span style="color:#f92672">()).</span><span style="color:#a6e22e">clear</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testVerify_ReihenfolgeDerInteraktionenMitDerFluppisListe</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Testet, ob die Reihenfolge der spezifizierten Interaktionen mit der Liste eingehalten wurde.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    fluppisListe<span style="color:#f92672">.</span><span style="color:#a6e22e">clear</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    InOrder reihenfolge <span style="color:#f92672">=</span> inOrder<span style="color:#f92672">(</span>fluppisListe<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    reihenfolge<span style="color:#f92672">.</span><span style="color:#a6e22e">verify</span><span style="color:#f92672">(</span>fluppisListe<span style="color:#f92672">).</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Fluppi001&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    reihenfolge<span style="color:#f92672">.</span><span style="color:#a6e22e">verify</span><span style="color:#f92672">(</span>fluppisListe<span style="color:#f92672">).</span><span style="color:#a6e22e">clear</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testVerify_FlexibleArgumenteBeimZugriffAufFluppisListe</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Testet, ob schon jemals etwas zu der Liste hinzugefügt wurde.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Dabei ist es egal welcher String eingegeben wurde.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    verify<span style="color:#f92672">(</span>fluppisListe<span style="color:#f92672">).</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>anyString<span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testVerify_InteraktionenMitHilfeDesArgumentCaptor</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Testet, welches Argument beim Methodenaufruf übergeben wurde.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    fluppisListe<span style="color:#f92672">.</span><span style="color:#a6e22e">addAll</span><span style="color:#f92672">(</span>Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;BobDerBaumeister&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    ArgumentCaptor<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&gt;</span> argumentMagnet <span style="color:#f92672">=</span> ArgumentCaptor<span style="color:#f92672">.</span><span style="color:#a6e22e">forClass</span><span style="color:#f92672">(</span>FluppisListe<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    verify<span style="color:#f92672">(</span>fluppisListe<span style="color:#f92672">).</span><span style="color:#a6e22e">addAll</span><span style="color:#f92672">(</span>argumentMagnet<span style="color:#f92672">.</span><span style="color:#a6e22e">capture</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> argumente <span style="color:#f92672">=</span> argumentMagnet<span style="color:#f92672">.</span><span style="color:#a6e22e">getValue</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    assertEquals<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;BobDerBaumeister&#34;</span><span style="color:#f92672">,</span> argumente<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>0<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo: <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/testing/src/mockito/src/test/java/wuppie/verify/">WuppiWarenlager (wuppie.verify)</a>)
+</span>
+</div>
+<h2 id="wrap-up">Wrap-Up</h2>
+<ul>
+<li>
+<p>Gründliches Testen ist ebenso viel Aufwand wie Coden!</p>
+</li>
+<li>
+<p>Mockito ergänzt JUnit:</p>
+<ul>
+<li>Mocken ganzer Klassen (<code>mock()</code>, <code>when().thenReturn()</code>)</li>
+<li>Wrappen von Objekten (<code>spy()</code>, <code>doReturn().when()</code>)</li>
+<li>Auswerten, wie häufig Methoden aufgerufen wurden (<code>verify()</code>)</li>
+<li>Auswerten, mit welchen Argumenten Methoden aufgerufen wurden (<code>anyString</code>)</li>
+</ul>
+</li>
+</ul>
+
+    
+
+
+<div class="quizzes">
+    <h2>Quizzes</h2>
+
+    <ul>
+    
+        
+        
+        
+        <li>
+            <a href="https://www.fh-bielefeld.de/elearning/goto.php?target=tst_1077199&amp;client_id=FH-Bielefeld" class="icon reading" target="_blank" rel="nofollow noopener noreferrer"><strong>Quiz Mocking (ILIAS)</strong></a>
+        </li>
+        
+    
+    </ul>
+
+</div>
+
+
+    
+
+
+
+<div class="assignments">
+    <h2>Übungsblätter/Aufgaben</h2>
+
+    <ul>
+    
+        
+        
+        
+            <li>
+                <a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet05/"><strong>Blatt 05: Mocking, Smells, Refactoring</strong></a>
+                 (Abgabe: Di, 10.05., 18 Uhr, PR/MR)
+            </li>
+        
+    
+    </ul>
+
+</div>
+
+
+    
+
+
+
+<div class="bib">
+    <h2>Quellen</h2>
+
+    <ul>
+    
+        
+        
+
+        
+            
+            
+            
+            
+            
+
+            
+            
+                
+                    
+                
+            
+            
+            
+            
+            
+            
+
+            <li id="id_Mockito">
+            
+                [Mockito] <a href="https://github.com/mockito/mockito" class="icon reading" target="_blank" rel="nofollow noopener noreferrer"><strong>Mockito</strong></a>
+            
+            
+                <br>S. Faber and B. Dutheil and R. Winterhalter and T.v.d. Lippe, 2022.
+                
+                
+            
+            
+            </li>
+        
+
+    
+    </ul>
+
+</div>
+
+
+
+
+
+
+        </div>
+      </main><p><div style="color: darkgray; font-size: smaller;">
+<p style="margin-left: 1rem;">
+    <!-- https://creativecommons.org/choose/ -->
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;margin:0;display:inline;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a> Unless otherwise noted, <a href="https://github.com/PM-Dungeon/PM-Lecture">this work</a> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/cagix" property="cc:attributionName" rel="cc:attributionURL">Carsten Gips</a> and <a href="https://github.com/PM-Dungeon/PM-Lecture/graphs/contributors">contributors</a> is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+<br />
+    Icons by <a href="https://fontawesome.com/">Font Awesome</a>.
+    Built with <a href="https://github.com/jgm/pandoc">Pandoc</a> using <a href="https://github.com/cagix/pandoc-lecture">Pandoc-Lecture</a> and <a href="https://github.com/gohugoio/hugo">Hugo</a> using the <a href="https://github.com/McShelby/hugo-theme-relearn">Hugo Relearn Theme</a>.
+</p>
+</div>
+</p>
+
+    </div>
+    <aside id="sidebar" class="default-animation showVisitedLinks">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
+<a id="logo" href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/'>
+    <img style="max-width:35%" alt="icon" src='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/images/logo.png'>
+</a>
+
+        </div>
+      </div>
+      <div id="content-wrapper" class="highlightable">
+        <ul class="topics">
+          <li data-nav-id="/git/" title="Git" class="dd-item"><input type="checkbox" id="section-346b17b87a1a6c2e7ff1e8f0f4d1b4bd" class="toggle"/><label for="section-346b17b87a1a6c2e7ff1e8f0f4d1b4bd" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/">Git<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/git/intro/" title="Intro: Versionskontrolle in der Softwareentwicklung" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/intro/">Intro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/basics/" title="Basics der Versionsverwaltung mit Git (lokale Repos)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/basics/">Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/branches/" title="Git Branches: Features unabhängig entwickeln und mit Git verwalten" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branches/">Branches<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/branching-strategies/" title="Branching-Strategien mit Git" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branching-strategies/">Branching-Strategien<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/remotes/" title="Arbeiten mit Git Remotes (dezentrale Repos)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/remotes/">Remotes<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/workflows/" title="Zusammenarbeit: Git-Workflows und Merge-/Pull-Requests" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/workflows/">Workflows<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/bisect/" title="Fehlersuche mit Git Bisect" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/bisect/">Bisect<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/testing/" title="Testing" class="dd-item parent"><input type="checkbox" id="section-a831e487e7bd822b29c7ec65758c1503" class="toggle" checked/><label for="section-a831e487e7bd822b29c7ec65758c1503" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/">Testing<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/testing/testing-intro/" title="Einführung Softwaretest" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testing-intro/">Intro SW-Test<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/junit-basics/" title="Testen mit JUnit (JUnit-Basics)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/junit-basics/">JUnit-Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/testcases/" title="Testfallermittlung: Wie viel und was muss man testen?" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testcases/">Testfallermittlung<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/mockito/" title="Mocking mit Mockito" class="dd-item active"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/mockito/">Mocking<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/coding/" title="Coding" class="dd-item"><input type="checkbox" id="section-079e50620d382bff188ccaf7d7eec5ec" class="toggle"/><label for="section-079e50620d382bff188ccaf7d7eec5ec" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/">Coding<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/coding/logging/" title="Logging" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/logging/">Logging<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/javadoc/" title="Javadoc" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/javadoc/">Javadoc<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/smells/" title="Code Smells" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/smells/">Code Smells<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/codingrules/" title="Coding Conventions und Metriken" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/codingrules/">Coding Conventions<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/refactoring/" title="Refactoring" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/refactoring/">Refactoring<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/tdd/" title="Testbarkeit und Testdriven Development (TDD)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/tdd/">Testbarkeit und TDD<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/building/" title="Building" class="dd-item"><input type="checkbox" id="section-ff836c14ff2daf3537fcd8281d19c8a3" class="toggle"/><label for="section-ff836c14ff2daf3537fcd8281d19c8a3" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/">Building<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/building/ant/" title="Build-Systeme: Apache Ant" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ant/">Ant<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/maven/" title="Build-Systeme: Apache Maven" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/maven/">Maven<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/gradle/" title="Build-Systeme: Gradle" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/gradle/">Gradle<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/ci/" title="Continuous Integration (CI)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ci/">Continuous Integration<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/docker/" title="Einführung in Docker" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/docker/">Docker<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/pattern/" title="Pattern" class="dd-item"><input type="checkbox" id="section-84eb7f5d4debf68ee3bffeb919ec8445" class="toggle"/><label for="section-84eb7f5d4debf68ee3bffeb919ec8445" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/">Pattern<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/pattern/factory-method/" title="Factory-Method-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/factory-method/">Factory-Method<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/visitor/" title="Visitor-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/visitor/">Visitor<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/observer/" title="Observer-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/observer/">Observer<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/strategy/" title="Strategy-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/strategy/">Strategy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/template-method/" title="Template-Method-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/template-method/">Template-Method<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/command/" title="Command-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/command/">Command<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/flyweight/" title="Flyweight-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/flyweight/">Flyweight<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/type-object/" title="Type-Object-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/type-object/">Type-Object<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/singleton/" title="Singleton-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/singleton/">Singleton<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/generics/" title="Generics" class="dd-item"><input type="checkbox" id="section-9ec2dd2215ae1799fe9fb0d331b91e01" class="toggle"/><label for="section-9ec2dd2215ae1799fe9fb0d331b91e01" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/">Generics<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/generics/classes-methods/" title="Generische Klassen &amp; Methoden" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/classes-methods/">Klassen &amp; Methoden<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/bounds-wildcards/" title="Bounds &amp; Wildcards" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/bounds-wildcards/">Bounds &amp; Wildcards<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/type-erasure/" title="Type Erasure" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/type-erasure/">Type Erasure<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/generics-polymorphism/" title="Generics und Polymorphie" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/generics-polymorphism/">Polymorphie<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/java-jvm/" title="Java / JVM" class="dd-item"><input type="checkbox" id="section-1d4a17db91c5179ff6d850c019075026" class="toggle"/><label for="section-1d4a17db91c5179ff6d850c019075026" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/">Java / JVM<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/java-jvm/regexp/" title="Reguläre Ausdrücke" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/regexp/">RegExp<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/configuration/" title="Konfiguration eines Programms" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/configuration/">Konfiguration<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/enums/" title="Aufzählungen (Enumerations)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/enums/">Enumerations<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/annotations/" title="Annotationen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/annotations/">Annotationen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/reflection/" title="Reflection" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/reflection/">Reflection<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/collections/" title="Java Collections Framework" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/collections/">Collections<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/serialisation/" title="Serialisierung von Objekten und Zuständen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/serialisation/">Serialisierung<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/exceptions/" title="Exception-Handling" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/exceptions/">Exceptions<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/modern-java/" title="Modern Java" class="dd-item"><input type="checkbox" id="section-b61bc4c9231f95b2150d554b2f10a68d" class="toggle"/><label for="section-b61bc4c9231f95b2150d554b2f10a68d" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/">Modern Java<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/modern-java/defaultmethods/" title="Interfaces: Default-Methoden" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/defaultmethods/">Default-Methoden<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/lambdas/" title="Lambda-Ausdrücke und funktionale Interfaces" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/lambdas/">Lambda-Ausdrücke<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/methodreferences/" title="Methoden-Referenzen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/methodreferences/">Methoden-Referenzen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/stream-api/" title="Stream-API" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/stream-api/">Stream-API<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/records/" title="Record-Klassen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/records/">Records<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/optional/" title="Optional" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/optional/">Optional<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/threads/" title="Threads" class="dd-item"><input type="checkbox" id="section-d05c691fa11b6c7c73707b1f693354bc" class="toggle"/><label for="section-d05c691fa11b6c7c73707b1f693354bc" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/">Threads<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/threads/intro/" title="Einführung in die nebenläufige Programmierung mit Threads" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/intro/">Intro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/threads/synchronisation/" title="Synchronisation: Verteilter Zugriff auf gemeinsame Ressourcen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/synchronisation/">Synchronisation<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/threads/highlevel/" title="High-Level Concurrency" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/highlevel/">High-Level Concurrency<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/gui/" title="GUI" class="dd-item"><input type="checkbox" id="section-6bd1817b64a743ce3da58441e61d147a" class="toggle"/><label for="section-6bd1817b64a743ce3da58441e61d147a" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/">GUI<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/gui/basics/" title="Swing 101: Basics" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/basics/">Swing: Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/events/" title="Swing Events" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/events/">Swing: Events<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/widgets/" title="Swing: Nützliche Widgets" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/widgets/">Swing: Widgets<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/layouts/" title="Swing: Layout-Manager" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/layouts/">Swing: Layout-Manager<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/tables/" title="Swing: Tabellen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/tables/">Swing: Tabellen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/java2d/" title="Einführung in Graphics und Java 2D" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/java2d/">Java2D<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/frameworks/" title="Frameworks" class="dd-item"><input type="checkbox" id="section-6e87d98d146ebd1a56f5cfe9e946dff8" class="toggle"/><label for="section-6e87d98d146ebd1a56f5cfe9e946dff8" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/">Frameworks<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/frameworks/intro/" title="Frameworks: Einstieg" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/intro/">Intro<i class="fas fa-check read-icon"></i></a></li></ul></li>
+        </ul>
+        <div id="shortcuts">
+          <div class="nav-title">More</div>
+          <ul>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/schedule"><i class='fas fa-bookmark'></i> Fahrplan</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments"><i class='fas fa-bookmark'></i> Praktikum</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/grading"><i class='fas fa-bookmark'></i> Note/Credits</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/syllabus"><i class='fas fa-bookmark'></i> Syllabus</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/resources"><i class='fas fa-bookmark'></i> Ressourcen</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/exam"><i class='fas fa-bookmark'></i> Prüfungsvorbereitung</a></li>
+          </ul>
+        </div>
+        <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showVisitedLinks showFooter"></div>
+        <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showVisitedLinks showFooter"/>
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVariantSwitch showVisitedLinks">
+          <ul>
+            <li id="select-language-container" class="footerLangSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-language fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-language" onchange="location = baseUri + this.value;">
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+            </li>
+            <li id="select-variant-container" class="footerVariantSwitch showVariantSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-variant" onchange="variants.changeVariant( this.value );">
+                    <option id="relearn-light" value="relearn-light" selected>Relearn Light</option>
+                    <option id="relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="green" value="green">Green</option>
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+              <script>variants.markSelectedVariant();</script>
+            </li>
+            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+          </ul>
+        </div>
+        <div id="footer" class="footerFooter showFooter"><p style="margin-left: 1rem;">
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/imprint'>Impressum</a>,
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/privacy'>Datenschutz</a>,
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/credits'>Credits</a>
+</p>
+
+        </div>
+      </div>
+    </aside>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/clipboard.min.js?1656322214"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/perfect-scrollbar.min.js?1656322214"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/featherlight.min.js?1656322214"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/theme.js?1656322214"></script>
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$','$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+</script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+</html>
+

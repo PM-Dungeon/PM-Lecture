@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.96.0" />
+    <meta name="generator" content="Relearn 3.4.0&#43;tip">
+    <meta name="description" content="">
+    <meta name="author" content="cagix">
+    <title>Lambda-Ausdrücke und funktionale Interfaces   </title>
+    <link rel="icon" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/images/logo.png?1656322214" type="image/png">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/nucleus.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/fontawesome-all.min.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/featherlight.min.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/perfect-scrollbar.min.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/auto-complete.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/theme.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/theme-relearn-light.css?1656322214" rel="stylesheet" id="variant-style">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/variant.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/print.css?1656322214" rel="stylesheet" media="print">
+    <style>
+      :not(pre) > code.copy-to-clipboard-code + span.copy-to-clipboard-button {
+        display: none;
+      }
+      :not(pre) > code.copy-to-clipboard-code {
+        border-bottom-right-radius: 2px;
+        border-top-right-radius: 2px;
+        border-right-width: 1px;
+      }
+    </style>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/variant.js?1656322214"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      var index_url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/index.json";
+      var root_url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      // some further base stuff
+      var baseUriFull='https:\/\/www.fh-bielefeld.de\/elearning\/data\/FH-Bielefeld\/lm_data\/lm_1271733/';
+      variants.init( [ 'relearn-light', 'relearn-dark', 'green' ] );
+    </script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/jquery.min.js?1656322214"></script><style type="text/css">
+
+ 
+.center {
+    align-content: center;
+    text-align: center;
+    margin: auto;
+}
+.alert {
+    color: #ff3333;
+}
+.bsp {
+    padding: 0.05cm;
+    border-width: 0.05cm;
+    border-style: solid;
+    border-color: #ddd;
+    background-color: #ddd;
+    border-radius: 25px;
+    float: right;
+}
+.cbox {
+    padding: 0.2cm;
+    border-width: 0.1cm;
+    border-style: solid;
+    border-color: #4070a0;
+    background-color: #f2f2f2;
+    margin: auto;
+    width: 60%;
+    text-align: center;
+    overflow: auto;
+}
+.blueArrow {
+    color: #4070a0;
+    font-family: "Courier New", "Courier", monospace;
+    font-weight: bold;
+}
+.origin {
+    background-color: #ededed;
+    font-size: 0.8em;
+}
+.showme {
+    background-color: #ededed;
+    font-size: 0.8em;
+}
+
+
+ 
+.tldr {
+    background: #dbe4ed;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.recap {
+    
+    
+   margin: 4px 0px 26px 0px;
+}
+.bib {
+    background: #dbe4ed;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.outcomes {
+    background: #d9e9d5;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.quizzes {
+    background: #d9e9d5;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.challenges {
+    background: #ebe4d6;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.assignments {
+    background: #ebe4d6;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+h1.tldr, h1.recap, h1.bib, h1.outcomes, h1.quizzes, h1.challenges, h1.assignments {
+    padding: 0px;
+}
+
+
+ 
+.noJsAlert {
+    padding: 20px;
+    background-color: #f44336;  
+    color: white;
+    margin-bottom: 15px;
+}
+
+
+ 
+.embed-video-player {
+    position: relative;
+    padding-bottom: 56%;
+    height: 0;
+    overflow: hidden;
+}
+.youtube-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border:0;
+}
+
+
+ 
+#header-wrapper {
+    padding:0.6rem;
+}
+
+
+ 
+#shortcuts {
+    padding-top: 2.0rem;
+}
+
+
+ 
+#chapter p {
+    text-align: left;
+}
+
+
+ 
+figcaption h4 {
+    margin-top:-2.5rem;
+}
+.border1 {
+    border:1px solid black;
+}
+
+ 
+td ul, td ol {
+    margin: 0 0 1rem 0.5rem;
+    padding: 0 0 0 0.5rem;
+}
+
+ 
+h1 { font-size:2.8rem !important;}
+h2 { font-size:2.2rem; margin:1.2rem 0}
+h3 { font-size:1.9rem; text-align:left !important; font-weight:400 !important;}
+h4 { font-size:1.6rem}
+h5 { font-size:1.3rem}
+h6 { font-size:1rem}
+
+h2 {
+    width:100% !important;
+    border-bottom:1px solid #5e5e5e !important;
+    padding-bottom: 2px;
+}
+.tldr h2, .recap h2, .bib h2, .outcomes h2, .quizzes h2, .challenges h2, .assignments h2 {
+    margin:0.5rem 0
+}
+
+.btn-crossreference, .btn-crossreference:hover {
+    cursor: initial !important;
+    color: #333 !important;
+    background-color: #fff !important;
+    border-color: #ccc !important;
+}
+
+</style>
+
+  </head>
+  <body class="mobile-support" data-url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/lambdas/">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div id="top-github-link">
+            <a class="github-link" title='Edit' href="https://github.com/PM-Dungeon/PM-Lecture/edit/master/markdown/modern-java/lambdas.md" target="blank">
+              <i class="fas fa-pen fa-fw"></i>
+            </a>
+          </div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <span id="toc-menu" title='Table of Contents'><i class="fas fa-list-alt fa-fw"></i></span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <meta itemprop="itemListOrder" content="Descending" />
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="3" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/"><span itemprop="name">PM S22</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="2" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/"><span itemprop="name">Modern Java</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/lambdas/" aria-disabled="true"><span itemprop="name">Lambda-Ausdrücke und funktionale Interfaces</span></a></li>
+            </ol>
+          </div>
+          <div class="default-animation progress">
+            <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#problem-sortieren-einer-studi-liste">Problem: Sortieren einer Studi-Liste</a></li>
+    <li><a href="#erinnerung-verschachtelte-klassen-nested-classes">Erinnerung: Verschachtelte Klassen (&quot;<em>Nested Classes</em>&quot;)</a>
+      <ul>
+        <li><a href="#innere-klassen-inner-classes">Innere Klassen (&quot;<em>Inner Classes</em>&quot;)</a></li>
+        <li><a href="#statische-innere-klassen-static-nested-classes">Statische innere Klassen (&quot;<em>Static Nested Classes</em>&quot;)</a></li>
+      </ul>
+    </li>
+    <li><a href="#lösung-comparator-als-anonyme-innere-klasse">Lösung: Comparator als anonyme innere Klasse</a></li>
+    <li><a href="#vereinfachung-mit-lambda-ausdruck">Vereinfachung mit Lambda-Ausdruck</a></li>
+    <li><a href="#syntax-für-lambdas">Syntax für Lambdas</a></li>
+    <li><a href="#quiz-welches-sind-keine-gültigen-lambda-ausdrücke">Quiz: Welches sind keine gültigen Lambda-Ausdrücke?</a></li>
+    <li><a href="#definition-funktionales-interface-functional-interfaces">Definition &quot;Funktionales Interface&quot; (&quot;<em>functional interfaces</em>&quot;)</a></li>
+    <li><a href="#quiz-welches-ist-kein-funktionales-interface">Quiz: Welches ist kein funktionales Interface?</a></li>
+    <li><a href="#lambdas-und-funktionale-interfaces-typprüfung">Lambdas und funktionale Interfaces: Typprüfung</a></li>
+    <li><a href="#wrap-up">Wrap-Up</a></li>
+  </ul>
+</nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+
+
+
+    
+
+
+
+
+
+
+<div class="tldr">
+    <h2>TL;DR</h2>
+
+    
+
+    
+        <p>Mit einer anonymen inneren Klasse erstellt man gewissermaßen ein Objekt einer &quot;Wegwerf&quot;-Klasse:
+Man leitet <em>on-the-fly</em> von einem Interface ab oder erweitert eine Klasse und implementiert die
+benötigten Methoden und erzeugt von dieser Klasse sofort eine Instanz (Objekt). Diese neue Klasse
+ist im restlichen Code nicht sichtbar.</p>
+<p>Anonyme innere Klassen sind beispielsweise in Swing recht nützlich, wenn man einer Komponente einen
+Listener mitgeben will: Hier erzeugt man eine anonyme innere Klasse basierend auf dem passenden
+Listener-Interface, implementiert die entsprechenden Methoden und übergibt das mit dieser Klasse
+erzeugte Objekt als neuen Listener der Swing-Komponente.</p>
+<p>Mit Java 8 können unter gewissen Bedingungen diese anonymen inneren Klassen zu Lambda-Ausdrücken
+(und Methoden-Referenzen) vereinfacht werden. Dazu muss die anonyme innere Klasse ein sogenanntes
+<strong>funktionales Interface</strong> implementieren.</p>
+<p>Funktionale Interfaces sind Interfaces mit <em>genau einer abstrakten Methode</em>. Es können beliebig
+viele Default-Methoden im Interface enthalten sein, und es können <code>public</code> sichtbare abstrakte
+Methoden von <code>java.lang.Object</code> geerbt/überschrieben werden.</p>
+<p>Die Lambda-Ausdrücke entsprechen einer anonymen Methode: Die Parameter werden aufgelistet (in
+Klammern), und hinter einem Pfeil kommt entweder <em>ein</em> Ausdruck (Wert - gleichzeitig Rückgabewert
+des Lambda-Ausdrucks) oder beliebig viele Anweisungen (in geschweiften Klammern, mit Semikolon):</p>
+<ul>
+<li>Form 1: <code>(parameters)  -&gt;  expression</code></li>
+<li>Form 2: <code>(parameters)  -&gt;  { statements; }</code></li>
+</ul>
+<p>Der Lambda-Ausdruck muss von der Signatur her genau der einen abstrakten Methode im unterliegenden
+funktionalen Interface entsprechen.</p>
+
+    
+
+    
+        <h3>Videos (YouTube)</h3>
+        
+
+<ul>
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/Wd8KG7xtp4c" target="_blank" rel="nofollow noopener noreferrer">VL Lambda-Ausdrücke und funktionale Interfaces</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/QEXpQwRYoYc" target="_blank" rel="nofollow noopener noreferrer">Demo Anonyme innere Klasse</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/2LJIxsVw4pM" target="_blank" rel="nofollow noopener noreferrer">Demo Lambda-Ausdruck</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/93O1oDL5_5c" target="_blank" rel="nofollow noopener noreferrer">Demo Funktionales Interface</a></li>
+    
+
+</ul>
+
+    
+
+    
+        <h3>Videos (FH-Medienportal)</h3>
+        
+
+<ul>
+
+    
+    
+
+    
+    
+    
+
+    
+        <li><a href="https://www.fh-bielefeld.de/medienportal/m/d2398cc8e1279e6b6bf1df06bd30b731e714d04d10e15b87a5f89aa07cbaf97978bb12f82ea0c7eff8a3133eb65134521933218fb94856fb6e8a6dc187dded28" target="_blank" rel="nofollow noopener noreferrer">VL Lambda-Ausdrücke und funktionale Interfaces</a></li>
+    
+
+</ul>
+
+    
+
+    
+
+</div>
+
+
+    
+
+
+
+<div class="outcomes">
+    <h2>Lernziele</h2>
+
+    
+
+    
+    
+    <ul>
+    
+        
+        <li>(K2) Funktionales Interfaces (Definition)</li>
+        
+        
+    
+        
+        
+        <li>(K3) Einsatz innerer und anonymer Klassen</li>
+        
+    
+        
+        
+        <li>(K3) Erstellen eigener funktionaler Interfaces</li>
+        
+    
+        
+        
+        <li>(K3) Einsatz von Lambda-Ausdrücken</li>
+        
+    
+    </ul>
+    
+
+</div>
+
+
+    <h2 id="problem-sortieren-einer-studi-liste">Problem: Sortieren einer Studi-Liste</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>Studi<span style="color:#f92672">&gt;</span> sl <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Liste sortieren?
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>sl<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(???);</span>  <span style="color:#75715e">// Parameter: java.util.Comparator&lt;Studi&gt;
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyCompare</span> <span style="color:#66d9ef">implements</span> Comparator<span style="color:#f92672">&lt;</span>Studi<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">compare</span><span style="color:#f92672">(</span>Studi o1<span style="color:#f92672">,</span> Studi o2<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> o1<span style="color:#f92672">.</span><span style="color:#a6e22e">getCredits</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> o2<span style="color:#f92672">.</span><span style="color:#a6e22e">getCredits</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Liste sortieren?
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>MyCompare mc <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyCompare<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>sl<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span>mc<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>Da <code>Comparator&lt;T&gt;</code> ein Interface ist, muss man eine extra Klasse anlegen, die die
+abstrakte Methode aus dem Interface implementiert und ein Objekt von dieser Klasse
+erzeugen und dieses dann der <code>sort()</code>-Methode übergeben.</p>
+<p>Die Klasse bekommt wie in Java üblich eine eigene Datei und ist damit in der
+Package-Struktur offen sichtbar und &quot;verstopft&quot; mir damit die Strukturen: Diese
+Klasse ist doch nur eine Hilfsklasse ... Noch schlimmer: Ich brauche einen Namen
+für diese Klasse!</p>
+<p>Den ersten Punkt könnte man über verschachtelte Klassen lösen: Die Hilfsklasse
+wird innerhalb der Klasse definiert, die das Objekt benötigt. Für den zweiten
+Punkt brauchen wir mehr Anlauf ...</p>
+<h2 id="erinnerung-verschachtelte-klassen-nested-classes">Erinnerung: Verschachtelte Klassen (&quot;<em>Nested Classes</em>&quot;)</h2>
+<p>Man kann Klassen innerhalb von Klassen definieren: Verschachtelte Klassen.</p>
+<ul>
+<li>Implizite Referenz auf Instanz der äußeren Klasse, Zugriff auf <strong>alle</strong> Elemente</li>
+<li><strong>Begriffe</strong>:
+<ul>
+<li>&quot;normale&quot; innere Klassen: &quot;<em>inner classes</em>&quot;</li>
+<li>statische innere Klassen: &quot;<em>static nested classes</em>&quot;</li>
+</ul>
+</li>
+<li>Einsatzzweck:
+<ul>
+<li>Hilfsklassen: Zusätzliche Funktionalität kapseln; Nutzung <strong>nur</strong> in äußerer Klasse</li>
+<li>Kapselung von Rückgabewerten</li>
+</ul>
+</li>
+</ul>
+<p>Sichtbarkeit: Wird u.U. von äußerer Klasse &quot;überstimmt&quot;</p>
+<h3 id="innere-klassen-inner-classes">Innere Klassen (&quot;<em>Inner Classes</em>&quot;)</h3>
+<ul>
+<li>Objekt der äußeren Klasse muss existieren</li>
+<li>Innere Klasse ist normales Member der äußeren Klasse</li>
+<li>Implizite Referenz auf Instanz äußerer Klasse</li>
+<li>Zugriff auf <strong>alle</strong> Elemente der äußeren Klasse</li>
+<li>Sonderfall: Definition innerhalb von Methoden (&quot;local classes&quot;)
+<ul>
+<li>Nur innerhalb der Methode sichtbar</li>
+<li>Kennt zusätzlich <code>final</code> Attribute der Methode</li>
+</ul>
+</li>
+</ul>
+<p>Beispiel:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Outer</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Inner</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Outer<span style="color:#f92672">.</span><span style="color:#a6e22e">Inner</span> inner <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Outer<span style="color:#f92672">().</span><span style="color:#a6e22e">new</span> Inner<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Beispiel mit Iterator als innere Klasse: <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/modern-java/src/nested/StudiListNested.java">nested.StudiListNested</a>
+</span>
+</div>
+<h3 id="statische-innere-klassen-static-nested-classes">Statische innere Klassen (&quot;<em>Static Nested Classes</em>&quot;)</h3>
+<ul>
+<li>Keine implizite Referenz auf Objekt</li>
+<li>Nur Zugriff auf Klassenmethoden und -attribute</li>
+</ul>
+<p>Beispiel:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Outer</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StaticNested</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Outer<span style="color:#f92672">.</span><span style="color:#a6e22e">StaticNested</span> nested <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Outer<span style="color:#f92672">.</span><span style="color:#a6e22e">StaticNested</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><h2 id="lösung-comparator-als-anonyme-innere-klasse">Lösung: Comparator als anonyme innere Klasse</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>Studi<span style="color:#f92672">&gt;</span> sl <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Parametrisierung mit anonymer Klasse
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>sl<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">new</span> Comparator<span style="color:#f92672">&lt;</span>Studi<span style="color:#f92672">&gt;()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">compare</span><span style="color:#f92672">(</span>Studi o1<span style="color:#f92672">,</span> Studi o2<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> o1<span style="color:#f92672">.</span><span style="color:#a6e22e">getCredits</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> o2<span style="color:#f92672">.</span><span style="color:#a6e22e">getCredits</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">});</span>  <span style="color:#75715e">// Semikolon nicht vergessen!!!
+</span></span></span></code></pre></div><p>=&gt; Instanz einer anonymen inneren Klasse, die das Interface <code>Comparator&lt;Studi&gt;</code> implementiert</p>
+<ul>
+<li>Für spezielle, einmalige Aufgabe: nur eine Instanz möglich</li>
+<li>Kein Name, kein Konstruktor, oft nur eine Methode</li>
+<li>Müssen Interface implementieren oder andere Klasse erweitern
+<ul>
+<li>Achtung Schreibweise: ohne <code>implements</code> oder <code>extends</code>!</li>
+</ul>
+</li>
+<li>Konstruktor kann auch Parameter aufweisen</li>
+<li>Zugriff auf alle Attribute der äußeren Klasse plus alle <code>final</code> lokalen
+Variablen</li>
+<li>Nutzung typischerweise bei GUIs: Event-Handler etc.</li>
+</ul>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo: <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/modern-java/src/nested/DemoAnonymousInnerClass.java">nested.DemoAnonymousInnerClass</a>
+</span>
+</div>
+<h2 id="vereinfachung-mit-lambda-ausdruck">Vereinfachung mit Lambda-Ausdruck</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>Studi<span style="color:#f92672">&gt;</span> sl <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Parametrisierung mit anonymer Klasse
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>sl<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">new</span> Comparator<span style="color:#f92672">&lt;</span>Studi<span style="color:#f92672">&gt;()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">compare</span><span style="color:#f92672">(</span>Studi o1<span style="color:#f92672">,</span> Studi o2<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> o1<span style="color:#f92672">.</span><span style="color:#a6e22e">getCredits</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> o2<span style="color:#f92672">.</span><span style="color:#a6e22e">getCredits</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">});</span>  <span style="color:#75715e">// Semikolon nicht vergessen!!!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Parametrisierung mit Lambda-Ausdruck
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>sl<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span> <span style="color:#f92672">(</span>Studi o1<span style="color:#f92672">,</span> Studi o2<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> o1<span style="color:#f92672">.</span><span style="color:#a6e22e">getCredits</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> o2<span style="color:#f92672">.</span><span style="color:#a6e22e">getCredits</span><span style="color:#f92672">()</span> <span style="color:#f92672">);</span>
+</span></span></code></pre></div><p><strong>Anmerkung</strong>: Damit für den Parameter alternativ auch ein Lambda-Ausdruck verwendet
+werden kann, muss der erwartete Parameter vom Typ her ein &quot;<strong>funktionales Interface</strong>&quot;
+(s.u.) sein!</p>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo: <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/modern-java/src/nested/DemoLambda.java">nested.DemoLambda</a>
+</span>
+</div>
+<h2 id="syntax-für-lambdas">Syntax für Lambdas</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">(</span>Studi o1<span style="color:#f92672">,</span> Studi o2<span style="color:#f92672">)</span>  <span style="color:#f92672">-&gt;</span>  o1<span style="color:#f92672">.</span><span style="color:#a6e22e">getCredits</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> o2<span style="color:#f92672">.</span><span style="color:#a6e22e">getCredits</span><span style="color:#f92672">()</span>
+</span></span></code></pre></div><p>Ein Lambda-Ausdruck ist eine Funktion ohne Namen und besteht aus drei Teilen:</p>
+<ol>
+<li>Parameterliste (in runden Klammern),</li>
+<li>Pfeil</li>
+<li>Funktionskörper (rechte Seite)</li>
+</ol>
+<p>Falls es <em>genau einen</em> Parameter gibt, <em>können</em> die runden Klammern um den Parameter
+entfallen.</p>
+<p>Dabei kann der Funktionskörper aus <em>einem Ausdruck</em> (&quot;<em>expression</em>&quot;) bestehen oder
+einer <em>Menge von Anweisungen</em> (&quot;<em>statements&quot;</em>), die dann in geschweifte Klammern
+eingeschlossen werden müssen (Block mit Anweisungen).</p>
+<p>Der Wert des Ausdrucks ist zugleich der Rückgabewert des Lambda-Ausdrucks.</p>
+<p>Varianten:</p>
+<ul>
+<li>
+<p><strong><code>(parameters)  -&gt;  expression</code></strong></p>
+</li>
+<li>
+<p><strong><code>(parameters)  -&gt;  { statements; }</code></strong></p>
+</li>
+</ul>
+<h2 id="quiz-welches-sind-keine-gültigen-lambda-ausdrücke">Quiz: Welches sind keine gültigen Lambda-Ausdrücke?</h2>
+<ol>
+<li><code>() -&gt; {}</code></li>
+<li><code>() -&gt; &quot;wuppie&quot;</code></li>
+<li><code>() -&gt; { return &quot;fluppie&quot;; }</code></li>
+<li><code>(Integer i) -&gt; return i + 42;</code></li>
+<li><code>(String s) -&gt; { &quot;foo&quot;; }</code></li>
+<li><code>(String s) -&gt; s.length()</code></li>
+<li><code>(Studi s) -&gt; s.getCredits() &gt; 300</code></li>
+<li><code>(List&lt;Studi&gt; sl) -&gt; sl.isEmpty()</code></li>
+<li><code>(int x, int y) -&gt; { System.out.println(&quot;Erg: &quot;); System.out.println(x+y); }</code></li>
+<li><code>() -&gt; new Studi()</code></li>
+<li><code>s -&gt; s.getCps() &gt; 100 &amp;&amp; s.getCps() &lt; 300</code></li>
+<li><code>s -&gt; { return s.getCps() &gt; 100 &amp;&amp; s.getCps() &lt; 300; }</code></li>
+</ol>
+
+<div class="expand">
+    <a class="expand-label" onclick="$t=$(this); if($t.parent('.expand-expanded.expand-marked').length){ $t.next().css('display','none') }else if($t.parent('.expand-marked').length){ $t.next().css('display','block') }else{ $t.next('.expand-content').slideToggle(100); } $t.parent().toggleClass('expand-expanded');">
+        <i class="fas fa-chevron-down"></i>
+        <i class="fas fa-chevron-right"></i>
+        Show Me
+    </a>
+    <div class="expand-content" style="display: none;">
+<div class='showme'>
+<p>Auflösung:</p>
+<p>(4) und (5): <code>return</code> ist eine Anweisung, d.h. bei (4) fehlen die geschweiften
+Klammern. <code>&quot;foo&quot;</code> ist ein String und als solcher ein Ausdruck, d.h. hier sind
+die geschweiften Klammern zu viel (oder man ergänze den String mit einem <code>return</code>,
+also <code>return &quot;foo&quot;;</code> ...).</p>
+</div>
+
+    </div>
+</div>
+<h2 id="definition-funktionales-interface-functional-interfaces">Definition &quot;Funktionales Interface&quot; (&quot;<em>functional interfaces</em>&quot;)</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@FunctionalInterface</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Wuppie</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">wuppie</span><span style="color:#f92672">(</span>T obj<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>Object obj<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fluppie</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> <span style="color:#66d9ef">return</span> 42<span style="color:#f92672">;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><code>Wuppie&lt;T&gt;</code> ist ein <span class='alert'><strong>funktionales Interface</strong></span>
+(&quot;<em>functional interface</em>&quot;) (seit Java 8)</p>
+<ul>
+<li>Hat <strong>genau <em>eine</em> abstrakte Methode</strong></li>
+<li>Hat evtl. weitere Default-Methoden</li>
+<li>Hat evtl. weitere abstrakte Methoden, die <code>public</code> Methoden von
+<code>java.lang.Object</code> überschreiben</li>
+</ul>
+<p>Die Annotation <code>@FunctionalInterface</code> selbst ist nur für den Compiler: Falls
+das Interface <em>kein</em> funktionales Interface ist, würde er beim Vorhandensein
+dieser Annotation einen Fehler werfen. Oder anders herum: Allein durch das
+Annotieren mit <code>@FunctionalInterface</code> wird aus einem Interface noch kein
+funktionales Interface! Vergleichbar mit <code>@Override</code> ...</p>
+<p><span class='alert'><strong>Während man für eine anonyme Klasse lediglich ein &quot;normales&quot; Interface
+(oder eine Klasse) benötigt, braucht man für Lambda-Ausdrücke zwingend ein
+passendes funktionales Interface!</strong></span></p>
+<p><em>Anmerkung</em>: Es scheint keine einheitliche deutsche Übersetzung für den Begriff
+<em>functional interface</em> zu geben. Es wird häufig mit &quot;funktionales Interface&quot;,
+manchmal aber auch mit &quot;Funktionsinterface&quot; übersetzt.</p>
+<p>Das in den obigen Beispielen eingesetzte Interface <code>java.util.Comparator&lt;T&gt;</code>
+ist also ein funktionales Interface: Es hat nur <em>eine</em> eigene abstrakte Methode
+<code>int compare(T o1, T o2);</code>.</p>
+<p>Im Package <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/package-summary.html">java.util.function</a>
+sind einige wichtige funktionale Interfaces bereits vordefiniert, beispielsweise
+<code>Predicate</code> (Test, ob eine Bedingung erfüllt ist) und <code>Function</code> (verarbeite
+einen Wert und liefere einen passenden Ergebniswert). Diese kann man auch in
+eigenen Projekten nutzen!</p>
+<h2 id="quiz-welches-ist-kein-funktionales-interface">Quiz: Welches ist kein funktionales Interface?</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Wuppie</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">wuppie</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> a<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Fluppie</span> <span style="color:#66d9ef">extends</span> Wuppie <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">wuppie</span><span style="color:#f92672">(</span><span style="color:#66d9ef">double</span> a<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Foo</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Bar</span> <span style="color:#66d9ef">extends</span> Wuppie <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">bar</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> <span style="color:#66d9ef">return</span> 42<span style="color:#f92672">;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div>
+<div class="expand">
+    <a class="expand-label" onclick="$t=$(this); if($t.parent('.expand-expanded.expand-marked').length){ $t.next().css('display','none') }else if($t.parent('.expand-marked').length){ $t.next().css('display','block') }else{ $t.next('.expand-content').slideToggle(100); } $t.parent().toggleClass('expand-expanded');">
+        <i class="fas fa-chevron-down"></i>
+        <i class="fas fa-chevron-right"></i>
+        Show Me
+    </a>
+    <div class="expand-content" style="display: none;">
+<div class='showme'>
+<p>Auflösung:</p>
+<ul>
+<li><code>Wuppie</code> hat <em>genau eine</em> abstrakte Methode =&gt; funktionales Interface</li>
+<li><code>Fluppie</code> hat zwei abstrakte Methoden =&gt; <strong>kein</strong> funktionales Interface</li>
+<li><code>Foo</code> hat gar keine abstrakte Methode =&gt; <strong>kein</strong> funktionales Interface</li>
+<li><code>Bar</code> hat <em>genau eine</em> abstrakte Methode (und eine Default-Methode) =&gt; funktionales Interface</li>
+</ul>
+</div>
+
+    </div>
+</div>
+<h2 id="lambdas-und-funktionale-interfaces-typprüfung">Lambdas und funktionale Interfaces: Typprüfung</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">java</span><span style="color:#f92672">.</span><span style="color:#a6e22e">util</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Comparator</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">compare</span><span style="color:#f92672">(</span>T o1<span style="color:#f92672">,</span> T o2<span style="color:#f92672">);</span>    <span style="color:#75715e">// abstrakte Methode
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Verwendung ohne weitere Typinferenz
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Comparator<span style="color:#f92672">&lt;</span>Studi<span style="color:#f92672">&gt;</span> c1 <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Studi o1<span style="color:#f92672">,</span> Studi o2<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> o1<span style="color:#f92672">.</span><span style="color:#a6e22e">getCredits</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> o2<span style="color:#f92672">.</span><span style="color:#a6e22e">getCredits</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Verwendung mit Typinferenz
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Comparator<span style="color:#f92672">&lt;</span>Studi<span style="color:#f92672">&gt;</span> c2 <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>o1<span style="color:#f92672">,</span> o2<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> o1<span style="color:#f92672">.</span><span style="color:#a6e22e">getCredits</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> o2<span style="color:#f92672">.</span><span style="color:#a6e22e">getCredits</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>Der Compiler prüft in etwa folgende Schritte, wenn er über einen Lambda-Ausdruck stolpert:</p>
+<ol>
+<li>In welchem Kontext habe ich den Lambda-Ausdruck gesehen?</li>
+<li>OK, der Zieltyp ist hier <code>Comparator&lt;Studi&gt;</code>.</li>
+<li>Wie lautet die <strong>eine</strong> abstrakte Methode im <code>Comparator&lt;T&gt;</code>-Interface?</li>
+<li>OK, das ist <code>int compare(T o1, T o2);</code></li>
+<li>Da <code>T</code> hier an <code>Studi</code> gebunden ist, muss der Lambda-Ausdruck
+der Methode <code>int compare(Studi o1, Studi o2);</code> entsprechen:
+2x <code>Studi</code> als Parameter und als Ergebnis ein <code>int</code></li>
+<li>Ergebnis:
+a)  Cool, passt zum Lambda-Ausdruck <code>c1</code>. Fertig.
+b)  D.h. in <code>c2</code> müssen <code>o1</code> und <code>o2</code> vom Typ <code>Studi</code> sein.
+Cool, passt zum Lambda-Ausdruck <code>c2</code>. Fertig.</li>
+</ol>
+<h2 id="wrap-up">Wrap-Up</h2>
+<ul>
+<li>
+<p>Anonyme Klassen: &quot;Wegwerf&quot;-Innere Klassen</p>
+<ul>
+<li>Müssen Interface implementieren oder Klasse erweitern</li>
+</ul>
+</li>
+<li>
+<p>Java8: <strong>Lambda-Ausdrücke</strong> statt anonymer Klassen (<strong>funktionales Interface nötig</strong>)</p>
+<ul>
+<li>Zwei mögliche Formen:
+<ul>
+<li>Form 1: <code>(parameters)  -&gt;  expression</code></li>
+<li>Form 2: <code>(parameters)  -&gt;  { statements; }</code></li>
+</ul>
+</li>
+<li>Im jeweiligen Kontext muss ein <strong>funktionales Interface</strong> verwendet werden,
+d.h. ein Interface mit <strong>genau</strong> einer abstrakten Methode</li>
+<li>Der Lambda-Ausdruck muss von der Signatur her dieser einen abstrakten Methode
+entsprechen</li>
+</ul>
+</li>
+</ul>
+
+    
+
+
+<div class="quizzes">
+    <h2>Quizzes</h2>
+
+    <ul>
+    
+        
+        
+        
+        <li>
+            <a href="https://www.fh-bielefeld.de/elearning/goto.php?target=tst_1087248&amp;client_id=FH-Bielefeld" class="icon reading" target="_blank" rel="nofollow noopener noreferrer"><strong>Quiz Lambda-Ausdrücke und funktionale Interfaces (ILIAS)</strong></a>
+        </li>
+        
+    
+    </ul>
+
+</div>
+
+
+    
+
+
+
+<div class="assignments">
+    <h2>Übungsblätter/Aufgaben</h2>
+
+    <ul>
+    
+        
+        
+        
+            <li>
+                <a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet08/"><strong>Blatt 08: Funktionsinterfaces, Lambdas, Methodenreferenzen, RegExp</strong></a>
+                 (Abgabe: Di, 07.06., 18 Uhr, PR/MR)
+            </li>
+        
+    
+    </ul>
+
+</div>
+
+
+    
+
+
+
+<div class="bib">
+    <h2>Quellen</h2>
+
+    <ul>
+    
+        
+        
+
+        
+
+    
+        
+        
+
+        
+            
+            
+            
+            
+            
+
+            
+            
+                
+                    
+                
+            
+            
+            
+            
+            
+            
+
+            <li id="id_Ullenboom2021">
+            
+                [Ullenboom2021] <a href="https://openbook.rheinwerk-verlag.de/javainsel/index.html" class="icon reading" target="_blank" rel="nofollow noopener noreferrer"><strong>Java ist auch eine insel</strong></a>
+            
+            
+                <br>Ullenboom, C., Rheinwerk-Verlag, 2021.
+                
+                    ISBN <a href="https://www.digibib.net/openurl/Bi10?isbn=978-3-8362-8745-6" target="_blank" rel="nofollow noopener noreferrer">978-3-8362-8745-6</a>.
+                
+                
+            
+            
+                <br><em>Kapitel 12: Lambda-Ausdrücke und funktionale Programmierung</em>
+            
+            </li>
+        
+
+    
+        
+        
+
+        
+            
+            
+            
+            
+            
+
+            
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+            
+            
+            
+            
+            
+
+            <li id="id_Urma2014">
+            
+                [Urma2014] <strong>Java 8 in action: Lambdas, streams, and functional-style programming</strong>
+            
+            
+                <br>Urma, R.-G. und Fusco, M. und Mycroft, A., Manning Publications, 2014.
+                
+                    ISBN <a href="https://www.digibib.net/openurl/Bi10?isbn=978-1-6172-9199-9" target="_blank" rel="nofollow noopener noreferrer">978-1-6172-9199-9</a>.
+                
+                
+            
+            
+                <br><em>Kapitel 3: Lambda Expressions, Kapitel 5: Working with streams</em>
+            
+            </li>
+        
+
+    
+    </ul>
+
+</div>
+
+
+
+
+
+
+        </div>
+      </main><p><div style="color: darkgray; font-size: smaller;">
+<p style="margin-left: 1rem;">
+    <!-- https://creativecommons.org/choose/ -->
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;margin:0;display:inline;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a> Unless otherwise noted, <a href="https://github.com/PM-Dungeon/PM-Lecture">this work</a> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/cagix" property="cc:attributionName" rel="cc:attributionURL">Carsten Gips</a> and <a href="https://github.com/PM-Dungeon/PM-Lecture/graphs/contributors">contributors</a> is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+<br />
+    Icons by <a href="https://fontawesome.com/">Font Awesome</a>.
+    Built with <a href="https://github.com/jgm/pandoc">Pandoc</a> using <a href="https://github.com/cagix/pandoc-lecture">Pandoc-Lecture</a> and <a href="https://github.com/gohugoio/hugo">Hugo</a> using the <a href="https://github.com/McShelby/hugo-theme-relearn">Hugo Relearn Theme</a>.
+</p>
+</div>
+</p>
+
+    </div>
+    <aside id="sidebar" class="default-animation showVisitedLinks">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
+<a id="logo" href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/'>
+    <img style="max-width:35%" alt="icon" src='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/images/logo.png'>
+</a>
+
+        </div>
+      </div>
+      <div id="content-wrapper" class="highlightable">
+        <ul class="topics">
+          <li data-nav-id="/git/" title="Git" class="dd-item"><input type="checkbox" id="section-346b17b87a1a6c2e7ff1e8f0f4d1b4bd" class="toggle"/><label for="section-346b17b87a1a6c2e7ff1e8f0f4d1b4bd" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/">Git<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/git/intro/" title="Intro: Versionskontrolle in der Softwareentwicklung" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/intro/">Intro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/basics/" title="Basics der Versionsverwaltung mit Git (lokale Repos)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/basics/">Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/branches/" title="Git Branches: Features unabhängig entwickeln und mit Git verwalten" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branches/">Branches<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/branching-strategies/" title="Branching-Strategien mit Git" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branching-strategies/">Branching-Strategien<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/remotes/" title="Arbeiten mit Git Remotes (dezentrale Repos)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/remotes/">Remotes<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/workflows/" title="Zusammenarbeit: Git-Workflows und Merge-/Pull-Requests" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/workflows/">Workflows<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/bisect/" title="Fehlersuche mit Git Bisect" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/bisect/">Bisect<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/testing/" title="Testing" class="dd-item"><input type="checkbox" id="section-a831e487e7bd822b29c7ec65758c1503" class="toggle"/><label for="section-a831e487e7bd822b29c7ec65758c1503" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/">Testing<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/testing/testing-intro/" title="Einführung Softwaretest" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testing-intro/">Intro SW-Test<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/junit-basics/" title="Testen mit JUnit (JUnit-Basics)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/junit-basics/">JUnit-Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/testcases/" title="Testfallermittlung: Wie viel und was muss man testen?" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testcases/">Testfallermittlung<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/mockito/" title="Mocking mit Mockito" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/mockito/">Mocking<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/coding/" title="Coding" class="dd-item"><input type="checkbox" id="section-079e50620d382bff188ccaf7d7eec5ec" class="toggle"/><label for="section-079e50620d382bff188ccaf7d7eec5ec" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/">Coding<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/coding/logging/" title="Logging" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/logging/">Logging<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/javadoc/" title="Javadoc" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/javadoc/">Javadoc<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/smells/" title="Code Smells" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/smells/">Code Smells<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/codingrules/" title="Coding Conventions und Metriken" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/codingrules/">Coding Conventions<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/refactoring/" title="Refactoring" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/refactoring/">Refactoring<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/tdd/" title="Testbarkeit und Testdriven Development (TDD)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/tdd/">Testbarkeit und TDD<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/building/" title="Building" class="dd-item"><input type="checkbox" id="section-ff836c14ff2daf3537fcd8281d19c8a3" class="toggle"/><label for="section-ff836c14ff2daf3537fcd8281d19c8a3" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/">Building<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/building/ant/" title="Build-Systeme: Apache Ant" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ant/">Ant<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/maven/" title="Build-Systeme: Apache Maven" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/maven/">Maven<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/gradle/" title="Build-Systeme: Gradle" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/gradle/">Gradle<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/ci/" title="Continuous Integration (CI)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ci/">Continuous Integration<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/docker/" title="Einführung in Docker" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/docker/">Docker<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/pattern/" title="Pattern" class="dd-item"><input type="checkbox" id="section-84eb7f5d4debf68ee3bffeb919ec8445" class="toggle"/><label for="section-84eb7f5d4debf68ee3bffeb919ec8445" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/">Pattern<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/pattern/factory-method/" title="Factory-Method-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/factory-method/">Factory-Method<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/visitor/" title="Visitor-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/visitor/">Visitor<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/observer/" title="Observer-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/observer/">Observer<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/strategy/" title="Strategy-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/strategy/">Strategy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/template-method/" title="Template-Method-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/template-method/">Template-Method<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/command/" title="Command-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/command/">Command<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/flyweight/" title="Flyweight-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/flyweight/">Flyweight<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/type-object/" title="Type-Object-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/type-object/">Type-Object<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/singleton/" title="Singleton-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/singleton/">Singleton<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/generics/" title="Generics" class="dd-item"><input type="checkbox" id="section-9ec2dd2215ae1799fe9fb0d331b91e01" class="toggle"/><label for="section-9ec2dd2215ae1799fe9fb0d331b91e01" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/">Generics<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/generics/classes-methods/" title="Generische Klassen &amp; Methoden" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/classes-methods/">Klassen &amp; Methoden<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/bounds-wildcards/" title="Bounds &amp; Wildcards" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/bounds-wildcards/">Bounds &amp; Wildcards<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/type-erasure/" title="Type Erasure" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/type-erasure/">Type Erasure<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/generics-polymorphism/" title="Generics und Polymorphie" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/generics-polymorphism/">Polymorphie<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/java-jvm/" title="Java / JVM" class="dd-item"><input type="checkbox" id="section-1d4a17db91c5179ff6d850c019075026" class="toggle"/><label for="section-1d4a17db91c5179ff6d850c019075026" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/">Java / JVM<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/java-jvm/regexp/" title="Reguläre Ausdrücke" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/regexp/">RegExp<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/configuration/" title="Konfiguration eines Programms" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/configuration/">Konfiguration<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/enums/" title="Aufzählungen (Enumerations)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/enums/">Enumerations<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/annotations/" title="Annotationen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/annotations/">Annotationen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/reflection/" title="Reflection" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/reflection/">Reflection<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/collections/" title="Java Collections Framework" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/collections/">Collections<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/serialisation/" title="Serialisierung von Objekten und Zuständen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/serialisation/">Serialisierung<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/exceptions/" title="Exception-Handling" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/exceptions/">Exceptions<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/modern-java/" title="Modern Java" class="dd-item parent"><input type="checkbox" id="section-b61bc4c9231f95b2150d554b2f10a68d" class="toggle" checked/><label for="section-b61bc4c9231f95b2150d554b2f10a68d" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/">Modern Java<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/modern-java/defaultmethods/" title="Interfaces: Default-Methoden" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/defaultmethods/">Default-Methoden<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/lambdas/" title="Lambda-Ausdrücke und funktionale Interfaces" class="dd-item active"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/lambdas/">Lambda-Ausdrücke<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/methodreferences/" title="Methoden-Referenzen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/methodreferences/">Methoden-Referenzen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/stream-api/" title="Stream-API" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/stream-api/">Stream-API<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/records/" title="Record-Klassen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/records/">Records<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/optional/" title="Optional" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/optional/">Optional<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/threads/" title="Threads" class="dd-item"><input type="checkbox" id="section-d05c691fa11b6c7c73707b1f693354bc" class="toggle"/><label for="section-d05c691fa11b6c7c73707b1f693354bc" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/">Threads<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/threads/intro/" title="Einführung in die nebenläufige Programmierung mit Threads" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/intro/">Intro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/threads/synchronisation/" title="Synchronisation: Verteilter Zugriff auf gemeinsame Ressourcen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/synchronisation/">Synchronisation<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/threads/highlevel/" title="High-Level Concurrency" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/highlevel/">High-Level Concurrency<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/gui/" title="GUI" class="dd-item"><input type="checkbox" id="section-6bd1817b64a743ce3da58441e61d147a" class="toggle"/><label for="section-6bd1817b64a743ce3da58441e61d147a" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/">GUI<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/gui/basics/" title="Swing 101: Basics" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/basics/">Swing: Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/events/" title="Swing Events" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/events/">Swing: Events<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/widgets/" title="Swing: Nützliche Widgets" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/widgets/">Swing: Widgets<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/layouts/" title="Swing: Layout-Manager" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/layouts/">Swing: Layout-Manager<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/tables/" title="Swing: Tabellen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/tables/">Swing: Tabellen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/java2d/" title="Einführung in Graphics und Java 2D" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/java2d/">Java2D<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/frameworks/" title="Frameworks" class="dd-item"><input type="checkbox" id="section-6e87d98d146ebd1a56f5cfe9e946dff8" class="toggle"/><label for="section-6e87d98d146ebd1a56f5cfe9e946dff8" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/">Frameworks<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/frameworks/intro/" title="Frameworks: Einstieg" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/intro/">Intro<i class="fas fa-check read-icon"></i></a></li></ul></li>
+        </ul>
+        <div id="shortcuts">
+          <div class="nav-title">More</div>
+          <ul>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/schedule"><i class='fas fa-bookmark'></i> Fahrplan</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments"><i class='fas fa-bookmark'></i> Praktikum</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/grading"><i class='fas fa-bookmark'></i> Note/Credits</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/syllabus"><i class='fas fa-bookmark'></i> Syllabus</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/resources"><i class='fas fa-bookmark'></i> Ressourcen</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/exam"><i class='fas fa-bookmark'></i> Prüfungsvorbereitung</a></li>
+          </ul>
+        </div>
+        <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showVisitedLinks showFooter"></div>
+        <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showVisitedLinks showFooter"/>
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVariantSwitch showVisitedLinks">
+          <ul>
+            <li id="select-language-container" class="footerLangSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-language fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-language" onchange="location = baseUri + this.value;">
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+            </li>
+            <li id="select-variant-container" class="footerVariantSwitch showVariantSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-variant" onchange="variants.changeVariant( this.value );">
+                    <option id="relearn-light" value="relearn-light" selected>Relearn Light</option>
+                    <option id="relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="green" value="green">Green</option>
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+              <script>variants.markSelectedVariant();</script>
+            </li>
+            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+          </ul>
+        </div>
+        <div id="footer" class="footerFooter showFooter"><p style="margin-left: 1rem;">
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/imprint'>Impressum</a>,
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/privacy'>Datenschutz</a>,
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/credits'>Credits</a>
+</p>
+
+        </div>
+      </div>
+    </aside>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/clipboard.min.js?1656322214"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/perfect-scrollbar.min.js?1656322214"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/featherlight.min.js?1656322214"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/theme.js?1656322214"></script>
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$','$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+</script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+</html>
+

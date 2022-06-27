@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GUI on </title>
+    <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/</link>
+    <description>Recent content in GUI on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-DE</language><atom:link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Swing 101: Basics</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/basics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/basics/</guid>
+      <description>Wiederholung GUI in Java   AWT: abstract window toolkit
+ Älteres Framework (&amp;quot;Legacy&amp;quot;) &amp;quot;Schwergewichtig&amp;quot;: plattformangepasst Paket java.awt    Swing
+ Nutzt AWT &amp;quot;Leichtgewichtig&amp;quot;: rein in Java implementiert Paket javax.swing    JavaFX
+ Soll als Ersatz für Swing dienen  Community eher verhalten Weiterentwicklung immer wieder unklar Nicht mehr im JDK/Java SE Plattform enthalten   Vergleichsweise komplexes Framework, auch ohne Java programmierbar (Skriptsprache FXML)    Anmerkung: In Swing reimplementierte Klassen aus AWT: Präfix &amp;quot;J&amp;quot;: java.</description>
+    </item>
+    <item>
+      <title>Swing Events</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/events/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/events/</guid>
+      <description>Reaktion auf Events: Anwendung Observer-Pattern  Swing-GUI läuft in Dauerschleife Komponenten registrieren Ereignisse (Events):  Mausklick Tastatureingaben Mauszeiger über Komponente ...   Reaktion mit passendem Listener: Observer Pattern!   =&amp;gt; Observer aus dem Observer-Pattern!
+In Swing werden die &amp;quot;Observer&amp;quot; als &amp;quot;Listener&amp;quot; bezeichnet.
+component.addActionListener(ActionListener); component.addMouseListener(MouseListener); Arten von Events  Es gibt für alle möglichen Input-Arten eine Ableitung von java.util.EventListener, beispielsweise für Maus- oder Tastaturereignisse oder wenn ein Element den Fokus bekommt und viele weitere.</description>
+    </item>
+    <item>
+      <title>Swing: Nützliche Widgets</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/widgets/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/widgets/</guid>
+      <description>Radiobuttons: JRadioButton    Erzeugen einen neuen &amp;quot;Knopf&amp;quot; (rund)
+ vergleiche JCheckBox =&amp;gt; eckiger &amp;quot;Knopf&amp;quot;    Parameter: Beschriftung und Aktivierung
+  Reagieren mit ItemListener
+  Logische Gruppierung der Buttons: ButtonGroup
+ JRadioButton sind unabhängige Objekte Normalerweise nur ein Button aktiviert Aktivierung eines Buttons =&amp;gt; vormals aktivierter Button deaktiviert  JRadioButton b1 = new JRadioButton(&amp;#34;Button 1&amp;#34;, true); JRadioButton b2 = new JRadioButton(&amp;#34;Button 2&amp;#34;, false);  ButtonGroup radioGroup = new ButtonGroup(); radioGroup.</description>
+    </item>
+    <item>
+      <title>Swing: Layout-Manager</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/layouts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/layouts/</guid>
+      <description>Überblick Anordnung der Komponenten in einem Container ist abhängig vom Layout
+Verschiedene beliebte Layout-Manager:
+ BorderLayout FlowLayout GridLayout GridBagLayout ...  BorderLayout  JPanel contentPane = new JPanel();  contentPane.setLayout(new BorderLayout());  contentPane.add(new JButton(&amp;#34;North&amp;#34;), BorderLayout.NORTH); // also: PAGE_START contentPane.add(new JButton(&amp;#34;West&amp;#34;), BorderLayout.WEST); // also: LINE_START contentPane.add(new JButton(&amp;#34;Center&amp;#34;), BorderLayout.CENTER); contentPane.add(new JButton(&amp;#34;East&amp;#34;), BorderLayout.EAST); // also: LINE_END contentPane.add(new JButton(&amp;#34;South&amp;#34;), BorderLayout.SOUTH); // also: PAGE_END Es gibt fünf verschiedene Bereiche, in denen die Komponenten bei einem Border-Layout angeordnet werden können.</description>
+    </item>
+    <item>
+      <title>Swing: Tabellen</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/tables/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/tables/</guid>
+      <description>Einfache Tabelle mit festen Daten   Einfache Tabelle erzeugen:
+public JTable(final Object[][] rowData, final Object[] columnNames)   Daten gleich mit erzeugen/übergeben:
+Object[][] rowData = {  { &amp;#34;Hein&amp;#34;, &amp;#34;Bloed&amp;#34;, 5 },  { &amp;#34;Susi&amp;#34;, &amp;#34;Studi&amp;#34;, 2 } };   Tabellenkopf als einfaches Array:
+Object[] columnNames = { &amp;#34;Vorname&amp;#34;, &amp;#34;Name&amp;#34;, &amp;#34;ect&amp;#34; };   Damit der Tabellenkopf angezeigt wird, muss die Tabelle lt. Dokumentation entweder in eine JScrollPane verpackt werden oder der Tabellenkopf muss manuell geeignet untergebracht werden, beispielsweise über ein BorderLayout:</description>
+    </item>
+    <item>
+      <title>Einführung in Graphics und Java 2D</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/java2d/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/java2d/</guid>
+      <description>GUIs mit Java  Demo: java2d.simplegame.J2DTeaser   Einführung in die Java 2D API  Bisher: Anordnung von Widgets als GUI Jetzt: Wie kann man mit Java zeichnen etc.?  Swing-Komponenten erben von javax.swing.JComponent:
+public void paintComponent(Graphics g)   Wird durch Events aufgerufen
+  Oder &amp;quot;von Hand&amp;quot; mit void repaint()
+Methode repaint() der Swing-Komponente aufrufen =&amp;gt; dadurch wird dann intern die Methode paintComponent() der Komponente aufgerufen zum Neuzeichnen auf dem Graphics-Objekt.</description>
+    </item>
+  </channel>
+</rss>

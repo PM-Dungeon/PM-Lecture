@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PM S22 on </title>
+    <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/</link>
+    <description>Recent content in PM S22 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-DE</language><atom:link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/</guid>
+      <description>Versionierung mit Git Intro: Versionskontrolle in der Softwareentwicklung Basics der Versionsverwaltung mit Git (lokale Repos) Git Branches: Features unabhängig entwickeln und mit Git verwalten Branching-Strategien mit Git Arbeiten mit Git Remotes (dezentrale Repos) Zusammenarbeit: Git-Workflows und Merge-/Pull-Requests Fehlersuche mit Git Bisect  </description>
+    </item>
+    <item>
+      <title>Testing</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/</guid>
+      <description>Testen mit JUnit und Mockito Einführung Softwaretest Testen mit JUnit (JUnit-Basics) Testfallermittlung: Wie viel und was muss man testen? Mocking mit Mockito  </description>
+    </item>
+    <item>
+      <title>Coding</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/</guid>
+      <description>Programmiermethoden und Clean Code Logging Javadoc Code Smells Coding Conventions und Metriken Refactoring Testbarkeit und Testdriven Development (TDD)  </description>
+    </item>
+    <item>
+      <title>Building</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/</guid>
+      <description>Bauen von Programmen, Automatisierung, Continuous Integration Build-Systeme: Apache Ant Build-Systeme: Apache Maven Build-Systeme: Gradle Continuous Integration (CI) Einführung in Docker  </description>
+    </item>
+    <item>
+      <title>Pattern</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/</guid>
+      <description>Entwurfsmuster Factory-Method-Pattern Visitor-Pattern Observer-Pattern Strategy-Pattern Template-Method-Pattern Command-Pattern Flyweight-Pattern Type-Object-Pattern Singleton-Pattern  </description>
+    </item>
+    <item>
+      <title>Generics</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/</guid>
+      <description>Generics: Umgang mit parametrisierten Typen Generische Klassen &amp;amp; Methoden Bounds &amp;amp; Wildcards Type Erasure Generics und Polymorphie  </description>
+    </item>
+    <item>
+      <title>Java / JVM</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/</guid>
+      <description>Fortgeschrittene Java-Themen und Umgang mit JVM Reguläre Ausdrücke Konfiguration eines Programms Aufzählungen (Enumerations) Annotationen Reflection Java Collections Framework Serialisierung von Objekten und Zuständen Exception-Handling  </description>
+    </item>
+    <item>
+      <title>Modern Java</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/</guid>
+      <description>Modern Java: Funktionaler Stil und Stream-API Interfaces: Default-Methoden Lambda-Ausdrücke und funktionale Interfaces Methoden-Referenzen Stream-API Record-Klassen Optional  </description>
+    </item>
+    <item>
+      <title>Threads</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/</guid>
+      <description>Multi-Threading: Parallelisierung von Programmen Einführung in die nebenläufige Programmierung mit Threads Synchronisation: Verteilter Zugriff auf gemeinsame Ressourcen High-Level Concurrency  </description>
+    </item>
+    <item>
+      <title>GUI</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/</guid>
+      <description>Graphische Oberflächen mit Swing und Java2D Swing 101: Basics Swing Events Swing: Nützliche Widgets Swing: Layout-Manager Swing: Tabellen Einführung in Graphics und Java 2D  </description>
+    </item>
+    <item>
+      <title>Frameworks</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/</guid>
+      <description>Umgang mit Frameworks Frameworks: Einstieg  </description>
+    </item>
+  </channel>
+</rss>

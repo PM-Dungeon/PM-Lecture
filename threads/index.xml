@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Threads on </title>
+    <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/</link>
+    <description>Recent content in Threads on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-DE</language><atom:link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Einführung in die nebenläufige Programmierung mit Threads</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/intro/</guid>
+      <description>42   Demo: misc.SwingWorkerDemo (GUI ausprobieren)   Einführung in nebenläufige Programmierung Traditionelle Programmierung  Aufruf einer Methode verlagert Kontrollfluss in diese Methode Code hinter Methodenaufruf wird erst nach Beendigung der Methode ausgeführt  public class Traditional {  public static void main(String... args) {  Traditional x = new Traditional();   System.out.println(&amp;#34;main(): vor run()&amp;#34;);  x.run();  System.out.println(&amp;#34;main(): nach run()&amp;#34;);  }   public void run() {  IntStream.</description>
+    </item>
+    <item>
+      <title>Synchronisation: Verteilter Zugriff auf gemeinsame Ressourcen</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/synchronisation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/synchronisation/</guid>
+      <description>Motivation: Verteilter Zugriff auf gemeinsame Ressourcen public class Teaser implements Runnable {  private int val = 0;   public static void main(String... args) {  Teaser x = new Teaser();  new Thread(x).start();  new Thread(x).start();  }   private void incrVal() {  ++val;  System.out.println(Thread.currentThread().getId() + &amp;#34;: &amp;#34; + val);  }   public void run() {  IntStream.range(0, 5).forEach(i -&amp;gt; incrVal());  } } Demo: synchronised.</description>
+    </item>
+    <item>
+      <title>High-Level Concurrency</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/highlevel/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/highlevel/</guid>
+      <description>Explizite Lock-Objekte Sie kennen bereits die Synchronisierung mit dem Schlüsselwort synchronized.
+// Synchronisierung der gesamten Methode public synchronized int incrVal() {  ... } // Synchronisierung eines Blocks (eines Teils einer Methode) public int incrVal() {  ...  synchronized (someObj) {  ...  }  ... } Dabei wird implizit ein Lock über ein Objekt (das eigene Objekt im ersten Fall, das Sperrobjekt im zweiten Fall) benutzt.
+Seit Java5 kann man alternativ auch explizite Lock-Objekte nutzen:</description>
+    </item>
+  </channel>
+</rss>

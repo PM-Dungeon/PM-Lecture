@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pool Konzept on </title>
+    <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/</link>
+    <description>Recent content in Pool Konzept on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-DE</language><atom:link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blatt 01: Git (Basics, Branches, Remotes)</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet01/</guid>
+      <description>Abgabe: Die Lösung für dieses Blatt ist als Zip-Archiv (.zip) im Objekt &amp;quot;Praktikum&amp;quot; im ILIAS hochzuladen. Beachten Sie die Deadline (vgl. Fahrplan)!
+Git Basics (4 Punkte)    Legen Sie ein Repository an. Fügen Sie Dateien dem Verzeichnis hinzu und stellen Sie einige davon unter Versionskontrolle. Ändern Sie eine Datei und versionieren Sie die Änderung. Was ist der Unterschied zwischen &amp;quot;git add .; git commit&amp;quot; und &amp;quot;git commit -a&amp;quot;? Wie finden Sie heraus, welche Dateien geändert wurden?</description>
+    </item>
+    <item>
+      <title>Blatt 02: Logging, Factory-Method</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet02/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet02/</guid>
+      <description>Erinnerung: Die Themen &amp;ldquo;Logging&amp;rdquo; und &amp;ldquo;Javadoc&amp;rdquo; wurden bereits in der VL besprochen und sind ab diesem Blatt im Praktikum einzusetzen (vgl. &amp;ldquo;Note und Credits &amp;gt; Hinweise zum Praktikum &amp;gt; Punkte und formale Abzüge&amp;rdquo;).
+Logging (6 Punkte)   Betrachten Sie den Ringpuffer in der Vorgabe (inkl. JUnit-Tests und einem Main-Programm).
+Fügen Sie in diese drei Artefakte Logging auf der Basis von java.util.logging ein, so dass es keine Ausgaben mit System.out.println oder System.</description>
+    </item>
+    <item>
+      <title>Blatt 03: Generics, Strategy-Pattern</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet03/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet03/</guid>
+      <description>Generics I (2 Punkte)   In dieser Aufgabe modellieren Sie in Java verschiedene Spielertypen sowie generische Mannschaften und Ligen, die jeweils bestimmte Spieler (-typen) bzw. Mannschaften aufnehmen können.
+  Implementieren Sie die Klasse bundesliga.generic.Spieler, die das Interface bundesliga.generic.ISpieler aus den Vorgaben erfüllt.
+  Implementieren Sie die beiden Klassen bundesliga.generic.FussballSpieler und bundesliga.generic.BasketballSpieler und sorgen Sie dafür, dass beide Klassen vom Compiler als Spieler betrachtet werden (geeignete Vererbungshierarchie).
+  Betrachten Sie das nicht-generische Interface bundesliga.</description>
+    </item>
+    <item>
+      <title>Blatt 04: JUnit, Gradle</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet04/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet04/</guid>
+      <description>Erinnerung: Die Themen JUnit (&amp;ldquo;Intro SW-Test&amp;rdquo;, &amp;ldquo;JUnit-Basics&amp;rdquo;) sowie &amp;ldquo;Testfallermittlung&amp;rdquo; wurden bereits in der VL besprochen und sind ab diesem Blatt im Praktikum einzusetzen (vgl. &amp;ldquo;Note und Credits &amp;gt; Hinweise zum Praktikum &amp;gt; Punkte und formale Abzüge&amp;rdquo;).
+Testen mit JUnit (3 Punkte)   Schreiben Sie eine JUnit-Testklasse (JUnit 4.x oder 5.x) und testen Sie eine ArrayList&amp;lt;String&amp;gt;. Prüfen Sie dabei, ob das Einfügen und Entfernen wie erwartet funktioniert.
+  Initialisieren Sie in einer setUp()-Methode das Testobjekt und fügen Sie zwei Elemente ein.</description>
+    </item>
+    <item>
+      <title>Blatt 05: Mocking, Smells, Refactoring</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet05/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet05/</guid>
+      <description>Erinnerung: Die Themen &amp;ldquo;Code Smells&amp;rdquo;, &amp;ldquo;Coding Conventions&amp;rdquo; und &amp;ldquo;Refactoring&amp;rdquo; wurden bereits in der VL besprochen und sind ab diesem Blatt im Praktikum einzusetzen (vgl. &amp;ldquo;Note und Credits &amp;gt; Hinweise zum Praktikum &amp;gt; Punkte und formale Abzüge&amp;rdquo;).
+Testen und Mocking mit JUnit und Mockito (5 Punkte)   In der Vorgabe finden Sie die drei Dateien Utility.java, Evil.java und UtilityTest.java.
+Testen Sie die Methoden nonEvilAdd, evilAdd und veryEvilAdd der Klasse Utility.java mit dem JUnit- und dem Mockito-Framework.</description>
+    </item>
+    <item>
+      <title>Blatt 06: Observer, Type-Object, Enumerationen</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet06/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet06/</guid>
+      <description>Pattern: Type-Object und Enumerationen (4 Punkte)   Betrachten Sie das folgende IMonster-Interface in den Vorgaben:
+public interface IMonster {  String getVariety();  int getXp();  int getMagic();  String makeNoise(); } Leiten Sie von diesem Interface eine Klasse Monster ab. Nutzen Sie das Type-Object-Pattern und erzeugen Sie verschiedene &amp;quot;Klassen&amp;quot; von Monstern, die sich in den Eigenschaften variety, xp und magic unterscheiden und in der Methode makeNoise() entsprechend unterschiedlich verhalten.</description>
+    </item>
+    <item>
+      <title>Blatt 07: Annotationen, Reflection, Template-Method-Pattern</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet07/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet07/</guid>
+      <description>Pattern: Template-Method-Pattern (2 Punkte)   Schreiben Sie eine abstrakte Klasse Drucker. Implementieren Sie die Funktion kopieren, bei der zuerst die Funktion scannen und dann die Funktion drucken aufgerufen wird. Der Kopiervorgang ist für alle Druckertypen identisch, das Scannen und Drucken ist abhängig vom Druckertyp.
+Implementieren Sie zusätzlich zwei unterschiedliche Druckertypen.
+ Tintendrucker extends Drucker Laserdrucker extends Drucker Tintendrucker#scannen loggt den Text &amp;quot;Scanne das Dokument mit dem Tintendrucker.&amp;quot; Laserdrucker#scannen loggt den Text &amp;quot;Scanne das Dokument mit dem Laserdrucker.</description>
+    </item>
+    <item>
+      <title>Blatt 08: Funktionsinterfaces, Lambdas, Methodenreferenzen, RegExp</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet08/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet08/</guid>
+      <description>Funktionsinterfaces, Lambdas und Methodenreferenzen (4 Punkte)   In der Vorgabe finden Sie die Klassen Student und StudentSort mit vorgefertigten Methoden zu den Teilaufgaben sowie eine Testsuite SortTest mit einzelnen Testfälllen zu den Teilaufgaben, mit der Ihre Implementierung aufgerufen und getestet wird.
+Ziel dieser Aufgabe ist es, eine Liste von Studierenden mithilfe verschiedener syntaktischer Strukturen (Lambda-Ausdrücke, Methoden-Referenzen) zu sortieren. Dabei soll bei allen Teilaufgaben die Methode java.util.List#sort für das eigentliche Sortieren verwendet werden.</description>
+    </item>
+    <item>
+      <title>Blatt 09: Stream-API, Optional, Visitor-Pattern, Command-Pattern</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet09/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet09/</guid>
+      <description>Visitor-Pattern (5 Punkte)   In den Vorgaben finden Sie die Klasse Node zur Realisierung von binären Suchbäumen, die verschiedene Quartettkarten speichern (Card).
+Implementieren Sie das Visitor-Pattern für den Baum (Klasse Node). Implementieren Sie einen konkreten Visitor, welcher den Baum inorder traversiert, und einen konkreten Visitor, der den Baum postorder traversiert. Beim Besuchen eines Knoten soll der Name der gespeicherten Karte sowie deren Preis ausgegeben werden.
+Rufen Sie Ihre Visitoren auf dem Binärbaum root in der main() auf (Zeile 38).</description>
+    </item>
+    <item>
+      <title>Blatt 10: Threads, Enumeration</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet10/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet10/</guid>
+      <description>Multithreading (10 Punkte)   In den Vorgaben finden Sie eine Modellierung für ein Bankensystem.
+Erweitern Sie die Vorgaben um Multithreading.
+Erweitern Sie die Klasse Kunde so, dass sie in einem eigenen Thread ausgeführt werden kann. In der run()-Methode soll der Kunde eine Rechnung aus der Queue offeneRechnungen herausnehmen und sie bezahlen. Nutzen Sie dafür die statische Methode Bank#ueberweisen. Ist die Queue leer, soll der Thread so lange warten, bis eine neue Rechnung eingegangen ist.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Testing on </title>
+    <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/</link>
+    <description>Recent content in Testing on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-DE</language><atom:link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Einführung Softwaretest</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testing-intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testing-intro/</guid>
+      <description>Software-Fehler und ihre Folgen  Ursachen für Fehler?   (Einige) Ursachen für Fehler  Zeit- und Kostendruck Mangelhafte Anforderungsanalyse Hohe Komplexität Mangelhafte Kommunikation Keine/schlechte Teststrategie Mangelhafte Beherrschung der Technologie ...  Irgendjemand muss mit Deinen Bugs leben! Leider gibt es im Allgemeinen keinen Weg zu zeigen, dass eine Software korrekt ist. Man kann (neben formalen Beweisansätzen) eine Software nur unter möglichst vielen Bedingungen ausprobieren, um zu schauen, wie sie sich verhält, und um die dabei zu Tage tretenden Bugs zu fixen.</description>
+    </item>
+    <item>
+      <title>Testen mit JUnit (JUnit-Basics)</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/junit-basics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/junit-basics/</guid>
+      <description>JUnit: Ergebnis prüfen Klasse org.junit.Assert enthält diverse statische Methoden zum Prüfen:
+// Argument muss true bzw. false sein void assertTrue(boolean); void assertFalse(boolean);  // Gleichheit im Sinne von equals() void assertEquals(Object, Object);  // Test sofort fehlschlagen lassen void fail();  ... To &amp;quot;assert&amp;quot; or to &amp;quot;assume&amp;quot;?   Mit assert* werden Testergebnisse geprüft
+ Test wird ausgeführt Ergebnis: OK, Failure, Error    Mit assume* werden Annahmen über den Zustand geprüft</description>
+    </item>
+    <item>
+      <title>Testfallermittlung: Wie viel und was muss man testen?</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testcases/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testcases/</guid>
+      <description>Hands-On (10 Minuten): Wieviel und was muss man testen? public class Studi {  private int credits = 0;   public void addToCredits(int credits) {  if (credits &amp;lt; 0) {  throw new IllegalArgumentException(&amp;#34;Negative Credits!&amp;#34;);  }  if (this.credits + credits &amp;gt; 210) {  throw new IllegalArgumentException(&amp;#34;Mehr als 210 Credits!&amp;#34;);  }  this.credits += credits;  } } JEDE Methode mindestens testen mit/auf:  Positive Tests: Gutfall (Normalfall) =&amp;gt; &amp;quot;gültige ÄK/GW&amp;quot; Negativ-Tests (Fehlbedienung, ungültige Werte) =&amp;gt; &amp;quot;ungültige ÄK/GW&amp;quot; Rand- bzw.</description>
+    </item>
+    <item>
+      <title>Mocking mit Mockito</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/mockito/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/mockito/</guid>
+      <description>Motivation: Entwicklung einer Studi-/Prüfungsverwaltung Szenario Zwei Teams entwickeln eine neue Studi-/Prüfungsverwaltung für die Hochschule. Ein Team modelliert dabei die Studierenden, ein anderes Team modelliert die Prüfungsverwaltung LSF.
+  Team A:
+public class Studi {  String name; LSF lsf;   public Studi(String name, LSF lsf) {  this.name = name; this.lsf = lsf;  }   public boolean anmelden(String modul) { return lsf.anmelden(name, modul); }  public boolean einsicht(String modul) { return lsf.</description>
+    </item>
+  </channel>
+</rss>

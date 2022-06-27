@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gruppe C: Items, Aufbewahrung und Handel on </title>
+    <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/</link>
+    <description>Recent content in Gruppe C: Items, Aufbewahrung und Handel on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-DE</language><atom:link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Items</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/item/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/item/</guid>
+      <description>Ziel In dieser Aufgabe implementieren Sie verschiedene Gegenstände, die der Spieler verwenden kann.
+Voraussetzung Am besten kombinieren Sie diese Aufgabe mit dem &amp;ldquo;Inventar&amp;rdquo;.
+Items Implementieren Sie unterschiedliche vom Spieler einsammelbare und (ins Inventar) aufnehmbare Gegenstände wie Waffen oder Heiltränke oder Zaubersprüche.
+Jeder Gegenstand soll vom Spieler verwendbar sein. Überlegen Sie sich passende &amp;quot;Funktionen&amp;quot;, die die einzelnen Gegenstände erfüllen.
+Implementieren Sie mindestens 3 Gegenstands-Typen (Tränke, Rüstungen, Waffen, etc.) und jeweils 2 konkrete Gegenstände von jedem Typen.</description>
+    </item>
+    <item>
+      <title>Taschen</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/taschen/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/taschen/</guid>
+      <description>Ziel In dieser Aufgabe implementieren Sie Taschen, welche das Inventar des Spielers erweitern.
+Voraussetzung Bevor Sie diese Aufgabe lösen können, müssen Sie das &amp;ldquo;Inventar&amp;rdquo; implementiert haben.
+Taschen Implementieren Sie Taschen, die das Inventar des Spielers erweitern.
+Taschen nehmen selbst einen Inventarplatz ein, können aber wiederum selbst mehrere Gegenstände eines Typus (z.B. Waffen oder Tränke) aufbewahren. Taschen können nur eine begrenzte Anzahl an Gegenständen beinhalten.
+Sie müssen für die Implementierung der Taschen Generics verwenden.</description>
+    </item>
+    <item>
+      <title>Schatzkisten</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/schatzkiste/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/schatzkiste/</guid>
+      <description>Ziel In dieser Aufgabe implementieren Sie Schatzkisten, die der Spieler im Level finden und plündern kann.
+Voraussetzung Um diese Aufgabe lösen zu können, müssen Sie vorher &amp;ldquo;Inventar&amp;rdquo; und &amp;ldquo;Item&amp;rdquo; gelöst haben.
+Schatzkiste Implementieren Sie Schatzkisten, die im Dungeon verteilt werden und von den Spielern geöffnet (&amp;quot;aktiviert&amp;quot;) werden können. Die Kisten sind zunächst geschlossen und können durch eine (neue) Aktion des Helden geöffnet werden, sofern er in ausreichender Nähe ist. Erst dann ist der Inhalt sichtbar und für den Helden zugreifbar.</description>
+    </item>
+    <item>
+      <title>HUD</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/hud/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/hud/</guid>
+      <description>Ziel In dieser Aufgabe implementieren Sie ein HUD (heads-up display).
+HUD Stellen Sie alle Informationen, die für den Spieler relevant sein könnten, grafisch auf dem HUD dar.
+Halten Sie Ihr HUD im Laufe des Praktikums up-to-date und ergänzen Sie es, wenn Sie neue Inhalte implementieren.</description>
+    </item>
+    <item>
+      <title>Inventar (UI)</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/inventar_ui/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/inventar_ui/</guid>
+      <description>Ziel In dieser Aufgabe implementieren Sie eine grafische Benutzeroberfläche für das Inventar.
+Voraussetzung Um diese Aufgabe lösen zu können, müssen Sie vorher &amp;ldquo;Inventar&amp;rdquo; implementieren.
+Inventar UI Implementieren Sie eine grafische Oberfläche für das Inventar. Ergänzen Sie passende Befehle, so dass das Inventar ein- und auch wieder ausgeblendet werden kann.
+Stellen Sie die verschiedenen Items grafisch dar und erlauben Sie es, Items mithilfe der Maus zu verwenden oder fallen zu lassen.</description>
+    </item>
+    <item>
+      <title>Freundliche NPCs</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/npc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/npc/</guid>
+      <description>Ziel In dieser Aufgabe implementieren Sie freundliche NPCs (Non-Player-Character).
+Freundliche NPCs Implementieren Sie NPCs mit eigenen Texturen, Animationen und Verhaltensweisen. Anders als die normalen Monster sollen diese freundlichen NPCs den Spieler nicht angreifen.
+Überlegen Sie sich, was diese NPCs tun können, um das Spiel zu bereichern.
+Anmerkung: Diese Aufgabe ist als Vorbereitung für andere Aufgaben gedacht und lässt sich hervorragend mit den Aufgaben &amp;ldquo;Shop&amp;rdquo; und &amp;ldquo;Dialogsystem&amp;rdquo; kombinieren.</description>
+    </item>
+    <item>
+      <title>Dialogsystem</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/dialogsystem/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/dialogsystem/</guid>
+      <description>Ziel In dieser Aufgabe implementieren Sie ein dynamisches Dialogsystem.
+Dialogsystem Nutzen Sie reguläre Ausdrücke (RegExp), um ein Dialogsystem zu implementieren. Implementieren Sie eine Möglichkeit, um den Spieler Texte eingeben zu lassen. Dabei sollen verschiedene Eingaben über reguläre Ausdrücke erkannt werden und entsprechend darauf reagiert werden.
+Implementieren Sie ein Rätsel im Spiel, welches eine zu einem regulären Ausdruck passende Eingabe erfordert.
+Anmerkung: Die Aufgabe lässt sich hervorragen mit der Aufgabe &amp;ldquo;Shop&amp;rdquo; und &amp;ldquo;NPC&amp;rdquo; kombinieren.</description>
+    </item>
+    <item>
+      <title>Quests</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/quests/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/quests/</guid>
+      <description>Ziel In dieser Aufgabe implementieren Sie verschiedene Quests, also Aufgaben, die der Spieler lösen kann, um Belohnungen zu erhalten.
+Quests Implementieren Sie verschiedene Aufgaben (Quests), die der Held erfüllen kann. Dies könnte beispielsweise das Sammeln einer bestimmten Zahl von Gegenständen oder das Besiegen einer bestimmten Zahl einer bestimmten Art von Monstern sein.
+Für die Erfüllung der Aufgaben soll der Held mit Erfahrungspunkten und/oder Items (etwa ein Zauberstab) belohnt werden.
+Die Quests müssen dem Helden geeignet angezeigt werden, beispielsweise über eine bestimmte Textur einer Bodenkachel oder über einen Geist, der die Quest vorschlägt.</description>
+    </item>
+    <item>
+      <title>Shop</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/shop/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/shop/</guid>
+      <description>Ziel In dieser Aufgabe implementieren Sie einen Shop, in dem der Spieler Items wie Gegenstände und Verbesserungen kaufen und verkaufen kann.
+Voraussetungen Um diese Aufgabe lösen zu können, sollten Sie vorher folgende Aufgaben gelöst haben:
+ &amp;ldquo;Item&amp;rdquo; &amp;ldquo;Inventar (UI)&amp;rdquo; &amp;ldquo;NPC&amp;rdquo; &amp;ldquo;Dialogsystem&amp;rdquo;  Shop Implementieren Sie einen Shop, in dem der Spieler Items kaufen und verkaufen kann.
+ Items kosten etwas. Implementieren Sie daher eine Währung und ein System, um an Zahlungsmittel zu kommen.</description>
+    </item>
+    <item>
+      <title>JUnit Group C</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/testen/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/testen/</guid>
+      <description>Ziel In dieser Aufgaben sollen Sie eine gründliche Testabdeckung für die Aufgabe &amp;ldquo;Quests&amp;rdquo; oder &amp;ldquo;Dialogsystem&amp;rdquo; implementieren.
+JUnit  Überlegen Sie sich, was Sie alles testen müssen. Ermitteln Sie die Testfälle mit Äquivalenzklassenbildung und Grenzwertanalyse. Implementieren Sie Ihre Testfälle mit JUnit und Mockito.  Dokumentieren Sie die Ergebnisse aller Arbeitsschritte entsprechend nachvollziehbar im Lerntagebuch.</description>
+    </item>
+    <item>
+      <title>Freie Aufgabe</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/freie_aufgabe/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_c/freie_aufgabe/</guid>
+      <description>Freie Aufgabe In dieser Aufgabe implementieren Sie ein großes oder mehrere kleinere Features für Ihren Dungeon. Sie dürfen sich diese(s) Feature(s) selbst aussuchen und konzipieren. Beachten Sie dabei, dass Ihr Feature nicht Teil einer vorgegebenen oder bereits bearbeiteten/abgegebenen anderen Dungeon-Aufgabe sein kann.
+Formulieren Sie Ihr Vorhaben ausführlich in Ihrem Lerntagebuch. Machen Sie besonders deutlich, was Sie erreichen wollen.
+Diese Aufgabe bringt Ihnen bis zu 10 Punkte ein. Wählen Sie den Umfang daher entsprechend so, dass Sie nicht zu wenig, aber auch nicht zu viel zu tun haben.</description>
+    </item>
+  </channel>
+</rss>

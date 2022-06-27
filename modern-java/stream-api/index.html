@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.96.0" />
+    <meta name="generator" content="Relearn 3.4.0&#43;tip">
+    <meta name="description" content="">
+    <meta name="author" content="cagix">
+    <title>Stream-API   </title>
+    <link rel="icon" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/images/logo.png?1656322214" type="image/png">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/nucleus.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/fontawesome-all.min.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/featherlight.min.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/perfect-scrollbar.min.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/auto-complete.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/theme.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/theme-relearn-light.css?1656322214" rel="stylesheet" id="variant-style">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/variant.css?1656322214" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/print.css?1656322214" rel="stylesheet" media="print">
+    <style>
+      :not(pre) > code.copy-to-clipboard-code + span.copy-to-clipboard-button {
+        display: none;
+      }
+      :not(pre) > code.copy-to-clipboard-code {
+        border-bottom-right-radius: 2px;
+        border-top-right-radius: 2px;
+        border-right-width: 1px;
+      }
+    </style>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/variant.js?1656322214"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      var index_url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/index.json";
+      var root_url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      // some further base stuff
+      var baseUriFull='https:\/\/www.fh-bielefeld.de\/elearning\/data\/FH-Bielefeld\/lm_data\/lm_1271733/';
+      variants.init( [ 'relearn-light', 'relearn-dark', 'green' ] );
+    </script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/jquery.min.js?1656322214"></script><style type="text/css">
+
+ 
+.center {
+    align-content: center;
+    text-align: center;
+    margin: auto;
+}
+.alert {
+    color: #ff3333;
+}
+.bsp {
+    padding: 0.05cm;
+    border-width: 0.05cm;
+    border-style: solid;
+    border-color: #ddd;
+    background-color: #ddd;
+    border-radius: 25px;
+    float: right;
+}
+.cbox {
+    padding: 0.2cm;
+    border-width: 0.1cm;
+    border-style: solid;
+    border-color: #4070a0;
+    background-color: #f2f2f2;
+    margin: auto;
+    width: 60%;
+    text-align: center;
+    overflow: auto;
+}
+.blueArrow {
+    color: #4070a0;
+    font-family: "Courier New", "Courier", monospace;
+    font-weight: bold;
+}
+.origin {
+    background-color: #ededed;
+    font-size: 0.8em;
+}
+.showme {
+    background-color: #ededed;
+    font-size: 0.8em;
+}
+
+
+ 
+.tldr {
+    background: #dbe4ed;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.recap {
+    
+    
+   margin: 4px 0px 26px 0px;
+}
+.bib {
+    background: #dbe4ed;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.outcomes {
+    background: #d9e9d5;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.quizzes {
+    background: #d9e9d5;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.challenges {
+    background: #ebe4d6;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.assignments {
+    background: #ebe4d6;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+h1.tldr, h1.recap, h1.bib, h1.outcomes, h1.quizzes, h1.challenges, h1.assignments {
+    padding: 0px;
+}
+
+
+ 
+.noJsAlert {
+    padding: 20px;
+    background-color: #f44336;  
+    color: white;
+    margin-bottom: 15px;
+}
+
+
+ 
+.embed-video-player {
+    position: relative;
+    padding-bottom: 56%;
+    height: 0;
+    overflow: hidden;
+}
+.youtube-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border:0;
+}
+
+
+ 
+#header-wrapper {
+    padding:0.6rem;
+}
+
+
+ 
+#shortcuts {
+    padding-top: 2.0rem;
+}
+
+
+ 
+#chapter p {
+    text-align: left;
+}
+
+
+ 
+figcaption h4 {
+    margin-top:-2.5rem;
+}
+.border1 {
+    border:1px solid black;
+}
+
+ 
+td ul, td ol {
+    margin: 0 0 1rem 0.5rem;
+    padding: 0 0 0 0.5rem;
+}
+
+ 
+h1 { font-size:2.8rem !important;}
+h2 { font-size:2.2rem; margin:1.2rem 0}
+h3 { font-size:1.9rem; text-align:left !important; font-weight:400 !important;}
+h4 { font-size:1.6rem}
+h5 { font-size:1.3rem}
+h6 { font-size:1rem}
+
+h2 {
+    width:100% !important;
+    border-bottom:1px solid #5e5e5e !important;
+    padding-bottom: 2px;
+}
+.tldr h2, .recap h2, .bib h2, .outcomes h2, .quizzes h2, .challenges h2, .assignments h2 {
+    margin:0.5rem 0
+}
+
+.btn-crossreference, .btn-crossreference:hover {
+    cursor: initial !important;
+    color: #333 !important;
+    background-color: #fff !important;
+    border-color: #ccc !important;
+}
+
+</style>
+
+  </head>
+  <body class="mobile-support" data-url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/stream-api/">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div id="top-github-link">
+            <a class="github-link" title='Edit' href="https://github.com/PM-Dungeon/PM-Lecture/edit/master/markdown/modern-java/stream-api.md" target="blank">
+              <i class="fas fa-pen fa-fw"></i>
+            </a>
+          </div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <span id="toc-menu" title='Table of Contents'><i class="fas fa-list-alt fa-fw"></i></span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <meta itemprop="itemListOrder" content="Descending" />
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="3" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/"><span itemprop="name">PM S22</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="2" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/"><span itemprop="name">Modern Java</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/stream-api/" aria-disabled="true"><span itemprop="name">Stream-API</span></a></li>
+            </ol>
+          </div>
+          <div class="default-animation progress">
+            <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#motivation">Motivation</a></li>
+    <li><a href="#innere-schleife-mit-streams-umgeschrieben">Innere Schleife mit Streams umgeschrieben</a>
+      <ul>
+        <li><a href="#erklärung-des-beispiels">Erklärung des Beispiels</a></li>
+        <li><a href="#was-ist-ein-stream">Was ist ein Stream?</a></li>
+      </ul>
+    </li>
+    <li><a href="#erzeugen-von-streams">Erzeugen von Streams</a></li>
+    <li><a href="#intermediäre-operationen-auf-streams">Intermediäre Operationen auf Streams</a></li>
+    <li><a href="#was-tun-wenn-eine-methode-streams-zurückliefert">Was tun, wenn eine Methode Streams zurückliefert</a></li>
+    <li><a href="#streams-abschließen-terminale-operationen">Streams abschließen: Terminale Operationen</a></li>
+    <li><a href="#spielregeln">Spielregeln</a></li>
+    <li><a href="#wrap-up">Wrap-Up</a></li>
+  </ul>
+</nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+
+
+
+    
+
+
+
+
+
+
+<div class="tldr">
+    <h2>TL;DR</h2>
+
+    
+
+    
+        <p>Mit der Collection-API existiert in Java die Möglichkeit, Daten auf verschiedenste Weisen zu
+speichern (<code>Collection&lt;T&gt;</code>). Mit der Stream-API gibt es die Möglichkeit, diese Daten in einer
+Art Pipeline zu verarbeiten. Ein <code>Stream&lt;T&gt;</code> ist eine Folge von Objekten vom Typ <code>T</code>. Die
+Verarbeitung der Daten ist &quot;lazy&quot;, d.h. sie erfolgt erst auf Anforderung (durch die terminale
+Operation).</p>
+<p>Ein Stream hat eine Datenquelle und kann beispielsweise über <code>Collection#stream()</code> oder
+<code>Stream.of()</code> angelegt werden. Streams speichern keine Daten. Die Daten werden aus der
+verbundenen Datenquelle geholt.</p>
+<p>Auf einem Stream kann man eine Folge von intermediären Operationen wie <code>peek()</code>, <code>map()</code>,
+<code>flatMap()</code>, <code>filter()</code>, <code>sorted()</code> ... durchführen. Alle diese Operationen arbeiten auf
+dem Stream und erzeugen einen neuen Stream als Ergebnis. Dadurch kann die typische
+Pipeline-artige Verkettung der Operationen ermöglicht werden. Die intermediären Operationen
+werden erst ausgeführt, wenn der Stream durch eine terminale Operation geschlossen wird.</p>
+<p>Terminale Operationen wie <code>count()</code>, <code>forEach()</code>, <code>allMatch()</code> oder <code>collect()</code></p>
+<ul>
+<li><code>collect(Collectors.toList())</code> (bzw. direkt mit <code>stream.toList()</code> (ab Java16))</li>
+<li><code>collect(Collectors.toSet())</code></li>
+<li><code>collect(Collectors.toCollection(LinkedList::new))</code> (als <code>Supplier&lt;T&gt;</code>)</li>
+</ul>
+<p>stoßen die Verarbeitung des Streams an und schließen den Stream damit ab.</p>
+<p>Wir können hier nur die absoluten Grundlagen betrachten. Die Stream-API ist sehr groß und
+mächtig und lohnt die weitere selbstständige Auseinandersetzung :-)</p>
+
+    
+
+    
+        <h3>Videos (YouTube)</h3>
+        
+
+<ul>
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/zZMyk0u5hJk" target="_blank" rel="nofollow noopener noreferrer">VL Stream-API</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/KBP72tCkBt8" target="_blank" rel="nofollow noopener noreferrer">Demo Stream-API</a></li>
+    
+
+</ul>
+
+    
+
+    
+        <h3>Videos (FH-Medienportal)</h3>
+        
+
+<ul>
+
+    
+    
+
+    
+    
+    
+
+    
+        <li><a href="https://www.fh-bielefeld.de/medienportal/m/429bb37eaea02582785bfb46a92d68a3ed76cb18bdc98ec0f04ae438cecf82a595e1e46947d2ffcc2fd868d67ca1ed3beba73f216ae4886f2a9492167c006784" target="_blank" rel="nofollow noopener noreferrer">VL Stream-API</a></li>
+    
+
+</ul>
+
+    
+
+    
+
+</div>
+
+
+    
+
+
+
+<div class="outcomes">
+    <h2>Lernziele</h2>
+
+    
+
+    
+    
+    <ul>
+    
+        
+        <li>(K2) Streams speichern keine Daten</li>
+        
+        
+    
+        
+        <li>(K2) Streams verarbeiten die Daten lazy</li>
+        
+        
+    
+        
+        <li>(K2) <code>map()</code> ändert den Typ (und Inhalt) von Objekten im Stream, aber nicht die Anzahl</li>
+        
+        
+    
+        
+        <li>(K2) <code>filter()</code> ändert die Anzahl der Objekte im Stream, aber nicht deren Typ (und Inhalt)</li>
+        
+        
+    
+        
+        <li>(K2) Streams machen ausführlich Gebrauch von den funktionalen Interfaces in <code>java.util.function</code></li>
+        
+        
+    
+        
+        <li>(K2) Streams sollten nicht in Attributen gehalten oder als Argument von Methoden herumgereicht werden</li>
+        
+        
+    
+        
+        
+        <li>(K3) Anlegen eines Streams</li>
+        
+    
+        
+        
+        <li>(K3) Verkettung von intermediären Operationen</li>
+        
+    
+        
+        
+        <li>(K3) Durchführung der Berechnung und Abschluss des Streams mit einer terminalen Operation</li>
+        
+    
+        
+        
+        <li>(K3) Einsatz von <code>flatMap()</code></li>
+        
+    
+    </ul>
+    
+
+</div>
+
+
+    <h2 id="motivation">Motivation</h2>
+<p>Es wurden Studis, Studiengänge und Fachbereiche modelliert (aus Gründen der Übersichtlichkeit
+einfach als Record-Klassen).</p>
+<p>Nun soll pro Fachbereich die Anzahl der Studis ermittelt werden, die bereits 100 ECTS
+oder mehr haben. Dazu könnte man über alle Studiengänge im Fachbereich iterieren, und
+in der inneren Schleife über alle Studis im Studiengang. Dann filtert man alle Studis,
+deren ECTS größer 100 sind und erhöht jeweils den Zähler:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> record <span style="color:#a6e22e">Studi</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> credits<span style="color:#f92672">)</span> <span style="color:#f92672">{}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> record <span style="color:#a6e22e">Studiengang</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span> List<span style="color:#f92672">&lt;</span>Studi<span style="color:#f92672">&gt;</span> studis<span style="color:#f92672">)</span> <span style="color:#f92672">{}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> record <span style="color:#a6e22e">Fachbereich</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span> List<span style="color:#f92672">&lt;</span>Studiengang<span style="color:#f92672">&gt;</span> studiengaenge<span style="color:#f92672">)</span> <span style="color:#f92672">{}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">getCountFB</span><span style="color:#f92672">(</span>Fachbereich fb<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">long</span> count <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Studiengang sg <span style="color:#f92672">:</span> fb<span style="color:#f92672">.</span><span style="color:#a6e22e">studiengaenge</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Studi s <span style="color:#f92672">:</span> sg<span style="color:#f92672">.</span><span style="color:#a6e22e">studis</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>s<span style="color:#f92672">.</span><span style="color:#a6e22e">credits</span><span style="color:#f92672">()</span> <span style="color:#f92672">&gt;</span> 100<span style="color:#f92672">)</span> count <span style="color:#f92672">+=</span> 1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> count<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Dies ist ein Beispiel, welches klassisch in OO-Manier als Iteration über Klassen
+realisiert ist. (Inhaltlich ist es vermutlich nicht sooo sinnvoll.)</p>
+<h2 id="innere-schleife-mit-streams-umgeschrieben">Innere Schleife mit Streams umgeschrieben</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">getCountSG</span><span style="color:#f92672">(</span>Studiengang sg<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> sg<span style="color:#f92672">.</span><span style="color:#a6e22e">studis</span><span style="color:#f92672">().</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>                      <span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Studi<span style="color:#f92672">::</span>credits<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                      <span style="color:#f92672">.</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>c <span style="color:#f92672">-&gt;</span> c <span style="color:#f92672">&gt;</span> 100<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                      <span style="color:#f92672">.</span><span style="color:#a6e22e">count</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">getCountFB2</span><span style="color:#f92672">(</span>Fachbereich fb<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">long</span> count <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Studiengang sg <span style="color:#f92672">:</span> fb<span style="color:#f92672">.</span><span style="color:#a6e22e">studiengaenge</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        count <span style="color:#f92672">+=</span> getCountSG<span style="color:#f92672">(</span>sg<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> count<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="erklärung-des-beispiels">Erklärung des Beispiels</h3>
+<p>Im Beispiel wurde die innere Schleife in einen Stream ausgelagert.</p>
+<p>Mit der Methode <code>Collection#stream()</code> wird aus der Collection ein
+neuer Stream erzeugt. Auf diesem wird für jedes Element durch die
+Methode <code>map()</code> die Methode <code>Studi#credits()</code> angewendet, was aus
+einem Strom von <code>Studi</code> einen Strom von <code>Integer</code> macht. Mit <code>filter()</code>
+wird auf jedes Element das Prädikat <code>c -&gt; c &gt; 100</code> angewendet und
+alle Elemente aus dem Strom entfernt, die der Bedingung nicht
+entsprechen. Am Ende wird mit <code>count()</code> gezählt, wie viele Elemente
+im Strom enthalten sind.</p>
+<h3 id="was-ist-ein-stream">Was ist ein Stream?</h3>
+<p>Ein &quot;Stream&quot; ist ein Strom (Folge) von Daten oder Objekten. In Java wird
+die Collections-API für die Speicherung von Daten (Objekten) verwendet.
+Die Stream-API dient zur Iteration über diese Daten und entsprechend
+zur Verarbeitung der Daten. In Java speichert ein Stream keine Daten.</p>
+<p>Das Konzept kommt aus der funktionalen Programmierung und wurde in Java
+nachträglich eingebaut (wobei dieser Prozess noch lange nicht abgeschlossen
+zu sein scheint).</p>
+<p>In der funktionalen Programmierung kennt man die Konzepte &quot;map&quot;, &quot;filter&quot;
+und &quot;reduce&quot;: Die Funktion &quot;map()&quot; erhält als Parameter eine Funktion und
+wendet diese auf alle Elemente eines Streams an. Die Funktion &quot;filter()&quot;
+bekommt ein Prädikat als Parameter und prüft jedes Element im Stream, ob
+es dem Prädikat genügt (also ob das Prädikat mit dem jeweiligen Element
+zu <code>true</code> evaluiert - die anderen Objekte werden entfernt). Mit &quot;reduce()&quot;
+kann man Streams zu einem einzigen Wert zusammenfassen (denken Sie etwa
+an das Aufsummieren aller Elemente eines Integer-Streams). Zusätzlich kann
+man in der funktionalen Programmierung ohne Probleme unendliche Ströme
+darstellen: Die Auswertung erfolgt nur bei Bedarf und auch dann auch nur
+so weit wie nötig. Dies nennt man auch &quot;<em>lazy evaluation</em>&quot;.</p>
+<p>Die Streams in Java versuchen, diese Konzepte aus der funktionalen Programmierung
+in die objektorientierte Programmierung zu übertragen. Ein Stream in Java
+hat eine Datenquelle, von wo die Daten gezogen werden - ein Stream speichert
+selbst keine Daten. Es gibt &quot;intermediäre Operationen&quot; auf einem Stream,
+die die Elemente verarbeiten und das Ergebnis als Stream zurückliefern. Daraus
+ergibt sich typische Pipeline-artige Verkettung der Operationen. Allerdings
+werden diese Operationen erst durchgeführt, wenn eine &quot;terminale Operation&quot; den
+Stream &quot;abschließt&quot;. Ein Stream ohne eine terminale Operation macht also
+tatsächlich <em>nichts</em>.</p>
+<p>Die Operationen auf dem Stream sind üblicherweise zustandslos, können aber
+durchaus auch einen Zustand haben. Dies verhindert üblicherweise die parallele
+Verarbeitung der Streams. Operationen sollten aber nach Möglichkeit keine
+<em>Seiteneffekte</em> haben, d.h. keine Daten außerhalb des Streams modifizieren.
+Operationen dürfen auf keinen Fall die Datenquelle des Streams modifizieren!</p>
+<h2 id="erzeugen-von-streams">Erzeugen von Streams</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> l1 <span style="color:#f92672">=</span> List<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Hello&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;World&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;foo&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;bar&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;wuppie&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Stream<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> s1 <span style="color:#f92672">=</span> l1<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Stream<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> s2 <span style="color:#f92672">=</span> Stream<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Hello&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;World&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;foo&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;bar&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;wuppie&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Random random <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Random<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>Stream<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> s3 <span style="color:#f92672">=</span> Stream<span style="color:#f92672">.</span><span style="color:#a6e22e">generate</span><span style="color:#f92672">(</span>random<span style="color:#f92672">::</span>nextInt<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Pattern pattern <span style="color:#f92672">=</span> Pattern<span style="color:#f92672">.</span><span style="color:#a6e22e">compile</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Stream<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> s4 <span style="color:#f92672">=</span> pattern<span style="color:#f92672">.</span><span style="color:#a6e22e">splitAsStream</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Hello world! foo bar wuppie!&#34;</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>Dies sind möglicherweise die wichtigsten Möglichkeiten, in Java einen Stream
+zu erzeugen.</p>
+<p>Ausgehend von einer Klasse aus der Collection-API kann man die Methode
+<code>Collection#stream()</code> aufrufen und bekommt einen seriellen Stream.</p>
+<p>Alternativ bietet das Interface <code>Stream</code> verschiedene statische Methoden wie
+<code>Stream.of()</code> an, mit deren Hilfe Streams angelegt werden können. Dies funktioniert
+auch mit Arrays ...</p>
+<p>Und schließlich kann man per <code>Stream.generate()</code> einen Stream anlegen, wobei
+als Argument ein &quot;Supplier&quot; (Interface <code>java.util.function.Supplier&lt;T&gt;</code>) übergeben
+werden muss. Dieses Argument wird dann benutzt, um die Daten für den Stream zu
+generieren.</p>
+<p>Wenn man aufmerksam hinschaut, findet man an verschiedensten Stellen die
+Möglichkeit, die Daten per Stream zu verarbeiten, u.a. bei regulären Ausdrücken.</p>
+<p>Man kann per <code>Collection#parallelStream()</code> auch parallele Streams erzeugen, die
+intern das &quot;Fork&amp;Join-Framework&quot; nutzen. Allerdings sollte man nur dann parallele
+Streams anlegen, wenn dadurch tatsächlich Vorteile durch die Parallelisierung zu
+erwarten sind (Overhead!).</p>
+<h2 id="intermediäre-operationen-auf-streams">Intermediäre Operationen auf Streams</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dummy</span><span style="color:#f92672">(</span>Studiengang sg<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    sg<span style="color:#f92672">.</span><span style="color:#a6e22e">studis</span><span style="color:#f92672">().</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span><span style="color:#a6e22e">peek</span><span style="color:#f92672">(</span>s <span style="color:#f92672">-&gt;</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Looking at: &#34;</span> <span style="color:#f92672">+</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">()))</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Studi<span style="color:#f92672">::</span>credits<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span><span style="color:#a6e22e">peek</span><span style="color:#f92672">(</span>c <span style="color:#f92672">-&gt;</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;This one has: &#34;</span> <span style="color:#f92672">+</span> c <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; ECTS&#34;</span><span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>c <span style="color:#f92672">-&gt;</span> c <span style="color:#f92672">&gt;</span> 5<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span><span style="color:#a6e22e">peek</span><span style="color:#f92672">(</span>c <span style="color:#f92672">-&gt;</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Filtered: &#34;</span> <span style="color:#f92672">+</span> c<span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span><span style="color:#a6e22e">sorted</span><span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">::</span>println<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>An diesem (weitestgehend sinnfreien) Beispiel werden einige intermediäre Operationen
+demonstriert.</p>
+<p>Die Methode <code>peek()</code> liefert einen Stream zurück, die aus den Elementen des Eingabestroms
+bestehen. Auf jedes Element wird die Methode <code>void accept(T)</code> des <code>Consumer&lt;T&gt;</code> angewendet
+(Argument der Methode), was aber nicht zu einer Änderung der Daten führt.
+<strong>Hinweis</strong>: Diese Methode dient vor allem zu Debug-Zwecken! Durch den Seiteneffekt kann
+die Methode eine schlechtere Laufzeit zur Folge haben oder sogar eine sonst mögliche
+parallele Verarbeitung verhindern oder durch eine parallele Verarbeitung verwirrende
+Ergebnisse zeigen!</p>
+<p>Die Methode <code>map()</code> liefert ebenfalls einen Stream zurück, der durch die Anwendung der Methode
+<code>R apply(T)</code> der als Argument übergebenen <code>Function&lt;T,R&gt;</code> auf jedes Element des Eingabestroms
+entsteht. Damit lassen sich die Elemente des ursprünglichen Streams verändern; für jedes Element
+gibt es im Ergebnis-Stream ebenfalls ein Element (der Typ ändert sich, aber nicht die Anzahl
+der Elemente).</p>
+<p>Mit der Methode <code>filter()</code> wird ein Stream erzeugt, der alle Objekte des Eingabe-Streams
+enthält, auf denen die Anwendung der Methode <code>boolean test(T)</code> des Arguments <code>Predicate&lt;T&gt;</code>
+zu <code>true</code> evaluiert (der Typ und Inhalt der Elemente ändert sich nicht, aber die Anzahl der
+Elemente).</p>
+<p>Mit <code>sorted()</code> wird ein Stream erzeugt, der die Elemente des Eingabe-Streams sortiert
+(existiert auch mit einem <code>Comparator&lt;T&gt;</code> als Parameter).</p>
+<p>Diese Methoden sind alles <strong>intermediäre</strong> Operationen. Diese arbeiten auf einem Stream und
+erzeugen einen neuen Stream und werden erst dann ausgeführt, wenn eine terminale Operation den
+Stream abschließt.</p>
+<p>Dabei sind die gezeigten intermediären Methoden bis auf <code>sorted()</code> ohne inneren Zustand.
+<code>sorted()</code> ist eine Operation mit innerem Zustand (wird für das Sortieren benötigt). Dies
+kann ordentlich in Speicher und Zeit zuschlagen und u.U. nicht/nur schlecht parallelisierbar
+sein. Betrachten Sie den fiktiven parallelen Stream <code>stream.parallel().sorted().skip(42)</code>:
+Hier müssen erst <em>alle</em> Elemente sortiert werden, bevor mit <code>skip(42)</code> die ersten 42 Elemente
+entfernt werden. Dies kann auch nicht mehr parallel durchgeführt werden.</p>
+<p>Die Methode <code>forEach()</code> schließlich ist eine <strong>terminale</strong> Operation, die auf jedes Element des
+Eingabe-Streams die Methode <code>void accept(T)</code> des übergebenen <code>Consumer&lt;T&gt;</code> anwendet. Diese
+Methode ist eine <strong>terminale Operation</strong>, d.h. sie führt zur Auswertung der anderen <em>intermediären</em>
+Operationen und schließt den Stream ab.</p>
+<h2 id="was-tun-wenn-eine-methode-streams-zurückliefert">Was tun, wenn eine Methode Streams zurückliefert</h2>
+<p>Wir konnten vorhin nur die innere Schleife in eine Stream-basierte Verarbeitung
+umbauen. Das Problem ist: Die äußere Schleife würde einen Stream liefern (Stream
+von Studiengängen), auf dem wir die <code>map</code>-Funktion anwenden müssten und darin dann
+für jeden Studiengang einen (inneren) Stream mit den Studis eines Studiengangs
+verarbeiten müssten.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-{.java" data-lang="{.java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">getCountSG</span><span style="color:#f92672">(</span>Studiengang sg<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> sg<span style="color:#f92672">.</span><span style="color:#a6e22e">studis</span><span style="color:#f92672">().</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Studi<span style="color:#f92672">::</span>credits<span style="color:#f92672">).</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>c <span style="color:#f92672">-&gt;</span> c <span style="color:#f92672">&gt;</span> 100<span style="color:#f92672">).</span><span style="color:#a6e22e">count</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">getCountFB2</span><span style="color:#f92672">(</span>Fachbereich fb<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">long</span> count <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Studiengang sg <span style="color:#f92672">:</span> fb<span style="color:#f92672">.</span><span style="color:#a6e22e">studiengaenge</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        count <span style="color:#f92672">+=</span> getCountSG<span style="color:#f92672">(</span>sg<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> count<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Dafür ist die Methode <code>flatMap()</code> die Lösung. Diese Methode bekommt als Argument
+ein Objekt vom Typ <code>Function&lt;? super T, ? extends Stream&lt;? extends R&gt;&gt;</code> mit einer
+Methode <code>Stream&lt;? extends R&gt; apply(T)</code>. Die Methode <code>flatMap()</code> verarbeitet den
+Stream in zwei Schritten:</p>
+<ol>
+<li>
+<p>Mappe über alle Elemente des Eingabe-Streams mit der Funktion. Im Beispiel würde
+also aus einem <code>Stream&lt;Studiengang&gt;</code> jeweils ein <code>Stream&lt;Stream&lt;Studi&gt;&gt;</code>, also
+alle <code>Studiengang</code>-Objekte werden durch je ein <code>Stream&lt;Studi&gt;</code>-Objekt ersetzt.
+Wir haben jetzt also einen Stream von <code>Stream&lt;Studi&gt;</code>-Objekten.</p>
+</li>
+<li>
+<p>&quot;Klopfe den Stream wieder flach&quot;, d.h. nimm die einzelnen <code>Studi</code>-Objekte aus
+den <code>Stream&lt;Studi&gt;</code>-Objekten und setze diese stattdessen in den Stream. Das
+Ergebnis ist dann wie gewünscht ein <code>Stream&lt;Studi&gt;</code> (Stream mit <code>Studi</code>-Objekten).</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-{.java" data-lang="{.java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">getCountFB3</span><span style="color:#f92672">(</span>Fachbereich fb<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> fb<span style="color:#f92672">.</span><span style="color:#a6e22e">studiengaenge</span><span style="color:#f92672">().</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span><span style="color:#a6e22e">flatMap</span><span style="color:#f92672">(</span>sg <span style="color:#f92672">-&gt;</span> sg<span style="color:#f92672">.</span><span style="color:#a6e22e">studis</span><span style="color:#f92672">().</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">())</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Studi<span style="color:#f92672">::</span>credits<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>c <span style="color:#f92672">-&gt;</span> c <span style="color:#f92672">&gt;</span> 100<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span><span style="color:#a6e22e">count</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Zum direkten Vergleich hier noch einmal der ursprüngliche Code mit zwei
+verschachtelten Schleifen und entsprechenden Hilfsvariablen:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">getCountFB</span><span style="color:#f92672">(</span>Fachbereich fb<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">long</span> count <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Studiengang sg <span style="color:#f92672">:</span> fb<span style="color:#f92672">.</span><span style="color:#a6e22e">studiengaenge</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Studi s <span style="color:#f92672">:</span> sg<span style="color:#f92672">.</span><span style="color:#a6e22e">studis</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>s<span style="color:#f92672">.</span><span style="color:#a6e22e">credits</span><span style="color:#f92672">()</span> <span style="color:#f92672">&gt;</span> 100<span style="color:#f92672">)</span> count <span style="color:#f92672">+=</span> 1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> count<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="streams-abschließen-terminale-operationen">Streams abschließen: Terminale Operationen</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Stream<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> s <span style="color:#f92672">=</span> Stream<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Hello&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;World&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;foo&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;bar&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;wuppie&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">long</span> count <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">count</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>s<span style="color:#f92672">.</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">::</span>println<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>String first <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">findFirst</span><span style="color:#f92672">().</span><span style="color:#a6e22e">get</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>Boolean b <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">anyMatch</span><span style="color:#f92672">(</span>e <span style="color:#f92672">-&gt;</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">&gt;</span> 3<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> s1 <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">collect</span><span style="color:#f92672">(</span>Collectors<span style="color:#f92672">.</span><span style="color:#a6e22e">toList</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> s2 <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">toList</span><span style="color:#f92672">();</span>   <span style="color:#75715e">// ab Java16
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> s3 <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">collect</span><span style="color:#f92672">(</span>Collectors<span style="color:#f92672">.</span><span style="color:#a6e22e">toSet</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> s4 <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">collect</span><span style="color:#f92672">(</span>Collectors<span style="color:#f92672">.</span><span style="color:#a6e22e">toCollection</span><span style="color:#f92672">(</span>LinkedList<span style="color:#f92672">::</span><span style="color:#66d9ef">new</span><span style="color:#f92672">));</span>
+</span></span></code></pre></div><p>Streams müssen mit <strong><em>einer</em> terminalen Operation</strong> abgeschlossen werden, damit die Verarbeitung
+tatsächlich angestoßen wird (<em>lazy evaluation</em>).</p>
+<p>Es gibt viele verschiedene terminale Operationen. Wir haben bereits <code>count()</code> und <code>forEach()</code>
+gesehen. In der Sitzung zu <a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/optional/">&ldquo;Optionals&rdquo;</a>
+werden wir noch <code>findFirst()</code> näher kennenlernen.</p>
+<p>Daneben gibt es beispielsweise noch <code>allMatch()</code>, <code>anyMatch()</code> und <code>noneMatch()</code>, die jeweils
+ein Prädikat testen und einen Boolean zurückliefern (matchen alle, mind. eines oder keines der
+Objekte im Stream).</p>
+<p>Mit <code>min()</code> und <code>max()</code> kann man sich das kleinste und das größte Element des Streams liefern
+lassen. Beide Methoden benötigen dazu einen <code>Comparator&lt;T&gt;</code> als Parameter.</p>
+<p>Mit der Methode <code>collect()</code> kann man eine der drei Methoden aus <code>Collectors</code> über den Stream
+laufen lassen und eine <code>Collection</code> erzeugen lassen:</p>
+<ol>
+<li><code>toList()</code> sammelt die Elemente in ein <code>List</code>-Objekt (bzw. direkt mit <code>stream.toList()</code> (ab Java16))</li>
+<li><code>toSet()</code> sammelt die Elemente in ein <code>Set</code>-Objekt</li>
+<li><code>toCollection()</code> sammelt die Elemente durch Anwendung der Methode <code>T get()</code> des übergebenen
+<code>Supplier&lt;T&gt;</code>-Objekts auf</li>
+</ol>
+<p>Die ist nur die sprichwörtliche &quot;Spitze des Eisbergs&quot;! Es gibt viele weitere Möglichkeiten, sowohl
+bei den intermediären als auch den terminalen Operationen. Schauen Sie in die Dokumentation!</p>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Demo: <a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/markdown/modern-java/src/streams/Demo.java">streams.Demo</a>
+</span>
+</div>
+<h2 id="spielregeln">Spielregeln</h2>
+<ul>
+<li>
+<p>Operationen dürfen nicht die Stream-Quelle modifizieren</p>
+</li>
+<li>
+<p>Operationen können die Werte im Stream ändern (<code>map</code>) oder die Anzahl (<code>filter</code>)</p>
+</li>
+<li>
+<p>Keine Streams in Attributen/Variablen speichern oder als Argumente übergeben: Sie könnten bereits &quot;gebraucht&quot; sein!</p>
+<p>=&gt; Ein Stream sollte immer sofort nach der Erzeugung benutzt werden</p>
+</li>
+<li>
+<p>Operationen auf einem Stream sollten keine Seiteneffekte (Veränderungen von Variablen/Attributen außerhalb des Streams) haben
+(dies verhindert u.U. die parallele Verarbeitung)</p>
+</li>
+</ul>
+<h2 id="wrap-up">Wrap-Up</h2>
+<p><code>Stream&lt;T&gt;</code>: Folge von Objekten vom Typ <code>T</code>, Verarbeitung &quot;lazy&quot;
+(Gegenstück zu <code>Collection&lt;T&gt;</code>: Dort werden Daten <strong>gespeichert</strong>, hier werden Daten <strong>verarbeitet</strong>)</p>
+<ul>
+<li>
+<p>Neuen Stream anlegen: <code>Collection#stream()</code> oder <code>Stream.of()</code> ...</p>
+</li>
+<li>
+<p>Intermediäre Operationen: <code>peek()</code>, <code>map()</code>, <code>flatMap()</code>, <code>filter()</code>, <code>sorted()</code> ...</p>
+</li>
+<li>
+<p>Terminale Operationen: <code>count()</code>, <code>forEach()</code>, <code>allMatch()</code>, <code>collect()</code> ...</p>
+<ul>
+<li><code>collect(Collectors.toList())</code></li>
+<li><code>collect(Collectors.toSet())</code></li>
+<li><code>collect(Collectors.toCollection())</code> (mit <code>Supplier&lt;T&gt;</code>)</li>
+</ul>
+</li>
+<li>
+<p>Streams speichern keine Daten</p>
+</li>
+<li>
+<p>Intermediäre Operationen laufen erst bei Abschluss des Streams los</p>
+</li>
+<li>
+<p>Terminale Operation führt zur Verarbeitung und Abschluss des Streams</p>
+</li>
+</ul>
+<p>Schöne Doku: <a href="https://dev.java/learn/the-stream-api/">&quot;The Stream API&quot;</a>, und auch
+<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/package-summary.html">&quot;Package java.util.stream&quot;</a>.</p>
+
+    
+
+
+<div class="quizzes">
+    <h2>Quizzes</h2>
+
+    <ul>
+    
+        
+        
+        
+        <li>
+            <a href="https://www.fh-bielefeld.de/elearning/goto.php?target=tst_1091240&amp;client_id=FH-Bielefeld" class="icon reading" target="_blank" rel="nofollow noopener noreferrer"><strong>Quiz Stream-API (ILIAS)</strong></a>
+        </li>
+        
+    
+    </ul>
+
+</div>
+
+
+    
+
+
+
+<div class="assignments">
+    <h2>Übungsblätter/Aufgaben</h2>
+
+    <ul>
+    
+        
+        
+        
+            <li>
+                <a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet09/"><strong>Blatt 09: Stream-API, Optional, Visitor-Pattern, Command-Pattern</strong></a>
+                 (Abgabe: Di, 14.06., 18 Uhr, PR/MR)
+            </li>
+        
+    
+    </ul>
+
+</div>
+
+
+    
+
+
+
+<div class="bib">
+    <h2>Quellen</h2>
+
+    <ul>
+    
+        
+        
+
+        
+            
+            
+            
+            
+            
+
+            
+            
+                
+                    
+                
+            
+            
+            
+            
+            
+            
+
+            <li id="id_LernJava">
+            
+                [LernJava] <a href="https://dev.java/learn/" class="icon reading" target="_blank" rel="nofollow noopener noreferrer"><strong>Learn Java</strong></a>
+            
+            
+                <br>Oracle Corporation, 2022.
+                
+                
+            
+            
+                <br><em>Tutorials \&gt; The Stream API</em>
+            
+            </li>
+        
+
+    
+        
+        
+
+        
+            
+            
+            
+            
+            
+
+            
+            
+                
+                    
+                
+            
+            
+            
+            
+            
+            
+
+            <li id="id_Ullenboom2021">
+            
+                [Ullenboom2021] <a href="https://openbook.rheinwerk-verlag.de/javainsel/index.html" class="icon reading" target="_blank" rel="nofollow noopener noreferrer"><strong>Java ist auch eine insel</strong></a>
+            
+            
+                <br>Ullenboom, C., Rheinwerk-Verlag, 2021.
+                
+                    ISBN <a href="https://www.digibib.net/openurl/Bi10?isbn=978-3-8362-8745-6" target="_blank" rel="nofollow noopener noreferrer">978-3-8362-8745-6</a>.
+                
+                
+            
+            
+                <br><em>Kap. 17.3 - 17.6: Java Stream-API</em>
+            
+            </li>
+        
+
+    
+    </ul>
+
+</div>
+
+
+
+
+
+
+        </div>
+      </main><p><div style="color: darkgray; font-size: smaller;">
+<p style="margin-left: 1rem;">
+    <!-- https://creativecommons.org/choose/ -->
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;margin:0;display:inline;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a> Unless otherwise noted, <a href="https://github.com/PM-Dungeon/PM-Lecture">this work</a> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/cagix" property="cc:attributionName" rel="cc:attributionURL">Carsten Gips</a> and <a href="https://github.com/PM-Dungeon/PM-Lecture/graphs/contributors">contributors</a> is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+<br />
+    Icons by <a href="https://fontawesome.com/">Font Awesome</a>.
+    Built with <a href="https://github.com/jgm/pandoc">Pandoc</a> using <a href="https://github.com/cagix/pandoc-lecture">Pandoc-Lecture</a> and <a href="https://github.com/gohugoio/hugo">Hugo</a> using the <a href="https://github.com/McShelby/hugo-theme-relearn">Hugo Relearn Theme</a>.
+</p>
+</div>
+</p>
+
+    </div>
+    <aside id="sidebar" class="default-animation showVisitedLinks">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
+<a id="logo" href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/'>
+    <img style="max-width:35%" alt="icon" src='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/images/logo.png'>
+</a>
+
+        </div>
+      </div>
+      <div id="content-wrapper" class="highlightable">
+        <ul class="topics">
+          <li data-nav-id="/git/" title="Git" class="dd-item"><input type="checkbox" id="section-346b17b87a1a6c2e7ff1e8f0f4d1b4bd" class="toggle"/><label for="section-346b17b87a1a6c2e7ff1e8f0f4d1b4bd" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/">Git<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/git/intro/" title="Intro: Versionskontrolle in der Softwareentwicklung" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/intro/">Intro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/basics/" title="Basics der Versionsverwaltung mit Git (lokale Repos)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/basics/">Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/branches/" title="Git Branches: Features unabhängig entwickeln und mit Git verwalten" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branches/">Branches<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/branching-strategies/" title="Branching-Strategien mit Git" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branching-strategies/">Branching-Strategien<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/remotes/" title="Arbeiten mit Git Remotes (dezentrale Repos)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/remotes/">Remotes<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/workflows/" title="Zusammenarbeit: Git-Workflows und Merge-/Pull-Requests" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/workflows/">Workflows<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/bisect/" title="Fehlersuche mit Git Bisect" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/bisect/">Bisect<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/testing/" title="Testing" class="dd-item"><input type="checkbox" id="section-a831e487e7bd822b29c7ec65758c1503" class="toggle"/><label for="section-a831e487e7bd822b29c7ec65758c1503" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/">Testing<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/testing/testing-intro/" title="Einführung Softwaretest" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testing-intro/">Intro SW-Test<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/junit-basics/" title="Testen mit JUnit (JUnit-Basics)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/junit-basics/">JUnit-Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/testcases/" title="Testfallermittlung: Wie viel und was muss man testen?" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testcases/">Testfallermittlung<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/mockito/" title="Mocking mit Mockito" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/mockito/">Mocking<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/coding/" title="Coding" class="dd-item"><input type="checkbox" id="section-079e50620d382bff188ccaf7d7eec5ec" class="toggle"/><label for="section-079e50620d382bff188ccaf7d7eec5ec" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/">Coding<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/coding/logging/" title="Logging" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/logging/">Logging<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/javadoc/" title="Javadoc" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/javadoc/">Javadoc<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/smells/" title="Code Smells" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/smells/">Code Smells<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/codingrules/" title="Coding Conventions und Metriken" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/codingrules/">Coding Conventions<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/refactoring/" title="Refactoring" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/refactoring/">Refactoring<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/tdd/" title="Testbarkeit und Testdriven Development (TDD)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/tdd/">Testbarkeit und TDD<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/building/" title="Building" class="dd-item"><input type="checkbox" id="section-ff836c14ff2daf3537fcd8281d19c8a3" class="toggle"/><label for="section-ff836c14ff2daf3537fcd8281d19c8a3" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/">Building<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/building/ant/" title="Build-Systeme: Apache Ant" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ant/">Ant<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/maven/" title="Build-Systeme: Apache Maven" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/maven/">Maven<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/gradle/" title="Build-Systeme: Gradle" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/gradle/">Gradle<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/ci/" title="Continuous Integration (CI)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ci/">Continuous Integration<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/docker/" title="Einführung in Docker" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/docker/">Docker<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/pattern/" title="Pattern" class="dd-item"><input type="checkbox" id="section-84eb7f5d4debf68ee3bffeb919ec8445" class="toggle"/><label for="section-84eb7f5d4debf68ee3bffeb919ec8445" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/">Pattern<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/pattern/factory-method/" title="Factory-Method-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/factory-method/">Factory-Method<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/visitor/" title="Visitor-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/visitor/">Visitor<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/observer/" title="Observer-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/observer/">Observer<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/strategy/" title="Strategy-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/strategy/">Strategy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/template-method/" title="Template-Method-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/template-method/">Template-Method<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/command/" title="Command-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/command/">Command<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/flyweight/" title="Flyweight-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/flyweight/">Flyweight<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/type-object/" title="Type-Object-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/type-object/">Type-Object<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/singleton/" title="Singleton-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/singleton/">Singleton<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/generics/" title="Generics" class="dd-item"><input type="checkbox" id="section-9ec2dd2215ae1799fe9fb0d331b91e01" class="toggle"/><label for="section-9ec2dd2215ae1799fe9fb0d331b91e01" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/">Generics<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/generics/classes-methods/" title="Generische Klassen &amp; Methoden" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/classes-methods/">Klassen &amp; Methoden<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/bounds-wildcards/" title="Bounds &amp; Wildcards" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/bounds-wildcards/">Bounds &amp; Wildcards<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/type-erasure/" title="Type Erasure" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/type-erasure/">Type Erasure<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/generics-polymorphism/" title="Generics und Polymorphie" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/generics-polymorphism/">Polymorphie<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/java-jvm/" title="Java / JVM" class="dd-item"><input type="checkbox" id="section-1d4a17db91c5179ff6d850c019075026" class="toggle"/><label for="section-1d4a17db91c5179ff6d850c019075026" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/">Java / JVM<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/java-jvm/regexp/" title="Reguläre Ausdrücke" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/regexp/">RegExp<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/configuration/" title="Konfiguration eines Programms" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/configuration/">Konfiguration<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/enums/" title="Aufzählungen (Enumerations)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/enums/">Enumerations<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/annotations/" title="Annotationen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/annotations/">Annotationen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/reflection/" title="Reflection" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/reflection/">Reflection<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/collections/" title="Java Collections Framework" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/collections/">Collections<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/serialisation/" title="Serialisierung von Objekten und Zuständen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/serialisation/">Serialisierung<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/exceptions/" title="Exception-Handling" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/exceptions/">Exceptions<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/modern-java/" title="Modern Java" class="dd-item parent"><input type="checkbox" id="section-b61bc4c9231f95b2150d554b2f10a68d" class="toggle" checked/><label for="section-b61bc4c9231f95b2150d554b2f10a68d" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/">Modern Java<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/modern-java/defaultmethods/" title="Interfaces: Default-Methoden" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/defaultmethods/">Default-Methoden<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/lambdas/" title="Lambda-Ausdrücke und funktionale Interfaces" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/lambdas/">Lambda-Ausdrücke<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/methodreferences/" title="Methoden-Referenzen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/methodreferences/">Methoden-Referenzen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/stream-api/" title="Stream-API" class="dd-item active"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/stream-api/">Stream-API<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/records/" title="Record-Klassen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/records/">Records<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/optional/" title="Optional" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/optional/">Optional<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/threads/" title="Threads" class="dd-item"><input type="checkbox" id="section-d05c691fa11b6c7c73707b1f693354bc" class="toggle"/><label for="section-d05c691fa11b6c7c73707b1f693354bc" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/">Threads<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/threads/intro/" title="Einführung in die nebenläufige Programmierung mit Threads" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/intro/">Intro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/threads/synchronisation/" title="Synchronisation: Verteilter Zugriff auf gemeinsame Ressourcen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/synchronisation/">Synchronisation<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/threads/highlevel/" title="High-Level Concurrency" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/highlevel/">High-Level Concurrency<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/gui/" title="GUI" class="dd-item"><input type="checkbox" id="section-6bd1817b64a743ce3da58441e61d147a" class="toggle"/><label for="section-6bd1817b64a743ce3da58441e61d147a" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/">GUI<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/gui/basics/" title="Swing 101: Basics" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/basics/">Swing: Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/events/" title="Swing Events" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/events/">Swing: Events<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/widgets/" title="Swing: Nützliche Widgets" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/widgets/">Swing: Widgets<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/layouts/" title="Swing: Layout-Manager" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/layouts/">Swing: Layout-Manager<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/tables/" title="Swing: Tabellen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/tables/">Swing: Tabellen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/java2d/" title="Einführung in Graphics und Java 2D" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/java2d/">Java2D<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/frameworks/" title="Frameworks" class="dd-item"><input type="checkbox" id="section-6e87d98d146ebd1a56f5cfe9e946dff8" class="toggle"/><label for="section-6e87d98d146ebd1a56f5cfe9e946dff8" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/">Frameworks<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/frameworks/intro/" title="Frameworks: Einstieg" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/intro/">Intro<i class="fas fa-check read-icon"></i></a></li></ul></li>
+        </ul>
+        <div id="shortcuts">
+          <div class="nav-title">More</div>
+          <ul>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/schedule"><i class='fas fa-bookmark'></i> Fahrplan</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments"><i class='fas fa-bookmark'></i> Praktikum</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/grading"><i class='fas fa-bookmark'></i> Note/Credits</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/syllabus"><i class='fas fa-bookmark'></i> Syllabus</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/resources"><i class='fas fa-bookmark'></i> Ressourcen</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/exam"><i class='fas fa-bookmark'></i> Prüfungsvorbereitung</a></li>
+          </ul>
+        </div>
+        <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showVisitedLinks showFooter"></div>
+        <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showVisitedLinks showFooter"/>
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVariantSwitch showVisitedLinks">
+          <ul>
+            <li id="select-language-container" class="footerLangSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-language fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-language" onchange="location = baseUri + this.value;">
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+            </li>
+            <li id="select-variant-container" class="footerVariantSwitch showVariantSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-variant" onchange="variants.changeVariant( this.value );">
+                    <option id="relearn-light" value="relearn-light" selected>Relearn Light</option>
+                    <option id="relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="green" value="green">Green</option>
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+              <script>variants.markSelectedVariant();</script>
+            </li>
+            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+          </ul>
+        </div>
+        <div id="footer" class="footerFooter showFooter"><p style="margin-left: 1rem;">
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/imprint'>Impressum</a>,
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/privacy'>Datenschutz</a>,
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/credits'>Credits</a>
+</p>
+
+        </div>
+      </div>
+    </aside>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/clipboard.min.js?1656322214"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/perfect-scrollbar.min.js?1656322214"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/featherlight.min.js?1656322214"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/theme.js?1656322214"></script>
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$','$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+</script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+</html>
+

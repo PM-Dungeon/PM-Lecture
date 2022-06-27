@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gruppe A: Basics on </title>
+    <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/</link>
+    <description>Recent content in Gruppe A: Basics on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-DE</language><atom:link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dungeon-Start</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/dungeon-start/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/dungeon-start/</guid>
+      <description>Erinnerung: Für alle Aufgaben aus dem Dungeon-Pool ist stets ein Lerntagebuch zu führen und mit der Lösung abzugeben (vgl. &amp;ldquo;Note und Credits &amp;gt; Hinweise zum Praktikum &amp;gt; Lerntagebuch&amp;rdquo;, dort finden Sie auch die zu nutzende Markdown-Vorlage und zusätzlich ein ausgefülltes Beispiel).
+Ziel Am Ende dieser Aufgaben sollen Sie ein lauffähiges Gerüst für Ihr Dungeon-Spiel aufgesetzt haben.
+Dungeon Implementieren Sie mithilfe des Quickstart-Guides Ihren ersten Dungeon und Ihren Helden.
+Punkte: 3P</description>
+    </item>
+    <item>
+      <title>Fähigkeiten</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/skills/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/skills/</guid>
+      <description>Ziel In dieser Aufgabe sollen Sie verschiedene Fähigkeiten implementieren, die dann vom Spieler verwendet werden können.
+Fähigkeiten Entwickeln Sie verschiedene Fähigkeiten, die der Spieler im Laufe des Spiels freischalten und benutzen kann.
+Überlegen Sie sich ein geeignetes System, um die Fähigkeiten auszurüsten, anzuzeigen, freizuschalten und zu benutzen.
+Implementieren Sie mindestens drei unterschiedliche Fähigkeiten, wobei mindestens eine Kampffähigkeit und eine Non-Kampffähigkeit dabei sein muss. Außerdem:
+ Eine der Fähigkeiten soll einen Cooldown bekommen.</description>
+    </item>
+    <item>
+      <title>Fallen</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/fallen/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/fallen/</guid>
+      <description>Ziel In dieser Aufgaben sollen Sie Fallen implementieren, die das Voranschreiten im Dungeon schwieriger machen.
+Fallen Implementieren Sie Fallen, die Sie im Dungeon verteilen.
+Eine Falle kann aktiviert werden, indem ein Held oder ein Monster darauf tritt oder ein Gegenstand darauf abgelegt wird.
+Fallen können verschiedene Wirkungen haben: Sie können bei der Aktivierung Schadenspunkte verteilen oder einen Gegenstand/Held/Monster im aktuellen Spiel-Level teleportieren oder zufällige Monster &amp;quot;hervorzaubern&amp;quot;.
+Fallen können gut sichtbar sein oder auch versteckt sein und nur unter der Wirkung eines bestimmten Zaubertranks oder Zauberspruchs sichtbar sein.</description>
+    </item>
+    <item>
+      <title>Inventar (text basiert)</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/inventar_text_based/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/inventar_text_based/</guid>
+      <description>Voraussetzungen Um diese Aufgabe bearbeiten zu können, sollten Sie vorher die Aufgabe &amp;ldquo;Item&amp;rdquo; aus Pool C gelöst haben.
+Ziel In dieser Aufgabe sollen Sie ein textbasiertes, also über die Konsole einseh- und steuerbares, Inventar implementieren. Im Inventar können bestimmte Gegenstände gelagert, ausgerüstet oder verwendet werden.
+Inventar (text basiert) Der Spieler soll verschiedene Items im Inventar haben können. Stellen Sie sich das Inventar als eine Art Rucksack vor, in den gesammelte Gegenstände gepackt und mitgeführt werden können.</description>
+    </item>
+    <item>
+      <title>Crafting</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/crafting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/crafting/</guid>
+      <description>Ziel In dieser Aufgabe sollen Sie ein Crafting-System implementieren. Das ist eine Möglichkeit für den Helden, aus verschiedenen Gegenständen nach bestimmten Regeln neue Gegenstände herstellen zu können. Denken Sie beispielsweise an das Brauen von Tränken oder Schmieden von Waffen.
+Voraussetzung Um diese Aufgabe lösen zu können, müssen Sie vorher die Aufgabe &amp;ldquo;Inventar&amp;rdquo; gelöst haben.
+Crafting Implementieren Sie ein Crafting-System. Lassen Sie den Helden mindestens einen Trank, eine Waffe und einen Zauberspruch craften.</description>
+    </item>
+    <item>
+      <title>Charakterklassen</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/charakterklassen/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/charakterklassen/</guid>
+      <description>Ziel In Rollenspielen gibt die Charakterklasse an, welche Werte (Anzahl der Lebenspunkte, Kampfschaden, Mana-Punkte etc.) die Spielfigur hat, welche Waffen sie verwenden und welche Fähigkeiten sie erlernen kann. Typische Charakterklassen sind Krieger, Zauberer oder Schurke.
+In dieser Aufgabe sollen Sie verschiedene Charakterklassen implementieren.
+Voraussetzungen Um diese Aufgabe zu lösen, sollten Sie am besten bereits ein Kampfsysteme (&amp;ldquo;Nahkampf&amp;rdquo; oder &amp;ldquo;Fernkampf&amp;rdquo;) und &amp;ldquo;Fähigkeiten&amp;rdquo; umgesetzt haben.
+Charakterklassen Überlegen Sie sich zuerst, welche Charakterklassen Sie implementieren wollen.</description>
+    </item>
+    <item>
+      <title>Speichern und Laden</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/speichern_und_laden/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/speichern_und_laden/</guid>
+      <description>Ziel In dieser Aufgaben sollen Sie ein System zum Speichern und Laden des Spielzustandes implementieren.
+Speichern und Laden Implementieren Sie eine Möglichkeit, um das Spiel und den aktuellen Zustand zu speichern und zu laden.
+Speichern Sie die Informationen über den Spielzustand, damit Sie zu einem späteren Zeitpunkt ein neues Spiel starten und den jetzigen Spielzustand durch Laden der abgespeicherten Daten wiederherstellen können.
+Überlegen Sie sich, was alles gespeichert werden muss und wie Sie die Daten dafür ablegen müssen.</description>
+    </item>
+    <item>
+      <title>JUnit Group A</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/testen/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/testen/</guid>
+      <description>Ziel In dieser Aufgaben sollen Sie eine gründliche Testabdeckung für Ihren &amp;ldquo;Helden&amp;rdquo; implementieren.
+JUnit  Überlegen Sie sich, was Sie alles testen müssen. Ermitteln Sie die Testfälle mit Äquivalenzklassenbildung und Grenzwertanalyse. Implementieren Sie Ihre Testfälle mit JUnit und Mockito.  Dokumentieren Sie die Ergebnisse aller Arbeitsschritte entsprechend nachvollziehbar im Lerntagebuch.</description>
+    </item>
+    <item>
+      <title>Freie Aufgabe</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/freie_aufgabe/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_dungeon/group_a/freie_aufgabe/</guid>
+      <description>Freie Aufgabe In dieser Aufgabe implementieren Sie ein großes oder mehrere kleinere Features für Ihren Dungeon. Sie dürfen sich diese(s) Feature(s) selbst aussuchen und konzipieren. Beachten Sie dabei, dass Ihr Feature nicht Teil einer vorgegebenen oder bereits bearbeiteten/abgegebenen anderen Dungeon-Aufgabe sein kann.
+Formulieren Sie Ihr Vorhaben ausführlich in Ihrem Lerntagebuch. Machen Sie besonders deutlich, was Sie erreichen wollen.
+Diese Aufgabe bringt Ihnen bis zu 10 Punkte ein. Wählen Sie den Umfang daher entsprechend so, dass Sie nicht zu wenig, aber auch nicht zu viel zu tun haben.</description>
+    </item>
+  </channel>
+</rss>

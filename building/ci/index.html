@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.96.0" />
+    <meta name="generator" content="Relearn 3.4.0&#43;tip">
+    <meta name="description" content="">
+    <meta name="author" content="cagix">
+    <title>Continuous Integration (CI)   </title>
+    <link rel="icon" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/images/logo.png?1656322213" type="image/png">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/nucleus.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/fontawesome-all.min.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/featherlight.min.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/perfect-scrollbar.min.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/auto-complete.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/theme.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/theme-relearn-light.css?1656322213" rel="stylesheet" id="variant-style">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/variant.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/print.css?1656322213" rel="stylesheet" media="print">
+    <style>
+      :not(pre) > code.copy-to-clipboard-code + span.copy-to-clipboard-button {
+        display: none;
+      }
+      :not(pre) > code.copy-to-clipboard-code {
+        border-bottom-right-radius: 2px;
+        border-top-right-radius: 2px;
+        border-right-width: 1px;
+      }
+    </style>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/variant.js?1656322213"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      var index_url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/index.json";
+      var root_url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      // some further base stuff
+      var baseUriFull='https:\/\/www.fh-bielefeld.de\/elearning\/data\/FH-Bielefeld\/lm_data\/lm_1271733/';
+      variants.init( [ 'relearn-light', 'relearn-dark', 'green' ] );
+    </script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/jquery.min.js?1656322213"></script><style type="text/css">
+
+ 
+.center {
+    align-content: center;
+    text-align: center;
+    margin: auto;
+}
+.alert {
+    color: #ff3333;
+}
+.bsp {
+    padding: 0.05cm;
+    border-width: 0.05cm;
+    border-style: solid;
+    border-color: #ddd;
+    background-color: #ddd;
+    border-radius: 25px;
+    float: right;
+}
+.cbox {
+    padding: 0.2cm;
+    border-width: 0.1cm;
+    border-style: solid;
+    border-color: #4070a0;
+    background-color: #f2f2f2;
+    margin: auto;
+    width: 60%;
+    text-align: center;
+    overflow: auto;
+}
+.blueArrow {
+    color: #4070a0;
+    font-family: "Courier New", "Courier", monospace;
+    font-weight: bold;
+}
+.origin {
+    background-color: #ededed;
+    font-size: 0.8em;
+}
+.showme {
+    background-color: #ededed;
+    font-size: 0.8em;
+}
+
+
+ 
+.tldr {
+    background: #dbe4ed;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.recap {
+    
+    
+   margin: 4px 0px 26px 0px;
+}
+.bib {
+    background: #dbe4ed;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.outcomes {
+    background: #d9e9d5;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.quizzes {
+    background: #d9e9d5;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.challenges {
+    background: #ebe4d6;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.assignments {
+    background: #ebe4d6;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+h1.tldr, h1.recap, h1.bib, h1.outcomes, h1.quizzes, h1.challenges, h1.assignments {
+    padding: 0px;
+}
+
+
+ 
+.noJsAlert {
+    padding: 20px;
+    background-color: #f44336;  
+    color: white;
+    margin-bottom: 15px;
+}
+
+
+ 
+.embed-video-player {
+    position: relative;
+    padding-bottom: 56%;
+    height: 0;
+    overflow: hidden;
+}
+.youtube-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border:0;
+}
+
+
+ 
+#header-wrapper {
+    padding:0.6rem;
+}
+
+
+ 
+#shortcuts {
+    padding-top: 2.0rem;
+}
+
+
+ 
+#chapter p {
+    text-align: left;
+}
+
+
+ 
+figcaption h4 {
+    margin-top:-2.5rem;
+}
+.border1 {
+    border:1px solid black;
+}
+
+ 
+td ul, td ol {
+    margin: 0 0 1rem 0.5rem;
+    padding: 0 0 0 0.5rem;
+}
+
+ 
+h1 { font-size:2.8rem !important;}
+h2 { font-size:2.2rem; margin:1.2rem 0}
+h3 { font-size:1.9rem; text-align:left !important; font-weight:400 !important;}
+h4 { font-size:1.6rem}
+h5 { font-size:1.3rem}
+h6 { font-size:1rem}
+
+h2 {
+    width:100% !important;
+    border-bottom:1px solid #5e5e5e !important;
+    padding-bottom: 2px;
+}
+.tldr h2, .recap h2, .bib h2, .outcomes h2, .quizzes h2, .challenges h2, .assignments h2 {
+    margin:0.5rem 0
+}
+
+.btn-crossreference, .btn-crossreference:hover {
+    cursor: initial !important;
+    color: #333 !important;
+    background-color: #fff !important;
+    border-color: #ccc !important;
+}
+
+</style>
+
+  </head>
+  <body class="mobile-support" data-url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ci/">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div id="top-github-link">
+            <a class="github-link" title='Edit' href="https://github.com/PM-Dungeon/PM-Lecture/edit/master/markdown/building/ci.md" target="blank">
+              <i class="fas fa-pen fa-fw"></i>
+            </a>
+          </div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <span id="toc-menu" title='Table of Contents'><i class="fas fa-list-alt fa-fw"></i></span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <meta itemprop="itemListOrder" content="Descending" />
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="3" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/"><span itemprop="name">PM S22</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="2" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/"><span itemprop="name">Building</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ci/" aria-disabled="true"><span itemprop="name">Continuous Integration (CI)</span></a></li>
+            </ol>
+          </div>
+          <div class="default-animation progress">
+            <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#motivation-zusammenarbeit-in-teams">Motivation: Zusammenarbeit in Teams</a>
+      <ul>
+        <li><a href="#szenario">Szenario</a></li>
+        <li><a href="#manuelle-ausführung-der-testsuiten-reicht-nicht">Manuelle Ausführung der Testsuiten reicht nicht</a></li>
+        <li><a href="#continuous-integration">Continuous Integration</a></li>
+      </ul>
+    </li>
+    <li><a href="#continuous-integration-ci">Continuous Integration (CI)</a>
+      <ul>
+        <li><a href="#vorgehen">Vorgehen</a></li>
+        <li><a href="#einige-vorteile">Einige Vorteile</a></li>
+        <li><a href="#beispiele-für-verbreitete-ci-umgebungen">Beispiele für verbreitete CI-Umgebungen</a></li>
+      </ul>
+    </li>
+    <li><a href="#gitlab-cicd">GitLab CI/CD</a>
+      <ul>
+        <li><a href="#übersicht-über-pipelines">Übersicht über Pipelines</a></li>
+        <li><a href="#detailansicht-einer-pipeline">Detailansicht einer Pipeline</a></li>
+        <li><a href="#detailansicht-eines-jobs">Detailansicht eines Jobs</a></li>
+        <li><a href="#gitlab-cicd-konfiguration-mit-yaml-datei">GitLab CI/CD: Konfiguration mit YAML-Datei</a></li>
+        <li><a href="#hinweise-zur-konfiguration-von-gitlab-cicd">Hinweise zur Konfiguration von GitLab CI/CD</a></li>
+      </ul>
+    </li>
+    <li><a href="#github-actions">GitHub Actions</a>
+      <ul>
+        <li><a href="#übersicht-über-workflows">Übersicht über Workflows</a></li>
+        <li><a href="#detailansicht-eines-workflows">Detailansicht eines Workflows</a></li>
+        <li><a href="#detailansicht-eines-jobs-1">Detailansicht eines Jobs</a></li>
+        <li><a href="#github-actions-konfiguration-mit-yaml-datei">GitHub Actions: Konfiguration mit YAML-Datei</a></li>
+        <li><a href="#hinweise-zur-konfiguration-von-github-actions">Hinweise zur Konfiguration von GitHub Actions</a></li>
+      </ul>
+    </li>
+    <li><a href="#wrap-up">Wrap-Up</a></li>
+  </ul>
+</nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+
+
+
+    
+
+
+
+
+
+
+<div class="tldr">
+    <h2>TL;DR</h2>
+
+    
+
+    
+        <p>In größeren Projekten mit mehreren Teams werden die Beteiligten i.d.R. nur noch &quot;ihre&quot;
+Codestellen compilieren und testen. Dennoch ist es wichtig, das gesamte Projekt regelmäßig
+zu &quot;bauen&quot; und auch umfangreichere Testsuiten regelmäßig laufen zu lassen. Außerdem ist
+es wichtig, das in einer definierten Umgebung zu tun und nicht auf einem oder mehreren
+Entwicklerrechnern, die i.d.R. (leicht) unterschiedlich konfiguriert sind, um zuverlässige
+und nachvollziehbare Ergebnisse zu bekommen. Weiterhin möchte man auf bestimmte Ereignisse
+reagieren, wie etwa neue Commits im Git-Server, oder bei Pull-Requests möchte man vor dem
+Merge automatisiert sicherstellen, dass damit die vorhandenen Tests alle &quot;grün&quot; sind und
+auch die Formatierung etc. stimmt.</p>
+<p>Dafür hat sich &quot;Continuous Integration&quot; etabliert. Hier werden die angesprochenen Prozesse
+regelmäßig auf einem dafür eingerichteten System durchgeführt. Aktivitäten wie Übersetzen,
+Testen, Style-Checks etc. werden in sogenannten &quot;Pipelines&quot; oder &quot;Workflows&quot; zusammengefasst
+und automatisiert durch Commits, Pull-Requests oder Merges auf dem Git-Server ausgelöst. Die
+Aktionen können dabei je nach Trigger und Branch unterschiedlich sein, d.h. man könnte etwa
+bei PR gegen den Master umfangreichere Tests laufen lassen als bei einem PR gegen einen
+Develop-Branch. In einem Workflow oder einer Pipeline können einzelne Aktionen wiederum von
+anderen Aktionen abhängen. Das Ergebnis kann man dann auf dem Server einsehen oder bekommt
+man komfortabel als Report per Mail zugeschickt.</p>
+<p>Wir schauen uns hier exemplarisch GitHub Actions und GitLab CI/CD an. Um CI sinnvoll einsetzen
+zu können, benötigt man Kenntnisse über Build-Tools. &quot;CI&quot; tritt üblicherweise zusammen mit &quot;CD&quot;
+(Continuous Delivery) auf, also als &quot;CI/CD&quot;. Der &quot;CD&quot;-Teil ist nicht Gegenstand der Betrachtung
+in dieser Lehrveranstaltung.</p>
+
+    
+
+    
+        <h3>Videos (YouTube)</h3>
+        
+
+<ul>
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/NCWxo-PN4gs" target="_blank" rel="nofollow noopener noreferrer">VL Continuous Integration</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/rpkZvuiyvTU" target="_blank" rel="nofollow noopener noreferrer">Demo GitHub Actions</a></li>
+    
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/2ydDA4WY1wA" target="_blank" rel="nofollow noopener noreferrer">Demo Demo GitLab CI/CD</a></li>
+    
+
+</ul>
+
+    
+
+    
+        <h3>Videos (FH-Medienportal)</h3>
+        
+
+<ul>
+
+    
+    
+
+    
+    
+    
+
+    
+        <li><a href="https://www.fh-bielefeld.de/medienportal/m/74a8f8c2e1a07d9fb70c8984e522d884141b2260c27dadfd7a23884bee8c0573136475ce66f28562097ca34a63fcf9c6d1c45ff695485d79465a4131878180ca" target="_blank" rel="nofollow noopener noreferrer">VL Continuous Integration</a></li>
+    
+
+</ul>
+
+    
+
+    
+
+</div>
+
+
+    
+
+
+
+<div class="outcomes">
+    <h2>Lernziele</h2>
+
+    
+
+    
+    
+    <ul>
+    
+        
+        <li>(K2) Arbeitsweise von/mit CI</li>
+        
+        
+    
+    </ul>
+    
+
+</div>
+
+
+    <h2 id="motivation-zusammenarbeit-in-teams">Motivation: Zusammenarbeit in Teams</h2>
+<h3 id="szenario">Szenario</h3>
+<ul>
+<li>Projekt besteht aus diversen Teilprojekten</li>
+<li>Verschiedene Entwicklungs-Teams arbeiten (getrennt) an verschiedenen Projekten</li>
+<li>Tester entwickeln Testsuiten für die Teilprojekte</li>
+<li>Tester entwickeln Testsuiten für das Gesamtprojekt</li>
+</ul>
+<h3 id="manuelle-ausführung-der-testsuiten-reicht-nicht">Manuelle Ausführung der Testsuiten reicht nicht</h3>
+<ul>
+<li>Belastet den Entwicklungsprozess</li>
+<li>Keine (einheitliche) Veröffentlichung der Ergebnisse</li>
+<li>Keine (einheitliche) Eskalation bei Fehlern</li>
+<li>Keine regelmäßige Integration in Gesamtprojekt</li>
+</ul>
+<h3 id="continuous-integration">Continuous Integration</h3>
+<ul>
+<li>Regelmäßige, automatische Ausführung: Build und Tests</li>
+<li>Reporting</li>
+<li>Weiterführung der Idee: Regelmäßiges Deployment (<em>Continuous Deployment</em>)</li>
+</ul>
+<h2 id="continuous-integration-ci">Continuous Integration (CI)</h2>
+<figure class="center" style="width:60%">
+    <img alt="" src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/images/ci.png" class="" />
+</figure>
+<h3 id="vorgehen">Vorgehen</h3>
+<ul>
+<li>Entwickler und Tester committen ihre Änderungen regelmäßig (Git, SVN, ...)</li>
+<li>CI-Server arbeitet Build-Skripte ab, getriggert durch Events: Push-Events, Zeit/Datum, ...
+<ul>
+<li>Typischerweise wird dabei:
+<ul>
+<li>Das Gesamtprojekt übersetzt (&quot;gebaut&quot;)</li>
+<li>Die Unit- und die Integrationstests abgearbeitet</li>
+<li>Zu festen Zeiten werden zusätzlich Systemtests gefahren</li>
+</ul>
+</li>
+<li>Typische weitere Builds: &quot;Nightly Build&quot;, Release-Build, ...</li>
+<li>Ergebnisse jeweils auf der Weboberfläche einsehbar (und per E-Mail)</li>
+</ul>
+</li>
+</ul>
+<h3 id="einige-vorteile">Einige Vorteile</h3>
+<ul>
+<li>Tests werden regelmäßig durchgeführt (auch wenn sie lange dauern oder die
+Maschine stark belasten)</li>
+<li>Es wird regelmäßig ein Gesamt-Build durchgeführt</li>
+<li>Alle Teilnehmer sind über aktuellen Projekt(-zu-)stand informiert</li>
+</ul>
+<h3 id="beispiele-für-verbreitete-ci-umgebungen">Beispiele für verbreitete CI-Umgebungen</h3>
+<ul>
+<li><a href="https://www.jenkins.io/">Jenkins</a></li>
+<li><a href="https://docs.gitlab.com/ee/ci/">GitLab CI/CD</a></li>
+<li><a href="https://github.com/features/actions">GitHub Actions</a> und <a href="https://resources.github.com/ci-cd/">GitHub CI/CD</a></li>
+<li><a href="https://www.atlassian.com/software/bamboo">Bamboo</a></li>
+<li><a href="https://www.travis-ci.com/">Travis CI</a></li>
+</ul>
+<h2 id="gitlab-cicd">GitLab CI/CD</h2>
+<p>Siehe auch <a href="http://git03-ifm-min.ad.fh-bielefeld.de/help/ci/quick_start/index.md">&quot;Get started with Gitlab CI/CD&quot;</a>.
+(Für den Zugriff wird VPN benötigt!)</p>
+<h3 id="übersicht-über-pipelines">Übersicht über Pipelines</h3>
+<figure class="center" style="width:60%">
+    <img alt="" src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/images/screenshot-gitlabci-pipelines.png" class="" />
+</figure>
+<ul>
+<li>In Spalte &quot;Status&quot; sieht man das Ergebnis der einzelnen Pipelines:
+&quot;pending&quot; (die Pipeline läuft gerade), &quot;cancelled&quot; (Pipeline wurde manuell
+abgebrochen), &quot;passed&quot; (alle Jobs der Pipeline sind sauber durchgelaufen),
+&quot;failed&quot; (ein Job ist fehlgeschlagen, Pipeline wurde deshalb abgebrochen)</li>
+<li>In Spalte &quot;Pipeline&quot; sind die Pipelines eindeutig benannt aufgeführt,
+inkl. Trigger (Commit und Branch)</li>
+<li>In Spalte &quot;Stages&quot; sieht man den Zustand der einzelnen Stages</li>
+</ul>
+<p>Wenn man mit der Maus auf den Status oder die Stages geht, erfährt man mehr bzw.
+kann auf eine Seite mit mehr Informationen kommen.</p>
+<h3 id="detailansicht-einer-pipeline">Detailansicht einer Pipeline</h3>
+<figure class="center" style="width:60%">
+    <img alt="" src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/images/screenshot-gitlabci-triggeredpipeline.png" class="" />
+</figure>
+<p>Wenn man in eine Pipeline in der Übersicht klickt, werden die einzelnen
+Stages dieser Pipeline genauer dargestellt.</p>
+<h3 id="detailansicht-eines-jobs">Detailansicht eines Jobs</h3>
+<figure class="center" style="width:60%">
+    <img alt="" src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/images/screenshot-gitlabci-job.png" class="" />
+</figure>
+<p>Wenn man in einen Job einer Stage klickt, bekommt man quasi die Konsolenausgabe
+dieses Jobs. Hier kann man ggf. Fehler beim Ausführen der einzelnen Skripte
+oder die Ergebnisse beispielsweise der JUnit-Läufe anschauen.</p>
+<h3 id="gitlab-cicd-konfiguration-mit-yaml-datei">GitLab CI/CD: Konfiguration mit YAML-Datei</h3>
+<p>Datei <code>.gitlab-ci.yml</code> im Projekt-Ordner:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">stages</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">my.compile</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">my.test</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">job1</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">script</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">echo &#34;Hello&#34;</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">./gradlew compileJava</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">echo &#34;wuppie!&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">stage</span>: <span style="color:#ae81ff">my.compile</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">only</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">wuppie</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">job2</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">script</span>: <span style="color:#e6db74">&#34;./gradlew test&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">stage</span>: <span style="color:#ae81ff">my.test</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">job3</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">script</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">echo &#34;Job 3&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">stage</span>: <span style="color:#ae81ff">my.compile</span>
+</span></span></code></pre></div><h4 id="stages">Stages</h4>
+<p>Unter <code>stages</code> werden die einzelnen Stages einer Pipeline definiert. Diese werden
+in der hier spezifizierten Reihenfolge durchgeführt, d.h. zuerst würde <code>my.compile</code>
+ausgeführt, und erst wenn alle Jobs in <code>my.compile</code> erfolgreich ausgeführt wurden,
+würde anschließend <code>my.test</code> ausgeführt.</p>
+<p>Dabei gilt: Die Jobs einer Stage werden (potentiell) parallel zueinander ausgeführt,
+und die Jobs der nächsten Stage werden erst dann gestartet, wenn alle Jobs der
+aktuellen Stage erfolgreich beendet wurden.</p>
+<p>Wenn keine eigenen <code>stages</code> definiert werden, kann man
+(<a href="http://git03-ifm-min.ad.fh-bielefeld.de/help/ci/yaml/index.md#stages">lt. Doku</a>)
+auf die Default-Stages <code>build</code>, <code>test</code> und <code>deploy</code> zurückgreifen. <strong>Achtung</strong>: Sobald
+man eigene Stages definiert, stehen diese Default-Stages <em>nicht</em> mehr zur Verfügung!</p>
+<h4 id="jobs">Jobs</h4>
+<p><code>job1</code>, <code>job2</code> und <code>job3</code> definieren jeweils einen Job.</p>
+<ul>
+<li>
+<p><code>job1</code> besteht aus mehreren Befehlen (unter <code>script</code>). Alternativ
+kann man die bei <code>job2</code> gezeigte Syntax nutzen, wenn nur ein
+Befehl zu bearbeiten ist.</p>
+<p>Die Befehle werden von GitLab CI/CD in einer Shell ausgeführt.</p>
+</li>
+<li>
+<p>Die Jobs <code>job1</code> und <code>job2</code> sind der Stage <code>my.compile</code> zugeordnet (Abschnitt
+<code>stage</code>). Einer Stage können mehrere Jobs zugeordnet sein, die dann parallel
+ausgeführt werden.</p>
+<p>Wenn ein Job nicht explizit einer Stage zugeordnet ist, wird er
+(<a href="http://git03-ifm-min.ad.fh-bielefeld.de/help/ci/yaml/index.md#stages">lt. Doku</a>)
+zur Default-Stage <code>test</code> zugewiesen. (Das geht nur, wenn es diese
+Stage auch gibt!)</p>
+</li>
+<li>
+<p>Mit <code>only</code> und <code>except</code> kann man u.a. Branches oder Tags angeben,
+für die dieser Job ausgeführt (bzw. nicht ausgeführt) werden soll.</p>
+</li>
+</ul>
+<p>Durch die Kombination von Jobs mit der Zuordnung zu Stages und Events lassen
+sich unterschiedliche Pipelines für verschiedene Zwecke definieren.</p>
+<h3 id="hinweise-zur-konfiguration-von-gitlab-cicd">Hinweise zur Konfiguration von GitLab CI/CD</h3>
+<p>Im Browser in den Repo-Einstellungen arbeiten:</p>
+<ol>
+<li>Unter <code>Settings &gt; General &gt; Visibility, project features, permissions</code>
+das <code>CI/CD</code> aktivieren</li>
+<li>Prüfen unter <code>Settings &gt; CI/CD &gt; Runners</code>, dass unter
+<code>Available shared Runners</code> mind. ein shared Runner verfügbar ist
+(mit grün markiert ist)</li>
+<li>Unter <code>Settings &gt; CI/CD &gt; General pipelines</code> einstellen:
+<ul>
+<li><code>Git strategy</code>: <code>git clone</code></li>
+<li><code>Timeout</code>: <code>10m</code></li>
+<li><code>Public pipelines</code>: <code>false</code> (nicht angehakt)</li>
+</ul>
+</li>
+<li>YAML-File (<code>.gitlab-ci.yml</code>) in Projektwurzel anlegen,
+Aufbau siehe oben</li>
+<li>Build-Skript erstellen, <strong>lokal</strong> lauffähig bekommen, dann in Jobs nutzen</li>
+<li>Im <code>.gitlab-ci.yml</code> die relevanten Branches einstellen (s.o.)</li>
+<li>Pushen, und unter <code>CI/CD &gt; Pipelines</code> das Builden beobachten
+<ul>
+<li>in Status reinklicken und schauen, ob und wo es hakt</li>
+</ul>
+</li>
+<li><code>README.md</code> anlegen in Projektwurzel (neben <code>.gitlab-ci.yml</code>),
+Markdown-Schnipsel aus <code>Settings &gt; CI/CD &gt; General pipelines &gt; Pipeline status</code>
+auswählen und einfügen .&hellip;</li>
+</ol>
+<p><em>Optional</em>:</p>
+<ol start="9">
+<li>Ggf. Schedules unter <code>CI/CD &gt; Schedules</code> anlegen</li>
+<li>Ggf. extra Mails einrichten: <code>Settings &gt; Integrations &gt; Pipeline status emails</code></li>
+</ol>
+<h2 id="github-actions">GitHub Actions</h2>
+<p>Siehe <a href="https://github.com/features/actions">&quot;GitHub Actions: Automate your workflow from idea to production&quot;</a>
+und auch <a href="https://resources.github.com/ci-cd/">&quot;GitHub: CI/CD explained&quot;</a>.</p>
+<h3 id="übersicht-über-workflows">Übersicht über Workflows</h3>
+<figure class="center" style="width:60%">
+    <img alt="" src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/images/screenshot-githubci-workflows.png" class="" />
+</figure>
+<p>Hier sieht man das Ergebnis der letzten Workflows. Dazu sieht man den
+Commit und den Branch, auf dem der Workflow gelaufen ist sowie wann er
+gelaufen ist. Über die Spalten kann man beispielsweise nach Status oder
+Event filtern.</p>
+<p>In der Abbildung ist ein Workflow mit dem Namen &quot;GitHub CI&quot; zu sehen, der
+aktuell noch läuft.</p>
+<h3 id="detailansicht-eines-workflows">Detailansicht eines Workflows</h3>
+<figure class="center" style="width:60%">
+    <img alt="" src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/images/screenshot-githubci-triggeredworkflow.png" class="" />
+</figure>
+<p>Wenn man in einen Workflow in der Übersicht anklickt, werden die einzelnen
+Jobs dieses Workflows genauer dargestellt. &quot;job3&quot; ist erfolgreich gelaufen, &quot;job1&quot;
+läuft gerade, und &quot;job2&quot; hängt von &quot;job1&quot; ab, d.h. kann erst nach dem erfolgreichen
+Lauf von &quot;job2&quot; starten.</p>
+<h3 id="detailansicht-eines-jobs-1">Detailansicht eines Jobs</h3>
+<figure class="center" style="width:60%">
+    <img alt="" src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/images/screenshot-githubci-job.png" class="" />
+</figure>
+<p>Wenn man in einen Job anklickt, bekommt man quasi die Konsolenausgabe
+dieses Jobs. Hier kann man ggf. Fehler beim Ausführen der einzelnen Skripte
+oder die Ergebnisse beispielsweise der JUnit-Läufe anschauen.</p>
+<h3 id="github-actions-konfiguration-mit-yaml-datei">GitHub Actions: Konfiguration mit YAML-Datei</h3>
+<p>Workflows werden als YAML-Dateien im Ordner <code>.github/workflows/</code> angelegt.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">GitHub CI</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># push on master branch</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">push</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">branches</span>: [<span style="color:#ae81ff">master]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># manually triggered</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">workflow_dispatch</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">job1</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v3</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/setup-java@v3</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">java-version</span>: <span style="color:#e6db74">&#39;17&#39;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">distribution</span>: <span style="color:#e6db74">&#39;temurin&#39;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">gradle/wrapper-validation-action@v1</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">run</span>: <span style="color:#ae81ff">echo &#34;Hello&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">run</span>: <span style="color:#ae81ff">./gradlew compileJava</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">run</span>: <span style="color:#ae81ff">echo &#34;wuppie!&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">job2</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">needs</span>: <span style="color:#ae81ff">job1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v3</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/setup-java@v3</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">java-version</span>: <span style="color:#e6db74">&#39;17&#39;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">distribution</span>: <span style="color:#e6db74">&#39;temurin&#39;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">gradle/wrapper-validation-action@v1</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">run</span>: <span style="color:#ae81ff">./gradlew test</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">job3</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">run</span>: <span style="color:#ae81ff">echo &#34;Job 3&#34;</span>
+</span></span></code></pre></div><h4 id="workflowname-und-trigger-events">Workflowname und Trigger-Events</h4>
+<p>Der Name des Workflows wird mit dem Eintrag <code>name</code> spezifiziert und sollte sich im
+Dateinamen widerspiegeln, also im Beispiel <code>.github/workflows/github_ci.yml</code>.</p>
+<p>Im Eintrag <code>on</code> können die Events definiert werden, die den Workflow triggern. Im
+Beispiel ist ein Push-Event auf dem <code>master</code>-Branch definiert sowie mit <code>workflow_dispatch:</code>
+das manuelle Triggern (auf einem beliebigen Branch) freigeschaltet.</p>
+<h4 id="jobs-1">Jobs</h4>
+<p>Die Jobs werden unter dem Eintrag <code>jobs</code> definiert: <code>job1</code>, <code>job2</code> und <code>job3</code> definieren
+jeweils einen Job.</p>
+<ul>
+<li>
+<p><code>job1</code> besteht aus mehreren Befehlen (unter <code>steps</code>), die auf einem aktuellen
+virtualisierten Ubuntu-Runner ausgeführt werden.</p>
+<p>Es wird zunächst das Repo mit Hilfe der Checkout-Action ausgecheckt
+(<code>uses: actions/checkout@v3</code>), das JDK eingerichtet/installiert
+(<code>uses: actions/setup-java@v3</code>) und der im Repo enthaltene Gradle-Wrapper
+auf Unversehrtheit geprüft (<code>uses: gradle/wrapper-validation-action@v1</code>).</p>
+<p>Die Actions sind vordefinierte Actions und im Github unter <code>github.com/</code> + Action
+zu finden, d.h. <a href="https://github.com/actions/checkout"><code>actions/checkout</code></a> oder
+<a href="https://github.com/actions/setup-java"><code>actions/setup-java</code></a>. Actions können
+von jedermann definiert und bereitgestellt werden, in diesem Fall handelt es sich
+um von GitHub selbst im Namespace &quot;actions&quot; bereit gestellte direkt nutzbare Actions.
+Man kann Actions auch selbst im Ordner <code>.github/actions/</code> für das Repo definieren
+(Beispiel:
+<a href="https://github.com/PM-Dungeon/PM-Lecture/blob/master/.github/actions/alpine-pandoc-hugo/action.yml">`PM-Dungeon/PM-Lecture</a>).</p>
+<p>Mit <code>run</code> werden Befehle in der Shell auf dem genutzten Runner (hier Ubuntu) ausgeführt.</p>
+</li>
+<li>
+<p>Die Jobs <code>job2</code> ist von <code>job1</code> abhängig und wird erst gestartet, wenn <code>job1</code> erfolgreich
+abgearbeitet ist.</p>
+<p>Ansonsten können die Jobs prinzipiell parallel ausgeführt werden.</p>
+</li>
+</ul>
+<p>Durch die Kombination von Workflows mit verschiedenen Jobs und Abhängigkeiten zwischen Jobs
+lassen sich unterschiedliche Pipelines (&quot;Workflows&quot;) für verschiedene Zwecke definieren.</p>
+<p>Es lassen sich auch andere Runner benutzen, etwa ein virtualisiertes Windows oder macOS.
+Man kann auch über einen &quot;Matrix-Build&quot; den Workflow auf mehreren Betriebssystemen gleichzeitig
+laufen lassen.</p>
+<p>Man kann auch einen Docker-Container benutzen. Dabei muss man beachten, dass dieser am besten
+aus einer Registry (etwa von Docker-Hub oder aus der GitHub-Registry) &quot;gezogen&quot; wird, weil das
+Bauen des Docker-Containers aus einem Docker-File in der Action u.U. relativ lange dauert.</p>
+<h3 id="hinweise-zur-konfiguration-von-github-actions">Hinweise zur Konfiguration von GitHub Actions</h3>
+<p>Im Browser in den Repo-Einstellungen arbeiten:</p>
+<ol>
+<li>Unter <code>Settings &gt; Actions &gt; General &gt; Actions permissions</code> die Actions aktivieren
+(Auswahl, welche Actions erlaubt sind)</li>
+</ol>
+<figure class="center" style="width:60%">
+    <img alt="" src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/images/screenshot_github_settings_actions.png" class="" />
+</figure>
+<ol start="2">
+<li>Unter <code>Settings &gt; Actions &gt; General &gt; Workflow permissions</code> ggf. bestimmen, ob die
+Actions das Repo nur lesen dürfen oder auch zusätzlich schreiben dürfen</li>
+</ol>
+<figure class="center" style="width:60%">
+    <img alt="" src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/images/screenshot_github_settings_permissions.png" class="" />
+</figure>
+<ol start="3">
+<li>Unter <code>Actions &gt; &lt;WORKFLOW&gt;</code> den Workflow ggf. deaktivieren:</li>
+</ol>
+<figure class="center" style="width:60%">
+    <img alt="" src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/images/screenshot_github_actions.png" class="" />
+</figure>
+<h2 id="wrap-up">Wrap-Up</h2>
+<p>Überblick über Continuous Integration:</p>
+<ul>
+<li>Konfigurierbare Aktionen, die auf dem Gitlab-/GitHub-Server ausgeführt werden</li>
+<li>Unterschiedliche Trigger: Commit, Merge, ...</li>
+<li>Aktionen können Branch-spezifisch sein</li>
+<li>Aktionen können von anderen Aktionen abhängen</li>
+</ul>
+
+    
+
+
+<div class="quizzes">
+    <h2>Quizzes</h2>
+
+    <ul>
+    
+        
+        
+        
+        <li>
+            <a href="https://www.fh-bielefeld.de/elearning/goto.php?target=tst_1063036&amp;client_id=FH-Bielefeld" class="icon reading" target="_blank" rel="nofollow noopener noreferrer"><strong>Quiz Continuous Integration (ILIAS)</strong></a>
+        </li>
+        
+    
+    </ul>
+
+</div>
+
+
+    
+
+
+
+
+    
+
+
+
+<div class="bib">
+    <h2>Quellen</h2>
+
+    <ul>
+    
+        
+        
+
+        
+            
+            
+            
+            
+            
+
+            
+            
+                
+                    
+                
+            
+            
+            
+            
+            
+            
+
+            <li id="id_GitHubCI">
+            
+                [GitHubCI] <a href="https://resources.github.com/ci-cd/" class="icon reading" target="_blank" rel="nofollow noopener noreferrer"><strong>Dokumentation GitHub CI</strong></a>
+            
+            
+                <br>GitHub Inc., 2022.
+                
+                
+            
+            
+            </li>
+        
+
+    
+        
+        
+
+        
+            
+            
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+
+            <li id="id_GitlabCI">
+            
+                [GitlabCI] <a href="http://git03-ifm-min.ad.fh-bielefeld.de/help/ci/" class="icon reading" target="_blank" rel="nofollow noopener noreferrer"><strong>Dokumentation Gitlab CI</strong></a>
+            
+            
+            
+            </li>
+        
+
+    
+    </ul>
+
+</div>
+
+
+
+
+
+
+        </div>
+      </main><p><div style="color: darkgray; font-size: smaller;">
+<p style="margin-left: 1rem;">
+    <!-- https://creativecommons.org/choose/ -->
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;margin:0;display:inline;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a> Unless otherwise noted, <a href="https://github.com/PM-Dungeon/PM-Lecture">this work</a> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/cagix" property="cc:attributionName" rel="cc:attributionURL">Carsten Gips</a> and <a href="https://github.com/PM-Dungeon/PM-Lecture/graphs/contributors">contributors</a> is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+<br />
+    Icons by <a href="https://fontawesome.com/">Font Awesome</a>.
+    Built with <a href="https://github.com/jgm/pandoc">Pandoc</a> using <a href="https://github.com/cagix/pandoc-lecture">Pandoc-Lecture</a> and <a href="https://github.com/gohugoio/hugo">Hugo</a> using the <a href="https://github.com/McShelby/hugo-theme-relearn">Hugo Relearn Theme</a>.
+</p>
+</div>
+</p>
+
+    </div>
+    <aside id="sidebar" class="default-animation showVisitedLinks">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
+<a id="logo" href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/'>
+    <img style="max-width:35%" alt="icon" src='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/images/logo.png'>
+</a>
+
+        </div>
+      </div>
+      <div id="content-wrapper" class="highlightable">
+        <ul class="topics">
+          <li data-nav-id="/git/" title="Git" class="dd-item"><input type="checkbox" id="section-346b17b87a1a6c2e7ff1e8f0f4d1b4bd" class="toggle"/><label for="section-346b17b87a1a6c2e7ff1e8f0f4d1b4bd" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/">Git<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/git/intro/" title="Intro: Versionskontrolle in der Softwareentwicklung" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/intro/">Intro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/basics/" title="Basics der Versionsverwaltung mit Git (lokale Repos)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/basics/">Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/branches/" title="Git Branches: Features unabhängig entwickeln und mit Git verwalten" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branches/">Branches<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/branching-strategies/" title="Branching-Strategien mit Git" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branching-strategies/">Branching-Strategien<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/remotes/" title="Arbeiten mit Git Remotes (dezentrale Repos)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/remotes/">Remotes<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/workflows/" title="Zusammenarbeit: Git-Workflows und Merge-/Pull-Requests" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/workflows/">Workflows<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/bisect/" title="Fehlersuche mit Git Bisect" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/bisect/">Bisect<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/testing/" title="Testing" class="dd-item"><input type="checkbox" id="section-a831e487e7bd822b29c7ec65758c1503" class="toggle"/><label for="section-a831e487e7bd822b29c7ec65758c1503" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/">Testing<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/testing/testing-intro/" title="Einführung Softwaretest" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testing-intro/">Intro SW-Test<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/junit-basics/" title="Testen mit JUnit (JUnit-Basics)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/junit-basics/">JUnit-Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/testcases/" title="Testfallermittlung: Wie viel und was muss man testen?" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testcases/">Testfallermittlung<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/mockito/" title="Mocking mit Mockito" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/mockito/">Mocking<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/coding/" title="Coding" class="dd-item"><input type="checkbox" id="section-079e50620d382bff188ccaf7d7eec5ec" class="toggle"/><label for="section-079e50620d382bff188ccaf7d7eec5ec" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/">Coding<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/coding/logging/" title="Logging" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/logging/">Logging<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/javadoc/" title="Javadoc" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/javadoc/">Javadoc<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/smells/" title="Code Smells" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/smells/">Code Smells<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/codingrules/" title="Coding Conventions und Metriken" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/codingrules/">Coding Conventions<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/refactoring/" title="Refactoring" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/refactoring/">Refactoring<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/tdd/" title="Testbarkeit und Testdriven Development (TDD)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/tdd/">Testbarkeit und TDD<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/building/" title="Building" class="dd-item parent"><input type="checkbox" id="section-ff836c14ff2daf3537fcd8281d19c8a3" class="toggle" checked/><label for="section-ff836c14ff2daf3537fcd8281d19c8a3" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/">Building<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/building/ant/" title="Build-Systeme: Apache Ant" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ant/">Ant<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/maven/" title="Build-Systeme: Apache Maven" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/maven/">Maven<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/gradle/" title="Build-Systeme: Gradle" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/gradle/">Gradle<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/ci/" title="Continuous Integration (CI)" class="dd-item active"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ci/">Continuous Integration<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/docker/" title="Einführung in Docker" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/docker/">Docker<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/pattern/" title="Pattern" class="dd-item"><input type="checkbox" id="section-84eb7f5d4debf68ee3bffeb919ec8445" class="toggle"/><label for="section-84eb7f5d4debf68ee3bffeb919ec8445" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/">Pattern<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/pattern/factory-method/" title="Factory-Method-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/factory-method/">Factory-Method<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/visitor/" title="Visitor-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/visitor/">Visitor<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/observer/" title="Observer-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/observer/">Observer<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/strategy/" title="Strategy-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/strategy/">Strategy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/template-method/" title="Template-Method-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/template-method/">Template-Method<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/command/" title="Command-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/command/">Command<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/flyweight/" title="Flyweight-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/flyweight/">Flyweight<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/type-object/" title="Type-Object-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/type-object/">Type-Object<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/singleton/" title="Singleton-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/singleton/">Singleton<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/generics/" title="Generics" class="dd-item"><input type="checkbox" id="section-9ec2dd2215ae1799fe9fb0d331b91e01" class="toggle"/><label for="section-9ec2dd2215ae1799fe9fb0d331b91e01" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/">Generics<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/generics/classes-methods/" title="Generische Klassen &amp; Methoden" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/classes-methods/">Klassen &amp; Methoden<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/bounds-wildcards/" title="Bounds &amp; Wildcards" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/bounds-wildcards/">Bounds &amp; Wildcards<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/type-erasure/" title="Type Erasure" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/type-erasure/">Type Erasure<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/generics-polymorphism/" title="Generics und Polymorphie" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/generics-polymorphism/">Polymorphie<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/java-jvm/" title="Java / JVM" class="dd-item"><input type="checkbox" id="section-1d4a17db91c5179ff6d850c019075026" class="toggle"/><label for="section-1d4a17db91c5179ff6d850c019075026" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/">Java / JVM<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/java-jvm/regexp/" title="Reguläre Ausdrücke" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/regexp/">RegExp<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/configuration/" title="Konfiguration eines Programms" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/configuration/">Konfiguration<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/enums/" title="Aufzählungen (Enumerations)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/enums/">Enumerations<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/annotations/" title="Annotationen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/annotations/">Annotationen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/reflection/" title="Reflection" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/reflection/">Reflection<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/collections/" title="Java Collections Framework" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/collections/">Collections<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/serialisation/" title="Serialisierung von Objekten und Zuständen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/serialisation/">Serialisierung<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/exceptions/" title="Exception-Handling" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/exceptions/">Exceptions<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/modern-java/" title="Modern Java" class="dd-item"><input type="checkbox" id="section-b61bc4c9231f95b2150d554b2f10a68d" class="toggle"/><label for="section-b61bc4c9231f95b2150d554b2f10a68d" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/">Modern Java<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/modern-java/defaultmethods/" title="Interfaces: Default-Methoden" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/defaultmethods/">Default-Methoden<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/lambdas/" title="Lambda-Ausdrücke und funktionale Interfaces" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/lambdas/">Lambda-Ausdrücke<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/methodreferences/" title="Methoden-Referenzen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/methodreferences/">Methoden-Referenzen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/stream-api/" title="Stream-API" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/stream-api/">Stream-API<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/records/" title="Record-Klassen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/records/">Records<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/optional/" title="Optional" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/optional/">Optional<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/threads/" title="Threads" class="dd-item"><input type="checkbox" id="section-d05c691fa11b6c7c73707b1f693354bc" class="toggle"/><label for="section-d05c691fa11b6c7c73707b1f693354bc" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/">Threads<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/threads/intro/" title="Einführung in die nebenläufige Programmierung mit Threads" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/intro/">Intro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/threads/synchronisation/" title="Synchronisation: Verteilter Zugriff auf gemeinsame Ressourcen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/synchronisation/">Synchronisation<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/threads/highlevel/" title="High-Level Concurrency" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/highlevel/">High-Level Concurrency<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/gui/" title="GUI" class="dd-item"><input type="checkbox" id="section-6bd1817b64a743ce3da58441e61d147a" class="toggle"/><label for="section-6bd1817b64a743ce3da58441e61d147a" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/">GUI<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/gui/basics/" title="Swing 101: Basics" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/basics/">Swing: Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/events/" title="Swing Events" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/events/">Swing: Events<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/widgets/" title="Swing: Nützliche Widgets" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/widgets/">Swing: Widgets<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/layouts/" title="Swing: Layout-Manager" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/layouts/">Swing: Layout-Manager<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/tables/" title="Swing: Tabellen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/tables/">Swing: Tabellen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/java2d/" title="Einführung in Graphics und Java 2D" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/java2d/">Java2D<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/frameworks/" title="Frameworks" class="dd-item"><input type="checkbox" id="section-6e87d98d146ebd1a56f5cfe9e946dff8" class="toggle"/><label for="section-6e87d98d146ebd1a56f5cfe9e946dff8" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/">Frameworks<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/frameworks/intro/" title="Frameworks: Einstieg" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/intro/">Intro<i class="fas fa-check read-icon"></i></a></li></ul></li>
+        </ul>
+        <div id="shortcuts">
+          <div class="nav-title">More</div>
+          <ul>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/schedule"><i class='fas fa-bookmark'></i> Fahrplan</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments"><i class='fas fa-bookmark'></i> Praktikum</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/grading"><i class='fas fa-bookmark'></i> Note/Credits</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/syllabus"><i class='fas fa-bookmark'></i> Syllabus</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/resources"><i class='fas fa-bookmark'></i> Ressourcen</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/exam"><i class='fas fa-bookmark'></i> Prüfungsvorbereitung</a></li>
+          </ul>
+        </div>
+        <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showVisitedLinks showFooter"></div>
+        <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showVisitedLinks showFooter"/>
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVariantSwitch showVisitedLinks">
+          <ul>
+            <li id="select-language-container" class="footerLangSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-language fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-language" onchange="location = baseUri + this.value;">
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+            </li>
+            <li id="select-variant-container" class="footerVariantSwitch showVariantSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-variant" onchange="variants.changeVariant( this.value );">
+                    <option id="relearn-light" value="relearn-light" selected>Relearn Light</option>
+                    <option id="relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="green" value="green">Green</option>
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+              <script>variants.markSelectedVariant();</script>
+            </li>
+            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+          </ul>
+        </div>
+        <div id="footer" class="footerFooter showFooter"><p style="margin-left: 1rem;">
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/imprint'>Impressum</a>,
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/privacy'>Datenschutz</a>,
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/credits'>Credits</a>
+</p>
+
+        </div>
+      </div>
+    </aside>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/clipboard.min.js?1656322213"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/perfect-scrollbar.min.js?1656322213"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/featherlight.min.js?1656322213"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/theme.js?1656322213"></script>
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$','$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+</script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+</html>
+

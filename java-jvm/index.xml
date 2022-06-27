@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java / JVM on </title>
+    <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/</link>
+    <description>Recent content in Java / JVM on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-DE</language><atom:link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reguläre Ausdrücke</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/regexp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/regexp/</guid>
+      <description>Suchen in Strings Gesucht ist ein Programm zum Extrahieren von Telefonnummern aus E-Mails.
+=&amp;gt; Wie geht das?
+Leider gibt es unzählig viele Varianten, wie man eine Telefonnummer (samt Vorwahl und ggf. Ländervorwahl) aufschreiben kann:
+030 - 123 456 789, 030-123456789, 030/123456789, +49(30)123456-789, +49 (30) 123 456 - 789, ...  Definition Regulärer Ausdruck  Ein regulärer Ausdruck ist eine Zeichenkette, die zur Beschreibung von Zeichenketten dient.
+ Anwendungen  Finden von Bestandteilen in Zeichenketten Aufteilen von Strings in Tokens Validierung von textuellen Eingaben =&amp;gt; &amp;quot;Eine Postleitzahl besteht aus 5 Ziffern&amp;quot; Compilerbau: Erkennen von Schlüsselwörtern und Strukturen und Syntaxfehlern  Einfachste reguläre Ausdrücke    Zeichenkette Beschreibt     x &amp;quot;x&amp;quot;   .</description>
+    </item>
+    <item>
+      <title>Konfiguration eines Programms</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/configuration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/configuration/</guid>
+      <description>Wie kann man Programme konfigurieren?   Parameter beim Start mitgeben: Kommandozeilenparameter (CLI)
+  Konfigurationsdatei einlesen und auswerten
+  Varianten von Kommandozeilenparameter   Fixe Reihenfolge
+java MyApp 10 20 hello debug
+  Benannte Parameter I
+java MyApp -x 10 -y 20 -answer hello -d
+  Benannte Parameter II
+java MyApp --breite=10 --hoehe=20 --answer=hello --debug
+  Häufig Mischung von Kurz- und Langformen
+Häufig hat man eine Kurzform der Optionen, also etwa &amp;quot;-x&amp;quot;.</description>
+    </item>
+    <item>
+      <title>Aufzählungen (Enumerations)</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/enums/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/enums/</guid>
+      <description>Motivation public class Studi {  public static final int IFM = 0;  public static final int ELM = 1;  public static final int ARC = 2;   public Studi(String name, int credits, int studiengang) {  // Wert für studiengang muss zwischen 0 und 2 liegen  // Erwünscht: Konstanten nutzen  }   public static void main(String[] args) {  Studi rainer = new Studi(&amp;#34;Rainer&amp;#34;, 10, Studi.</description>
+    </item>
+    <item>
+      <title>Annotationen</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/annotations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/annotations/</guid>
+      <description>Was passiert hier? public class A {  public String getInfo() { return &amp;#34;Klasse A&amp;#34;; } }  public class B extends A {  public String getInfo(String s) { return s + &amp;#34;Klasse B&amp;#34;; }   public static void main(String[] args) {  B s = new B();  System.out.println(s.getInfo(&amp;#34;Info: &amp;#34;));  } } Beispiel: annotations.B   Hilft @Override?
+Tja, da sollte wohl die Methode B#getInfo die geerbte Methode A#getInfo überschreiben.</description>
+    </item>
+    <item>
+      <title>Reflection</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/reflection/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/reflection/</guid>
+      <description>Ausgaben und Einblicke zur Laufzeit public class FactoryBeispielTest {  @Test  public void testGetTicket() {  fail(&amp;#34;not implemented&amp;#34;);  } } @Target(value = ElementType.METHOD) @Retention(value = RetentionPolicy.RUNTIME) public @interface Wuppie {} Reflection wird allgemein genutzt, um zur Laufzeit von Programmen Informationen über Klassen/Methoden/... zu bestimmen. Man könnte damit auch das Verhalten der laufenden Programme ändern oder Typen instantiieren und/oder Methoden aufrufen ...
+Wenn Sie nicht (mehr) wissen, wie man eigene Annotationen definiert, schauen Sie doch bitte einfach kurz im Handout zu Annotationen nach :-)</description>
+    </item>
+    <item>
+      <title>Java Collections Framework</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/collections/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/collections/</guid>
+      <description>Motivation: Snippet aus einer Klasse im PM-Dungeon private List&amp;lt;Entity&amp;gt; entities = new ArrayList&amp;lt;&amp;gt;();  public void add(Entity e){  if (!entities.contains(e)) entities.add(e); } Die war ein reales Beispiel aus der Entwicklung des PM-Dungeon.
+Es wurde eine ArrayList&amp;lt;T&amp;gt; zum Verwalten der Entitäten genutzt. Allerdings sollte jedes Element nur einmal in der Liste vorkommen, deshalb wurde beim Einfügen einer Entität geprüft, ob diese bereits in der Liste ist.
+Hier wird die falsche Datenstruktur genutzt!</description>
+    </item>
+    <item>
+      <title>Serialisierung von Objekten und Zuständen</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/serialisation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/serialisation/</guid>
+      <description>Motivation: Persistierung von Objekten und Spielzuständen public class Studi {  private final int credits = 42;  private String name = &amp;#34;Hilde&amp;#34;;   ... } Wie kann ich Objekte speichern und wieder laden?
+ Ich möchte ein Spiel (einen Lauf) im Dungeon abspeichern, um es später fortsetzen zu können. Wie kann ich den aktuellen Zustand (also Level, Monster, Held, Inventar, XP/Health/...) so speichern, dass ich später das Spiel nach einem Neustart einfach fortsetzen kann?</description>
+    </item>
+    <item>
+      <title>Exception-Handling</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/exceptions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/exceptions/</guid>
+      <description>Fehlerfälle in Java int div(int a, int b) {  return a / b; }   div(3, 0); Problem: Programm wird abstürzen, da durch &#39;0&#39; geteilt wird ...
+Lösung? Optional&amp;lt;Integer&amp;gt; div(int a, int b) {  if (b == 0) return Optional.empty();  return Optional.of(a / b); }   Optional&amp;lt;Integer&amp;gt; x = div(3, 0); if (x.isPresent()) {  // do something } else {  // do something else } Probleme:</description>
+    </item>
+  </channel>
+</rss>

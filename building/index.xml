@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Building on </title>
+    <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/</link>
+    <description>Recent content in Building on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-DE</language><atom:link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Build-Systeme: Apache Ant</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ant/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ant/</guid>
+      <description>Automatisieren von Arbeitsabläufen Works on my machine ...
+   Build-Tools:
+ Apache Ant Apache Maven Gradle    Aufgaben:
+ Übersetzen des Quellcodes Ausführen der Unit-Tests Generieren der Dokumentation Packen der Distribution Aufräumen temporärer Dateien ...    =&amp;gt; Automatisieren mit Apache Ant: ant.apache.org
+Aufbau von Ant-Skripten: Projekte und Targets &amp;lt;project name=&amp;#34;Vorlesung&amp;#34; default=&amp;#34;clean&amp;#34; basedir=&amp;#34;.&amp;#34;&amp;gt;  &amp;lt;target name=&amp;#34;init&amp;#34; /&amp;gt;  &amp;lt;target name=&amp;#34;compile&amp;#34; depends=&amp;#34;init&amp;#34; /&amp;gt;  &amp;lt;target name=&amp;#34;test&amp;#34; depends=&amp;#34;compile&amp;#34; /&amp;gt;  &amp;lt;target name=&amp;#34;dist&amp;#34; depends=&amp;#34;compile,test&amp;#34; /&amp;gt;  &amp;lt;target name=&amp;#34;clean&amp;#34; /&amp;gt; &amp;lt;/project&amp;gt;  Ein Hauptziel: project Ein oder mehrere Teilziele: target  Abhängigkeiten der Teilziele untereinander möglich: depends Vorbedingung für Targets mit if oder unless    Aufgaben erledigen: Tasks  Tasks: Aufgaben bzw.</description>
+    </item>
+    <item>
+      <title>Build-Systeme: Apache Maven</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/maven/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/maven/</guid>
+      <description>Build-Tool Maven: Alternative zu Ant oder Gradle mvn archetype:generate -DgroupId=de.fhb.pm -DartifactId=my-project -DarchetypeArtifactId=maven-archetype-quickstart  Von der zeitlichen Entstehung her kommt Maven nach Ant, aber vor Gradle. Wie in Ant sind auch die Maven-Buildskripte XML-basierte Textdateien (Gradle nutzt eine Groovy-basierte DSL).
+Allerdings hat Maven im Gegensatz zu Ant bereits ein Modell des Java-Entwicklungsprozess &amp;quot;eingebaut&amp;quot;: Im Ant-Skript muss alles, was man tun möchte, explizit als Target formuliert werden, d.h. auch ein Kompilieren der Sourcen oder Ausführen der Tests muss extra als Target ins Ant-Skript geschrieben werden, um benutzbar zu sein.</description>
+    </item>
+    <item>
+      <title>Build-Systeme: Gradle</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/gradle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/gradle/</guid>
+      <description>Automatisieren von Arbeitsabläufen Works on my machine ...
+ Einen häufigen Ausspruch, den man bei der Zusammenarbeit in Teams zu hören bekommt, ist &amp;quot;Also, bei mir läuft der Code.&amp;quot; ...
+Das Problem dabei ist, dass jeder Entwickler eine andere Maschine hat, oft ein anderes Betriebssystem oder eine andere OS-Version. Dazu kommen noch eine andere IDE und/oder andere Einstellungen und so weiter.
+Wie bekommt man es hin, dass Code zuverlässig auch auf anderen Rechnern baut?</description>
+    </item>
+    <item>
+      <title>Continuous Integration (CI)</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ci/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ci/</guid>
+      <description>Motivation: Zusammenarbeit in Teams Szenario  Projekt besteht aus diversen Teilprojekten Verschiedene Entwicklungs-Teams arbeiten (getrennt) an verschiedenen Projekten Tester entwickeln Testsuiten für die Teilprojekte Tester entwickeln Testsuiten für das Gesamtprojekt  Manuelle Ausführung der Testsuiten reicht nicht  Belastet den Entwicklungsprozess Keine (einheitliche) Veröffentlichung der Ergebnisse Keine (einheitliche) Eskalation bei Fehlern Keine regelmäßige Integration in Gesamtprojekt  Continuous Integration  Regelmäßige, automatische Ausführung: Build und Tests Reporting Weiterführung der Idee: Regelmäßiges Deployment (Continuous Deployment)  Continuous Integration (CI)  Vorgehen  Entwickler und Tester committen ihre Änderungen regelmäßig (Git, SVN, .</description>
+    </item>
+    <item>
+      <title>Einführung in Docker</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/docker/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/docker/</guid>
+      <description>Motivation CI/CD: WFM (Works For Me)  Auf dem CI-Server muss man eine Arbeitsumgebung konfigurieren und bereitstellen, für Java-basierte Projekte muss beispielsweise ein JDK existieren und man benötigt Tools wie Maven oder Gradle, um die Buildskripte auszuführen. Je nach Projekt braucht man dann noch weitere Tools und Bibliotheken. Diese Konfigurationen sind unabhängig vom CI-Server und werden üblicherweise nicht direkt installiert, sondern über eine Virtualisierung bereitgestellt.
+Selbst wenn man keine CI-Pipelines einsetzt, hat man in Projekten mit mehreren beteiligten Personen häufig das Problem &amp;quot;WFM&amp;quot; (&amp;quot;works for me&amp;quot;).</description>
+    </item>
+  </channel>
+</rss>

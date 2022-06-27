@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Frameworks on </title>
+    <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/</link>
+    <description>Recent content in Frameworks on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-DE</language><atom:link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Frameworks: Einstieg</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/intro/</guid>
+      <description>Checkliste für die Entwicklung eines simplen Videospiels  Checkliste für die Entwicklung eines simplen Videospiels mit Framework  Neben der eigentlichen Funktionalität werden an Softwareprodukte viele weitere Randbedingungen gestellt.
+Dies können Sicherheitsbedingungen sein oder Anforderungen an die Art und Weise der Bereitstellung des Produktes, zum Beispiel als Webservice. Viele dieser Anforderungen ähneln sich von Produkt zu Produkt und müssen dennoch immer wieder neu programmiert werden.
+Für einen Webservice muss beispielsweise eine HTML-Schnittstelle bereitgestellt werden, die Anfragen annimmt, bearbeitet und die Antworten wieder zurückliefert.</description>
+    </item>
+  </channel>
+</rss>

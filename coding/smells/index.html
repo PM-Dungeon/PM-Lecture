@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.96.0" />
+    <meta name="generator" content="Relearn 3.4.0&#43;tip">
+    <meta name="description" content="">
+    <meta name="author" content="cagix">
+    <title>Code Smells   </title>
+    <link rel="icon" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/images/logo.png?1656322213" type="image/png">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/nucleus.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/fontawesome-all.min.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/featherlight.min.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/perfect-scrollbar.min.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/auto-complete.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/theme.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/theme-relearn-light.css?1656322213" rel="stylesheet" id="variant-style">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/variant.css?1656322213" rel="stylesheet">
+    <link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/css/print.css?1656322213" rel="stylesheet" media="print">
+    <style>
+      :not(pre) > code.copy-to-clipboard-code + span.copy-to-clipboard-button {
+        display: none;
+      }
+      :not(pre) > code.copy-to-clipboard-code {
+        border-bottom-right-radius: 2px;
+        border-top-right-radius: 2px;
+        border-right-width: 1px;
+      }
+    </style>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/variant.js?1656322213"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      var index_url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/index.json";
+      var root_url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      // some further base stuff
+      var baseUriFull='https:\/\/www.fh-bielefeld.de\/elearning\/data\/FH-Bielefeld\/lm_data\/lm_1271733/';
+      variants.init( [ 'relearn-light', 'relearn-dark', 'green' ] );
+    </script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/jquery.min.js?1656322213"></script><style type="text/css">
+
+ 
+.center {
+    align-content: center;
+    text-align: center;
+    margin: auto;
+}
+.alert {
+    color: #ff3333;
+}
+.bsp {
+    padding: 0.05cm;
+    border-width: 0.05cm;
+    border-style: solid;
+    border-color: #ddd;
+    background-color: #ddd;
+    border-radius: 25px;
+    float: right;
+}
+.cbox {
+    padding: 0.2cm;
+    border-width: 0.1cm;
+    border-style: solid;
+    border-color: #4070a0;
+    background-color: #f2f2f2;
+    margin: auto;
+    width: 60%;
+    text-align: center;
+    overflow: auto;
+}
+.blueArrow {
+    color: #4070a0;
+    font-family: "Courier New", "Courier", monospace;
+    font-weight: bold;
+}
+.origin {
+    background-color: #ededed;
+    font-size: 0.8em;
+}
+.showme {
+    background-color: #ededed;
+    font-size: 0.8em;
+}
+
+
+ 
+.tldr {
+    background: #dbe4ed;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.recap {
+    
+    
+   margin: 4px 0px 26px 0px;
+}
+.bib {
+    background: #dbe4ed;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.outcomes {
+    background: #d9e9d5;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.quizzes {
+    background: #d9e9d5;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.challenges {
+    background: #ebe4d6;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+.assignments {
+    background: #ebe4d6;
+    padding: 12px;
+    margin: 4px 0px 26px 0px;
+}
+h1.tldr, h1.recap, h1.bib, h1.outcomes, h1.quizzes, h1.challenges, h1.assignments {
+    padding: 0px;
+}
+
+
+ 
+.noJsAlert {
+    padding: 20px;
+    background-color: #f44336;  
+    color: white;
+    margin-bottom: 15px;
+}
+
+
+ 
+.embed-video-player {
+    position: relative;
+    padding-bottom: 56%;
+    height: 0;
+    overflow: hidden;
+}
+.youtube-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border:0;
+}
+
+
+ 
+#header-wrapper {
+    padding:0.6rem;
+}
+
+
+ 
+#shortcuts {
+    padding-top: 2.0rem;
+}
+
+
+ 
+#chapter p {
+    text-align: left;
+}
+
+
+ 
+figcaption h4 {
+    margin-top:-2.5rem;
+}
+.border1 {
+    border:1px solid black;
+}
+
+ 
+td ul, td ol {
+    margin: 0 0 1rem 0.5rem;
+    padding: 0 0 0 0.5rem;
+}
+
+ 
+h1 { font-size:2.8rem !important;}
+h2 { font-size:2.2rem; margin:1.2rem 0}
+h3 { font-size:1.9rem; text-align:left !important; font-weight:400 !important;}
+h4 { font-size:1.6rem}
+h5 { font-size:1.3rem}
+h6 { font-size:1rem}
+
+h2 {
+    width:100% !important;
+    border-bottom:1px solid #5e5e5e !important;
+    padding-bottom: 2px;
+}
+.tldr h2, .recap h2, .bib h2, .outcomes h2, .quizzes h2, .challenges h2, .assignments h2 {
+    margin:0.5rem 0
+}
+
+.btn-crossreference, .btn-crossreference:hover {
+    cursor: initial !important;
+    color: #333 !important;
+    background-color: #fff !important;
+    border-color: #ccc !important;
+}
+
+</style>
+
+  </head>
+  <body class="mobile-support" data-url="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/smells/">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div id="top-github-link">
+            <a class="github-link" title='Edit' href="https://github.com/PM-Dungeon/PM-Lecture/edit/master/markdown/coding/smells.md" target="blank">
+              <i class="fas fa-pen fa-fw"></i>
+            </a>
+          </div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <span id="toc-menu" title='Table of Contents'><i class="fas fa-list-alt fa-fw"></i></span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <meta itemprop="itemListOrder" content="Descending" />
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="3" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/"><span itemprop="name">PM S22</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="2" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/"><span itemprop="name">Coding</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/smells/" aria-disabled="true"><span itemprop="name">Code Smells</span></a></li>
+            </ol>
+          </div>
+          <div class="default-animation progress">
+            <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#code-smells-ist-das-code-oder-kann-das-weg">Code Smells: Ist das Code oder kann das weg?</a></li>
+    <li><a href="#was-ist-guter-sauberer-code-clean-code">Was ist guter (&quot;sauberer&quot;) Code (&quot;Clean Code&quot;)?</a></li>
+    <li><a href="#warum-ist-guter-sauberer-code-so-wichtig">Warum ist guter (&quot;sauberer&quot;) Code so wichtig?</a>
+      <ul>
+        <li><a href="#code-smells">Code Smells</a></li>
+        <li><a href="#broken-windows-phänomen">&quot;Broken Windows&quot; Phänomen</a></li>
+        <li><a href="#maßeinheit-für-code-qualität--">Maßeinheit für Code-Qualität ;-)</a></li>
+      </ul>
+    </li>
+    <li><a href="#code-smells-nichtbeachtung-von-coding-conventions">Code Smells: Nichtbeachtung von Coding Conventions</a></li>
+    <li><a href="#code-smells-schlechte-kommentare-i">Code Smells: Schlechte Kommentare I</a></li>
+    <li><a href="#code-smells-schlechte-kommentare-ii">Code Smells: Schlechte Kommentare II</a></li>
+    <li><a href="#code-smells-schlechte-namen-und-fehlende-kapselung">Code Smells: Schlechte Namen und fehlende Kapselung</a></li>
+    <li><a href="#code-smells-duplizierter-code">Code Smells: Duplizierter Code</a></li>
+    <li><a href="#code-smells-langer-code">Code Smells: Langer Code</a>
+      <ul>
+        <li><a href="#lesbarkeit-und-übersichtlichkeit-leiden">Lesbarkeit und Übersichtlichkeit leiden</a></li>
+        <li><a href="#langer-code-deutet-auch-auf-eine-verletzung-des-prinzips-der-single-responsibility-hin">Langer Code deutet auch auf eine Verletzung des Prinzips der Single Responsibility hin</a></li>
+      </ul>
+    </li>
+    <li><a href="#code-smells-feature-neid">Code Smells: Feature Neid</a></li>
+    <li><a href="#weiterführende-links">Weiterführende Links</a></li>
+    <li><a href="#wrap-up">Wrap-Up</a></li>
+  </ul>
+</nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+
+
+
+    
+
+
+
+
+
+
+<div class="tldr">
+    <h2>TL;DR</h2>
+
+    
+
+    
+        <p>Code entsteht nicht zum Selbstzweck, er muss von anderen Menschen leicht verstanden und
+gewartet werden können: Entwickler verbringen einen wesentlichen Teil ihrer Zeit mit dem
+<strong>Lesen</strong> von (fremdem) Code. Dabei helfen &quot;Coding Conventions&quot;, die eine gewisse einheitliche
+äußerliche Erscheinung des Codes vorgeben (Namen, Einrückungen, ...). Die Beachtung von
+grundlegenden Programmierprinzipien hilft ebenso, die Lesbarkeit und Verständlichkeit zu
+verbessern.</p>
+<p>Code, der diese Konventionen und Regeln verletzt, zeigt sogenannte &quot;<strong>Code Smells</strong>&quot; oder
+&quot;Bad Smells&quot;. Das sind Probleme im Code, die noch nicht direkt zu einem Fehler führen, die
+aber im Laufe der Zeit die Chance für echte Probleme deutlich erhöht.</p>
+
+    
+
+    
+        <h3>Videos (YouTube)</h3>
+        
+
+<ul>
+
+    
+    
+
+    
+
+    
+    
+        <li><a href="https://youtu.be/ALDuLxm71tg" target="_blank" rel="nofollow noopener noreferrer">VL Code Smells</a></li>
+    
+
+</ul>
+
+    
+
+    
+        <h3>Videos (FH-Medienportal)</h3>
+        
+
+<ul>
+
+    
+    
+
+    
+    
+    
+
+    
+        <li><a href="https://www.fh-bielefeld.de/medienportal/m/9d53c3536ada817eee76c9f6e8f7838bfb2308a79d220b8dab0a3cf339f90c52e28ae25e85a652d6da31c8f38c581463bc1679fa5f9cc376115558f7fee41217" target="_blank" rel="nofollow noopener noreferrer">VL Code Smells</a></li>
+    
+
+</ul>
+
+    
+
+    
+
+</div>
+
+
+    
+
+
+
+<div class="outcomes">
+    <h2>Lernziele</h2>
+
+    
+
+    
+    
+    <ul>
+    
+        
+        
+        <li>(K3) Erkennen und Vermeiden von Code Smells</li>
+        
+    
+        
+        
+        <li>(K3) Unterscheiden von leicht lesbarem und schwer lesbarem Code</li>
+        
+    
+        
+        
+        <li>(K3) Programmierprinzipien anwenden, um den Code sauberer zu gestalten</li>
+        
+    
+        
+        
+        <li>(K3) Bessere Kommentare schreiben</li>
+        
+    
+    </ul>
+    
+
+</div>
+
+
+    <h2 id="code-smells-ist-das-code-oder-kann-das-weg">Code Smells: Ist das Code oder kann das weg?</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-{.java" data-lang="{.java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">checker</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">CheckANDDO</span><span style="color:#f92672">(</span>DATA1 inp<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> c<span style="color:#f92672">,</span> FH<span style="color:#f92672">.</span><span style="color:#a6e22e">Studi</span>
+</span></span><span style="display:flex;"><span>    CustD<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> x<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> y<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> in<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> out<span style="color:#f92672">,</span><span style="color:#66d9ef">int</span> c1<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> c2<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> c3 <span style="color:#f92672">=</span> 4<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> i<span style="color:#f92672">;</span> <span style="color:#75715e">// neues i
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>i<span style="color:#f92672">=</span>0<span style="color:#f92672">;</span>i<span style="color:#f92672">&lt;</span>10<span style="color:#f92672">;</span>i<span style="color:#f92672">++)</span> <span style="color:#75715e">// fuer alle i
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        inp<span style="color:#f92672">.</span><span style="color:#a6e22e">kurs</span><span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 10<span style="color:#f92672">;</span> inp<span style="color:#f92672">.</span><span style="color:#a6e22e">kurs</span><span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> CustD<span style="color:#f92672">.</span><span style="color:#a6e22e">cred</span><span style="color:#f92672">[</span>i<span style="color:#f92672">]/</span>c<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>      SetDataToPlan<span style="color:#f92672">(</span>  CustD  <span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">double</span> myI <span style="color:#f92672">=</span> in<span style="color:#f92672">*</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">5</span><span style="color:#f92672">;</span> <span style="color:#75715e">// myI=in*2.5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>c1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        out <span style="color:#f92672">=</span> myI<span style="color:#f92672">;</span> <span style="color:#75715e">//OK
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>  c3 <span style="color:#f92672">==</span> 4  <span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        myI <span style="color:#f92672">=</span> c2 <span style="color:#f92672">*</span> myI<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>c3 <span style="color:#f92672">!=</span> 4 <span style="color:#f92672">||</span> <span style="color:#66d9ef">true</span> <span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#75715e">// unbedingt beachten!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//System.out.println(&#34;x:&#34;+(x++));
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;x:&#34;</span><span style="color:#f92672">+(</span>x<span style="color:#f92672">++));</span> <span style="color:#75715e">// x++
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;out: &#34;</span><span style="color:#f92672">+</span>out<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#f92672">}}</span>   <span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Der Code im obigen Beispiel lässt sich möglicherweise kompilieren. Und
+möglicherweise tut er sogar das, was er tun soll.</p>
+<p>Dennoch: <span class='alert'><strong>Der Code &quot;stinkt&quot;</strong></span> (zeigt <strong>Code Smells</strong>):</p>
+<ul>
+<li>Nichtbeachtung üblicher Konventionen (Coding Rules)</li>
+<li>Schlechte Kommentare</li>
+<li>Auskommentierter Code</li>
+<li>Fehlende Datenkapselung</li>
+<li>Zweifelhafte Namen</li>
+<li>Duplizierter Code</li>
+<li>&quot;Langer&quot; Code: Lange Methoden, Klassen, Parameterlisten, tief
+verschachtelte <code>if/then</code>-Bedingungen, ...</li>
+<li>Feature Neid</li>
+<li><code>switch/case</code> oder <code>if/else</code> statt Polymorphie</li>
+<li>Globale Variablen, lokale Variablen als Attribut</li>
+<li>Magic Numbers</li>
+</ul>
+<p>Diese Liste enthält die häufigsten &quot;Smells&quot; und ließe sich noch beliebig fortsetzen.
+Schauen Sie mal in die unten angegebene Literatur :-)</p>
+<p><strong>Stinkender Code führt zu möglichen (späteren) Problemen.</strong></p>
+<h2 id="was-ist-guter-sauberer-code-clean-code">Was ist guter (&quot;sauberer&quot;) Code (&quot;Clean Code&quot;)?</h2>
+<p>Im Grunde bezeichnet &quot;sauberer Code&quot; (&quot;Clean Code&quot;) die Abwesenheit von Smells. D.h. man
+könnte Code als &quot;sauberen&quot; Code bezeichnen, wenn die folgenden Eigenschaften erfüllt sind
+(keine vollständige Aufzählung!):</p>
+<ul>
+<li>Gut (&quot;angenehm&quot;) lesbar</li>
+<li>Schnell verständlich: Geeignete Abstraktionen</li>
+<li>Konzentriert sich auf <strong>eine</strong> Aufgabe</li>
+<li>So einfach und direkt wie möglich</li>
+<li>Ist gut getestet</li>
+</ul>
+<p>In <a href="#id_Martin2009">[Martin2009]</a> lässt der Autor Robert Martin verschiedene Ikonen der SW-Entwicklung
+zu diesem Thema zu Wort kommen -- eine sehr lesenswerte Lektüre!</p>
+<p>=&gt; Jemand kümmert sich um den Code; solides Handwerk</p>
+<h2 id="warum-ist-guter-sauberer-code-so-wichtig">Warum ist guter (&quot;sauberer&quot;) Code so wichtig?</h2>
+<blockquote>
+<p>Any fool can write code that a computer can understand.
+Good programmers write code that humans can understand.</p>
+<p> <span class='origin'>Quelle: <a href="#id_Fowler2011">[Fowler2011]</a></span></p>
+</blockquote>
+<p>Auch wenn das zunächst seltsam klingt, aber Code muss auch von Menschen gelesen und
+verstanden werden können. Klar, der Code muss inhaltlich korrekt sein und die jeweilige
+Aufgabe erfüllen, er muss kompilieren etc. ... aber er muss auch von anderen Personen
+weiter entwickelt werden und dazu gelesen und verstanden werden. Guter Code ist nicht
+einfach nur inhaltlich korrekt, sondern kann auch einfach verstanden werden.</p>
+<p>Code, der nicht einfach lesbar ist oder nur schwer verständlich ist, wird oft in der
+Praxis später nicht gut gepflegt: Andere Entwickler haben (die berechtigte) Angst, etwas
+kaputt zu machen und arbeiten &quot;um den Code herum&quot;. Nur leider wird das Konstrukt dann
+nur noch schwerer verständlich ...</p>
+<h3 id="code-smells">Code Smells</h3>
+<p>Verstöße gegen die Prinzipien von <em>Clean Code</em> nennt man auch <em>Code Smells</em>: Der
+Code &quot;stinkt&quot; gewissermaßen. Dies bedeutet nicht unbedingt, dass der Code nicht
+funktioniert (d.h. er kann dennoch compilieren und die Anforderungen erfüllen).
+Er ist nur nicht sauber formuliert, schwer verständlich, enthält Doppelungen etc.,
+was im Laufe der Zeit die Chance für tatsächliche Probleme deutlich erhöht.</p>
+<p>Und weil es so wichtig ist, hier gleich noch einmal:</p>
+<div class='cbox'>
+<p><span class='alert'><strong>Stinkender Code führt zu möglichen (späteren) Problemen.</strong></span></p>
+</div>
+<h3 id="broken-windows-phänomen">&quot;Broken Windows&quot; Phänomen</h3>
+<p>Wenn ein Gebäude leer steht, wird es eine gewisse Zeit lang nur relativ langsam
+verfallen: Die Fenster werden nicht mehr geputzt, es sammelt sich Graffiti, Gras
+wächst in der Dachrinne, Putz blättert ab ...</p>
+<p>Irgendwann wird dann eine Scheibe eingeworfen. Wenn dieser Punkt überschritten
+ist, beschleunigt sich der Verfall rasant: Über Nacht werden alle erreichbaren
+Scheiben eingeworfen, Türen werden zerstört, es werden sogar Brände gelegt ...</p>
+<p>Das passiert auch bei Software! Wenn man als Entwickler das Gefühl bekommt,
+die Software ist nicht gepflegt, wird man selbst auch nur relativ schlechte
+Arbeit abliefern. Sei es, weil man nicht versteht, was der Code macht und sich
+nicht an die Überarbeitung der richtigen Stellen traut und stattdessen die
+Änderungen als weiteren &quot;Erker&quot; einfach dran pappt. Seit es, weil man keine Lust
+hat, Zeit in ordentliche Arbeit zu investieren, weil der Code ja eh schon
+schlecht ist ... Das wird mit der Zeit nicht besser ...</p>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+<a href="https://en.wikipedia.org/wiki/Broken_windows_theory">&quot;Broken Windows&quot; Phänomen</a>
+</span>
+</div>
+<h3 id="maßeinheit-für-code-qualität--">Maßeinheit für Code-Qualität ;-)</h3>
+<p>Es gibt eine &quot;praxisnahe&quot; (und nicht ganz ernst gemeinte) Maßeinheit für Code-Qualität:
+Die &quot;WTF/m&quot; (<em>What the Fuck per minute</em>):
+<a href="https://www.osnews.com/story/19266/wtfsm/">Thom Holwerda: www.osnews.com/story/19266/WTFs_</a>.</p>
+<p>Wenn beim Code-Review durch Kollegen viele &quot;WTF&quot; kommen, ist der Code offenbar nicht
+in Ordnung ...</p>
+<h2 id="code-smells-nichtbeachtung-von-coding-conventions">Code Smells: Nichtbeachtung von Coding Conventions</h2>
+<ul>
+<li>
+<p>Richtlinien für einheitliches Aussehen
+=&gt; Andere Programmierer sollen Code schnell lesen können</p>
+<ul>
+<li>Namen, Schreibweisen</li>
+<li>Kommentare (Ort, Form, Inhalt)</li>
+<li>Einrückungen und Spaces vs. Tabs</li>
+<li>Zeilenlängen, Leerzeilen</li>
+<li>Klammern</li>
+</ul>
+</li>
+<li>
+<p>Beispiele: <a href="https://www.oracle.com/technetwork/java/codeconventions-150003.pdf">Sun Code Conventions</a>,
+<a href="https://google.github.io/styleguide/javaguide.html">Google Java Style</a></p>
+</li>
+<li>
+<p><em>Hinweis</em>: Betrifft vor allem die (äußere) Form!</p>
+</li>
+</ul>
+<div style="text-align: right;">
+<span class="btn btn-default btn-crossreference">
+Hinweis: Genauere Betrachtung in &quot;Coding Rules&quot;
+</span>
+</div>
+<h2 id="code-smells-schlechte-kommentare-i">Code Smells: Schlechte Kommentare I</h2>
+<ul>
+<li>
+<p>Ratlose Kommentare</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/* k.A. was das bedeutet, aber wenn man es raus nimmt, geht&#39;s nicht mehr */</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* TODO: was passiert hier, und warum? */</span>
+</span></span></code></pre></div><p>Der Programmierer hat selbst nicht verstanden (und macht sich auch nicht
+die Mühe zu verstehen), was er da tut! Fehler sind vorprogrammiert!</p>
+</li>
+<li>
+<p>Redundante Kommentare: Erklären Sie, was der Code <strong>inhaltlich</strong> tun sollte (und warum)!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> i<span style="color:#f92672">;</span> <span style="color:#75715e">// neues i
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>i<span style="color:#f92672">=</span>0<span style="color:#f92672">;</span>i<span style="color:#f92672">&lt;</span>10<span style="color:#f92672">;</span>i<span style="color:#f92672">++)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// fuer alle i
+</span></span></span></code></pre></div><p>Was würden Sie Ihrem Kollegen erklären (müssen), wenn Sie ihm/ihr den
+Code vorstellen?</p>
+<p>Wiederholen Sie nicht, was der Code tut (das kann ich ja selbst lesen),
+sondern beschreiben Sie, was der Code tun <em>sollte</em> und <em>warum</em>.</p>
+<p>Beschreiben Sie dabei auch das Konzept hinter einem Codebaustein.</p>
+</li>
+</ul>
+<h2 id="code-smells-schlechte-kommentare-ii">Code Smells: Schlechte Kommentare II</h2>
+<ul>
+<li>
+<p>Veraltete Kommentare</p>
+<p>Hinweis auf unsauberes Arbeiten: Oft wird im Zuge der Überarbeitung von
+Code-Stellen vergessen, auch den Kommentar anzupassen! Sollte beim Lesen
+extrem misstrauisch machen.</p>
+</li>
+<li>
+<p>Auskommentierter Code</p>
+<p>Da ist jemand seiner Sache unsicher bzw. hat eine Überarbeitung nicht
+abgeschlossen. Die Chance, dass sich der restliche Code im Laufe der Zeit
+so verändert, dass der auskommentierte Code nicht mehr (richtig) läuft, ist
+groß! Auskommentierter Code ist gefährlich und dank Versionskontrolle
+absolut überflüssig!</p>
+</li>
+<li>
+<p>Kommentare erscheinen zwingend nötig</p>
+<p>Häufig ein Hinweis auf ungeeignete Wahl der Namen (Klassen, Methoden,
+Attribute) und/oder auf ein ungeeignetes Abstraktionsniveau (beispielsweise
+Nichtbeachtung des Prinzips der &quot;<em>Single Responsibility</em>&quot;)!</p>
+<p>Der Code soll im <strong>Normalfall</strong> für sich selbst sprechen: <strong>WAS</strong> wird gemacht.
+Der Kommentar erklärt im Normalfall, <strong>WARUM</strong> der Code das machen soll.</p>
+</li>
+<li>
+<p>Unangemessene Information, z.B. Änderungshistorien</p>
+<p>Hinweise wie &quot;wer hat wann was geändert&quot; gehören in das Versionskontroll-
+oder ins Issue-Tracking-System. Die Änderung ist im Code sowieso nicht mehr
+sichtbar/nachvollziehbar!</p>
+</li>
+</ul>
+<h2 id="code-smells-schlechte-namen-und-fehlende-kapselung">Code Smells: Schlechte Namen und fehlende Kapselung</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Studi</span> <span style="color:#66d9ef">extends</span> Person <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String n<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> c<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">prtIf</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> <span style="color:#f92672">...</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Nach drei Wochen fragen Sie sich, was <code>n</code> oder <code>c</code> oder <code>Studi#prtIf()</code> wohl
+sein könnte! (Ein anderer Programmierer fragt sich das schon beim <strong>ersten</strong>
+Lesen.) Klassen und Methoden sollten sich erwartungsgemäß verhalten.</p>
+<p>Wenn Dinge öffentlich angeboten werden, muss man damit rechnen, dass andere
+darauf zugreifen. D.h. man kann nicht mehr so einfach Dinge wie die interne
+Repräsentation oder die Art der Berechnung austauschen! Öffentliche Dinge
+gehören zur Schnittstelle und damit Teil des &quot;Vertrags&quot; mit den Nutzern!</p>
+<ul>
+<li>
+<p>Programmierprinzip &quot;<strong>Prinzip der minimalen Verwunderung</strong>&quot;</p>
+<ul>
+<li>Klassen und Methoden sollten sich erwartungsgemäß verhalten</li>
+<li>Gute Namen ersparen das Lesen der Dokumentation</li>
+</ul>
+</li>
+<li>
+<p>Programmierprinzip &quot;<strong>Kapselung/Information Hiding</strong>&quot;</p>
+<ul>
+<li>Möglichst schlanke öffentliche Schnittstelle</li>
+<li>=&gt; &quot;Vertrag&quot; mit Nutzern der Klasse!</li>
+</ul>
+</li>
+</ul>
+<h2 id="code-smells-duplizierter-code">Code Smells: Duplizierter Code</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Studi</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getName</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> <span style="color:#66d9ef">return</span> name<span style="color:#f92672">;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getAddress</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> strasse<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;, &#34;</span><span style="color:#f92672">+</span>plz<span style="color:#f92672">+</span><span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">+</span>stadt<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getStudiAsString</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> name<span style="color:#f92672">+</span><span style="color:#e6db74">&#34; (&#34;</span><span style="color:#f92672">+</span>strasse<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;, &#34;</span><span style="color:#f92672">+</span>plz<span style="color:#f92672">+</span><span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">+</span>stadt<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;)&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><ul>
+<li>Programmierprinzip &quot;<strong>DRY</strong>&quot; =&gt; &quot;Don't repeat yourself!&quot;</li>
+</ul>
+<p>Im Beispiel wird das Formatieren der Adresse mehrfach identisch implementiert,
+d.h. duplizierter Code. Auslagern in eigene Methode und aufrufen!</p>
+<p>Kopierter/duplizierter Code ist problematisch:</p>
+<ul>
+<li>Spätere Änderungen müssen an mehreren Stellen vorgenommen werden</li>
+<li>Lesbarkeit/Orientierung im Code wird erschwert (Analogie: Reihenhaussiedlung)</li>
+<li>Verpasste Gelegenheit für sinnvolle Abstraktion!</li>
+</ul>
+<h2 id="code-smells-langer-code">Code Smells: Langer Code</h2>
+<ul>
+<li>
+<p>Lange Klassen</p>
+<ul>
+<li>Faustregel: 5 Bildschirmseiten sind viel</li>
+</ul>
+</li>
+<li>
+<p>Lange Methoden</p>
+<ul>
+<li>Faustregel: 1 Bildschirmseite</li>
+<li><a href="#id_Martin2009">[Martin2009]</a>: deutlich weniger als 20 Zeilen</li>
+</ul>
+</li>
+<li>
+<p>Lange Parameterlisten</p>
+<ul>
+<li>Faustregel: max. 3 ... 5 Parameter</li>
+<li><a href="#id_Martin2009">[Martin2009]</a>: 0 Parameter ideal, ab 3 Parameter
+gute Begründung nötig</li>
+</ul>
+</li>
+<li>
+<p>Tief verschachtelte <code>if/then</code>-Bedingungen</p>
+<ul>
+<li>Faustregel: 2 ... 3 Einrückungsebenen sind viel</li>
+</ul>
+</li>
+<li>
+<p>Programmierprinzip &quot;<strong>Single Responsibility</strong>&quot;</p>
+<p>Jede Klasse ist für genau <span class='alert'>einen Aspekt</span> des Gesamtsystems verantwortlich</p>
+</li>
+</ul>
+<h3 id="lesbarkeit-und-übersichtlichkeit-leiden">Lesbarkeit und Übersichtlichkeit leiden</h3>
+<ul>
+<li>Der Mensch kann sich nur begrenzt viele Dinge im Kurzzeitgedächtnis merken</li>
+<li>Klassen, die länger als 5 Bildschirmseiten sind, erfordern viel Hin- und
+Her-Scrollen, dito für lange Methoden</li>
+<li>Lange Methoden sind schwer verständlich (erledigen viele Dinge?)</li>
+<li>Mehr als 3 Parameter kann sich kaum jemand merken, vor allem beim
+Aufruf von Methoden</li>
+<li>Die Testbarkeit wird bei zu komplexen Methoden/Klassen und vielen Parametern
+sehr erschwert</li>
+<li>Große Dateien verleiten (auch mangels Übersichtlichkeit) dazu, neuen
+Code ebenfalls schluderig zu gliedern</li>
+</ul>
+<h3 id="langer-code-deutet-auch-auf-eine-verletzung-des-prinzips-der-single-responsibility-hin">Langer Code deutet auch auf eine Verletzung des Prinzips der Single Responsibility hin</h3>
+<ul>
+<li>
+<p>Klassen fassen evtl. nicht zusammengehörende Dinge zusammen</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Student</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String phoneAreaCode<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String phoneNumber<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printStudentInfo</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;name:    &#34;</span> <span style="color:#f92672">+</span> name<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;contact: &#34;</span> <span style="color:#f92672">+</span> phoneAreaCode <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/&#34;</span> <span style="color:#f92672">+</span> phoneNumber<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Warum sollte sich die Klasse <code>Student</code> um die Einzelheiten des Aufbaus einer
+Telefonnummer kümmern? Das Prinzip der &quot;<em>Single Responsibility</em>&quot; wird hier
+verletzt!</p>
+</li>
+<li>
+<p>Methoden erledigen vermutlich mehr als nur eine Aufgabe</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">credits</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Student s <span style="color:#f92672">:</span> students<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>s<span style="color:#f92672">.</span><span style="color:#a6e22e">hasSemesterFinished</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            ECTS c <span style="color:#f92672">=</span> calculateEcts<span style="color:#f92672">(</span>s<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            s<span style="color:#f92672">.</span><span style="color:#a6e22e">setEctsSum</span><span style="color:#f92672">(</span>c<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Diese Methode erledigt 4 Dinge: Iteration, Abfrage, Berechnung, Setzen ...
+</span></span></span></code></pre></div><p>=&gt; Erklären Sie die Methode jemandem. Wenn dabei das Wort &quot;und&quot;
+vorkommt, macht die Methode höchstwahrscheinlich zu viel!</p>
+</li>
+<li>
+<p>Viele Parameter bedeuten oft fehlende Datenabstraktion</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Circle <span style="color:#a6e22e">makeCircle</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> x<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> y<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> radius<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Circle <span style="color:#a6e22e">makeCircle</span><span style="color:#f92672">(</span>Point center<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> radius<span style="color:#f92672">);</span>  <span style="color:#75715e">// besser!
+</span></span></span></code></pre></div></li>
+</ul>
+<h2 id="code-smells-feature-neid">Code Smells: Feature Neid</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CreditsCalculator</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> ECTS <span style="color:#a6e22e">calculateEcts</span><span style="color:#f92672">(</span>Student s<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> semester <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">getSemester</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> workload <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">getCurrentWorkload</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> nrModuls <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">getNumberOfModuls</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> total <span style="color:#f92672">=</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">min</span><span style="color:#f92672">(</span>30<span style="color:#f92672">,</span> workload<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> extra <span style="color:#f92672">=</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">max</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> total <span style="color:#f92672">-</span> 30<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>semester <span style="color:#f92672">&lt;</span> 5<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>             extra <span style="color:#f92672">=</span> extra <span style="color:#f92672">*</span> nrModuls<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> ECTS<span style="color:#f92672">(</span>total <span style="color:#f92672">+</span> extra<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><ul>
+<li>Zugriff auf (viele) Interna der anderen Klasse! =&gt; Hohe Kopplung der Klassen!</li>
+<li>Methode <code>CreditsCalculator#calculateEcts()</code> &quot;möchte&quot; eigentlich in
+<code>Student</code> sein ...</li>
+</ul>
+<h2 id="weiterführende-links">Weiterführende Links</h2>
+<ul>
+<li><a href="https://www.theodinproject.com/lessons/foundations-clean-code">&quot;Foundations: Clean Code&quot; (The Odin Project)</a></li>
+<li><a href="https://github.com/google/styleguide/blob/gh-pages/docguide/best_practices.md">&quot;Documentation Best Practices&quot; (Google Styleguide)</a></li>
+</ul>
+<h2 id="wrap-up">Wrap-Up</h2>
+<ul>
+<li>
+<p>Code entsteht nicht zum Selbstzweck =&gt; Lesbarkeit ist wichtig</p>
+</li>
+<li>
+<p>Code Smells: Code führt zu möglichen (späteren) Problemen</p>
+<ul>
+<li>
+<p>Richtiges Kommentieren und Dokumentieren</p>
+<p>In dieser Sitzung haben wir vor allem auf Kommentare geschaut. Zum Thema Dokumentieren
+siehe die Einheit zu <a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/javadoc/">&ldquo;Javadoc&rdquo;</a>.</p>
+</li>
+<li>
+<p>Einhalten von Coding Conventions</p>
+<ul>
+<li>Regeln zu Schreibweisen und Layout</li>
+<li>Leerzeichen, Einrückung, Klammern</li>
+<li>Zeilenlänge, Umbrüche</li>
+<li>Kommentare</li>
+</ul>
+</li>
+<li>
+<p>Einhalten von Prinzipien des objektorientierten Programmierens</p>
+<ul>
+<li>Jede Klasse ist für genau <strong>einen</strong> Aspekt des Systems verantwortlich.
+(<em>Single Responsibility</em>)</li>
+<li>Keine Code-Duplizierung! (<em>DRY</em> - Don't repeat yourself)</li>
+<li>Klassen und Methoden sollten sich erwartungsgemäß verhalten</li>
+<li>Kapselung: Möglichst wenig öffentlich zugänglich machen</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    
+
+
+<div class="quizzes">
+    <h2>Quizzes</h2>
+
+    <ul>
+    
+        
+        
+        
+        <li>
+            <a href="https://www.fh-bielefeld.de/elearning/goto.php?target=tst_1070821&amp;client_id=FH-Bielefeld" class="icon reading" target="_blank" rel="nofollow noopener noreferrer"><strong>Quiz Code Smells (ILIAS)</strong></a>
+        </li>
+        
+    
+    </ul>
+
+</div>
+
+
+    
+
+
+
+<div class="assignments">
+    <h2>Übungsblätter/Aufgaben</h2>
+
+    <ul>
+    
+        
+        
+        
+            <li>
+                <a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments/pool_concept/sheet05/"><strong>Blatt 05: Mocking, Smells, Refactoring</strong></a>
+                 (Abgabe: Di, 10.05., 18 Uhr, PR/MR)
+            </li>
+        
+    
+    </ul>
+
+</div>
+
+
+    
+
+
+
+<div class="bib">
+    <h2>Quellen</h2>
+
+    <ul>
+    
+        
+        
+
+        
+            
+            
+            
+            
+            
+
+            
+            
+                
+                    
+                
+            
+            
+            
+            
+            
+            
+
+            <li id="id_Fowler2011">
+            
+                [Fowler2011] <strong>Refactoring</strong>
+            
+            
+                <br>Fowler, M., Addison-Wesley, 2011.
+                
+                    ISBN <a href="https://www.digibib.net/openurl/Bi10?isbn=978-0-201-48567-7" target="_blank" rel="nofollow noopener noreferrer">978-0-201-48567-7</a>.
+                
+                
+            
+            
+            </li>
+        
+
+    
+        
+        
+
+        
+            
+            
+            
+            
+            
+
+            
+            
+                
+                    
+                
+            
+            
+            
+            
+            
+            
+
+            <li id="id_Inden2013">
+            
+                [Inden2013] <strong>Der weg zum java-profi</strong>
+            
+            
+                <br>Inden, M., dpunkt.verlag, 2013.
+                
+                    ISBN <a href="https://www.digibib.net/openurl/Bi10?isbn=978-3-8649-1245-0" target="_blank" rel="nofollow noopener noreferrer">978-3-8649-1245-0</a>.
+                
+                
+            
+            
+                <br><em>Kapitel 10: Bad Smells</em>
+            
+            </li>
+        
+
+    
+        
+        
+
+        
+            
+            
+            
+            
+            
+
+            
+            
+                
+                    
+                
+            
+            
+            
+            
+            
+            
+
+            <li id="id_Martin2009">
+            
+                [Martin2009] <strong>Clean Code</strong>
+            
+            
+                <br>Martin, R., mitp, 2009.
+                
+                    ISBN <a href="https://www.digibib.net/openurl/Bi10?isbn=978-3-8266-5548-7" target="_blank" rel="nofollow noopener noreferrer">978-3-8266-5548-7</a>.
+                
+                
+            
+            
+            </li>
+        
+
+    
+        
+        
+
+        
+            
+            
+            
+            
+            
+
+            
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+            
+            
+            
+            
+            
+
+            <li id="id_Passig2013">
+            
+                [Passig2013] <strong>Weniger schlecht programmieren</strong>
+            
+            
+                <br>Passig, K. und Jander, J., O'Reilly, 2013.
+                
+                    ISBN <a href="https://www.digibib.net/openurl/Bi10?isbn=978-3-89721-567-2" target="_blank" rel="nofollow noopener noreferrer">978-3-89721-567-2</a>.
+                
+                
+            
+            
+            </li>
+        
+
+    
+    </ul>
+
+</div>
+
+
+
+
+
+
+        </div>
+      </main><p><div style="color: darkgray; font-size: smaller;">
+<p style="margin-left: 1rem;">
+    <!-- https://creativecommons.org/choose/ -->
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;margin:0;display:inline;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a> Unless otherwise noted, <a href="https://github.com/PM-Dungeon/PM-Lecture">this work</a> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/cagix" property="cc:attributionName" rel="cc:attributionURL">Carsten Gips</a> and <a href="https://github.com/PM-Dungeon/PM-Lecture/graphs/contributors">contributors</a> is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+<br />
+    Icons by <a href="https://fontawesome.com/">Font Awesome</a>.
+    Built with <a href="https://github.com/jgm/pandoc">Pandoc</a> using <a href="https://github.com/cagix/pandoc-lecture">Pandoc-Lecture</a> and <a href="https://github.com/gohugoio/hugo">Hugo</a> using the <a href="https://github.com/McShelby/hugo-theme-relearn">Hugo Relearn Theme</a>.
+</p>
+</div>
+</p>
+
+    </div>
+    <aside id="sidebar" class="default-animation showVisitedLinks">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
+<a id="logo" href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/'>
+    <img style="max-width:35%" alt="icon" src='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/images/logo.png'>
+</a>
+
+        </div>
+      </div>
+      <div id="content-wrapper" class="highlightable">
+        <ul class="topics">
+          <li data-nav-id="/git/" title="Git" class="dd-item"><input type="checkbox" id="section-346b17b87a1a6c2e7ff1e8f0f4d1b4bd" class="toggle"/><label for="section-346b17b87a1a6c2e7ff1e8f0f4d1b4bd" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/">Git<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/git/intro/" title="Intro: Versionskontrolle in der Softwareentwicklung" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/intro/">Intro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/basics/" title="Basics der Versionsverwaltung mit Git (lokale Repos)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/basics/">Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/branches/" title="Git Branches: Features unabhängig entwickeln und mit Git verwalten" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branches/">Branches<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/branching-strategies/" title="Branching-Strategien mit Git" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/branching-strategies/">Branching-Strategien<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/remotes/" title="Arbeiten mit Git Remotes (dezentrale Repos)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/remotes/">Remotes<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/workflows/" title="Zusammenarbeit: Git-Workflows und Merge-/Pull-Requests" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/workflows/">Workflows<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/git/bisect/" title="Fehlersuche mit Git Bisect" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/git/bisect/">Bisect<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/testing/" title="Testing" class="dd-item"><input type="checkbox" id="section-a831e487e7bd822b29c7ec65758c1503" class="toggle"/><label for="section-a831e487e7bd822b29c7ec65758c1503" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/">Testing<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/testing/testing-intro/" title="Einführung Softwaretest" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testing-intro/">Intro SW-Test<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/junit-basics/" title="Testen mit JUnit (JUnit-Basics)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/junit-basics/">JUnit-Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/testcases/" title="Testfallermittlung: Wie viel und was muss man testen?" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/testcases/">Testfallermittlung<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/testing/mockito/" title="Mocking mit Mockito" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/testing/mockito/">Mocking<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/coding/" title="Coding" class="dd-item parent"><input type="checkbox" id="section-079e50620d382bff188ccaf7d7eec5ec" class="toggle" checked/><label for="section-079e50620d382bff188ccaf7d7eec5ec" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/">Coding<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/coding/logging/" title="Logging" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/logging/">Logging<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/javadoc/" title="Javadoc" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/javadoc/">Javadoc<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/smells/" title="Code Smells" class="dd-item active"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/smells/">Code Smells<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/codingrules/" title="Coding Conventions und Metriken" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/codingrules/">Coding Conventions<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/refactoring/" title="Refactoring" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/refactoring/">Refactoring<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/coding/tdd/" title="Testbarkeit und Testdriven Development (TDD)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/coding/tdd/">Testbarkeit und TDD<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/building/" title="Building" class="dd-item"><input type="checkbox" id="section-ff836c14ff2daf3537fcd8281d19c8a3" class="toggle"/><label for="section-ff836c14ff2daf3537fcd8281d19c8a3" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/">Building<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/building/ant/" title="Build-Systeme: Apache Ant" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ant/">Ant<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/maven/" title="Build-Systeme: Apache Maven" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/maven/">Maven<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/gradle/" title="Build-Systeme: Gradle" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/gradle/">Gradle<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/ci/" title="Continuous Integration (CI)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/ci/">Continuous Integration<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/building/docker/" title="Einführung in Docker" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/building/docker/">Docker<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/pattern/" title="Pattern" class="dd-item"><input type="checkbox" id="section-84eb7f5d4debf68ee3bffeb919ec8445" class="toggle"/><label for="section-84eb7f5d4debf68ee3bffeb919ec8445" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/">Pattern<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/pattern/factory-method/" title="Factory-Method-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/factory-method/">Factory-Method<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/visitor/" title="Visitor-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/visitor/">Visitor<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/observer/" title="Observer-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/observer/">Observer<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/strategy/" title="Strategy-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/strategy/">Strategy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/template-method/" title="Template-Method-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/template-method/">Template-Method<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/command/" title="Command-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/command/">Command<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/flyweight/" title="Flyweight-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/flyweight/">Flyweight<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/type-object/" title="Type-Object-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/type-object/">Type-Object<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pattern/singleton/" title="Singleton-Pattern" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/pattern/singleton/">Singleton<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/generics/" title="Generics" class="dd-item"><input type="checkbox" id="section-9ec2dd2215ae1799fe9fb0d331b91e01" class="toggle"/><label for="section-9ec2dd2215ae1799fe9fb0d331b91e01" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/">Generics<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/generics/classes-methods/" title="Generische Klassen &amp; Methoden" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/classes-methods/">Klassen &amp; Methoden<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/bounds-wildcards/" title="Bounds &amp; Wildcards" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/bounds-wildcards/">Bounds &amp; Wildcards<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/type-erasure/" title="Type Erasure" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/type-erasure/">Type Erasure<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/generics/generics-polymorphism/" title="Generics und Polymorphie" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/generics-polymorphism/">Polymorphie<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/java-jvm/" title="Java / JVM" class="dd-item"><input type="checkbox" id="section-1d4a17db91c5179ff6d850c019075026" class="toggle"/><label for="section-1d4a17db91c5179ff6d850c019075026" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/">Java / JVM<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/java-jvm/regexp/" title="Reguläre Ausdrücke" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/regexp/">RegExp<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/configuration/" title="Konfiguration eines Programms" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/configuration/">Konfiguration<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/enums/" title="Aufzählungen (Enumerations)" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/enums/">Enumerations<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/annotations/" title="Annotationen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/annotations/">Annotationen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/reflection/" title="Reflection" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/reflection/">Reflection<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/collections/" title="Java Collections Framework" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/collections/">Collections<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/serialisation/" title="Serialisierung von Objekten und Zuständen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/serialisation/">Serialisierung<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/java-jvm/exceptions/" title="Exception-Handling" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/java-jvm/exceptions/">Exceptions<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/modern-java/" title="Modern Java" class="dd-item"><input type="checkbox" id="section-b61bc4c9231f95b2150d554b2f10a68d" class="toggle"/><label for="section-b61bc4c9231f95b2150d554b2f10a68d" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/">Modern Java<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/modern-java/defaultmethods/" title="Interfaces: Default-Methoden" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/defaultmethods/">Default-Methoden<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/lambdas/" title="Lambda-Ausdrücke und funktionale Interfaces" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/lambdas/">Lambda-Ausdrücke<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/methodreferences/" title="Methoden-Referenzen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/methodreferences/">Methoden-Referenzen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/stream-api/" title="Stream-API" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/stream-api/">Stream-API<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/records/" title="Record-Klassen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/records/">Records<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/modern-java/optional/" title="Optional" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/optional/">Optional<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/threads/" title="Threads" class="dd-item"><input type="checkbox" id="section-d05c691fa11b6c7c73707b1f693354bc" class="toggle"/><label for="section-d05c691fa11b6c7c73707b1f693354bc" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/">Threads<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/threads/intro/" title="Einführung in die nebenläufige Programmierung mit Threads" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/intro/">Intro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/threads/synchronisation/" title="Synchronisation: Verteilter Zugriff auf gemeinsame Ressourcen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/synchronisation/">Synchronisation<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/threads/highlevel/" title="High-Level Concurrency" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/threads/highlevel/">High-Level Concurrency<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/gui/" title="GUI" class="dd-item"><input type="checkbox" id="section-6bd1817b64a743ce3da58441e61d147a" class="toggle"/><label for="section-6bd1817b64a743ce3da58441e61d147a" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/">GUI<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/gui/basics/" title="Swing 101: Basics" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/basics/">Swing: Basics<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/events/" title="Swing Events" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/events/">Swing: Events<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/widgets/" title="Swing: Nützliche Widgets" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/widgets/">Swing: Widgets<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/layouts/" title="Swing: Layout-Manager" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/layouts/">Swing: Layout-Manager<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/tables/" title="Swing: Tabellen" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/tables/">Swing: Tabellen<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/gui/java2d/" title="Einführung in Graphics und Java 2D" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/gui/java2d/">Java2D<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/frameworks/" title="Frameworks" class="dd-item"><input type="checkbox" id="section-6e87d98d146ebd1a56f5cfe9e946dff8" class="toggle"/><label for="section-6e87d98d146ebd1a56f5cfe9e946dff8" ></label><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/">Frameworks<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/frameworks/intro/" title="Frameworks: Einstieg" class="dd-item"><a href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/frameworks/intro/">Intro<i class="fas fa-check read-icon"></i></a></li></ul></li>
+        </ul>
+        <div id="shortcuts">
+          <div class="nav-title">More</div>
+          <ul>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/schedule"><i class='fas fa-bookmark'></i> Fahrplan</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/assignments"><i class='fas fa-bookmark'></i> Praktikum</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/grading"><i class='fas fa-bookmark'></i> Note/Credits</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/syllabus"><i class='fas fa-bookmark'></i> Syllabus</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/resources"><i class='fas fa-bookmark'></i> Ressourcen</a></li>
+            <li><a class="padding" href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/exam"><i class='fas fa-bookmark'></i> Prüfungsvorbereitung</a></li>
+          </ul>
+        </div>
+        <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showVisitedLinks showFooter"></div>
+        <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showVisitedLinks showFooter"/>
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVariantSwitch showVisitedLinks">
+          <ul>
+            <li id="select-language-container" class="footerLangSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-language fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-language" onchange="location = baseUri + this.value;">
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+            </li>
+            <li id="select-variant-container" class="footerVariantSwitch showVariantSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-variant" onchange="variants.changeVariant( this.value );">
+                    <option id="relearn-light" value="relearn-light" selected>Relearn Light</option>
+                    <option id="relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="green" value="green">Green</option>
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+              <script>variants.markSelectedVariant();</script>
+            </li>
+            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+          </ul>
+        </div>
+        <div id="footer" class="footerFooter showFooter"><p style="margin-left: 1rem;">
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/imprint'>Impressum</a>,
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/privacy'>Datenschutz</a>,
+    <a href='https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/credits'>Credits</a>
+</p>
+
+        </div>
+      </div>
+    </aside>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/clipboard.min.js?1656322213"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/perfect-scrollbar.min.js?1656322213"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/featherlight.min.js?1656322213"></script>
+    <script src="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/js/theme.js?1656322213"></script>
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$','$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+</script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+</html>
+

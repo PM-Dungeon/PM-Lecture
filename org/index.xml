@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Organisatorisches on </title>
+    <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/</link>
+    <description>Recent content in Organisatorisches on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-DE</language><atom:link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fahrplan</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/schedule/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/schedule/</guid>
+      <description>Woche Vorlesung Praktikum/Übung      1 (KW14/Mo)     ORG &amp;gt; Syllabus Hinweis: Kick-Off (Zoom)   GIT &amp;gt; Intro   GIT &amp;gt; Basics      &amp;gt;&amp;gt; Kein Praktikum
+    2 (KW14/Fr)     GIT &amp;gt; Branches   GIT &amp;gt; Branching-Strategien   GIT &amp;gt; Remotes   PATTERN &amp;gt; Factory-Method   CODING &amp;gt; Logging      &amp;gt;&amp;gt; Kein Praktikum</description>
+    </item>
+    <item>
+      <title>Note und Credits</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/grading/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/grading/</guid>
+      <description>Prüfungsform: Performanzprüfung, 7 ECTS Die Performanzprüfung besteht aus zwei Teilprüfungen, die Sie unabhängig voneinander absolvieren können: der praktischen Teilleistung und der theoretischen Teilleistung.
+Dies sind zwei getrennte Prüfungsleistungen, für die Sie sich jeweils separat im LSF anmelden müssen. Sie bekommen als Note für das Modul den gewichteten Mittelwert aus den beiden Teilleistungen.
+Diese Prüfungsform gilt automatisch für alle Studierenden in Programmiermethoden, die nicht bereits früher unter einer anderen Prüfungsform in Programmiermethoden eine Prüfungsleistung abgelegt oder begonnen haben (vgl.</description>
+    </item>
+    <item>
+      <title>Syllabus</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/syllabus/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/syllabus/</guid>
+      <description>Worum geht&#39;s hier? Weniger schlecht programmieren ;-)
+  ... And, lastly, there&#39;s the explosive growth in demand, which has led to many people doing it who aren&#39;t any good at it. Code is merely a means to an end. Programming is an art and code is merely its medium. Pointing a camera at a subject does not make one a proper photographer. There are a lot of self-described coders out there who couldn&#39;t program their way out of a paper bag.</description>
+    </item>
+    <item>
+      <title>Ressourcen</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/resources/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/resources/</guid>
+      <description>Was brauche ich? Literatur ... Basics (&amp;quot;Must Have&amp;quot;!)  &amp;quot;Java ist auch eine Insel&amp;quot;: [Ullenboom2021] &amp;quot;Pro Git&amp;quot;: [Chacon2014] &amp;quot;Java Core Libraries Developer Guide&amp;quot;: [JDK-Doc] &amp;quot;The Java Tutorials&amp;quot;: [Java-SE-Tutorial]  Weitere empfohlene Literatur Joshua Bloch, einer der &amp;quot;Väter&amp;quot; von Java, hat eine interessante Sammlung von Rezepten für typische Probleme und wie man diese am sinnvollsten in Java lösen kann gesammelt: [Bloch2018] bzw. [Bloch2011] (ältere Version). Mit [Inden2013] gibt es ein extrem umfangreiches Nachschlagewerk zu (fast) allen Themen in Java (wird gelegentlich aktualisiert).</description>
+    </item>
+    <item>
+      <title>Prüfungsvorbereitung</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/exam/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/exam/</guid>
+      <description>Elektronische Klausur: Termin, Materialien Termin Die Prüfung des theoretischen Teils der Performanzprüfung erfolgt durch eine Klausur, die als digitale Prüfung auf einem Prüfungs-ILIAS durchgeführt wird.
+Es wird angestrebt, die Klausur in Präsenz in den Rechnerpools am Campus Minden durchzuführen. Falls dies wegen der Corona-Situation oder anderer Umstände nicht möglich sein sollte, wird die Klausur als &amp;quot;Open-Book-Ausarbeitung&amp;quot; im Home-Office durchgeführt.
+Prüfungszeitraum 1: E2: Mo, 11.07.2022, 09:00 -- 09:45 Uhr
+ Dauer 45 Minuten (Zeitraum 1, E2) bzw.</description>
+    </item>
+    <item>
+      <title>Lerntagebuch Beispiel</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/lerntagebuch_beispiel/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/lerntagebuch_beispiel/</guid>
+      <description>Aufgabe Das Dungeon soll um mindestens zwei Monster erweitert werden. Die Monster sollen unterschiedliche Eigenschaften haben und sich zufällig im Dungeon bewegen.
+Ansatz und Modellierung Da mehrere Monster erstellt werden sollen, diese sich jedoch viele Eigenschaften teilen, wird eine abstrakte Klasse Monster als Basisklasse für Monster erstellt. Die Monster-Klasse stellt alle grundlegenden Eigenschaften und Funktionen eines Monsters bereit.
+Da Monster auch im Dungeon gezeichnet werden müssen, implementiert die Klasse Monster das Interface IDrawable.</description>
+    </item>
+    <item>
+      <title>Lerntagebuch zur Bearbeitung der Dungeon-Aufgaben XYZ, XYZ, XYZ und XYZ</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/lerntagebuch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/org/lerntagebuch/</guid>
+      <description>Aufgabe TODO
+Ansatz und Modellierung TODO
+Umsetzung TODO
+Postmortem TODO</description>
+    </item>
+  </channel>
+</rss>

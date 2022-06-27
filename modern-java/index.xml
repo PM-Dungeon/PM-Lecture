@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Modern Java on </title>
+    <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/</link>
+    <description>Recent content in Modern Java on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-DE</language><atom:link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Interfaces: Default-Methoden</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/defaultmethods/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/defaultmethods/</guid>
+      <description>Problem: Etablierte API (Interfaces) erweitern interface Klausur {  void anmelden(Studi s);  void abmelden(Studi s); } =&amp;gt; Nachträglich noch void schreiben(Studi s); ergänzen?
+Wenn ein Interface nachträglich erweitert wird, müssen alle Kunden (also alle Klassen, die das Interface implementieren) auf die neuen Signaturen angepasst werden. Dies kann viel Aufwand verursachen und API-Änderungen damit unmöglich machen.
+Default-Methoden: Interfaces mit Implementierung Seit Java8 können Interfaces auch Methoden implementieren. Es gibt zwei Varianten: Default-Methoden und statische Methoden.</description>
+    </item>
+    <item>
+      <title>Lambda-Ausdrücke und funktionale Interfaces</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/lambdas/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/lambdas/</guid>
+      <description>Problem: Sortieren einer Studi-Liste List&amp;lt;Studi&amp;gt; sl = new ArrayList&amp;lt;&amp;gt;();  // Liste sortieren? sl.sort(???); // Parameter: java.util.Comparator&amp;lt;Studi&amp;gt; public class MyCompare implements Comparator&amp;lt;Studi&amp;gt; {  @Override public int compare(Studi o1, Studi o2) {  return o1.getCredits() - o2.getCredits();  } } // Liste sortieren? MyCompare mc = new MyCompare(); sl.sort(mc); Da Comparator&amp;lt;T&amp;gt; ein Interface ist, muss man eine extra Klasse anlegen, die die abstrakte Methode aus dem Interface implementiert und ein Objekt von dieser Klasse erzeugen und dieses dann der sort()-Methode übergeben.</description>
+    </item>
+    <item>
+      <title>Methoden-Referenzen</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/methodreferences/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/methodreferences/</guid>
+      <description>Beispiel: Sortierung einer Liste List&amp;lt;Studi&amp;gt; sl = new ArrayList&amp;lt;Studi&amp;gt;();  // Anonyme innere Klasse Collections.sort(sl, new Comparator&amp;lt;Studi&amp;gt;() {  @Override public int compare(Studi o1, Studi o2) {  return Studi.cmpCpsClass(o1, o2);  } });   // Lambda-Ausdruck Collections.sort(sl, (o1, o2) -&amp;gt; Studi.cmpCpsClass(o1, o2));  // Methoden-Referenz Collections.sort(sl, Studi::cmpCpsClass); Anmerkung Für das obige Beispiel wird davon ausgegangen, dass in der Klasse Studi eine statische Methode cmpCpsClass() existiert:
+public static int cmpCpsClass(Studi s1, Studi s2) {  return s1.</description>
+    </item>
+    <item>
+      <title>Stream-API</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/stream-api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/stream-api/</guid>
+      <description>Motivation Es wurden Studis, Studiengänge und Fachbereiche modelliert (aus Gründen der Übersichtlichkeit einfach als Record-Klassen).
+Nun soll pro Fachbereich die Anzahl der Studis ermittelt werden, die bereits 100 ECTS oder mehr haben. Dazu könnte man über alle Studiengänge im Fachbereich iterieren, und in der inneren Schleife über alle Studis im Studiengang. Dann filtert man alle Studis, deren ECTS größer 100 sind und erhöht jeweils den Zähler:
+public record Studi(String name, int credits) {} public record Studiengang(String name, List&amp;lt;Studi&amp;gt; studis) {} public record Fachbereich(String name, List&amp;lt;Studiengang&amp;gt; studiengaenge) {}  private static long getCountFB(Fachbereich fb) {  long count = 0;  for (Studiengang sg : fb.</description>
+    </item>
+    <item>
+      <title>Record-Klassen</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/records/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/records/</guid>
+      <description>Motivation; Klasse Studi public class Studi {  private final String name;  private final int credits;   public Studi(String name, int credits) {  this.name = name;  this.credits = credits;  }   public String getName() {  return name;  }   public int getCredits() {  return credits;  } } Klasse Studi als Record public record StudiR(String name, int credits) {}   Immutable Klasse mit Feldern String name und int credits =&amp;gt; &amp;quot;(String name, int credits)&amp;quot; werden &amp;quot;Komponenten&amp;quot; des Records genannt</description>
+    </item>
+    <item>
+      <title>Optional</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/optional/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/modern-java/optional/</guid>
+      <description>Motivation public class LSF {  private Set&amp;lt;Studi&amp;gt; sl;   public Studi getBestStudi() {  if (sl == null) return null; // Fehler: Es gibt noch keine Sammlung   Studi best = null;  for (Studi s : sl) {  if (best == null) best = s;  if (best.credits() &amp;lt; s.credits()) best = s;  }  return best;  } }  public static void main(String.</description>
+    </item>
+  </channel>
+</rss>

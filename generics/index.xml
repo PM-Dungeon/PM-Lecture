@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Generics on </title>
+    <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/</link>
+    <description>Recent content in Generics on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-DE</language><atom:link href="https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Generische Klassen &amp; Methoden</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/classes-methods/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/classes-methods/</guid>
+      <description>Generische Strukturen Vector speicher = new Vector(); speicher.add(1); speicher.add(2); speicher.add(3); speicher.add(&amp;#34;huhu&amp;#34;);  int summe = 0; for (Object i : speicher) { summe += (Integer)i; } Problem: Nutzung des &amp;quot;raw&amp;quot; Typs Vector ist nicht typsicher!
+ Mögliche Fehler fallen erst zur Laufzeit und u.U. erst sehr spät auf: Offenbar werden im obigen Beispiel int-Werte erwartet, d.h. das Hinzufügen von &amp;quot;huhu&amp;quot; ist vermutlich ein Versehen (wird vom Compiler aber nicht bemerkt) Die Iteration über speicher kann nur allgemein als Object erfolgen, d.</description>
+    </item>
+    <item>
+      <title>Bounds &amp; Wildcards</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/bounds-wildcards/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/bounds-wildcards/</guid>
+      <description>Bounds: Einschränken der generischen Typen public class Cps&amp;lt;E extends Number&amp;gt; {  // Obere Schranke: E muss Number oder Subklasse sein  // =&amp;gt; Zugriff auf Methoden aus Number moeglich } Cps&amp;lt;Double&amp;gt; a; Cps&amp;lt;Number&amp;gt; b; Cps&amp;lt;String&amp;gt; c; // Fehler!!!   Schlüsselwort extends gilt hier auch für Interfaces
+  Mehrere Interfaces: nach extends Klasse oder Interface, danach mit &amp;quot;&amp;amp;&amp;quot; getrennt die restlichen Interfaces:
+class Cps&amp;lt;E extends KlasseOderInterface &amp;amp; I1 &amp;amp; I2 &amp;amp; I3&amp;gt; {}   Anmerkung: Der Typ-Parameter ist analog auch mit super (nach unten) einschränkbar</description>
+    </item>
+    <item>
+      <title>Type Erasure</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/type-erasure/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/type-erasure/</guid>
+      <description>Typ-Löschung (Type-Erasure) Der Compiler ersetzt nach Prüfung der Typen und ihrer Verwendung alle Typ-Parameter durch
+ deren obere (Typ-)Schranke und passende explizite Cast-Operationen (im Byte-Code).  Die obere Typ-Schranke ist in der Regel der Typ der ersten Bounds-Klausel oder Object, wenn keine Einschränkungen formuliert sind.
+Bei parametrisierten Typen wie List&amp;lt;T&amp;gt; wird der Typ-Parameter entfernt, es entsteht ein sogenannter Raw-Typ (List, quasi implizit mit Object parametrisiert).
+=&amp;gt; Ergebnis: Nur eine (untypisierte) Klasse!</description>
+    </item>
+    <item>
+      <title>Generics und Polymorphie</title>
+      <link>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/generics-polymorphism/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.fh-bielefeld.de/elearning/data/FH-Bielefeld/lm_data/lm_1271733/generics/generics-polymorphism/</guid>
+      <description>Generische Polymorphie B&amp;lt;E&amp;gt; extends A&amp;lt;E&amp;gt;
+ class A&amp;lt;E&amp;gt; { ... } class B&amp;lt;E&amp;gt; extends A&amp;lt;E&amp;gt; { ... }  A&amp;lt;Double&amp;gt; ad = new B&amp;lt;Double&amp;gt;(); A&amp;lt;String&amp;gt; as = new B&amp;lt;String&amp;gt;(); class Vector&amp;lt;E&amp;gt; { ... } class Stack&amp;lt;E&amp;gt; extends Vector&amp;lt;E&amp;gt; { ... }  Vector&amp;lt;Double&amp;gt; vd = new Stack&amp;lt;Double&amp;gt;(); Vector&amp;lt;String&amp;gt; vs = new Stack&amp;lt;String&amp;gt;(); =&amp;gt; Polymorphie bei Generics bezieht sich auf Typ (nicht Typ-Parameter)
+Invarianz: Generics sind invariant, d.h. ein HashSet&amp;lt;String&amp;gt; ist ein Untertyp von Set&amp;lt;String&amp;gt;.</description>
+    </item>
+  </channel>
+</rss>
